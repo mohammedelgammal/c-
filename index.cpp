@@ -1,19 +1,13 @@
 #include <iostream>
-#include <array>
+#include <vector>
 #include <limits.h>
 #include <string.h>
 using namespace std;
 
-void swapCase(string word)
-{
-    const unsigned short wordLength = sizeof(word) / sizeof(word[0]);
-    for (short i = 0; i < wordLength - 1; i++)
-        if (word[i] != ' ')
-            cout << char(tolower(word[i]));
-}
-
 int main()
 {
-    swapCase("EL   Z Er o");
+    const int num = 100;
+    const int *ptr = &num;
+    cout << "the value is: " << num << "and the memory address is: " << ptr;
     return 0;
 }
