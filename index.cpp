@@ -4,31 +4,16 @@
 #include <string.h>
 using namespace std;
 
-void guess()
+void swapCase(string word)
 {
-    const unsigned short num = 7;
-    unsigned short guesses = 0;
-    unsigned short guess;
-    while (guesses < 4)
-    {
-        cout << "Please guess a number between 0 and 10!" << endl;
-        cin >> guess;
-        if (guess == num)
-        {
-            cout << "Congrats! your guess is correct!" << endl;
-            return;
-        }
-        else
-        {
-            cout << "Oh wrong guess! Try harder!" << endl;
-            guesses++;
-        }
-    }
-    cout << "Tries are over!";
+    const unsigned short wordLength = sizeof(word) / sizeof(word[0]);
+    for (short i = 0; i < wordLength - 1; i++)
+        if (word[i] != ' ')
+            cout << char(tolower(word[i]));
 }
 
 int main()
 {
-    guess();
+    swapCase("EL   Z Er o");
     return 0;
 }
