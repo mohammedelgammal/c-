@@ -3,16 +3,14 @@
 
 using namespace std;
 
-void increment(int &num)
+void printOdds(short limit)
 {
-    num++;
+    for (short i = 0; i <= limit; i++)
+        (i % 2) && cout << i << endl;
 }
 
 int main()
 {
-    int input = 1;
-    cout << input << endl;
-    increment(input);
-    cout << input;
+    printOdds(10);
     return 0;
 }
