@@ -1,13 +1,13 @@
 #include <iostream>
-#include <vector>
-#include <limits.h>
-#include <string.h>
+#include <iomanip>
+
 using namespace std;
 
 int main()
 {
-    const int num = 100;
-    const int *ptr = &num;
-    cout << "the value is: " << num << "and the memory address is: " << ptr;
+    int num_one = 10;
+    int num_two = 3;
+    double result = num_one / num_two;
+    cout << result << endl;
     return 0;
 }
