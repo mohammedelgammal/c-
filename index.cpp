@@ -3,14 +3,14 @@
 
 using namespace std;
 
-void printOdds(short limit)
-{
-    for (short i = 0; i <= limit; i++)
-        (i % 2) && cout << i << endl;
-}
-
 int main()
 {
-    printOdds(10);
+    int one[10] = {1, 2, 3};
+    int two[size(one)];
+
+    for (int index : one)
+        two[index] = one[index];
+
+    cout << two[2];
     return 0;
 }
