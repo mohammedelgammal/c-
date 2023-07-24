@@ -1,16 +1,24 @@
 #include <iostream>
-#include <memory>
 
 using namespace std;
 
+struct Movie
+{
+    string title;
+    int releaseYear = 0;
+    bool isPopular = false;
+};
+
 int main()
 {
-    string word = "mohammed elgammal";
-    int firstSpaceIndex = word.find(' ');
-    int lastSpaceIndex = word.rfind(' ') + 1;
-    string firstName = word.substr(0, firstSpaceIndex);
-    string lastName = word.substr(lastSpaceIndex);
-    cout << firstName << endl;
-    cout << lastName << endl;
+    Movie terminatorOne = {"Terminator", 1985, true},
+          terminatorTwo = {"Terminator 2", 1991, false},
+          terminatorThree = {"Terminator 3", 1995, true};
+    vector<Movie> terminator = {terminatorOne, terminatorTwo};
+    terminator.push_back(terminatorThree);
+    for (Movie &movie : terminator)
+    {
+        cout << movie.title << ", " << movie.releaseYear << endl;
+    }
     return 0;
 }
