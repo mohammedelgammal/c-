@@ -21,6 +21,18 @@ struct Customer
     Date dob;
     Address address;
     bool isRegistered = false;
+    const bool equals(const Customer &customer)
+    {
+        return (ID == customer.ID &&
+                name == customer.name &&
+                dob.day == customer.dob.day &&
+                dob.month == customer.dob.month &&
+                dob.year == customer.dob.year &&
+                address.street == customer.address.street &&
+                address.city == customer.address.city &&
+                address.zipCode == customer.address.zipCode &&
+                isRegistered == customer.isRegistered);
+    }
 };
 
 int main()
@@ -36,7 +48,8 @@ int main()
         cout << boolalpha << endl
              << "User: " << name << ", id(" << ID << ")" << endl
              << "Year of Birth: " << dob.year << endl
-             << "Living in " << address.city;
+             << "Living in " << address.city << endl;
     }
+    cout << customerOne.equals(customerTwo);
     return 0;
 }
