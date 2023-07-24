@@ -1,2 +1,3 @@
- index : one)
-        two[index] = one[index];
+currentIndex = 0;
+            loop = 3;
+        

@@ -3,29 +3,31 @@
 
 using namespace std;
 
-void display_array(int arr[], int size)
-{
-    for (int i = 0; i < size; i++)
-        cout << arr[i] << endl;
-}
-
-int search()
+void search()
 {
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    int target = 0;
-    int current = 0;
-    while (current < size(arr) - 1)
+    int temp_element = 0;
+    bool swapped = false;
+    do
     {
-        if (arr[current] == target)
-            return arr[current];
-        else
-            current++;
-    }
-    return -1;
+        swapped = false;
+        for (int index = 0; index < 8; index++)
+        {
+            if (arr[index] < arr[index + 1])
+            {
+                temp_element = arr[index + 1];
+                arr[index + 1] = arr[index];
+                arr[index] = temp_element;
+                swapped = true;
+            }
+        }
+    } while (swapped);
+    for (int el : arr)
+        cout << el << endl;
 }
 
 int main()
 {
-    cout << search();
+    search();
     return 0;
 }
