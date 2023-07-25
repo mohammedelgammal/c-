@@ -21,19 +21,27 @@ struct Customer
     Date dob;
     Address address;
     bool isRegistered = false;
-    const bool equals(const Customer &customer)
-    {
-        return (ID == customer.ID &&
-                name == customer.name &&
-                dob.day == customer.dob.day &&
-                dob.month == customer.dob.month &&
-                dob.year == customer.dob.year &&
-                address.street == customer.address.street &&
-                address.city == customer.address.city &&
-                address.zipCode == customer.address.zipCode &&
-                isRegistered == customer.isRegistered);
-    }
 };
+bool operator==(const Customer &firstCustomer, const Customer &secondCustomer)
+{
+    return (
+        firstCustomer.ID == secondCustomer.ID &&
+        firstCustomer.name == secondCustomer.name &&
+        firstCustomer.dob.day == secondCustomer.dob.day &&
+        firstCustomer.dob.month == secondCustomer.dob.month &&
+        firstCustomer.dob.year == secondCustomer.dob.year &&
+        firstCustomer.address.street == secondCustomer.address.street &&
+        firstCustomer.address.city == secondCustomer.address.city &&
+        firstCustomer.address.zipCode == secondCustomer.address.zipCode &&
+        firstCustomer.isRegistered == secondCustomer.isRegistered);
+}
+vector<Customer> operator+(const Customer &firstCustomer, const Customer &secondCustomer)
+{
+    vector<Customer> customers;
+    customers.push_back(firstCustomer);
+    customers.push_back(secondCustomer);
+    return customers;
+}
 
 int main()
 {
@@ -50,6 +58,18 @@ int main()
              << "Year of Birth: " << dob.year << endl
              << "Living in " << address.city << endl;
     }
-    cout << customerOne.equals(customerTwo);
+    if (customerOne == customerTwo)
+    {
+        cout << "Equal!";
+    }
+    else
+    {
+        cout << "Not Equal!" << endl;
+    };
+    vector<Customer> combined = customerOne + customerThree;
+    for (const Customer &customer : combined)
+    {
+        cout << customer.name << endl;
+    }
     return 0;
 }
