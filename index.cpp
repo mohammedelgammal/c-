@@ -42,6 +42,11 @@ vector<Customer> operator+(const Customer &firstCustomer, const Customer &second
     customers.push_back(secondCustomer);
     return customers;
 }
+ostream &operator<<(ostream &stream, const Customer &customer)
+{
+    stream << customer.name;
+    return stream;
+}
 
 int main()
 {
@@ -58,18 +63,6 @@ int main()
              << "Year of Birth: " << dob.year << endl
              << "Living in " << address.city << endl;
     }
-    if (customerOne == customerTwo)
-    {
-        cout << "Equal!";
-    }
-    else
-    {
-        cout << "Not Equal!" << endl;
-    };
-    vector<Customer> combined = customerOne + customerThree;
-    for (const Customer &customer : combined)
-    {
-        cout << customer.name << endl;
-    }
+    cout << customerOne << endl;
     return 0;
 }
