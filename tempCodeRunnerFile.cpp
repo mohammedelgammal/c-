@@ -1,1 +1,1 @@
-numbers[i]
+point.x
