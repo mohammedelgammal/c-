@@ -2,34 +2,33 @@
 
 using namespace std;
 
-struct Point
+enum List
 {
-    short x = 0, y = 0;
+    All = 0,
+    Some,
+    None
 };
-
-bool operator==(const Point &firstPoint, const Point &secondPoint)
-{
-    return (firstPoint.x == secondPoint.x && firstPoint.y == secondPoint.y);
-}
-
-ostream &operator<<(ostream &stream, const Point &point)
-{
-    return stream << "(" << point.x << ", " << point.y << ")" << endl;
-}
-
-Point getPoint()
-{
-    return {10, 20};
-}
-
-void showPoint(Point &point)
-{
-    cout << point.x << ", " << point.y << endl;
-}
 
 int main()
 {
-    Point point = getPoint();
-    showPoint(point);
+    unsigned short input = 0;
+    cout << "Please enter the number: " << endl;
+    cin >> input;
+
+    switch (input)
+    {
+    case List::All:
+        cout << "Here is all!";
+        break;
+    case List::Some:
+        cout << "Here is some!";
+        break;
+    case List::None:
+        cout << "Here is none!";
+        break;
+    default:
+        cout << "Unknown input!";
+        break;
+    }
     return 0;
 }
