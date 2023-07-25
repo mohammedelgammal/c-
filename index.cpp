@@ -14,16 +14,22 @@ bool operator==(const Point &firstPoint, const Point &secondPoint)
 
 ostream &operator<<(ostream &stream, const Point &point)
 {
-    stream << point.x;
-    return stream;
+    return stream << "(" << point.x << ", " << point.y << ")" << endl;
+}
+
+Point getPoint()
+{
+    return {10, 20};
+}
+
+void showPoint(Point &point)
+{
+    cout << point.x << ", " << point.y << endl;
 }
 
 int main()
 {
-    Point point;
-    point.x = 20;
-    point.y = 30;
-
-    cout << point;
+    Point point = getPoint();
+    showPoint(point);
     return 0;
 }
