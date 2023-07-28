@@ -2,33 +2,50 @@
 
 using namespace std;
 
-enum List
+void prepareInput()
 {
-    All = 0,
-    Some,
-    None
-};
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
+void getInput(int &variable, const string message, const int min, const int max)
+{
+    while (true)
+    {
+        cin >> variable;
+        if (cin.fail())
+        {
+            cout << message << endl;
+            prepareInput();
+        }
+        else if (variable < min || variable > max)
+        {
+            cout << "Number out of range!" << endl;
+            prepareInput();
+        }
+
+        else
+        {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            break;
+        }
+    }
+}
 
 int main()
 {
-    unsigned short input = 0;
-    cout << "Please enter the number: " << endl;
-    cin >> input;
+    int numOne = 0, numTwo = 0;
+    const string message = "Please enter a valid number!";
 
-    switch (input)
-    {
-    case List::All:
-        cout << "Here is all!";
-        break;
-    case List::Some:
-        cout << "Here is some!";
-        break;
-    case List::None:
-        cout << "Here is none!";
-        break;
-    default:
-        cout << "Unknown input!";
-        break;
-    }
+    cout << "Please enter a number between 10 and 50" << endl;
+
+    cout << "Enter your first number: " << endl;
+    getInput(numOne, message, 10, 50);
+
+    cout << "Enter your second number!" << endl;
+    getInput(numTwo, message, 10, 50);
+
+    cout << "You have entered " << numOne << " then " << numTwo << endl;
+
     return 0;
 }
