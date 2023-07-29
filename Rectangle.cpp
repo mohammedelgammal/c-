@@ -1,16 +1,34 @@
-#include "Rectangle.h"
+#include "Rectangle.hpp"
 #include <iostream>
 
 using namespace std;
 
-Rectangle::Rectangle(int w, int h)
+int Rectangle::getArea()
 {
-    width = w;
-    height = h;
+    return this->width * this->height;
 }
 
-int Rectangle::area()
+// Getters
+int Rectangle::getWidth()
 {
-    return width * height;
+    return this->width;
+}
+int Rectangle::getHeight()
+{
+    return this->height;
 }
 
+// Setters
+void Rectangle::setWidth(int width)
+{
+    if (width < 0)
+        throw invalid_argument("width");
+    this->width = width;
+}
+
+void Rectangle::setHeight(int height)
+{
+    if (height < 0)
+        throw invalid_argument("height");
+    this->height = height;
+}

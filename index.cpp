@@ -1,11 +1,18 @@
 #include <iostream>
-#include "Rectangle.h"
+#include "Rectangle.hpp"
 
 using namespace std;
 
 int main()
 {
-    Rectangle rect(3, 4);
-    cout << "Area: " << rect.area() << endl;
+    Rectangle rect;
+    rect.setWidth(10);
+    rect.setHeight(20);
+    cout << "Dimensions are: "
+         << rect.getWidth()
+         << ", " 
+         << rect.getHeight() << endl
+         << "Rectangle area is: "
+         << rect.getArea() << endl;
     return 0;
 }
