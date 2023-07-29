@@ -4,13 +4,15 @@
 class Rectangle
 {
 public:
-    int getArea();
-    // Getters
+    Rectangle(int width, int height);
+
     int getWidth(),
         getHeight();
-    // Setters
+
     void setWidth(int width),
         setHeight(int height);
+
+    int getArea();
 
 private:
     int width,

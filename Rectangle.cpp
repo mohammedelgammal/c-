@@ -3,9 +3,10 @@
 
 using namespace std;
 
-int Rectangle::getArea()
+Rectangle::Rectangle(int width, int height)
 {
-    return this->width * this->height;
+    this->setWidth(width);
+    this->setHeight(height);
 }
 
 // Getters
@@ -19,16 +20,20 @@ int Rectangle::getHeight()
 }
 
 // Setters
-void Rectangle::setWidth(int width)
+void Rectangle::setWidth(const int width)
 {
     if (width < 0)
         throw invalid_argument("width");
     this->width = width;
 }
-
-void Rectangle::setHeight(int height)
+void Rectangle::setHeight(const int height)
 {
     if (height < 0)
         throw invalid_argument("height");
     this->height = height;
+}
+
+int Rectangle::getArea()
+{
+    return this->width * this->height;
 }
