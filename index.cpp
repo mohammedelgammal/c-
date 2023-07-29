@@ -1,16 +1,18 @@
+#include "Person.hpp"
 #include <iostream>
-#include "Rectangle.hpp"
 
 using namespace std;
 
+void call_person(const Person &person)
+{ 
+    cout << "New Person location is: " << &person << endl;
+}
+
 int main()
 {
-    Rectangle rect{10, 20};
-    cout << "Dimensions are: "
-         << rect.getWidth()
-         << ", "
-         << rect.getHeight() << endl
-         << "Rectangle area is: "
-         << rect.getArea() << endl;
+    Person person_one{20};
+    call_person(person_one);
+    cout << "Old person address is: " << &person_one << endl;
+
     return 0;
 }
