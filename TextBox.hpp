@@ -9,7 +9,9 @@ class TextBox
 public:
     TextBox() = default;
     explicit TextBox(const int &value);
-    explicit TextBox(const int &value, const string &color);
+    TextBox(const int &value, const string &color);
+    TextBox(const TextBox &source);
+    ~TextBox();
     int getValue();
     void setValue(const int &value);
 

@@ -11,7 +11,7 @@ void display_box(const TextBox &box)
 int main()
 {
     TextBox box_one{20, "blue"};
-    // display_box(box_one);
+    display_box(box_one);
     cout << "box one value is: " << box_one.getValue() << endl;
     return 0;
 }

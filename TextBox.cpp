@@ -16,6 +16,16 @@ TextBox::TextBox(const int &value, const string &color) : TextBox{value}
     this->color = color;
 }
 
+TextBox::TextBox(const TextBox &source) : TextBox(value, color)
+{
+    cout << "copied!!" << endl;
+}
+
+TextBox::~TextBox()
+{
+    cout << "Object destructed!" << endl;
+}
+
 int TextBox::getValue()
 {
     return this->value;
