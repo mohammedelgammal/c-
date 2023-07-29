@@ -7,6 +7,8 @@ using namespace std;
 class TextBox
 {
 public:
+    static int get_instances_count();
+
     TextBox() = default;
     explicit TextBox(const int &value);
     TextBox(const int &value, const string &color);
@@ -18,6 +20,8 @@ public:
 private:
     int value = 0;
     string color;
+
+    static int instances_count;
 };
 
 #endif // TEXTBOX_HPP

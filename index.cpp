@@ -13,5 +13,6 @@ int main()
     TextBox box_one{20, "blue"};
     display_box(box_one);
     cout << "box one value is: " << box_one.getValue() << endl;
+    cout << TextBox::get_instances_count() << endl;
     return 0;
 }

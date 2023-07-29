@@ -14,6 +14,7 @@ TextBox::TextBox(const int &value, const string &color) : TextBox{value}
 {
     cout << "Color constructor" << endl;
     this->color = color;
+    instances_count++;
 }
 
 TextBox::TextBox(const TextBox &source) : TextBox(value, color)
@@ -24,6 +25,13 @@ TextBox::TextBox(const TextBox &source) : TextBox(value, color)
 TextBox::~TextBox()
 {
     cout << "Object destructed!" << endl;
+}
+
+int TextBox::instances_count = 0;
+
+int TextBox::get_instances_count()
+{
+    return instances_count;
 }
 
 int TextBox::getValue()
