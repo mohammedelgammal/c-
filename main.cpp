@@ -1,13 +1,11 @@
-#include "Length.hpp"
+#include "Point.hpp"
 #include <iostream>
 
 using namespace std;
 
 int main()
 {
-    const Length length_one{10}, length_two{10};
-    cout << boolalpha << (length_one == length_two) << endl;
-    cout << boolalpha << (length_one == 20) << endl;
-    cout << boolalpha << (length_one != length_two) << endl;
-    cout << boolalpha << (length_one != 20) << endl;
+    const Point point_one{10, 20}, point_two{20, 30};
+    cout << boolalpha << (point_one == point_two) << endl;
+    return 0;
 }
