@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    TextBox box_one{"box one"};
+    TextBox box_one{"one"};
 
     box_one.disable();
 

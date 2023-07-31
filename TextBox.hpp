@@ -8,7 +8,9 @@ using namespace std;
 
 class TextBox : public Widget
 {
+
 public:
+    using Widget::Widget;
     TextBox() = default;
     explicit TextBox(const string &value);
 
