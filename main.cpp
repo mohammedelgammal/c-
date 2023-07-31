@@ -10,10 +10,7 @@ int main()
         point_three{30, 10},
         point_four{10, 20};
 
-    const Point firstTwoPoints = sumTwoPoints(point_one, point_two),
-                secondTwoPoints = sumTwoPoints(point_three, point_four);
-
-    cout << boolalpha << (firstTwoPoints < secondTwoPoints) << endl;
+    cout << (point_one + 10 + 20) << endl;
 
     return 0;
 }

@@ -4,18 +4,24 @@
 
 using namespace std;
 
+Point::Point() : x{0}, y{0}
+{
+}
 Point::Point(const int x, const int y) : x{x}, y{y}
 {
 }
-Point::Point() : x{0}, y{0}
+
+Point sumTwoPoints(Point point_one, Point point_two)
 {
+    const int xPointsSum = point_one.x + point_two.x,
+              yPointSum = point_one.y + point_two.y;
+    return {xPointsSum, yPointSum};
 }
 
 int Point::getX() const
 {
     return this->x;
 }
-
 int Point::getY() const
 {
     return this->y;
@@ -25,17 +31,15 @@ void Point::setX(const int x)
 {
     this->x = x;
 }
-
 void Point::setY(const int y)
 {
     this->y = y;
 }
 
-Point sumTwoPoints(Point point_one, Point point_two)
+Point Point::operator+(const Point &other) const
 {
-    const int xPointsSum = point_one.x + point_two.x,
-              yPointSum = point_one.y + point_two.y;
-    return {xPointsSum, yPointSum};
+    const Point pointsSum = sumTwoPoints(*this, other);
+    return pointsSum;
 }
 
 bool Point::operator==(const Point &other) const
@@ -49,7 +53,6 @@ bool Point::operator==(const Point &other) const
         return pointsSum.x == pointsSum.y;
     }
 }
-
 strong_ordering Point::operator<=>(const Point &other) const
 {
     const strong_ordering resultX = this->x <=> other.x,
@@ -68,7 +71,6 @@ ostream &operator<<(ostream &stream, const Point &point)
     stream << point.getX() << ", " << point.getY();
     return stream;
 }
-
 istream &operator>>(istream &stream, Point &point)
 {
     int xValue = 0,

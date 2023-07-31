@@ -8,12 +8,15 @@ using namespace std;
 class Point
 {
 public:
-    Point(const int x, const int y);
     Point();
+    Point(const int x, const int y);
+
     int getX() const;
     int getY() const;
     void setX(const int x);
     void setY(const int y);
+
+    Point operator+(const Point &other) const;
     bool operator==(const Point &other) const;
     strong_ordering operator<=>(const Point &other) const;
 
@@ -25,6 +28,7 @@ private:
 
 ostream &operator<<(ostream &stream, const Point &point);
 istream &operator>>(istream &stream, Point &point);
+
 Point sumTwoPoints(Point point_one, Point point_two);
 
 #endif
