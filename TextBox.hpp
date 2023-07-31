@@ -16,6 +16,7 @@ public:
 
     string getValue() const;
     void setValue(const string &value);
+    void draw() const override;
 
 private:
     string value;

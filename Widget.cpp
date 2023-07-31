@@ -31,3 +31,8 @@ bool Widget::isEnabled() const
 {
     return !this->isDisabled;
 }
+
+void Widget::draw() const
+{
+    cout << "Drawing a widget!" << endl;
+}

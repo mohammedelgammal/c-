@@ -13,6 +13,7 @@ public:
     void enable();
     void disable();
     bool isEnabled() const;
+    virtual void draw() const;
 
 private:
     int size = 0;

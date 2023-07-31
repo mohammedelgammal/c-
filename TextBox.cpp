@@ -17,3 +17,8 @@ void TextBox::setValue(const string &value)
 {
     this->value = value;
 }
+
+void TextBox::draw() const
+{
+    cout << "Draw a textbox!" << endl;
+}

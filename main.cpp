@@ -4,19 +4,16 @@
 
 using namespace std;
 
-void display_widget(int *widget)
+void display_widget(Widget &widget)
 {
-    cout << &widget << endl;
-    cout << boolalpha << *(widget).isEnabled() << endl;
+    widget.draw();
 }
 
 int main()
 {
     TextBox box_one{"one"};
-    int box_ptr = &box_one;
 
-    cout << &box_one << endl;
-    display_widget(box_ptr);
+    display_widget(box_one);
 
     return 0;
 }
