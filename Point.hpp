@@ -20,9 +20,11 @@ public:
 private:
     int x = 0,
         y = 0;
+    friend Point sumTwoPoints(Point point_one, Point point_two);
 };
 
 ostream &operator<<(ostream &stream, const Point &point);
 istream &operator>>(istream &stream, Point &point);
+Point sumTwoPoints(Point point_one, Point point_two);
 
 #endif

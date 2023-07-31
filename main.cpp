@@ -5,13 +5,15 @@ using namespace std;
 
 int main()
 {
-    Point point_one{};
+    Point point_one{10, 20},
+        point_two{20, 30},
+        point_three{30, 10},
+        point_four{10, 20};
 
-    cout << "Enter the point (e.g. x y):" << endl;
-    cin >> point_one;
-    cout << "Points are: ("
-         << point_one.getX() << ", "
-         << point_one.getY() << ")" << endl;
+    const Point firstTwoPoints = sumTwoPoints(point_one, point_two),
+                secondTwoPoints = sumTwoPoints(point_three, point_four);
+
+    cout << boolalpha << (firstTwoPoints < secondTwoPoints) << endl;
 
     return 0;
 }

@@ -31,6 +31,13 @@ void Point::setY(const int y)
     this->y = y;
 }
 
+Point sumTwoPoints(Point point_one, Point point_two)
+{
+    const int xPointsSum = point_one.x + point_two.x,
+              yPointSum = point_one.y + point_two.y;
+    return {xPointsSum, yPointSum};
+}
+
 bool Point::operator==(const Point &other) const
 {
     const bool isBothEqual = (this->x == other.x) && (this->y == other.y);
@@ -38,9 +45,8 @@ bool Point::operator==(const Point &other) const
         return true;
     else
     {
-        const int sumThis = this->x + this->y,
-                  sumOther = other.x + other.y;
-        return sumThis == sumOther;
+        const Point pointsSum = sumTwoPoints(*this, other);
+        return pointsSum.x == pointsSum.y;
     }
 }
 
@@ -52,9 +58,8 @@ strong_ordering Point::operator<=>(const Point &other) const
         return resultX;
     else
     {
-        const int sumThis = this->x + this->y,
-                  sumOther = other.x + other.y;
-        return sumThis <=> sumOther;
+        const Point pointsSum = sumTwoPoints(*this, other);
+        return pointsSum.x <=> pointsSum.y;
     }
 }
 
