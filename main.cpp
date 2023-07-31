@@ -5,9 +5,13 @@ using namespace std;
 
 int main()
 {
-    const Point point_one{10, 20}, point_two{20, 10};
+    Point point_one{};
 
-    cout << boolalpha << (point_one == point_two) << endl;
+    cout << "Enter the point (e.g. x y):" << endl;
+    cin >> point_one;
+    cout << "Points are: ("
+         << point_one.getX() << ", "
+         << point_one.getY() << ")" << endl;
 
     return 0;
 }

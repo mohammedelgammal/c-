@@ -7,6 +7,9 @@ using namespace std;
 Point::Point(const int x, const int y) : x{x}, y{y}
 {
 }
+Point::Point() : x{0}, y{0}
+{
+}
 
 int Point::getX() const
 {
@@ -16,6 +19,16 @@ int Point::getX() const
 int Point::getY() const
 {
     return this->y;
+}
+
+void Point::setX(const int x)
+{
+    this->x = x;
+}
+
+void Point::setY(const int y)
+{
+    this->y = y;
 }
 
 bool Point::operator==(const Point &other) const
@@ -43,4 +56,23 @@ strong_ordering Point::operator<=>(const Point &other) const
                   sumOther = other.x + other.y;
         return sumThis <=> sumOther;
     }
+}
+
+ostream &operator<<(ostream &stream, const Point &point)
+{
+    stream << point.getX() << ", " << point.getY();
+    return stream;
+}
+
+istream &operator>>(istream &stream, Point &point)
+{
+    int xValue = 0,
+        yValue = 0;
+
+    stream >> xValue >> yValue;
+
+    point.setX(xValue);
+    point.setY(yValue);
+
+    return stream;
 }
