@@ -1,14 +1,15 @@
-#include "Array.hpp"
+#include "TextBox.hpp"
 #include <iostream>
 
 using namespace std;
 
 int main()
 {
-    Array arr{10};
-    arr[0] = 20;
+    TextBox box_one{"box one"};
 
-    cout << arr[0] << endl;
+    box_one.disable();
+
+    cout << boolalpha << box_one.isEnabled() << endl;
 
     return 0;
 }
