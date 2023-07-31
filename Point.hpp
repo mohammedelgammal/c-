@@ -19,7 +19,10 @@ public:
     Point operator+(const Point &other) const;
     Point &operator+=(const Point &other);
     bool operator==(const Point &other) const;
-    strong_ordering operator<=>(const Point &other) const;
+    Point &operator++();
+    Point operator++(int);
+    strong_ordering
+    operator<=>(const Point &other) const;
 
 private:
     int x = 0,

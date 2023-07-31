@@ -69,8 +69,23 @@ strong_ordering Point::operator<=>(const Point &other) const
         return pointsSum.x <=> pointsSum.y;
     }
 }
+Point &Point::operator++()
+{
+    this->x++;
+    this->y++;
+    return *this;
+}
 
-ostream &operator<<(ostream &stream, const Point &point)
+Point Point::operator++(int)
+{
+    Point copy = *this;
+    this->x++;
+    this->y++;
+    return copy;
+}
+
+ostream &
+operator<<(ostream &stream, const Point &point)
 {
     stream << point.getX() << ", " << point.getY();
     return stream;
