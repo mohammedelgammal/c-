@@ -10,7 +10,8 @@ int main()
         point_three{30, 10},
         point_four{10, 20};
 
-    cout << (point_one + 10 + 20) << endl;
+    point_one += point_four;
+    cout << point_one << endl;
 
     return 0;
 }

@@ -41,7 +41,11 @@ Point Point::operator+(const Point &other) const
     const Point pointsSum = sumTwoPoints(*this, other);
     return pointsSum;
 }
-
+Point &Point::operator+=(const Point &other)
+{
+    *this = sumTwoPoints(*this, other);
+    return *this;
+}
 bool Point::operator==(const Point &other) const
 {
     const bool isBothEqual = (this->x == other.x) && (this->y == other.y);
