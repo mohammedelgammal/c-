@@ -19,5 +19,14 @@ int main()
     Cat cat;
     Animal animal;
 
+    try
+    {
+        throw invalid_argument{"Exception occurred!"};
+    }
+    catch (const invalid_argument &err)
+    {
+        cout << err.what() << endl;
+    }
+
     return 0;
 }
