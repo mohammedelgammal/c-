@@ -6,7 +6,7 @@ class Animal
 public:
     Animal() = default;
     virtual ~Animal() = default;
-    virtual void animalMakesSound() const;
+    virtual void animalMakesSound() final const;
 };
 
 #endif // ANIMAL_HPP
