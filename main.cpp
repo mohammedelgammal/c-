@@ -7,9 +7,9 @@
 
 using namespace std;
 
-void hear_sound(unique_ptr<Animal> &animal)
+void hear_sound()
 {
-    animal->animalMakesSound();
+    throw logic_error{"Error happend somewhere!"};
 }
 
 int main()
@@ -21,16 +21,11 @@ int main()
 
     try
     {
-        // throw invalid_argument{"Invalid!"};
-        throw out_of_range{"Out of range!"};
+        hear_sound();
     }
-    catch (const out_of_range &err)
+    catch (exception &err)
     {
-        cout << "Plus Handling: " << err.what() << endl;
-    }
-    catch (const logic_error &err)
-    {
-        cout << err.what() << endl;
+        cout << "Handled through main: " << err.what() << endl;
     }
 
     return 0;
