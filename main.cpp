@@ -1,19 +1,34 @@
-#include "TextBox.hpp"
-#include "Widget.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
+#include "Animal.hpp"
 #include <iostream>
 
 using namespace std;
 
-void display_widget(Widget &widget)
+void hear_sound(Animal *animal)
 {
-    widget.draw();
+    animal->animalMakesSound();
 }
 
 int main()
 {
-    TextBox box_one{"one"};
+    // Objects
+    Dog dog;
+    Cat cat;
+    Animal animal;
 
-    display_widget(box_one);
+    // Pointers
+    Animal *animal_ptr = &animal;
+    Dog *dog_ptr = &dog;
+    Animal *cat_ptr = &cat;
+
+    hear_sound(animal_ptr);
+    hear_sound(dog_ptr);
+    hear_sound(cat_ptr);
+
+    // animal.animalMakesSound();
+    // dog.animalMakesSound();
+    // cat.animalMakesSound();
 
     return 0;
 }
