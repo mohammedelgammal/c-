@@ -21,9 +21,14 @@ int main()
 
     try
     {
-        throw invalid_argument{"Exception occurred!"};
+        // throw invalid_argument{"Invalid!"};
+        throw out_of_range{"Out of range!"};
     }
-    catch (const invalid_argument &err)
+    catch (const out_of_range &err)
+    {
+        cout << "Plus Handling: " << err.what() << endl;
+    }
+    catch (const logic_error &err)
     {
         cout << err.what() << endl;
     }
