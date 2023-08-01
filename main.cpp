@@ -19,9 +19,5 @@ int main()
     Cat cat;
     Animal animal;
 
-    vector<Animal> animals;
-    animals.push_back(make_unique<Dog>(dog));
-    animals.push_back(make_unique<Cat>(cat));
-
     return 0;
 }

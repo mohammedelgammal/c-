@@ -5,6 +5,7 @@ class Animal
 {
 public:
     Animal() = default;
+    virtual ~Animal() = default;
     virtual void animalMakesSound() const;
 };
 
