@@ -8,9 +8,6 @@ class Dog : public Animal
 public:
     Dog() = default;
     void animalMakesSound() const override;
-
-    Dog(const Dog &) = delete;
-    Dog &operator=(const Dog &) = delete;
 };
 
 #endif // DOG_HPP

@@ -3,9 +3,11 @@
 #include "Animal.hpp"
 #include <iostream>
 
+#include <vector>
+
 using namespace std;
 
-void hear_sound(Animal *animal)
+void hear_sound(unique_ptr<Animal> &animal)
 {
     animal->animalMakesSound();
 }
@@ -17,18 +19,9 @@ int main()
     Cat cat;
     Animal animal;
 
-    // Pointers
-    Animal *animal_ptr = &animal;
-    Dog *dog_ptr = &dog;
-    Animal *cat_ptr = &cat;
-
-    hear_sound(animal_ptr);
-    hear_sound(dog_ptr);
-    hear_sound(cat_ptr);
-
-    // animal.animalMakesSound();
-    // dog.animalMakesSound();
-    // cat.animalMakesSound();
+    vector<Animal> animals;
+    animals.push_back(make_unique<Dog>(dog));
+    animals.push_back(make_unique<Cat>(cat));
 
     return 0;
 }
