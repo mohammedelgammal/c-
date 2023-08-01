@@ -9,7 +9,15 @@ using namespace std;
 
 void hear_sound()
 {
-    throw logic_error{"Error happend somewhere!"};
+    try
+    {
+        throw logic_error{"Error happend somewhere!"};
+    }
+    catch (logic_error &err)
+    {
+        cout << "First catch: " << err.what() << endl;
+        throw;
+    }
 }
 
 int main()
@@ -25,7 +33,7 @@ int main()
     }
     catch (exception &err)
     {
-        cout << "Handled through main: " << err.what() << endl;
+        cout << "Handled second: " << err.what() << endl;
     }
 
     return 0;
