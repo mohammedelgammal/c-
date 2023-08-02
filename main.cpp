@@ -1,13 +1,20 @@
-#include "Pair"
 #include <iostream>
+
+namespace math
+{
+    template <typename T>
+    T sumUp(T one, T two)
+    {
+        return one + two;
+    }
+
+}
 
 int main()
 {
-    Pair pair_one{10, "well"};
+    using math::sumUp, std::cout, std::endl;
 
-    using std::cout;
-
-    cout << pair_one.getValue();
+    cout << sumUp(1, 2) << endl;
 
     return 0;
 }
