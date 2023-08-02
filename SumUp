@@ -1,0 +1,9 @@
+namespace math
+{
+    template <typename T>
+    T sumUp(T one, T two)
+    {
+        return one + two;
+    }
+
+}
