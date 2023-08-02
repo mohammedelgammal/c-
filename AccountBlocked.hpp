@@ -10,7 +10,7 @@ class AccountBlocked : public exception
 public:
     const char *what() const noexcept override
     {
-        return "Account was blocked!";
+        return "Account was blocked, please contact the admin!";
     }
 };
 
