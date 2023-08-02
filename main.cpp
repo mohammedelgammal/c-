@@ -1,41 +1,16 @@
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "Animal.hpp"
-#include "AccountBlocked.hpp"
 #include <iostream>
-
-#include <vector>
-
 using namespace std;
 
-void hear_sound()
+template <typename T>
+
+T sumTwo(const T firstNum, const T secondNum)
 {
-    try
-    {
-        throw AccountBlocked{};
-    }
-    catch (AccountBlocked &err)
-    {
-        cout << "First catch: " << err.what() << endl;
-        throw;
-    }
+    return firstNum + secondNum;
 }
 
 int main()
 {
-    // Objects
-    Dog dog;
-    Cat cat;
-    Animal animal;
-
-    try
-    {
-        hear_sound();
-    }
-    catch (exception &err)
-    {
-        cout << "Handled through main: " << err.what() << endl;
-    }
+    cout << sumTwo(1.41, 2.94) << endl;
 
     return 0;
 }
