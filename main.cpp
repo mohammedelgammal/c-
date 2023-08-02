@@ -1,6 +1,7 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "Animal.hpp"
+#include "AccountBlocked.hpp"
 #include <iostream>
 
 #include <vector>
@@ -11,9 +12,9 @@ void hear_sound()
 {
     try
     {
-        throw logic_error{"Error happend somewhere!"};
+        throw AccountBlocked{};
     }
-    catch (logic_error &err)
+    catch (AccountBlocked &err)
     {
         cout << "First catch: " << err.what() << endl;
         throw;
@@ -33,7 +34,7 @@ int main()
     }
     catch (exception &err)
     {
-        cout << "Handled second: " << err.what() << endl;
+        cout << "Handled through main: " << err.what() << endl;
     }
 
     return 0;
