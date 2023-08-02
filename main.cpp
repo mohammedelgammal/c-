@@ -1,16 +1,13 @@
+#include "Pair.hpp"
 #include <iostream>
+
 using namespace std;
-
-template <typename T>
-
-T sumTwo(const T firstNum, const T secondNum)
-{
-    return firstNum + secondNum;
-}
 
 int main()
 {
-    cout << sumTwo(1.41, 2.94) << endl;
+    Pair pair_one{10, "great"};
+
+    cout << pair_one.getValue() << endl;
 
     return 0;
 }
