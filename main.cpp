@@ -1,13 +1,13 @@
-#include "Pair.hpp"
+#include "Pair"
 #include <iostream>
-
-using namespace std;
 
 int main()
 {
-    Pair pair_one{10, "great"};
+    Pair pair_one{10, "well"};
 
-    cout << pair_one.getValue() << endl;
+    using std::cout;
+
+    cout << pair_one.getValue();
 
     return 0;
 }

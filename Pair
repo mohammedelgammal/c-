@@ -1,5 +1,5 @@
-#ifndef PAIR_HPP
-#define PAIR_HPP
+#ifndef PAIR
+#define PAIR
 
 template <typename Key, typename Val>
 
@@ -30,4 +30,4 @@ Val Pair<Key, Val>::getValue() const
     return this->value;
 }
 
-#endif // PAIR_HPP
+#endif // PAIR
