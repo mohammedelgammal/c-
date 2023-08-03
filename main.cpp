@@ -1,21 +1,16 @@
 #include <iostream>
-#include <ctype.h>
+#include <iomanip>
 
 using namespace std;
 
-bool isLower(const char chr)
-{
-    return islower(static_cast<int>(chr));
-}
-
 int main()
 {
-    char chr;
+    float amount;
 
     while (true)
     {
-        cout << "Please enter a character to check if lower or not!" << endl;
-        cin >> chr;
+        cout << "Please enter an amount in US Dollars!" << endl;
+        cin >> amount;
         if (!cin.fail())
         {
             break;
@@ -25,9 +20,10 @@ int main()
         cout << "Invalid input! Please try again..." << endl;
     }
 
-    cout << boolalpha << "Character (" << chr << ")"
-         << " is: "
-         << (isLower(chr) ? "Lowercase" : "Uppercase") << endl;
+    cout << left << setw(10) << "GBP: " << right << setw(10) << amount / 1.487 << endl
+         << left << setw(10) << "Frank: " << right << setw(10) << amount / 0.172 << endl
+         << left << setw(10) << "Mark: " << right << setw(10) << amount / 0.584 << endl
+         << left << setw(10) << "Yen: " << right << setw(10) << amount / 0.00955 << endl;
 
     return 0;
 }
