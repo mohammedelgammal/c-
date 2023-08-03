@@ -1,3 +1,6 @@
+#ifndef SUMUP_HPP
+#define SUMUP_HPP
+
 namespace math
 {
     template <typename T>
@@ -7,3 +10,5 @@ namespace math
     }
 
 }
+
+#endif
