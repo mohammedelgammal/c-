@@ -3,14 +3,19 @@
 
 using namespace std;
 
+float toFahrenheit(int degree)
+{
+    return (degree * 9 / 5) + 32;
+}
+
 int main()
 {
-    float amount;
+    float degree;
 
     while (true)
     {
-        cout << "Please enter an amount in US Dollars!" << endl;
-        cin >> amount;
+        cout << "Please enter Temprature in Celsius!" << endl;
+        cin >> degree;
         if (!cin.fail())
         {
             break;
@@ -20,10 +25,8 @@ int main()
         cout << "Invalid input! Please try again..." << endl;
     }
 
-    cout << left << setw(10) << "GBP: " << right << setw(10) << amount / 1.487 << endl
-         << left << setw(10) << "Frank: " << right << setw(10) << amount / 0.172 << endl
-         << left << setw(10) << "Mark: " << right << setw(10) << amount / 0.584 << endl
-         << left << setw(10) << "Yen: " << right << setw(10) << amount / 0.00955 << endl;
+    cout << degree << " Celsius is: "
+         << toFahrenheit(degree) << " Fahrenheit!" << endl;
 
     return 0;
 }
