@@ -1,10 +1,15 @@
 #include <iostream>
-#include "SumUp"
 
 int main()
 {
-    using math::sumUp, std::cout, std::endl;
+    long double numOne = 1.345E6L;
+    double numTwo = 0;
+    float numThree = 0;
 
-    cout << sumUp(1, 2) << endl;
+    using std::cout, std::endl;
+
+    cout << sizeof(numOne) << endl
+         << numOne << endl;
+
     return 0;
 }
