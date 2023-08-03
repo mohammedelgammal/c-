@@ -1,29 +1,14 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
-float getCubicFeet(const float gallons)
-{
-    const float cubicFeet = gallons / 7.481;
-    return cubicFeet;
-}
-
 int main()
 {
-    float gallons = 0;
-
-    while (true)
-    {
-        cout << "Write amount in gallons: " << endl;
-        cin >> gallons;
-        if (!cin.fail())
-            break;
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    }
-
-    cout << "Cubic feet in " << gallons << " Gallons are: "
-         << getCubicFeet(gallons) << "cubic feet" << endl;
+    cout << left << setw(10) << "1990" << right << setw(5) << "135" << endl
+         << left << setw(10) << "1991" << right << setw(5) << "7290" << endl
+         << left << setw(10) << "1992" << right << setw(5) << "11300" << endl
+         << left << setw(10) << "1993" << right << setw(5) << "16200" << endl;
 
     return 0;
 }
