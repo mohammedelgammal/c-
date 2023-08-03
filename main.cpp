@@ -1,19 +1,33 @@
 #include <iostream>
-#include <iomanip>
+#include <ctype.h>
 
 using namespace std;
 
+bool isLower(const char chr)
+{
+    return islower(static_cast<int>(chr));
+}
+
 int main()
 {
-    short num = 10;
+    char chr;
 
-    cout << num << endl;
+    while (true)
+    {
+        cout << "Please enter a character to check if lower or not!" << endl;
+        cin >> chr;
+        if (!cin.fail())
+        {
+            break;
+        }
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Invalid input! Please try again..." << endl;
+    }
 
-    num += 10;
-
-    cout << num << endl;
-
-    cout << --num << endl;
+    cout << boolalpha << "Character (" << chr << ")"
+         << " is: "
+         << (isLower(chr) ? "Lowercase" : "Uppercase") << endl;
 
     return 0;
 }
