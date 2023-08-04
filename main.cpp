@@ -1,16 +1,53 @@
 #include <iostream>
-#include <iomanip>
+#include <sstream>
+#include <string>
 
 using namespace std;
 
+struct Fraction
+{
+    int numerator = 0, denominator = 0;
+    string numerator_str, denominator_str;
+};
+
+unique_ptr<Fraction> getFraction(const bool isFirstInput)
+{
+    unique_ptr<Fraction> fraction = make_unique<Fraction>();
+
+    cout << "Please enter the "
+         << (isFirstInput ? "first" : "second")
+         << "fraction: " << endl;
+
+    getline(cin, fraction->numerator_str, '/');
+    getline(cin, fraction->denominator_str);
+
+    fraction->numerator = stoi(fraction->numerator_str);
+    fraction->denominator = stoi(fraction->denominator_str);
+
+    return fraction;
+}
+
+unique_ptr<Fraction> sumUpFractions(unique_ptr<Fraction> &firstFraction, unique_ptr<Fraction> &secondFraction)
+{
+    unique_ptr<Fraction> sumFraction = make_unique<Fraction>();
+    sumFraction->numerator = firstFraction->numerator * secondFraction->denominator +
+                             firstFraction->denominator * secondFraction->numerator;
+    sumFraction->denominator = firstFraction->denominator * secondFraction->denominator;
+
+    return sumFraction;
+}
+
 int main()
 {
-    long double pop1 = 20E6, pop2 = 18.76E6, pop3 = 5E5;
+    unique_ptr<Fraction> firstFraction = getFraction(true);
+    unique_ptr<Fraction> secondFraction = getFraction(false);
 
-    cout << left << setw(15) << setfill('.') << "Location" << right << setw(15) << setfill('.') << "Population" << endl
-         << left << setw(15) << setfill('.') << "Cairo" << right << setw(15) << setfill('.') << pop1 << endl
-         << left << setw(15) << setfill('.') << "Giza" << right << setw(15) << setfill('.') << pop2 << endl
-         << left << setw(15) << setfill('.') << "Mansoura" << right << setw(15) << setfill('.') << pop3 << endl;
+    unique_ptr<Fraction> sumFraction = sumUpFractions(firstFraction, secondFraction);
+
+    cout << "Sum = "
+         << sumFraction->numerator
+         << "/"
+         << sumFraction->denominator << endl;
 
     return 0;
 }
