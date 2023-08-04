@@ -1,22 +1,21 @@
 #include <iostream>
-#include <sstream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
 struct Fraction
 {
-    int numerator = 0, denominator = 0;
     string numerator_str, denominator_str;
+    int numerator, denominator;
 };
 
-unique_ptr<Fraction> getFraction(const bool isFirstInput)
+const unique_ptr<Fraction> getFraction(const bool isFirst)
 {
     unique_ptr<Fraction> fraction = make_unique<Fraction>();
+    stringstream ss;
 
-    cout << "Please enter the "
-         << (isFirstInput ? "first" : "second")
-         << "fraction: " << endl;
+    cout << "Please enter the " << (isFirst ? "first" : "second") << " fraction" << endl;
 
     getline(cin, fraction->numerator_str, '/');
     getline(cin, fraction->denominator_str);
@@ -27,27 +26,29 @@ unique_ptr<Fraction> getFraction(const bool isFirstInput)
     return fraction;
 }
 
-unique_ptr<Fraction> sumUpFractions(unique_ptr<Fraction> &firstFraction, unique_ptr<Fraction> &secondFraction)
+const unique_ptr<string> sumUpFraction(const unique_ptr<Fraction> &firstFraction, const unique_ptr<Fraction> &secondFraction)
 {
+    stringstream ss;
+    unique_ptr<string> sumFractionString = make_unique<string>();
     unique_ptr<Fraction> sumFraction = make_unique<Fraction>();
-    sumFraction->numerator = firstFraction->numerator * secondFraction->denominator +
-                             firstFraction->denominator * secondFraction->numerator;
+
+    sumFraction->numerator = firstFraction->numerator * secondFraction->denominator + firstFraction->denominator * secondFraction->numerator;
     sumFraction->denominator = firstFraction->denominator * secondFraction->denominator;
 
-    return sumFraction;
+    ss << sumFraction->numerator << '/' << sumFraction->denominator;
+    *sumFractionString = ss.str();
+
+    return sumFractionString;
 }
 
 int main()
 {
-    unique_ptr<Fraction> firstFraction = getFraction(true);
-    unique_ptr<Fraction> secondFraction = getFraction(false);
+    const unique_ptr<Fraction> firstFraction = getFraction(true);
+    const unique_ptr<Fraction> secondFraction = getFraction(false);
 
-    unique_ptr<Fraction> sumFraction = sumUpFractions(firstFraction, secondFraction);
+    const unique_ptr<string> sumFractionString = sumUpFraction(firstFraction, secondFraction);
 
-    cout << "Sum = "
-         << sumFraction->numerator
-         << "/"
-         << sumFraction->denominator << endl;
+    cout << "Sum = " << *sumFractionString << endl;
 
     return 0;
 }
