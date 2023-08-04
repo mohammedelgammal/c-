@@ -1,36 +1,37 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
 struct OldMonetary
 {
-    float pounds, shellings, pences;
+    int pound, shelling, pence;
 };
 
-enum class Monetary
+enum MonetaryEnum
 {
-    POUNDS,
-    SHELLINGS,
-    PENCES
+    POUND,
+    SHELLING,
+    PENCE
 };
 
-void getInput(unique_ptr<OldMonetary> &oldMonetary, Monetary monetary)
+void getInput(unique_ptr<OldMonetary> &oldMonetary, MonetaryEnum monetaryEnum)
 {
     while (true)
     {
-        switch (monetary)
+        switch (monetaryEnum)
         {
-        case Monetary::POUNDS:
-            cout << "Enter pounds: " << endl;
-            cin >> oldMonetary->pounds;
+        case MonetaryEnum::POUND:
+            cout << "Enter amount in pounds: " << endl;
+            cin >> oldMonetary->pound;
             break;
-        case Monetary::SHELLINGS:
-            cout << "Enter shellings: " << endl;
-            cin >> oldMonetary->shellings;
+        case MonetaryEnum::SHELLING:
+            cout << "Enter amount in shellings: " << endl;
+            cin >> oldMonetary->shelling;
             break;
-        case Monetary::PENCES:
-            cout << "Enter pences: " << endl;
-            cin >> oldMonetary->pences;
+        case MonetaryEnum::PENCE:
+            cout << "Enter amount in pences: " << endl;
+            cin >> oldMonetary->pence;
             break;
         default:
             break;
@@ -42,30 +43,35 @@ void getInput(unique_ptr<OldMonetary> &oldMonetary, Monetary monetary)
     }
 }
 
-unique_ptr<OldMonetary> getOldMonetary()
+unique_ptr<OldMonetary>
+getOldMonetary()
 {
     unique_ptr<OldMonetary> oldMonetary = make_unique<OldMonetary>();
-
-    getInput(oldMonetary, Monetary::POUNDS);
-    getInput(oldMonetary, Monetary::SHELLINGS);
-    getInput(oldMonetary, Monetary::PENCES);
+    getInput(oldMonetary, MonetaryEnum::POUND);
+    getInput(oldMonetary, MonetaryEnum::SHELLING);
+    getInput(oldMonetary, MonetaryEnum::PENCE);
 
     return oldMonetary;
 }
 
-double convertMonetary(const unique_ptr<OldMonetary> &monetary)
+float convertToDecimal(unique_ptr<OldMonetary> &oldMonetary)
 {
-    const double poundsDecimal = monetary->pounds + (monetary->pences / 12 / 20) + (monetary->shellings / 20);
-
-    return poundsDecimal;
+    const float decimal = oldMonetary->pound +
+                          static_cast<float>(oldMonetary->shelling) / 20 +
+                          static_cast<float>(oldMonetary->pence) / 12 / 20;
+    return decimal;
 }
 
 int main()
 {
-    const unique_ptr<OldMonetary> oldMonetary = getOldMonetary();
-    const double newMonetary = convertMonetary(oldMonetary);
+    // get user input in old format
+    // convert to decimal new format
+    // cout decimal format
 
-    cout << newMonetary << endl;
+    unique_ptr<OldMonetary> oldMonetary = getOldMonetary();
+    const float decimalMonetary = convertToDecimal(oldMonetary);
+
+    cout << "Decimal equivalent: " << char(156) << setprecision(3) << decimalMonetary << endl;
 
     return 0;
 }
