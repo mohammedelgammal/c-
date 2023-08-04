@@ -1,54 +1,71 @@
 #include <iostream>
-#include <string>
-#include <sstream>
 
 using namespace std;
 
-struct Fraction
+struct OldMonetary
 {
-    string numerator_str, denominator_str;
-    int numerator, denominator;
+    float pounds, shellings, pences;
 };
 
-const unique_ptr<Fraction> getFraction(const bool isFirst)
+enum class Monetary
 {
-    unique_ptr<Fraction> fraction = make_unique<Fraction>();
-    stringstream ss;
+    POUNDS,
+    SHELLINGS,
+    PENCES
+};
 
-    cout << "Please enter the " << (isFirst ? "first" : "second") << " fraction" << endl;
-
-    getline(cin, fraction->numerator_str, '/');
-    getline(cin, fraction->denominator_str);
-
-    fraction->numerator = stoi(fraction->numerator_str);
-    fraction->denominator = stoi(fraction->denominator_str);
-
-    return fraction;
+void getInput(unique_ptr<OldMonetary> &oldMonetary, Monetary monetary)
+{
+    while (true)
+    {
+        switch (monetary)
+        {
+        case Monetary::POUNDS:
+            cout << "Enter pounds: " << endl;
+            cin >> oldMonetary->pounds;
+            break;
+        case Monetary::SHELLINGS:
+            cout << "Enter shellings: " << endl;
+            cin >> oldMonetary->shellings;
+            break;
+        case Monetary::PENCES:
+            cout << "Enter pences: " << endl;
+            cin >> oldMonetary->pences;
+            break;
+        default:
+            break;
+        }
+        if (!cin.fail())
+            break;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
 }
 
-const unique_ptr<string> sumUpFraction(const unique_ptr<Fraction> &firstFraction, const unique_ptr<Fraction> &secondFraction)
+unique_ptr<OldMonetary> getOldMonetary()
 {
-    stringstream ss;
-    unique_ptr<string> sumFractionString = make_unique<string>();
-    unique_ptr<Fraction> sumFraction = make_unique<Fraction>();
+    unique_ptr<OldMonetary> oldMonetary = make_unique<OldMonetary>();
 
-    sumFraction->numerator = firstFraction->numerator * secondFraction->denominator + firstFraction->denominator * secondFraction->numerator;
-    sumFraction->denominator = firstFraction->denominator * secondFraction->denominator;
+    getInput(oldMonetary, Monetary::POUNDS);
+    getInput(oldMonetary, Monetary::SHELLINGS);
+    getInput(oldMonetary, Monetary::PENCES);
 
-    ss << sumFraction->numerator << '/' << sumFraction->denominator;
-    *sumFractionString = ss.str();
+    return oldMonetary;
+}
 
-    return sumFractionString;
+double convertMonetary(const unique_ptr<OldMonetary> &monetary)
+{
+    const double poundsDecimal = monetary->pounds + (monetary->pences / 12 / 20) + (monetary->shellings / 20);
+
+    return poundsDecimal;
 }
 
 int main()
 {
-    const unique_ptr<Fraction> firstFraction = getFraction(true);
-    const unique_ptr<Fraction> secondFraction = getFraction(false);
+    const unique_ptr<OldMonetary> oldMonetary = getOldMonetary();
+    const double newMonetary = convertMonetary(oldMonetary);
 
-    const unique_ptr<string> sumFractionString = sumUpFraction(firstFraction, secondFraction);
-
-    cout << "Sum = " << *sumFractionString << endl;
+    cout << newMonetary << endl;
 
     return 0;
 }
