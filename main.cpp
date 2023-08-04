@@ -1,14 +1,50 @@
 #include <iostream>
 #include <iomanip>
+#include <string>
+#include <sstream>
 
 using namespace std;
 
+float getDecimalInput()
+{
+    float decimal = 0;
+    while (true)
+    {
+        cout << "Enter decimal amount: " << endl;
+        cin >> decimal;
+        if (!cin.fail())
+            break;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    return decimal;
+}
+
+string convertToOld(const float decimal)
+{
+    string oldMonetaryString;
+    int pounds = static_cast<int>(decimal),
+        shelling = static_cast<int>((decimal - pounds) * 20),
+        pences = static_cast<int>(((decimal - pounds) * 20 - shelling) * 12);
+
+    stringstream ss;
+
+    ss << pounds << '.' << shelling << '.' << pences;
+    oldMonetaryString = ss.str();
+
+    return oldMonetaryString;
+}
+
 int main()
 {
-    cout << left << setw(10) << "Last Name" << setw(10) << "First Name" << setw(10) << "Street Address" << setw(10) << "Town" << setw(10) << "State" << endl
-         << setw(10) << "Jones" << setw(10) << "Bernard" << setw(20) << "108 Pine Lane" << setw(10) << "Littletown" << setw(10) << "Virginia" << endl
-         << setw(10) << "Jones" << setw(10) << "Bernard" << setw(20) << "108 Pine Lane" << setw(10) << "Littletown" << setw(10) << "Virginia" << endl
-         << setw(10) << "Jones" << setw(10) << "Bernard" << setw(20) << "108 Pine Lane" << setw(10) << "Littletown" << setw(10) << "Virginia" << endl;
+    // get the decimal new amount
+    // convert to the old format
+    // cout old format 1.23.4
+
+    float decimalNumber = getDecimalInput();
+    string oldMonetary = convertToOld(decimalNumber);
+
+    cout << "Old Monetary: " << oldMonetary << endl;
 
     return 0;
 }

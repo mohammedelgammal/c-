@@ -63,7 +63,8 @@
     "compare": "cpp",
     "concepts": "cpp",
     "algorithm": "cpp",
-    "fstream": "cpp"
+    "fstream": "cpp",
+    "format": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
