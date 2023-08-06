@@ -1,50 +1,61 @@
 #include <iostream>
+#include <vector>
 #include <iomanip>
-#include <string>
-#include <sstream>
 
 using namespace std;
 
-float getDecimalInput()
+int getNumber()
 {
-    float decimal = 0;
-    while (true)
+    int number = 0;
+
+    for (;;)
     {
-        cout << "Enter decimal amount: " << endl;
-        cin >> decimal;
+        cout << "Enter target number: " << endl;
+        cin >> number;
         if (!cin.fail())
             break;
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<int>::max(), '\n');
     }
-    return decimal;
+
+    return number;
 }
 
-string convertToOld(const float decimal)
+unique_ptr<vector<int>> getMultiples(int number)
 {
-    string oldMonetaryString;
-    int pounds = static_cast<int>(decimal),
-        shelling = static_cast<int>((decimal - pounds) * 20),
-        pences = static_cast<int>(((decimal - pounds) * 20 - shelling) * 12);
+    unique_ptr<vector<int>> duplicates = make_unique<vector<int>>();
+    int count = 1;
+    while (count <= 200)
+    {
+        duplicates->push_back(number * count);
+        count++;
+    }
+    return duplicates;
+};
 
-    stringstream ss;
-
-    ss << pounds << '.' << shelling << '.' << pences;
-    oldMonetaryString = ss.str();
-
-    return oldMonetaryString;
+void displayDuplicates(unique_ptr<vector<int>> &duplicates, int columns)
+{
+    int count = 0;
+    for (int number : *duplicates)
+    {
+        if (count % columns == 0)
+        {
+            cout << '\n';
+        }
+        cout << setw(5) << number << ' ';
+        count++;
+    }
 }
 
 int main()
 {
-    // get the decimal new amount
-    // convert to the old format
-    // cout old format 1.23.4
+    // get the number
+    // get all the number duplicates till we reach the int limit
+    // display the duplicates int 7 * 20 format
 
-    float decimalNumber = getDecimalInput();
-    string oldMonetary = convertToOld(decimalNumber);
-
-    cout << "Old Monetary: " << oldMonetary << endl;
+    int targetNumber = getNumber();
+    unique_ptr<vector<int>> duplicates = getMultiples(targetNumber);
+    displayDuplicates(duplicates, 10);
 
     return 0;
 }
