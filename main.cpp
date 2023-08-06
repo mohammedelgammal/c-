@@ -1,10 +1,9 @@
 #include <iostream>
-#include <vector>
 #include <iomanip>
 
 using namespace std;
 
-int getNumber()
+int getInputNumber()
 {
     int number = 0;
 
@@ -21,41 +20,48 @@ int getNumber()
     return number;
 }
 
-unique_ptr<vector<int>> getMultiples(int number)
+unique_ptr<vector<int>> getMultiples(int number, const int cols, const int rows)
 {
-    unique_ptr<vector<int>> duplicates = make_unique<vector<int>>();
+    unique_ptr<vector<int>> multiples = make_unique<vector<int>>();
+    const int elementsCount = cols * rows;
     int count = 1;
-    while (count <= 200)
+
+    while (count <= elementsCount)
     {
-        duplicates->push_back(number * count);
+        multiples->push_back(number * count);
         count++;
     }
-    return duplicates;
-};
 
-void displayDuplicates(unique_ptr<vector<int>> &duplicates, int columns)
+    return multiples;
+}
+
+void displayMultiples(unique_ptr<vector<int>> &multiples, int cols)
 {
     int count = 0;
-    for (int number : *duplicates)
+    for (int number : *multiples)
     {
-        if (count % columns == 0)
+        if (count % cols == 0)
         {
             cout << '\n';
         }
-        cout << setw(5) << number << ' ';
+        cout << setw(5) << number;
         count++;
     }
 }
 
+void displayMultipleGrid(int number, int cols, int rows)
+{
+    cout << number || getInputNumber();
+    int targetNumber = number ? number : getInputNumber();
+    unique_ptr<vector<int>> multiples = getMultiples(targetNumber, cols, rows);
+    displayMultiples(multiples, cols);
+}
+
 int main()
 {
-    // get the number
-    // get all the number duplicates till we reach the int limit
-    // display the duplicates int 7 * 20 format
+    int number = 7, cols = 20, rows = 5;
 
-    int targetNumber = getNumber();
-    unique_ptr<vector<int>> duplicates = getMultiples(targetNumber);
-    displayDuplicates(duplicates, 10);
+    displayMultipleGrid(number, cols, rows);
 
     return 0;
 }
