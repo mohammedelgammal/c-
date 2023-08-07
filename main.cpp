@@ -5,7 +5,7 @@ using namespace std;
 // declaring a function
 // telling the compiler about the variable
 // reserve the variable a space in the memory
-void cToFahrenheit();
+inline void cToFahrenheit();
 // initializing a variabe
 // set the function to an inital value
 
@@ -13,7 +13,7 @@ int main()
 {
     cToFahrenheit();
 
-    return 0;
+    return 1;
 }
 
 void cToFahrenheit()
