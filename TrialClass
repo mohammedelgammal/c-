@@ -4,7 +4,8 @@
 class TrialClass
 {
 public:
-    TrialClass(int value);
+    TrialClass() = default;
+    explicit TrialClass(int value);
     int getValue() const; // inline keyword is unnecessary -> By default inline
     void setValue(int value);
 
