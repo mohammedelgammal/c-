@@ -3,12 +3,17 @@
 
 using namespace std;
 
-int& returnStringRef() {
-    return 7;
+inline int &returnStringRef(int &number)
+{
+    number *= 2;
+    return number;
 }
 
 int main()
 {
-    int& stringRef = returnStringRef();
+    int number = 20;
+    cout << number << endl;
+    returnStringRef(number) = 10;
+    cout << number << endl;
     return 1;
 }
