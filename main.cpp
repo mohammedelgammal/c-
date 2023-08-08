@@ -1,19 +1,15 @@
 #include <iostream>
-#include <string>
+#include "TrialClass"
 
 using namespace std;
 
-inline int &returnStringRef(int &number)
-{
-    number *= 2;
-    return number;
-}
-
 int main()
 {
-    int number = 20;
-    cout << number << endl;
-    returnStringRef(number) = 10;
-    cout << number << endl;
-    return 1;
+    TrialClass classOne{10};
+
+    classOne.setValue(20);
+
+    cout << classOne.getValue() << endl;
+
+    return 0;
 }
