@@ -5,11 +5,14 @@ using namespace std;
 
 int main()
 {
-    TrialClass classOne{10}, classTwo{classOne};
+    char word[5];
+    static int MAX = 7;
 
-    // classOne.setValue(20);
+    cout << "Enter max 5 character word" << endl;
 
-    cout << classTwo.getValue() << endl;
+    cin.get(word, MAX);
+
+    cout << word << endl;
 
     return 0;
 }
