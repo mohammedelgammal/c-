@@ -5,14 +5,14 @@ using namespace std;
 
 int main()
 {
-    char word[5];
+    char word[6] = "hello", word_copy[6];
     static int MAX = 7;
 
-    cout << "Enter max 5 character word" << endl;
+    cout << word_copy << endl; // nothing + endl
 
-    cin.get(word, MAX, '$');
+    strcpy(word_copy, word);
 
-    cout << word << endl;
+    cout << word_copy << endl; // hello + endl
 
     return 0;
 }
