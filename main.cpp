@@ -10,7 +10,7 @@ int main()
 
     cout << "Enter max 5 character word" << endl;
 
-    cin.get(word, MAX);
+    cin.get(word, MAX, '$');
 
     cout << word << endl;
 
