@@ -5,12 +5,14 @@ class TrialClass
 {
 public:
     TrialClass() = default;
-    explicit TrialClass(int value);
+    explicit TrialClass(const int value);
+    explicit TrialClass(const TrialClass & sourceClass);
+
     int getValue() const; // inline keyword is unnecessary -> By default inline
     void setValue(int value);
 
 private:
-    int value = 0;
+    int value;
 };
 
 #endif // TRIAL_CLASS

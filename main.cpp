@@ -5,11 +5,11 @@ using namespace std;
 
 int main()
 {
-    TrialClass classOne{10};
+    TrialClass classOne{10}, classTwo{classOne};
 
-    classOne.setValue(20);
+    // classOne.setValue(20);
 
-    cout << classOne.getValue() << endl;
+    cout << classTwo.getValue() << endl;
 
     return 0;
 }

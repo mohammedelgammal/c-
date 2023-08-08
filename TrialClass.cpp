@@ -7,6 +7,12 @@ TrialClass::TrialClass(int value) : value{value}
 {
 }
 
+TrialClass::TrialClass(const TrialClass &sourceClass)
+{
+    cout << "source value is:" << sourceClass.getValue() << endl;
+    this->setValue(sourceClass.getValue() + 1);
+}
+
 int TrialClass::getValue() const
 {
     return this->value;
