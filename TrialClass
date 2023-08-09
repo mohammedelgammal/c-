@@ -7,7 +7,7 @@ public:
     TrialClass() = default;
     explicit TrialClass(const int value);
     TrialClass operator++(int value);
-    void operator++();
+    TrialClass operator++();
 
     int getValue() const; // inline keyword is unnecessary -> By default inline
     void setValue(int value);

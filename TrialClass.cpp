@@ -19,12 +19,10 @@ void TrialClass::setValue(int value)
 
 TrialClass TrialClass::operator++(int value)
 {
-    const TrialClass oldClass = *this;
-    ++this->value;
-    return oldClass;
+    return TrialClass(this->value++);
 }
 
-void TrialClass::operator++()
+TrialClass TrialClass::operator++()
 {
-    this->value++;
+    return TrialClass(++this->value);
 }
