@@ -6,8 +6,7 @@ class TrialClass
 public:
     TrialClass() = default;
     explicit TrialClass(const int value);
-    explicit TrialClass(const TrialClass &sourceClass);
-    void operator++(int value);
+    TrialClass operator++(int value);
     void operator++();
 
     int getValue() const; // inline keyword is unnecessary -> By default inline

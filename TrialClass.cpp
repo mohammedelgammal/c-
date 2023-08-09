@@ -7,12 +7,6 @@ TrialClass::TrialClass(int value) : value{value}
 {
 }
 
-TrialClass::TrialClass(const TrialClass &sourceClass)
-{
-    cout << "source value is:" << sourceClass.getValue() << endl;
-    this->setValue(sourceClass.getValue() + 1);
-}
-
 int TrialClass::getValue() const
 {
     return this->value;
@@ -23,10 +17,11 @@ void TrialClass::setValue(int value)
     this->value = value;
 }
 
-void TrialClass::operator++(int value)
+TrialClass TrialClass::operator++(int value)
 {
-    value = this->value;
-    this->value++;
+    const TrialClass oldClass = *this;
+    ++this->value;
+    return oldClass;
 }
 
 void TrialClass::operator++()
