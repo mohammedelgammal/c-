@@ -5,14 +5,13 @@ using namespace std;
 
 int main()
 {
-    char word[6] = "hello", word_copy[6];
-    static int MAX = 7;
+    TrialClass trialOne{20};
 
-    cout << word_copy << endl; // nothing + endl
+    cout << trialOne.getValue() << endl;
 
-    strcpy(word_copy, word);
+    ++trialOne;
 
-    cout << word_copy << endl; // hello + endl
+    cout << trialOne.getValue() << endl;
 
     return 0;
 }

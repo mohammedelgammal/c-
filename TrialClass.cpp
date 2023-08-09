@@ -22,3 +22,14 @@ void TrialClass::setValue(int value)
 {
     this->value = value;
 }
+
+void TrialClass::operator++(int value)
+{
+    value = this->value;
+    this->value++;
+}
+
+void TrialClass::operator++()
+{
+    this->value++;
+}
