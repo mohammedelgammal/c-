@@ -26,3 +26,8 @@ TrialClass TrialClass::operator++()
 {
     return TrialClass(++this->value);
 }
+
+TrialClass::operator float()
+{
+    return this->value + 0.005;
+}

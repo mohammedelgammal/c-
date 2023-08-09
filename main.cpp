@@ -7,9 +7,9 @@ int main()
 {
     TrialClass trialOne{20};
 
-    ++trialOne;
+    float floatTrial = static_cast<float>(trialOne);
 
-    cout << trialOne.getValue() << endl;
+    cout << trialOne << endl;
 
     return 0;
 }

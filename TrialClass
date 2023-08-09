@@ -8,6 +8,7 @@ public:
     explicit TrialClass(const int value);
     TrialClass operator++(int value);
     TrialClass operator++();
+    operator float();
 
     int getValue() const; // inline keyword is unnecessary -> By default inline
     void setValue(int value);
