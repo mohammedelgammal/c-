@@ -31,3 +31,7 @@ TrialClass::operator float()
 {
     return this->value + 0.005;
 }
+
+TrialClass::TrialClass(float value) : value{static_cast<int>(value) * 2}
+{
+}

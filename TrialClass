@@ -9,6 +9,7 @@ public:
     TrialClass operator++(int value);
     TrialClass operator++();
     operator float();
+    TrialClass(float value);
 
     int getValue() const; // inline keyword is unnecessary -> By default inline
     void setValue(int value);

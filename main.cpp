@@ -5,9 +5,7 @@ using namespace std;
 
 int main()
 {
-    TrialClass trialOne{20};
-
-    float floatTrial = static_cast<float>(trialOne);
+    TrialClass trialOne{20.578F};
 
     cout << trialOne << endl;
 
