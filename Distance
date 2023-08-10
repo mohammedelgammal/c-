@@ -11,6 +11,7 @@ public:
 
     // converting from the basic type float to Distance using conversion constructor
     Distance(float distance);
+    operator float();
 
 private:
     int kilometers;

@@ -18,6 +18,14 @@ Distance::Distance(float distance)
     this->meters = meters;
 }
 
+// conversion operator
+Distance::operator float()
+{
+    int combinedDistance = this->kilometers * 1000 + this->meters;
+    float distance = (static_cast<float>(combinedDistance)) / 1000;
+    return distance;
+}
+
 int Distance::getMeters() const
 {
     return this->meters;
