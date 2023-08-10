@@ -10,9 +10,10 @@ int main()
     cout << "KiloMeters: " << distanceOne.getKiloMeters() << endl;
     cout << "Meters: " << distanceOne.getMeters() << endl;
 
-    float distance = static_cast<float>(distanceOne);
+    distanceOne = 15.625;
 
-    cout << "Float distance: " << distance << endl;
+    cout << "Float distance: " << distanceOne.getKiloMeters() << endl;
+    cout << "Float distance: " << distanceOne.getMeters() << endl;
 
     return 0;
 }
