@@ -5,17 +5,12 @@ class TrialClass
 {
 public:
     TrialClass() = default;
-    explicit TrialClass(const int value);
-    TrialClass operator++(int value);
-    TrialClass operator++();
-    operator float();
-    TrialClass(float value);
+    TrialClass(float value); // conversion constructor
 
     int getValue() const; // inline keyword is unnecessary -> By default inline
-    void setValue(int value);
 
 private:
-    int value;
+    float value;
 };
 
 #endif // TRIAL_CLASS

@@ -5,9 +5,9 @@ using namespace std;
 
 int main()
 {
-    TrialClass trialOne{20.578F};
+    TrialClass trialOne{25.25};
 
-    cout << trialOne << endl;
+    cout << trialOne.getValue() << endl;
 
     return 0;
 }
