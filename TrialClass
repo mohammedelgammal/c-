@@ -6,6 +6,7 @@ class TrialClass
 public:
     TrialClass() = default;
     TrialClass(float value); // conversion constructor
+    operator float();
 
     int getValue() const; // inline keyword is unnecessary -> By default inline
 
