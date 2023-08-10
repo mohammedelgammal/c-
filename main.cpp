@@ -1,16 +1,14 @@
 #include <iostream>
-#include "TrialClass"
+#include "Distance"
 
 using namespace std;
 
 int main()
 {
-    TrialClass trialOne{25.25}, trialTwo;
+    Distance distanceOne(2.536);
 
-    trialTwo = static_cast<float>(trialOne);
-
-    cout << trialOne.getValue() << endl;
-    cout << trialTwo.getValue() << endl;
+    cout << "KiloMeters: " << distanceOne.getKiloMeters() << endl;
+    cout << "Meters: " << distanceOne.getMeters() << endl;
 
     return 0;
 }

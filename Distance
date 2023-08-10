@@ -1,0 +1,20 @@
+#ifndef DISTANCE
+#define DISTANCE
+
+class Distance
+{
+public:
+    Distance();
+    explicit Distance(const int kiloMeters, const int meters);
+    int getMeters() const;
+    int getKiloMeters() const;
+
+    // converting from the basic type float to Distance using conversion constructor
+    Distance(float distance);
+
+private:
+    int kilometers;
+    int meters;
+};
+
+#endif // DISTANCE
