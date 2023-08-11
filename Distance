@@ -5,12 +5,12 @@ class Distance
 {
 public:
     Distance();
-    explicit Distance(const int kiloMeters, const int meters);
+    Distance(const int kiloMeters, const int meters);
     int getMeters() const;
     int getKiloMeters() const;
 
     // converting from the basic type float to Distance using conversion constructor
-    Distance(float distance);
+    explicit Distance(float distance);
     operator float();
 
 private:
