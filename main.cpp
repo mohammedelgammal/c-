@@ -2,26 +2,21 @@
 #include "Distance"
 
 using namespace std;
-void callDistance(Distance &distance)
-{
-    cout << "Function km: " << distance.getKiloMeters() << endl;
-    cout << "Function meters: " << distance.getMeters() << endl;
-}
 
 int main()
 {
 
-    Distance distanceOne(2, 238);
+    const Distance distanceOne(2.765);
 
-    // cout << "KiloMeters: " << distanceOne.getKiloMeters() << endl;
-    // cout << "Meters: " << distanceOne.getMeters() << endl;
+    cout << "KiloMeters: " << distanceOne.getKiloMeters() << endl;
+    cout << "Meters: " << distanceOne.getMeters() << endl;
 
-    // // distanceOne = 15.625;
+    // distanceOne = 15.625; // preventes by explicit
 
     // cout << "Float distance: " << distanceOne.getKiloMeters() << endl;
     // cout << "Float distance: " << distanceOne.getMeters() << endl;
 
-    callDistance(2, 321);
+    cout << "Conversion count: " << distanceOne.getCount() << endl;
 
     return 0;
 }

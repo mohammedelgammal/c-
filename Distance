@@ -8,6 +8,7 @@ public:
     Distance(const int kiloMeters, const int meters);
     int getMeters() const;
     int getKiloMeters() const;
+    int getCount() const;
 
     // converting from the basic type float to Distance using conversion constructor
     explicit Distance(float distance);
@@ -16,6 +17,7 @@ public:
 private:
     int kilometers;
     int meters;
+    mutable int convertCount = 0;
 };
 
 #endif // DISTANCE

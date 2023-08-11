@@ -1,11 +1,11 @@
 #include "Distance"
 #include <iostream>
 
-Distance::Distance(const int kiloMeters, const int meters) : meters{meters}, kilometers{kiloMeters}
+Distance::Distance(const int kiloMeters, const int meters) : meters{meters}, kilometers{kiloMeters}, convertCount{0}
 {
 }
 
-Distance::Distance() : meters{0}, kilometers{0}
+Distance::Distance() : meters{0}, kilometers{0}, convertCount{0}
 {
 }
 
@@ -16,6 +16,7 @@ Distance::Distance(float distance)
     const int meters = (distance - kiloMeters) * 1000;
     this->kilometers = kiloMeters;
     this->meters = meters;
+    this->convertCount++;
 }
 
 // conversion operator
@@ -34,4 +35,9 @@ int Distance::getMeters() const
 int Distance::getKiloMeters() const
 {
     return this->kilometers;
+}
+
+int Distance::getCount() const
+{
+    return this->convertCount;
 }
