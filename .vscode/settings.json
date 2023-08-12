@@ -10,6 +10,7 @@
     "atomic": "cpp",
     "iterator": "cpp",
     "unordered_map": "cpp",
-    "chrono": "cpp"
+    "chrono": "cpp",
+    "ostream": "cpp"
   }
 }

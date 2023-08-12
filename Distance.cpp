@@ -52,6 +52,12 @@ Distance Distance::operator++()
     return *this;
 }
 
+DistanceChild::DistanceChild(const int meters, const int kiloMeters) : Distance(meters, kiloMeters)
+{
+    // Derived extra statement
+    cout << "Derived Class Constructor Invoked" << endl;
+}
+
 // void Distance::increaseCount()
 // {
 //     ++this->meters;
