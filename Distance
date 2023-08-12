@@ -29,7 +29,11 @@ private:
 class DistanceChild : public Distance
 {
 public:
-    using Distance::Distance;
+    // using Distance::Distance; // inheriting all the constructors one-time
+    DistanceChild() : Distance(){};
+    DistanceChild(float distance) : Distance(distance){};
+    DistanceChild(const int meters, const int kiloMeters) : Distance(meters, kiloMeters){};
+
     // DistanceChild operator++();
 };
 
