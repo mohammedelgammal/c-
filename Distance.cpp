@@ -42,19 +42,19 @@ int Distance::getCount() const
     return this->convertCount;
 }
 
-// Distance Distance::operator++()
+Distance Distance::operator++()
+{
+    return Distance(++meters, ++kilometers);
+}
+
+// void Distance::increaseCount()
 // {
-//     return Distance(++meters, ++kilometers);
+//     ++this->meters;
+//     ++this->kilometers;
 // }
 
-void Distance::increaseCount()
-{
-    ++this->meters;
-    ++this->kilometers;
-}
-
-DistanceChild DistanceChild::operator++()
-{
-    this->increaseCount();
-    return *this;
-}
+// DistanceChild DistanceChild::operator++()
+// {
+//     this->increaseCount();
+//     return *this;
+// }
