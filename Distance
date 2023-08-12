@@ -36,7 +36,11 @@ public:
     // using Distance::Distance; // inheriting all the constructors one-time
     DistanceChild() : Distance(){};
     DistanceChild(float distance) : Distance(distance){};
-    DistanceChild(const int meters, const int kiloMeters) : Distance(meters, kiloMeters){};
+    DistanceChild(const int meters, const int kiloMeters) : Distance(meters, kiloMeters)
+    {
+        // Derived extra statement
+        cout << "Derived Class Constructor Invoked" << endl;
+    };
 
     // DistanceChild operator++();
 };

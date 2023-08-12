@@ -7,7 +7,7 @@ int main()
 {
 
     // Distance distanceOne{2, 765};
-    DistanceChild distanceTwo{2.462};
+    DistanceChild distanceTwo{2, 462};
 
     cout << "KiloMeters: " << distanceTwo.getKiloMeters() << endl;
     cout << "Meters: " << distanceTwo.getMeters() << endl;

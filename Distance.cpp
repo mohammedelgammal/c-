@@ -47,7 +47,9 @@ int Distance::getCount() const
 
 Distance Distance::operator++()
 {
-    return Distance(++meters, ++kilometers);
+    ++this->kilometers;
+    ++this->meters;
+    return *this;
 }
 
 // void Distance::increaseCount()
