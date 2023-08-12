@@ -10,14 +10,27 @@ public:
     int getKiloMeters() const;
     int getCount() const;
 
+    Distance operator++();
+    void increaseCount();
+
     // converting from the basic type float to Distance using conversion constructor
     explicit Distance(float distance);
     operator float();
+
+protected:
+    static int count;
 
 private:
     int kilometers;
     int meters;
     mutable int convertCount = 0;
+};
+
+class DistanceChild : public Distance
+{
+public:
+    using Distance::Distance;
+    // DistanceChild operator++();
 };
 
 #endif // DISTANCE

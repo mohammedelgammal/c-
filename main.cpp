@@ -6,17 +6,20 @@ using namespace std;
 int main()
 {
 
-    const Distance distanceOne(2.765);
+    Distance distanceOne{2, 765};
+    DistanceChild distanceTwo{2.462};
 
-    cout << "KiloMeters: " << distanceOne.getKiloMeters() << endl;
-    cout << "Meters: " << distanceOne.getMeters() << endl;
+    cout << "KiloMeters: " << distanceTwo.getKiloMeters() << endl;
+    cout << "Meters: " << distanceTwo.getMeters() << endl;
 
-    // distanceOne = 15.625; // preventes by explicit
+    ++distanceTwo;
 
-    // cout << "Float distance: " << distanceOne.getKiloMeters() << endl;
-    // cout << "Float distance: " << distanceOne.getMeters() << endl;
+    // distanceTwo = 15.625; // preventes by explicit
 
-    cout << "Conversion count: " << distanceOne.getCount() << endl;
+    cout << "Incremented distance: " << distanceTwo.getKiloMeters() << endl;
+    cout << "Incremented distance: " << distanceTwo.getMeters() << endl;
+
+    cout << "Conversion count: " << distanceTwo.getCount() << endl;
 
     return 0;
 }
