@@ -1,6 +1,10 @@
 #ifndef DISTANCE
 #define DISTANCE
 
+#include <iostream>
+
+using namespace std;
+
 class Distance
 {
 public:

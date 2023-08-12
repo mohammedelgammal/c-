@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
 
-    Distance distanceOne{2, 765};
+    // Distance distanceOne{2, 765};
     DistanceChild distanceTwo{2.462};
 
     cout << "KiloMeters: " << distanceTwo.getKiloMeters() << endl;

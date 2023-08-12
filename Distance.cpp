@@ -1,8 +1,11 @@
 #include "Distance"
 #include <iostream>
 
+using namespace std;
+
 Distance::Distance(const int kiloMeters, const int meters) : meters{meters}, kilometers{kiloMeters}, convertCount{0}
 {
+    cout << "Base class constructor" << endl;
 }
 
 Distance::Distance() : meters{0}, kilometers{0}, convertCount{0}
