@@ -3,10 +3,15 @@ using namespace std;
 
 int main()
 {
-    const int arr[4]{1, 2, 3, 4};
+    const char str1[] = "Defines as array";
+    const char *str2 = "Defines as pointers";
 
-    for (int i = 0; i < 4; i++)
-        cout << *(arr + i) << endl;
+    cout << &str2 << endl;
+
+    // ++str1; // Constant string cannot be increased
+    ++str2; // Pointer can be increased
+
+    cout << &str2 << endl;
 
     return 0;
 }
