@@ -3,16 +3,10 @@ using namespace std;
 
 int main()
 {
-    int var1, var2;
-    char char1;
-    double dob1;
+    const int arr[4]{1, 2, 3, 4};
 
-    reinterpret_cast<void *>(&char1);
-    
-
-    cout << &var1 << " - " << &var2 << endl;
-    cout << reinterpret_cast<void *>(&char1) << endl;
-    cout << &dob1 << endl;
+    for (int i = 0; i < 4; i++)
+        cout << *(arr + i) << endl;
 
     return 0;
 }
