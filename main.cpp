@@ -1,9 +1,10 @@
 #include <iostream>
 using namespace std;
+#include <string>
 
 int main()
 {
-    const char str1[] = "Defines as array";
+    // const string str1[] = "Defines as array";
     const char *str2 = "Defines as pointers";
 
     cout << &str2 << endl;
