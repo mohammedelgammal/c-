@@ -9,7 +9,7 @@ int main()
     Alpha alpha;
     Beta beta;
 
-    cout << sumUp(&alpha, &beta) << endl;
+    cout << alpha.getBetaVal(beta) << endl;
 
     return 0;
 }

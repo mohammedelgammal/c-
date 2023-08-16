@@ -6,20 +6,23 @@ class Alpha;
 class Beta
 {
 public:
-    Beta() : value{10} {}
-    friend int sumUp(Alpha *alpha, Beta *beta);
+    Beta() : bvalue{15} {}
+    friend class Alpha;
 
-private: 
-    int value;
+private:
+    int bvalue;
 };
 class Alpha
 {
 public:
-    Alpha() : value{10} {};
-    friend int sumUp(Alpha *alpha, Beta *beta);
+    Alpha() : avalue{10} {};
+    int getBetaVal(Beta b)
+    {
+        return b.bvalue;
+    };
 
 private:
-    int value;
+    int avalue;
 };
 
 #endif // ALPHABETA
