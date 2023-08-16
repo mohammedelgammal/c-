@@ -1,18 +1,19 @@
 #include <iostream>
 using namespace std;
-#include <string>
 
 int main()
 {
-    // const string str1[] = "Defines as array";
-    const char *str2 = "Defines as pointers";
+    int num = 3, numTwo = 5;
+    const int *ptrcint; // pointer to a constant integer
 
-    cout << &str2 << endl;
+    ptrcint = &num;
+    ptrcint = &numTwo; // can make point to another int
+    numTwo = 4;
 
-    // ++str1; // Constant string cannot be increased
-    ++str2; // Pointer can be increased
+    ptrcint = &numTwo;
 
-    cout << &str2 << endl;
+    int *const cptrint = &num; // constant pointer to an integer
+    // cptrint = &numTwo; // can point only to one int so it needs an initializer
 
     return 0;
 }
