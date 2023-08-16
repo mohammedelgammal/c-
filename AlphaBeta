@@ -1,22 +1,21 @@
 #ifndef ALPHABETA
 #define ALPHABETA
 
-class Beta;
-
-class Alpha
-{
-public:
-    Alpha() : value{10} {};
-    friend int sumUp(Alpha *alpha, Beta *beta);
-
-private:
-    int value;
-};
+class Alpha;
 
 class Beta
 {
 public:
     Beta() : value{10} {}
+    friend int sumUp(Alpha *alpha, Beta *beta);
+
+private: 
+    int value;
+};
+class Alpha
+{
+public:
+    Alpha() : value{10} {};
     friend int sumUp(Alpha *alpha, Beta *beta);
 
 private:
