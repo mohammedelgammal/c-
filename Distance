@@ -17,6 +17,8 @@ public:
     Distance operator++();
     // void increaseCount();
 
+    virtual void display() = 0;
+
     // converting from the basic type float to Distance using conversion constructor
     explicit Distance(float distance);
     operator float();
@@ -37,6 +39,11 @@ public:
     DistanceChild() : Distance(){};
     DistanceChild(float distance) : Distance(distance){};
     DistanceChild(const int meters, const int kiloMeters);
+
+    void display() override
+    {
+        cout << "distance" << endl;
+    }
 
     // DistanceChild operator++();
 };
