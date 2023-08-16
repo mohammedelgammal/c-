@@ -17,7 +17,7 @@ public:
     Distance operator++();
     // void increaseCount();
 
-    virtual void display() = 0;
+    virtual void display();
 
     // converting from the basic type float to Distance using conversion constructor
     explicit Distance(float distance);
