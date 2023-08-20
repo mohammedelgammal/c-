@@ -41,4 +41,8 @@ private:
     int avalue;
 };
 
+// dynamic_cast<Derived*>(basePtr) // dynamic_cast makes sure base ptr is the same of the defined derived class ptr 
+// Derived* derived = dynamic_cast<Derived*>(basePtr) downcasting
+// Base* base = dynamic_cast<Base*>(derivedPtr)upcasting
+
 #endif // ALPHABETA
