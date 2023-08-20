@@ -3,13 +3,14 @@
 
 using namespace std;
 
+int Beta::total = 0;
+
 int main()
 {
-
     Alpha alpha;
     Beta beta;
 
-    cout << alpha.getBetaVal(beta) << endl;
+    Beta::getInstances();
 
     return 0;
 }

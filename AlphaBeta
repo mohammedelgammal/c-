@@ -1,16 +1,32 @@
 #ifndef ALPHABETA
 #define ALPHABETA
 
+#include <iostream>
+
+using namespace std;
+
 class Alpha;
 
 class Beta
 {
 public:
-    Beta() : bvalue{15} {}
+    Beta()
+    {
+        ++Beta::total;
+    }
+    ~Beta()
+    {
+        --Beta::total;
+    }
     friend class Alpha;
+    static void getInstances()
+    {
+        cout << total << endl;
+    };
 
 private:
     int bvalue;
+    static int total;
 };
 class Alpha
 {
