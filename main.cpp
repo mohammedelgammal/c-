@@ -1,4 +1,4 @@
-#include <iostream>
+#include <ostream>
 #include "AlphaBeta"
 
 using namespace std;
@@ -10,7 +10,13 @@ int main()
     Alpha alpha;
     Beta beta;
 
+    int age;
+
     Beta::getInstances();
 
-    return 0;
+    cout << "trying ostream" << endl;
+
+    cin >> age;
+
+        return 0;
 }

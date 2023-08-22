@@ -11,6 +11,7 @@
     "iterator": "cpp",
     "unordered_map": "cpp",
     "chrono": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "ios": "cpp"
   }
 }
