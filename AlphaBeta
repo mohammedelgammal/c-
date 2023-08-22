@@ -1,4 +1,4 @@
-#ifndef ALPHABETA
+#if !defined(ALPHABETA)
 #define ALPHABETA
 
 #include <iostream>
@@ -6,7 +6,6 @@
 using namespace std;
 
 class Alpha;
-
 
 class Beta
 {
