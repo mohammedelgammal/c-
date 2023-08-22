@@ -10,13 +10,13 @@ int main()
     Alpha alpha;
     Beta beta;
 
+    extern int global_var;
+
     int age;
 
     Beta::getInstances();
 
-    cout << "trying ostream" << endl;
+    cout << "global: " << global_var << endl;
 
-    cin >> age;
-
-        return 0;
+    return 0;
 }
