@@ -11,12 +11,13 @@ int main()
     Beta beta;
 
     extern int global_var;
+    int sum(int a, int b);
 
     int age;
 
     Beta::getInstances();
 
-    cout << "global: " << global_var << endl;
+    cout << "global: " << sum(1, 4) << endl;
 
     return 0;
 }
