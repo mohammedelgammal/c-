@@ -37,10 +37,10 @@ class Alpha
 {
 public:
     Alpha() : avalue{10} {};
-    int getBetaVal(Beta b)
-    {
-        return b.bvalue;
-    };
+    // int getBetaVal(Beta b)
+    // {
+    //     return b.bvalue;
+    // };
 
 private:
     int avalue;
