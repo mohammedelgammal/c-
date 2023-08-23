@@ -9,15 +9,18 @@ int main()
 
     vector<int>::iterator ite = vec.begin();
     vector<int>::reverse_iterator rite = vec.rbegin();
+    vector<int>::iterator raite = vec.begin();
 
     cout << "Second vector element is: " << *(++ite) << endl;
 
     cout << "Second to last element is: " << *(++rite) << endl;
 
-    // using bidirectional iterator to loop through the vector in a reverse way
-    for (vector<int>::reverse_iterator rite = vec.rbegin(); rite < vec.rend(); ++rite)
+    // using the random access iterator to loop through the vector
+    while (raite < vec.end())
     {
-        cout << *rite;
+        cout << *raite;
+        // ++raite;
+        advance(raite, 2); 
     }
 
     return 0;
