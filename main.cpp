@@ -9,6 +9,7 @@ int main()
     int arr[6] = {1, 2, 3, 4, 5, 5};
     int unarranged_arr[] = {45, 2, 22, -17, 0, -30, 25, 55};
     int incl_arr[] = {3, 4, 5};
+    int merge_arr[9];
 
     cout << *find(arr, arr + 8, 4) << endl;
     cout << "Number 5 found: " << count(arr, arr + 7, 5) << endl;
@@ -22,6 +23,13 @@ int main()
     else
     {
         cout << "No matching found!" << endl;
+    }
+
+    merge(arr, arr + 6, incl_arr, incl_arr + 3, merge_arr);
+
+    for (int num : merge_arr)
+    {
+        cout << "-" << num;
     }
 
     sort(unarranged_arr, unarranged_arr + 8);
