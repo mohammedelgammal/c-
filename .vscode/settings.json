@@ -13,6 +13,7 @@
     "chrono": "cpp",
     "ostream": "cpp",
     "ios": "cpp",
-    "alphabeta": "cpp"
+    "alphabeta": "cpp",
+    "algorithm": "cpp"
   }
 }

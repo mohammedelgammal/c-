@@ -1,6 +1,7 @@
 #include <ostream>
 #include "AlphaBeta"
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -18,9 +19,23 @@ int main()
 
     int age;
 
+    char fillArr[10];
+
+    fill(fillArr, fillArr + 10, 0);
+
+    cout << "Filled Array is: ";
+
+    for (int num : fillArr)
+    {
+        cout << num;
+    }
+
+    cout << '\n';
+
     // Beta::getInstances();
 
-    cout << "global: " << sum(1, 4) << endl;
+    cout
+        << "global: " << sum(1, 4) << endl;
 
     sort(arr, arr + 7);
 
