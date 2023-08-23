@@ -14,6 +14,7 @@ int main()
     extern int global_var;
     int sum(int a, int b);
     string name = "howard";
+    int arr[7]{5, 8, 4, 1, 7, 9, 3};
 
     int age;
 
@@ -21,7 +22,14 @@ int main()
 
     cout << "global: " << sum(1, 4) << endl;
 
-    cout << "W index is: " << name.find('w') << endl;
+    sort(arr, arr + 7);
+
+    cout << "Sorted array is: ";
+
+    for (int num : arr)
+    {
+        cout << num;
+    }
 
     return 0;
 }
