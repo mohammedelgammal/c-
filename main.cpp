@@ -31,5 +31,7 @@ int main()
         cout << num;
     }
 
+    cout << "\nfirst character in name is: " << name.front() << endl;
+
     return 0;
 }
