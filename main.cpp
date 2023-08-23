@@ -12,7 +12,7 @@ int main()
     cout << "Second vector element is: " << *(++ite) << endl;
 
     // using normal increment iterators to traverse the vector vec
-    for (vector<int>::iterator ite = vec.begin(); ite < vec.end(); ++ite)
+    for (vector<int>::iterator ite = vec.end(); ite > --vec.begin(); --ite)
     {
         cout << *ite;
     }
