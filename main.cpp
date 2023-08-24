@@ -6,30 +6,20 @@ using namespace std;
 
 int main()
 {
-    struct descending
+    struct is_ali
     {
-        bool operator()(int a, int b)
+        bool operator()(string name)
         {
-            return a > b;
-        }
-    };
-    struct char_compare
-    {
-        bool operator()(char *a, char *b)
-        {
-            return strcmp(a, b) < 0 ? true : false;
+            return name == "ali";
         }
     };
 
-    int arr[]{1, 2, 3, 4, 5};
-    char *names[]{"mohammed", "mahmoud", "ali", "amr", "amir"};
+    string names[] = {"mohammed",
+                      "ahmed",
+                      "mahmoud",
+                      "ali"};
 
-    sort(names, names + 5, char_compare());
-
-    for (char *name : names)
-    {
-        cout << name << " ";
-    }
-
+    // cout << *find(names, names + 4, "mahmoud") << endl;
+    cout << *find_if(names, names + 6, is_ali()) << endl;
     return 0;
 }
