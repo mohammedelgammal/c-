@@ -4,6 +4,11 @@
 
 using namespace std;
 
+void add_mr(string name)
+{
+    cout << "Mr. " << name << endl;
+}
+
 int main()
 {
     struct is_ali
@@ -20,6 +25,9 @@ int main()
                       "ali"};
 
     // cout << *find(names, names + 4, "mahmoud") << endl;
-    cout << *find_if(names, names + 6, is_ali()) << endl;
+    // cout << *find_if(names, names + 6, is_ali()) << endl;
+
+    for_each(names, names + 4, add_mr);
+
     return 0;
 }
