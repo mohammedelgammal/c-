@@ -16,7 +16,7 @@ int main()
 
     int arr[]{1, 2, 3, 4, 5};
 
-    sort(arr, arr + 5, descending());
+    sort(arr, arr + 5, greater<>());
 
     for (int num : arr)
     {
