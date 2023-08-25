@@ -30,7 +30,7 @@ int main()
 
     string mr_names[4];
 
-    // cout << *find(names, names + 4, "mahmoud") << endl;
+    cout << *find(names, names + 4, "mahmoud") << endl;
     // cout << *find_if(names, names + 6, is_ali()) << endl;
 
     for_each(names, names + 4, add_mr);
