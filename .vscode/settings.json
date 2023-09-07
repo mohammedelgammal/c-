@@ -14,6 +14,7 @@
     "ostream": "cpp",
     "ios": "cpp",
     "alphabeta": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "array": "cpp"
   }
 }

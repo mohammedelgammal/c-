@@ -1,0 +1,17 @@
+#ifndef ARRAY
+#define ARRAY
+
+class Array
+{
+public:
+    Array(const int length);
+    void insert(int number);
+    int operator[](const int index) const;
+
+private:
+    int length;
+    int index = 0;
+    int *array;
+};
+
+#endif // ARRAY

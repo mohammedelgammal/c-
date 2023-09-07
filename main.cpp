@@ -1,46 +1,17 @@
+#include "Array"
 #include <iostream>
-#include <vector>
-#include <algorithm>
 
 using namespace std;
 
-void add_mr(string name)
-{
-    cout << "Mr. " << name << endl;
-}
-string modify_add_mr(string name)
-{
-    return "Mr. " + name;
-}
-
 int main()
 {
-    struct is_ali
-    {
-        bool operator()(string name)
-        {
-            return name == "ali";
-        }
-    };
+    Array arr(3);
 
-    string names[] = {"mohammed",
-                      "ahmed",
-                      "mahmoud",
-                      "ali"};
+    arr.insert(10);
+    arr.insert(20);
+    arr.insert(30);
 
-    string mr_names[4];
-
-    cout << *find(names, names + 4, "mahmoud") << endl;
-    // cout << *find_if(names, names + 6, is_ali()) << endl;
-
-    for_each(names, names + 4, add_mr);
-
-    transform(names, names + 4, mr_names, modify_add_mr);
-
-    for (string name : mr_names)
-    {
-        cout << "Mr name is: " << name << "\n-";
-    }
+    cout << arr[2] << endl;
 
     return 0;
 }
