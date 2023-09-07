@@ -13,6 +13,7 @@ public:
     void removeAt(const int targetIndex);
     int operator[](const int targetIndex) const;
     void validateIndex(const int targetIndex) const;
+    int indexOf(const int number) const;
 
     // Variables
     int length;

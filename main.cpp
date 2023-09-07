@@ -15,8 +15,11 @@ int main()
 
     arr.removeAt(3);
 
-    for (int i = 0; i < arr.length; i++)
-        cout << arr[i] << endl;
+    cout << arr.indexOf(10) << endl;
+    // cout << arr.indexOf(23) << endl;
+
+    // for (int i = 0; i < arr.length; i++)
+    //     cout << arr[i] << endl;
 
     return 0;
 }

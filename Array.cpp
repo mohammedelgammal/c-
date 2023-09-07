@@ -53,6 +53,21 @@ void Array::removeAt(const int targetIndex)
     resizedArray = nullptr;
 }
 
+int Array::indexOf(const int number) const
+{
+    int targetIndex = -1;
+    for (int i = 0; i < length; i++)
+    {
+        if (array[i] == number)
+            targetIndex = i;
+    }
+    if (targetIndex == -1)
+    {
+        throw logic_error("Cannot find this number");
+    }
+    return targetIndex;
+};
+
 int Array::operator[](const int targetIndex) const
 {
     validateIndex(targetIndex);
