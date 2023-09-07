@@ -1,6 +1,7 @@
 #include "Array"
-using namespace std;
 #include <stdexcept>
+
+using namespace std;
 
 Array::Array(int length)
 {
@@ -20,15 +21,16 @@ void Array::insert(int number)
         int *resizedArray = new int[++length];
         for (int i = 0; i < length; i++)
             resizedArray[i] = array[i];
+        delete[] array;
         array = resizedArray;
-        delete[] resizedArray;
+        resizedArray = nullptr;
     }
     array[index++] = number;
 }
 
 int Array::operator[](const int index) const
 {
-    if (index > length - 1)
+    if (index > length - 1 || index < 0)
         throw out_of_range("Index out of range");
     return this->array[index];
 }

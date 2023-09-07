@@ -4,13 +4,18 @@
 class Array
 {
 public:
+    // Constructors
     Array(const int length);
-    void insert(int number);
-    int operator[](const int index) const;
     ~Array();
 
-private:
+    // Methods
+    void insert(int number);
+    int operator[](const int index) const;
+
+    // Variables
     int length;
+
+private:
     int index = 0;
     int *array;
 };
