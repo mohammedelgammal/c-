@@ -3,6 +3,13 @@
 
 using namespace std;
 
+// Utils
+void validateIndex(const int index, const int length)
+{
+    if (index > length - 1 || index < 0)
+        throw out_of_range("Index out of range");
+}
+
 Array::Array(int length)
 {
     this->length = length;
@@ -12,9 +19,10 @@ Array::Array(int length)
 Array::~Array()
 {
     delete[] array;
+    array = nullptr;
 }
 
-void Array::insert(int number)
+void Array::insert(const int number)
 {
     if (index > length - 1)
     {
@@ -28,9 +36,25 @@ void Array::insert(int number)
     array[index++] = number;
 }
 
-int Array::operator[](const int index) const
+void Array::removeAt(const int targetIndex)
 {
-    if (index > length - 1 || index < 0)
-        throw out_of_range("Index out of range");
-    return this->array[index];
+    validateIndex(targetIndex, length);
+    int *resizedArray = new int[--length];
+    for (int i = targetIndex; i < length; i++)
+    {
+        array[i] = array[i + 1];
+    }
+    for (int i = 0; i < length; i++)
+    {
+        resizedArray[i] = array[i];
+    }
+    delete[] array;
+    array = resizedArray;
+    resizedArray = nullptr;
+}
+
+int Array::operator[](const int targetIndex) const
+{
+    validateIndex(targetIndex, length);
+    return this->array[targetIndex];
 }

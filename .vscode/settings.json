@@ -15,6 +15,9 @@
     "ios": "cpp",
     "alphabeta": "cpp",
     "algorithm": "cpp",
-    "array": "cpp"
+    "array": "cpp",
+    "stdexcept": "cpp",
+    "__config": "cpp",
+    "__nullptr": "cpp"
   }
 }

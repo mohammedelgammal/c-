@@ -9,8 +9,9 @@ public:
     ~Array();
 
     // Methods
-    void insert(int number);
-    int operator[](const int index) const;
+    void insert(const int number);
+    void removeAt(const int targetIndex);
+    int operator[](const int targetIndex) const;
 
     // Variables
     int length;
