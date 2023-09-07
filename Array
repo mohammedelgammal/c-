@@ -7,6 +7,7 @@ public:
     Array(const int length);
     void insert(int number);
     int operator[](const int index) const;
+    ~Array();
 
 private:
     int length;

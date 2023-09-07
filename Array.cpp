@@ -1,4 +1,6 @@
 #include "Array"
+using namespace std;
+#include <stdexcept>
 
 Array::Array(int length)
 {
@@ -6,12 +8,27 @@ Array::Array(int length)
     this->array = new int[length];
 }
 
-void Array::insert(int number)
+Array::~Array()
 {
-    this->array[this->index++] = number;
+    delete[] array;
 }
 
-int Array::operator[](const int number) const
+void Array::insert(int number)
 {
-    return this->array[number];
+    if (index > length - 1)
+    {
+        int *resizedArray = new int[++length];
+        for (int i = 0; i < length; i++)
+            resizedArray[i] = array[i];
+        array = resizedArray;
+        delete[] resizedArray;
+    }
+    array[index++] = number;
+}
+
+int Array::operator[](const int index) const
+{
+    if (index > length - 1)
+        throw out_of_range("Index out of range");
+    return this->array[index];
 }
