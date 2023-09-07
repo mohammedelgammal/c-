@@ -13,7 +13,7 @@ int main()
     arr.insert(40);
     arr.insert(50);
 
-    arr.removeAt(9);
+    arr.removeAt(3);
 
     for (int i = 0; i < arr.length; i++)
         cout << arr[i] << endl;

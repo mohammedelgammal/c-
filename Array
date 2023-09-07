@@ -12,7 +12,7 @@ public:
     void insert(const int number);
     void removeAt(const int targetIndex);
     int operator[](const int targetIndex) const;
-    void validateIndex() const;
+    void validateIndex(const int targetIndex) const;
 
     // Variables
     int length;
