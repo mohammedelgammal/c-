@@ -4,7 +4,7 @@
 using namespace std;
 
 // Utils
-void validateIndex(const int index, const int length)
+void Array::validateIndex() const
 {
     if (index > length - 1 || index < 0)
         throw out_of_range("Index out of range");
@@ -38,7 +38,7 @@ void Array::insert(const int number)
 
 void Array::removeAt(const int targetIndex)
 {
-    validateIndex(targetIndex, length);
+    validateIndex();
     int *resizedArray = new int[--length];
     for (int i = targetIndex; i < length; i++)
     {
@@ -55,6 +55,6 @@ void Array::removeAt(const int targetIndex)
 
 int Array::operator[](const int targetIndex) const
 {
-    validateIndex(targetIndex, length);
+    validateIndex();
     return this->array[targetIndex];
 }
