@@ -72,6 +72,9 @@
     "__string": "cpp",
     "compare": "cpp",
     "concepts": "cpp",
-    "numeric": "cpp"
+    "numeric": "cpp",
+    "linkedlist": "cpp",
+    "__memory": "cpp",
+    "filesystem": "cpp"
   }
 }

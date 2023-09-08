@@ -1,0 +1,23 @@
+#ifndef LINKEDLIST
+#define LINKEDLIST
+
+class Node
+{
+public:
+    Node(const int value, Node *next);
+
+private:
+    int value;
+    Node *next;
+};
+
+class LinkedList
+{
+public:
+    LinkedList(Node *head);
+
+private:
+    Node *head;
+};
+
+#endif // LINKEDLIST
