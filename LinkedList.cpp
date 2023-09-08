@@ -1,7 +1,8 @@
 #include "LinkedList"
 #include <iostream>
+#include <vector>
 
-using namespace std;
+using std::cout, std::endl, std::vector;
 
 Node::Node(const int value, Node *next) : value{value}, next{next}
 {
@@ -24,6 +25,7 @@ LinkedList::~LinkedList()
 void LinkedList::addFirst(const int value)
 {
     Node *newHead = new Node(value, nullptr);
+
     if (head == nullptr)
     {
         head = newHead;
@@ -31,4 +33,18 @@ void LinkedList::addFirst(const int value)
     }
     newHead->next = head;
     head = newHead;
+}
+
+vector<int> LinkedList::toArray()
+{
+    Node *currentNode = head;
+    vector<int> result{};
+
+    while (currentNode != nullptr)
+    {
+        result.push_back(currentNode->value);
+        currentNode = currentNode->next;
+    }
+
+    return result;
 }

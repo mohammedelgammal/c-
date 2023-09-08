@@ -1,23 +1,31 @@
 #ifndef LINKEDLIST
 #define LINKEDLIST
 
+#include <vector>
+using std::vector;
+
 class Node
 {
 public:
     Node(const int value, Node *next);
-    Node *next = nullptr;
 
 private:
+    Node *next = nullptr;
     int value;
+    friend class LinkedList;
 };
 
 class LinkedList
 {
 public:
+    // Constructors
     LinkedList(int value);
     LinkedList();
     ~LinkedList();
+
+    // Methods
     void addFirst(const int value);
+    vector<int> toArray();
 
 private:
     Node *head = nullptr;
