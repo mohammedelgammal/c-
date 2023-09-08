@@ -5,19 +5,22 @@ class Node
 {
 public:
     Node(const int value, Node *next);
+    Node *next = nullptr;
 
 private:
     int value;
-    Node *next;
 };
 
 class LinkedList
 {
 public:
-    LinkedList(Node *head);
+    LinkedList(int value);
+    LinkedList();
+    ~LinkedList();
+    void addFirst(const int value);
 
 private:
-    Node *head;
+    Node *head = nullptr;
 };
 
 #endif // LINKEDLIST
