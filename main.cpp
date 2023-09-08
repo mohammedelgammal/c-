@@ -12,6 +12,8 @@ int main()
     list.addFirst(1);
     list.addLast(4);
 
+    list.deleteFirst();
+
     vector<int>
         listArray = list.toArray();
 

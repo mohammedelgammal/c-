@@ -1,8 +1,9 @@
 #include "LinkedList"
 #include <iostream>
 #include <vector>
+#include <stdexcept>
 
-using std::cout, std::endl, std::vector;
+using std::cout, std::endl, std::vector, std::logic_error;
 
 Node::Node(const int value, Node *next) : value{value}, next{next}
 {
@@ -35,7 +36,7 @@ void LinkedList::addFirst(const int value)
     head = newHead;
 }
 
-vector<int> LinkedList::toArray()
+vector<int> LinkedList::toArray() const
 {
     Node *currentNode = head;
     vector<int> result{};
@@ -64,4 +65,13 @@ void LinkedList::addLast(const int value)
         currentNode = currentNode->next;
     }
     currentNode->next = newNode;
+}
+
+void LinkedList::deleteFirst()
+{
+    if (head == nullptr)
+        throw logic_error("Linkedlist is empty");
+    Node *newHead = head->next;
+    delete head;
+    head = newHead;
 }
