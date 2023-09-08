@@ -7,14 +7,13 @@ int main()
 {
     LinkedList list;
 
-    list.addFirst(3);
-    list.addFirst(4);
-    list.addFirst(5);
-    list.addFirst(9);
     list.addFirst(2);
+    list.addLast(3);
     list.addFirst(1);
+    list.addLast(4);
 
-    vector<int> listArray = list.toArray();
+    vector<int>
+        listArray = list.toArray();
 
     for (int node : listArray)
     {

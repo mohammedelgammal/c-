@@ -24,8 +24,9 @@ public:
     ~LinkedList();
 
     // Methods
-    void addFirst(const int value);
+    void addFirst(const int value); // O(1) Constant
     vector<int> toArray();
+    void addLast(const int value); // O(n) Linear
 
 private:
     Node *head = nullptr;

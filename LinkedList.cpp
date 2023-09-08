@@ -48,3 +48,20 @@ vector<int> LinkedList::toArray()
 
     return result;
 }
+
+void LinkedList::addLast(const int value)
+{
+    Node *newNode = new Node(value, nullptr);
+    Node *currentNode = head;
+
+    if (head == nullptr)
+    {
+        head = newNode;
+        return;
+    }
+    while (currentNode->next != nullptr)
+    {
+        currentNode = currentNode->next;
+    }
+    currentNode->next = newNode;
+}
