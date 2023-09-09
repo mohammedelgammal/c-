@@ -25,13 +25,13 @@ public:
 
     // Methods
     void addFirst(const int value); // O(1) Constant
-    vector<int> toArray() const;
-    void addLast(const int value); // O(n) Linear
-    void deleteFirst();
-    void deleteLast();
-    bool isListEmpty() const;
-    bool contains(int value) const;
-    int indexOf(int value) const;
+    vector<int> toArray() const;    // O(n) Linear
+    void addLast(const int value);  // O(n) Linear
+    void deleteFirst();             // O(1) Constant
+    void deleteLast();              // O(n) Linear
+    bool isListEmpty() const;       // O(1) Constant
+    bool contains(int value) const; // O(n) Linear
+    int indexOf(int value) const;   // O(n) Linear
 
 private:
     Node *head = nullptr;
