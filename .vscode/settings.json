@@ -75,6 +75,7 @@
     "numeric": "cpp",
     "linkedlist": "cpp",
     "__memory": "cpp",
-    "filesystem": "cpp"
+    "filesystem": "cpp",
+    "doublylinkedlist": "cpp"
   }
 }

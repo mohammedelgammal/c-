@@ -1,0 +1,41 @@
+#ifndef DOUBLYLINKEDLIST
+#define DOUBLYLINKEDLIST
+
+#include <vector>
+using std::vector;
+
+class Node
+{
+public:
+    Node(const int value, Node *next, Node *previous);
+
+private:
+    Node *next = nullptr;
+    Node *previous = nullptr;
+    int value;
+    friend class DoublyLinkedList;
+};
+
+class DoublyLinkedList
+{
+public:
+    // Constructors
+    DoublyLinkedList(int value);
+    DoublyLinkedList();
+    ~DoublyLinkedList();
+
+    // Methods
+    void addFirst(const int value);
+    vector<int> toArray() const;
+    void addLast(const int value);
+    void deleteFirst();
+    void deleteLast();
+    bool isListEmpty() const;
+    bool contains(int value) const;
+    int indexOf(int value) const;
+
+private:
+    Node *head = nullptr;
+};
+
+#endif // DOUBLYLINKEDLIST

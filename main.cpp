@@ -1,31 +1,36 @@
 #include <iostream>
-#include "LinkedList"
+#include "DoublyLinkedList"
 
 using namespace std;
 
 int main()
 {
-    LinkedList list;
+    DoublyLinkedList list;
 
     list.addFirst(2);
     list.addLast(3);
+    list.addLast(5);
+    list.addLast(7);
+    list.addLast(9);
     list.addFirst(1);
     list.addLast(4);
 
-    // list.deleteFirst();
-    // list.deleteLast();
+    list.deleteLast();
+    list.deleteLast();
+    list.deleteLast();
+    list.deleteFirst();
 
     vector<int>
         listArray = list.toArray();
 
-    // for (int node : listArray)
-    // {
-    //     cout << node << endl;
-    // }
+    for (int node : listArray)
+    {
+        cout << node << endl;
+    }
 
-    // cout << boolalpha << list.contains(1);
+    cout << boolalpha << list.contains(5);
 
-    cout << list.indexOf(0) << endl;
+    // cout << list.indexOf(5) << endl;
 
     return 0;
 }
