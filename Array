@@ -1,0 +1,26 @@
+#ifndef ARRAY
+#define ARRAY
+
+class Array
+{
+public:
+    // Constructors
+    Array(const int length);
+    ~Array();
+
+    // Methods
+    void insert(const int number);
+    void removeAt(const int targetIndex);
+    int operator[](const int targetIndex) const;
+    void validateIndex(const int targetIndex) const;
+    int indexOf(const int number) const;
+
+    // Variables
+    int length;
+
+private:
+    int index = 0;
+    int *array;
+};
+
+#endif // ARRAY
