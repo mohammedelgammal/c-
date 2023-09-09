@@ -7,10 +7,10 @@ int main()
 {
     LinkedList list;
 
-    // list.addFirst(2);
-    // list.addLast(3);
-    // list.addFirst(1);
-    // list.addLast(4);
+    list.addFirst(2);
+    list.addLast(3);
+    list.addFirst(1);
+    list.addLast(4);
 
     // list.deleteFirst();
     // list.deleteLast();
@@ -23,7 +23,9 @@ int main()
     //     cout << node << endl;
     // }
 
-    cout << boolalpha << list.contains(1);
+    // cout << boolalpha << list.contains(1);
+
+    cout << list.indexOf(0) << endl;
 
     return 0;
 }

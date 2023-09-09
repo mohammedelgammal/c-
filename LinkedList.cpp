@@ -120,3 +120,24 @@ bool LinkedList::contains(int value) const
     }
     return isFound;
 }
+
+int LinkedList::indexOf(int value) const
+{
+    if (isListEmpty())
+        throw logic_error("List is empty");
+
+    int index = 0;
+    Node *currentNode = head;
+
+    while (currentNode)
+    {
+        if (currentNode->value == value)
+        {
+            return index;
+        }
+        index++;
+        currentNode = currentNode->next;
+    }
+
+    return -1;
+}

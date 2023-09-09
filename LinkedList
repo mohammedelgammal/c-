@@ -31,6 +31,7 @@ public:
     void deleteLast();
     bool isListEmpty() const;
     bool contains(int value) const;
+    int indexOf(int value) const;
 
 private:
     Node *head = nullptr;
