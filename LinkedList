@@ -32,7 +32,7 @@ public:
     bool isListEmpty() const;       // O(1) Constant
     bool contains(int value) const; // O(n) Linear
     int indexOf(int value) const;   // O(n) Linear
-    void reverse();
+    void reverse();                 // O(n) Linear
 
 private:
     Node *head = nullptr;
