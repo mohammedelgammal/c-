@@ -28,6 +28,8 @@ public:
     vector<int> toArray() const;
     void addLast(const int value); // O(n) Linear
     void deleteFirst();
+    void deleteLast();
+    bool isListEmpty();
 
 private:
     Node *head = nullptr;

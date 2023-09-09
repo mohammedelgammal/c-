@@ -13,6 +13,7 @@ int main()
     list.addLast(4);
 
     list.deleteFirst();
+    list.deleteLast();
 
     vector<int>
         listArray = list.toArray();

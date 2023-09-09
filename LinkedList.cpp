@@ -67,11 +67,36 @@ void LinkedList::addLast(const int value)
     currentNode->next = newNode;
 }
 
+bool LinkedList::isListEmpty()
+{
+    return head == nullptr;
+};
+
 void LinkedList::deleteFirst()
 {
-    if (head == nullptr)
-        throw logic_error("Linkedlist is empty");
+    if (isListEmpty())
+        throw logic_error("List is empty");
     Node *newHead = head->next;
     delete head;
     head = newHead;
+}
+
+void LinkedList::deleteLast()
+{
+    if (isListEmpty())
+    {
+        throw logic_error("List is empty");
+    }
+    Node *currentNode = head;
+
+    while (currentNode->next)
+    {
+        if (currentNode->next->next == nullptr)
+        {
+            delete currentNode->next;
+            currentNode->next = nullptr;
+            return;
+        }
+        currentNode = currentNode->next;
+    }
 }
