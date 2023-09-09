@@ -67,7 +67,7 @@ void LinkedList::addLast(const int value)
     currentNode->next = newNode;
 }
 
-bool LinkedList::isListEmpty()
+bool LinkedList::isListEmpty() const
 {
     return head == nullptr;
 };
@@ -99,4 +99,24 @@ void LinkedList::deleteLast()
         }
         currentNode = currentNode->next;
     }
+}
+
+bool LinkedList::contains(int value) const
+{
+    if (isListEmpty())
+        throw logic_error("List is empty");
+
+    bool isFound = false;
+    Node *currentNode = head;
+
+    while (currentNode)
+    {
+        if (currentNode->value == value)
+        {
+            isFound = true;
+            return isFound;
+        }
+        currentNode = currentNode->next;
+    }
+    return isFound;
 }

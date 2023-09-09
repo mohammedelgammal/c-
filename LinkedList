@@ -29,7 +29,8 @@ public:
     void addLast(const int value); // O(n) Linear
     void deleteFirst();
     void deleteLast();
-    bool isListEmpty();
+    bool isListEmpty() const;
+    bool contains(int value) const;
 
 private:
     Node *head = nullptr;
