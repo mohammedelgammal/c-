@@ -1,11 +1,11 @@
 #include <iostream>
-#include "LinkedList"
+#include "DoublyLinkedList"
 
 using namespace std;
 
 int main()
 {
-    LinkedList list;
+    DoublyLinkedList list;
 
     list.addFirst(3);
     list.addLast(4);

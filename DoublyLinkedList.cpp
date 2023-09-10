@@ -175,3 +175,26 @@ int DoublyLinkedList::indexOf(int value) const
 
     return -1;
 }
+
+void DoublyLinkedList::reverse()
+{
+    if (isListEmpty())
+    {
+        throw logic_error("List is empty");
+    }
+
+    Node *prevNode = nullptr;
+    Node *currentNode = head->previous;
+    Node *nextNode = nullptr;
+
+    while (currentNode != nullptr)
+    {
+        nextNode = currentNode->next;
+        currentNode->next = prevNode;
+        currentNode->previous = nextNode;
+        prevNode = currentNode;
+        currentNode = nextNode;
+    }
+
+    head = prevNode;
+}

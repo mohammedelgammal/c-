@@ -33,6 +33,7 @@ public:
     bool isListEmpty() const;       // O(1)
     bool contains(int value) const; // O(n)
     int indexOf(int value) const;   // O(n)
+    void reverse();                 // O(n)
 
 private:
     Node *head = nullptr;
