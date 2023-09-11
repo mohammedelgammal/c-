@@ -15,7 +15,7 @@ public:
 
     // Methods
     void push(T el);
-    void pop();
+    T pop();
     T getPeek() const;
     bool isStackEmpty() const;
     int getLength() const;

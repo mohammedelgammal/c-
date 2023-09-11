@@ -32,7 +32,7 @@ void Array<T>::insert(const T el)
 {
     if (index > length - 1)
     {
-        int *resizedArray = new int[++length];
+        T *resizedArray = new T[++length];
         for (int i = 0; i < length; i++)
             resizedArray[i] = array[i];
         delete[] array;
@@ -46,7 +46,7 @@ template <typename T>
 void Array<T>::removeAt(const int targetIndex)
 {
     validateIndex(targetIndex);
-    int *resizedArray = new int[--length];
+    T *resizedArray = new T[--length];
     for (int i = targetIndex; i < length; i++)
     {
         array[i] = array[i + 1];

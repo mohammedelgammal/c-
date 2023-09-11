@@ -2,12 +2,11 @@
 #include "Array"
 
 #include <iostream>
-#include "Array"
 
 using std::logic_error;
 
 template <typename T>
-Stack<T>::Stack() : top{}
+Stack<T>::Stack()
 {
 }
 
@@ -32,14 +31,15 @@ void Stack<T>::push(T el)
 }
 
 template <typename T>
-void Stack<T>::pop()
+T Stack<T>::pop()
 {
     if (isStackEmpty())
         throw logic_error("Stack is empty");
 
-    int topIndex = stack->length - 1;
-    stack->removeAt(topIndex--);
-    top = (*stack)[topIndex];
+    T pop = (*stack)[stack->length - 1];
+    stack->removeAt(stack->length - 1);
+    top = stack->length - 1;
+    return pop;
 }
 
 template <typename T>
