@@ -1,0 +1,24 @@
+#ifndef STACK
+#define STACK
+
+#include "Array"
+
+class Stack
+{
+public:
+    // Constructors
+    Stack();
+    Stack(int top);
+
+    // Methods
+    void push(int el);
+    void pop();
+    int getPeek();
+
+private:
+    Array *stack;
+    int top;
+    int length;
+};
+
+#endif // STACK

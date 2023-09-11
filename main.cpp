@@ -1,34 +1,13 @@
 #include <iostream>
-#include "LinkedList"
+#include "Stack"
 
 using namespace std;
 
 int main()
 {
-    LinkedList list;
+    string str = "london";
 
-    list.addFirst(3);
-    list.addLast(4);
-    list.addLast(5);
-    list.addLast(6);
-
-    // list.reverse();
-
-    const int kthFromEnd = list.getKthFromEnd(5);
-
-    // vector<int>
-    //     listArray = list.toArray();
-
-    // for (int node : listArray)
-    // {
-    //     cout << node << endl;
-    // }
-
-    cout << kthFromEnd << endl;
-
-    // cout << boolalpha << list.contains(5);
-
-    // cout << list.indexOf(5) << endl;
+    Stack stack;
 
     return 0;
 }

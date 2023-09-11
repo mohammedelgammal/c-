@@ -2,6 +2,7 @@
   "files.associations": {
     "doublylinkedlist": "cpp",
     "linkedlist": "cpp",
-    "stdexcept": "cpp"
+    "stdexcept": "cpp",
+    "stack": "c"
   }
 }
