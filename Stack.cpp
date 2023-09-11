@@ -43,7 +43,7 @@ T Stack<T>::pop()
 }
 
 template <typename T>
-T Stack<T>::getPeek() const
+T Stack<T>::getPeak() const
 {
     if (isStackEmpty())
         throw logic_error("Stack is empty");

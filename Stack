@@ -16,7 +16,7 @@ public:
     // Methods
     void push(T el);
     T pop();
-    T getPeek() const;
+    T getPeak() const;
     bool isStackEmpty() const;
     int getLength() const;
     int operator[](int index) const;

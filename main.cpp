@@ -4,27 +4,39 @@
 
 using namespace std;
 
-int main()
+string *reverseStr(string *str)
 {
-    string str = "rotator";
-    string newStr;
-
+    string *reversed = new string{};
     Stack<char> *stack = new Stack<char>{};
 
-    for (char ch : str)
+    for (char ch : *str)
     {
         stack->push(ch);
     }
 
     while (stack->getLength())
     {
-        newStr.push_back(stack->pop());
+        reversed->push_back(stack->pop());
     }
 
-    for (int ch : newStr)
+    delete stack;
+    stack = nullptr;
+
+    return reversed;
+}
+
+int main()
+{
+    string targetStr = "time";
+    string *reversedStr = reverseStr(&targetStr);
+
+    for (int ch : *reversedStr)
     {
         cout << char(ch) << endl;
     }
+
+    delete reversedStr;
+    reversedStr = nullptr;
 
     return 0;
 }
