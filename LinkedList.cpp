@@ -160,3 +160,28 @@ void LinkedList::reverse()
     }
     head = prevNode;
 }
+
+int LinkedList::getKthFromEnd(int kth)
+{
+    if (isListEmpty())
+        throw logic_error("List is empty");
+
+    if (kth == 0)
+        throw logic_error("Invalid input");
+
+    
+
+    Node *kthNode = head;
+    Node *lastNode = head;
+
+    for (int i = 0; i < kth; i++)
+        lastNode = lastNode->next;
+
+    while (lastNode != nullptr)
+    {
+        kthNode = kthNode->next;
+        lastNode = lastNode->next;
+    }
+
+    return kthNode->value;
+}

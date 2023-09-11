@@ -1,26 +1,30 @@
 #include <iostream>
-#include "DoublyLinkedList"
+#include "LinkedList"
 
 using namespace std;
 
 int main()
 {
-    DoublyLinkedList list;
+    LinkedList list;
 
     list.addFirst(3);
     list.addLast(4);
     list.addLast(5);
     list.addLast(6);
 
-    list.reverse();
+    // list.reverse();
 
-    vector<int>
-        listArray = list.toArray();
+    const int kthFromEnd = list.getKthFromEnd(2);
 
-    for (int node : listArray)
-    {
-        cout << node << endl;
-    }
+    // vector<int>
+    //     listArray = list.toArray();
+
+    // for (int node : listArray)
+    // {
+    //     cout << node << endl;
+    // }
+
+    cout << kthFromEnd << endl;
 
     // cout << boolalpha << list.contains(5);
 
