@@ -3,6 +3,7 @@
     "doublylinkedlist": "cpp",
     "linkedlist": "cpp",
     "stdexcept": "cpp",
-    "stack": "c"
+    "stack": "c",
+    "array": "cpp"
   }
 }

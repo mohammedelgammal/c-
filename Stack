@@ -13,12 +13,14 @@ public:
     // Methods
     void push(int el);
     void pop();
-    int getPeek();
+    int getPeek() const;
+    bool isStackEmpty() const;
+    int getLength() const;
+    int operator[](int index) const;
 
 private:
-    Array *stack;
+    Array stack;
     int top;
-    int length;
 };
 
 #endif // STACK

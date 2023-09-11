@@ -5,6 +5,7 @@ class Array
 {
 public:
     // Constructors
+    Array();
     Array(const int length);
     ~Array();
 

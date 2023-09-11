@@ -16,6 +16,8 @@ Array::Array(int length)
     this->array = new int[length];
 }
 
+Array::Array() : length{0}, array{new int[0]} {}
+
 Array::~Array()
 {
     delete[] array;
