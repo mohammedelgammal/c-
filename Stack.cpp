@@ -2,52 +2,68 @@
 #include "Array"
 
 #include <iostream>
+#include "Array"
 
 using std::logic_error;
 
-Stack::Stack() : top{}
+template <typename T>
+Stack<T>::Stack() : top{}
 {
 }
 
-Stack::Stack(int top) : top{top}
+template <typename T>
+Stack<T>::~Stack()
 {
-    stack.insert(top);
+    delete stack;
+    stack = nullptr;
 }
 
-void Stack::push(int el)
+template <typename T>
+Stack<T>::Stack(T top) : top{top}
 {
-    stack.insert(el);
+    stack->insert(top);
+}
+
+template <typename T>
+void Stack<T>::push(T el)
+{
+    stack->insert(el);
     top = el;
 }
 
-void Stack::pop()
+template <typename T>
+void Stack<T>::pop()
 {
     if (isStackEmpty())
         throw logic_error("Stack is empty");
 
-    int topIndex = stack.length - 1;
-    stack.removeAt(topIndex--);
-    top = stack[topIndex];
+    int topIndex = stack->length - 1;
+    stack->removeAt(topIndex--);
+    top = (*stack)[topIndex];
 }
 
-int Stack::getPeek() const
+template <typename T>
+T Stack<T>::getPeek() const
 {
     if (isStackEmpty())
         throw logic_error("Stack is empty");
     return top;
 }
 
-bool Stack::isStackEmpty() const
+template <typename T>
+bool Stack<T>::isStackEmpty() const
 {
-    return stack.length == 0;
+    return stack->length == 0;
 }
 
-int Stack::getLength() const
+template <typename T>
+int Stack<T>::getLength() const
 {
-    return stack.length;
+    return stack->length;
 }
 
-int Stack::operator[](int index) const
+template <typename T>
+int Stack<T>::operator[](int index) const
 {
-    return stack[index];
+    return (*stack)[index];
 }

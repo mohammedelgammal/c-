@@ -4,6 +4,14 @@
     "linkedlist": "cpp",
     "stdexcept": "cpp",
     "stack": "c",
-    "array": "cpp"
+    "array": "cpp",
+    "__locale": "cpp",
+    "__string": "cpp",
+    "optional": "cpp",
+    "type_traits": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "unordered_map": "cpp",
+    "vector": "cpp"
   }
 }

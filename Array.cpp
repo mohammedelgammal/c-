@@ -4,27 +4,31 @@
 using namespace std;
 
 // Utils
-void Array::validateIndex(const int targetIndex) const
+template <typename T>
+void Array<T>::validateIndex(const int targetIndex) const
 {
     if (targetIndex > length - 1 || targetIndex < 0)
         throw out_of_range("Index out of range");
 }
 
-Array::Array(int length)
+template <typename T>
+Array<T>::Array(int length)
 {
     this->length = length;
     this->array = new int[length];
 }
+template <typename T>
+Array<T>::Array() : length{0}, array{new T[0]} {}
 
-Array::Array() : length{0}, array{new int[0]} {}
-
-Array::~Array()
+template <typename T>
+Array<T>::~Array()
 {
     delete[] array;
     array = nullptr;
 }
 
-void Array::insert(const int number)
+template <typename T>
+void Array<T>::insert(const T el)
 {
     if (index > length - 1)
     {
@@ -35,10 +39,11 @@ void Array::insert(const int number)
         array = resizedArray;
         resizedArray = nullptr;
     }
-    array[index++] = number;
+    array[index++] = el;
 }
 
-void Array::removeAt(const int targetIndex)
+template <typename T>
+void Array<T>::removeAt(const int targetIndex)
 {
     validateIndex(targetIndex);
     int *resizedArray = new int[--length];
@@ -55,22 +60,24 @@ void Array::removeAt(const int targetIndex)
     resizedArray = nullptr;
 }
 
-int Array::indexOf(const int number) const
+template <typename T>
+int Array<T>::indexOf(const T el) const
 {
     int targetIndex = -1;
     for (int i = 0; i < length; i++)
     {
-        if (array[i] == number)
+        if (array[i] == el)
             targetIndex = i;
     }
     if (targetIndex == -1)
     {
-        throw logic_error("Cannot find this number");
+        throw logic_error("Cannot find this el");
     }
     return targetIndex;
 };
 
-int Array::operator[](const int targetIndex) const
+template <typename T>
+T Array<T>::operator[](const int targetIndex) const
 {
     validateIndex(targetIndex);
     return this->array[targetIndex];

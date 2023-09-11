@@ -2,25 +2,28 @@
 #define STACK
 
 #include "Array"
+#include "Array.cpp"
 
+template <typename T>
 class Stack
 {
 public:
     // Constructors
     Stack();
-    Stack(int top);
+    Stack<T>(T top);
+    ~Stack();
 
     // Methods
-    void push(int el);
+    void push(T el);
     void pop();
-    int getPeek() const;
+    T getPeek() const;
     bool isStackEmpty() const;
     int getLength() const;
     int operator[](int index) const;
 
 private:
-    Array stack;
-    int top;
+    Array<T> *stack = new Array<T>{};
+    T top;
 };
 
 #endif // STACK
