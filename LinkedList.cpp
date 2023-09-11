@@ -3,7 +3,7 @@
 #include <vector>
 #include <stdexcept>
 
-using std::cout, std::endl, std::vector, std::logic_error;
+using std::cout, std::endl, std::vector, std::logic_error, std::out_of_range;
 
 Node::Node(const int value, Node *next) : value{value}, next{next}
 {
@@ -166,16 +166,19 @@ int LinkedList::getKthFromEnd(int kth)
     if (isListEmpty())
         throw logic_error("List is empty");
 
-    if (kth == 0)
-        throw logic_error("Invalid input");
-
-    
+    if (kth <= 0)
+        throw logic_error("Only positive numbers are allowed");
 
     Node *kthNode = head;
     Node *lastNode = head;
 
     for (int i = 0; i < kth; i++)
+    {
+        if (lastNode == nullptr)
+            throw out_of_range("Kth out of range");
+
         lastNode = lastNode->next;
+    }
 
     while (lastNode != nullptr)
     {

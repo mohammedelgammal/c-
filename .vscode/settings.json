@@ -1,5 +1,7 @@
 {
   "files.associations": {
-    "doublylinkedlist": "cpp"
+    "doublylinkedlist": "cpp",
+    "linkedlist": "cpp",
+    "stdexcept": "cpp"
   }
 }

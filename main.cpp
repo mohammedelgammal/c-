@@ -14,7 +14,7 @@ int main()
 
     // list.reverse();
 
-    const int kthFromEnd = list.getKthFromEnd(2);
+    const int kthFromEnd = list.getKthFromEnd(5);
 
     // vector<int>
     //     listArray = list.toArray();
