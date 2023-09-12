@@ -71,6 +71,7 @@
     "concepts": "cpp",
     "numeric": "cpp",
     "algorithm": "cpp",
-    "stacklinkedlist": "cpp"
+    "stacklinkedlist": "cpp",
+    "version": "cpp"
   }
 }

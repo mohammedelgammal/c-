@@ -39,6 +39,7 @@ public:
     int indexOf(T value) const;   // O(n) Linear
     void reverse();               // O(n) Linear
     int getKthFromEnd(int kth);   // O(n) Linear
+    T operator[](const int index) const;
 
 private:
     Node<T> *head = nullptr;

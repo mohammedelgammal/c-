@@ -3,7 +3,7 @@
 #include <vector>
 #include <stdexcept>
 
-using std::cout, std::endl, std::vector, std::logic_error, std::out_of_range;
+using std::cout, std::endl, std::vector, std::logic_error, std::out_of_range, std::invalid_argument;
 
 template <typename T>
 Node<T>::Node(const T value, Node<T> *next) : value{value}, next{next}
@@ -201,4 +201,30 @@ int LinkedList<T>::getKthFromEnd(int kth)
     }
 
     return kthNode->value;
+}
+
+template <typename T>
+T LinkedList<T>::operator[](const int index) const
+{
+    if (isListEmpty())
+        throw logic_error("List is empty");
+
+    Node<T> *currentNode = head;
+    int currentIndex = 0;
+
+    if (index >= 0)
+    {
+        while (currentNode)
+        {
+            if (currentIndex == index)
+                break;
+
+            currentNode = currentNode->next;
+            currentIndex++;
+        }
+    }
+    else
+        throw invalid_argument("Invalid index");
+
+    return currentNode->value;
 }

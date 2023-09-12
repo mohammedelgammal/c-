@@ -18,6 +18,8 @@ public:
     T pop();
     T getPeak() const;
     bool isEmpty() const;
+    int getLength() const;
+    T operator[](const int index) const;
 
 private:
     LinkedList<T> *stack;

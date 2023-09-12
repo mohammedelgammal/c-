@@ -41,3 +41,15 @@ bool StackLinkedList<T>::isEmpty() const
 {
     return stack->isListEmpty();
 }
+
+template <typename T>
+int StackLinkedList<T>::getLength() const
+{
+    return stack->indexOf(stack->getKthFromEnd(1)) + 1;
+}
+
+template <typename T>
+T StackLinkedList<T>::operator[](const int index) const
+{
+    return (*stack)[index];
+}
