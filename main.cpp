@@ -4,39 +4,62 @@
 
 using namespace std;
 
-string *reverseStr(string *str)
+bool isBalanced(string *str)
 {
-    string *reversed = new string{};
-    Stack<char> *stack = new Stack<char>{};
+    unordered_map<char, char> brackets_map =
+        {
+            {'[', ']'},
+            {'{', '}'},
+            {'(', ')'},
+            {'<', '>'},
+        };
+
+    if (str->length() == 0 || str == nullptr)
+        throw logic_error("Invalid input");
+
+    Stack<char> *stack = new Stack<char>;
+    bool isBalanced = true;
 
     for (char ch : *str)
     {
-        stack->push(ch);
-    }
+        if(stack)
+        for (const auto bracket : brackets_map)
+        {
+            if (ch == bracket.first)
+            {
+                stack->push(ch);
+                break;
+            }
+            if (ch == bracket.second)
+            {
+                const char lastOpenningBracket = stack->pop();
+                const char equivalentBracket = brackets_map[lastOpenningBracket];
 
-    while (stack->getLength())
-    {
-        reversed->push_back(stack->pop());
+                if (ch != equivalentBracket)
+                {
+                    isBalanced = false;
+                    return isBalanced;
+                }
+                break;
+            }
+        }
     }
-
     delete stack;
     stack = nullptr;
 
-    return reversed;
+    return isBalanced;
 }
 
 int main()
 {
-    string targetStr = "time";
-    string *reversedStr = reverseStr(&targetStr);
+    // string *str = new string("{()}}");
 
-    for (int ch : *reversedStr)
-    {
-        cout << char(ch) << endl;
-    }
+    string *str = new string("{()}");
 
-    delete reversedStr;
-    reversedStr = nullptr;
+    cout << boolalpha << isBalanced(str) << endl;
+
+    delete str;
+    str = nullptr;
 
     return 0;
 }
