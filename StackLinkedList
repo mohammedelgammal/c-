@@ -8,13 +8,19 @@ template <typename T>
 class StackLinkedList
 {
 public:
+    // Constructors
     StackLinkedList();
     StackLinkedList(T node);
     ~StackLinkedList();
 
+    // Methods
+    void push(const T node);
+    T pop();
+    T getPeak() const;
+    bool isEmpty() const;
+
 private:
     LinkedList<T> *stack;
-    T top;
 };
 
 #endif // STACKLINKEDLIST
