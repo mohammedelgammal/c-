@@ -1,0 +1,20 @@
+#ifndef STACKLINKEDLIST
+#define STACKLINKEDLIST
+
+#include "LinkedList"
+#include "LinkedList.cpp"
+
+template <typename T>
+class StackLinkedList
+{
+public:
+    StackLinkedList();
+    StackLinkedList(T node);
+    ~StackLinkedList();
+
+private:
+    LinkedList<T> *stack;
+    T top;
+};
+
+#endif // STACKLINKEDLIST

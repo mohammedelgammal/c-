@@ -4,39 +4,44 @@
 #include <vector>
 using std::vector;
 
+template <typename T>
+class LinkedList;
+
+template <typename T>
 class Node
 {
 public:
-    Node(const int value, Node *next);
+    Node(const T value, Node<T> *next);
 
 private:
-    Node *next = nullptr;
-    int value;
-    friend class LinkedList;
+    Node<T> *next = nullptr;
+    T value;
+    friend class LinkedList<T>;
 };
 
+template <typename T>
 class LinkedList
 {
 public:
     // Constructors
-    LinkedList(int value);
+    LinkedList(T value);
     LinkedList();
     ~LinkedList();
 
     // Methods
-    void addFirst(const int value); // O(1) Constant
-    vector<int> toArray() const;    // O(n) Linear
-    void addLast(const int value);  // O(n) Linear
-    void deleteFirst();             // O(1) Constant
-    void deleteLast();              // O(n) Linear
-    bool isListEmpty() const;       // O(1) Constant
-    bool contains(int value) const; // O(n) Linear
-    int indexOf(int value) const;   // O(n) Linear
-    void reverse();                 // O(n) Linear
-    int getKthFromEnd(int kth);     // O(n) Linear
+    void addFirst(const T value); // O(1) Constant
+    vector<T> toArray() const;    // O(n) Linear
+    void addLast(const T value);  // O(n) Linear
+    void deleteFirst();           // O(1) Constant
+    void deleteLast();            // O(n) Linear
+    bool isListEmpty() const;     // O(1) Constant
+    bool contains(T value) const; // O(n) Linear
+    int indexOf(T value) const;   // O(n) Linear
+    void reverse();               // O(n) Linear
+    int getKthFromEnd(int kth);   // O(n) Linear
 
 private:
-    Node *head = nullptr;
+    Node<T> *head = nullptr;
 };
 
 #endif // LINKEDLIST

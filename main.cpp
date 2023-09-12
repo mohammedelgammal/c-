@@ -2,28 +2,14 @@
 #include <iostream>
 
 // Data Structures
-#include "Stack"
-#include "Stack.cpp"
-
-#include "Balance.hpp"
+#include "StackLinkedList"
+#include "StackLinkedList.cpp"
 
 using namespace std;
 
 int main()
 {
-
-    // string *str = new string("{{()}}");
-    string *str = new string("{()}}");
-    // string *str = new string("{()");
-    // string *str = new string("()");
-    // string *str = new string("<[{(1,2,3)}]>");
-    // string *str = new string("(3]");
-    Balance balancer;
-
-    cout << boolalpha << balancer.isBalanced(str) << endl;
-
-    delete str;
-    str = nullptr;
+    StackLinkedList<int> stack;
 
     return 0;
 }

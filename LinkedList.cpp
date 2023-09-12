@@ -5,27 +5,32 @@
 
 using std::cout, std::endl, std::vector, std::logic_error, std::out_of_range;
 
-Node::Node(const int value, Node *next) : value{value}, next{next}
+template <typename T>
+Node<T>::Node(const T value, Node<T> *next) : value{value}, next{next}
 {
 }
 
-LinkedList::LinkedList(int value) : head{new Node(value, nullptr)}
+template <typename T>
+LinkedList<T>::LinkedList(T value) : head{new Node<T>(value, nullptr)}
 {
 }
 
-LinkedList::LinkedList() : head{nullptr}
+template <typename T>
+LinkedList<T>::LinkedList() : head{nullptr}
 {
 }
 
-LinkedList::~LinkedList()
+template <typename T>
+LinkedList<T>::~LinkedList()
 {
     delete head;
     head = nullptr;
 };
 
-void LinkedList::addFirst(const int value)
+template <typename T>
+void LinkedList<T>::addFirst(const T value)
 {
-    Node *newHead = new Node(value, nullptr);
+    Node<T> *newHead = new Node<T>(value, nullptr);
 
     if (head == nullptr)
     {
@@ -36,10 +41,11 @@ void LinkedList::addFirst(const int value)
     head = newHead;
 }
 
-vector<int> LinkedList::toArray() const
+template <typename T>
+vector<T> LinkedList<T>::toArray() const
 {
-    Node *currentNode = head;
-    vector<int> result{};
+    Node<T> *currentNode = head;
+    vector<T> result{};
 
     while (currentNode != nullptr)
     {
@@ -50,10 +56,11 @@ vector<int> LinkedList::toArray() const
     return result;
 }
 
-void LinkedList::addLast(const int value)
+template <typename T>
+void LinkedList<T>::addLast(const T value)
 {
-    Node *newNode = new Node(value, nullptr);
-    Node *currentNode = head;
+    Node<T> *newNode = new Node<T>(value, nullptr);
+    Node<T> *currentNode = head;
 
     if (head == nullptr)
     {
@@ -67,27 +74,30 @@ void LinkedList::addLast(const int value)
     currentNode->next = newNode;
 }
 
-bool LinkedList::isListEmpty() const
+template <typename T>
+bool LinkedList<T>::isListEmpty() const
 {
     return head == nullptr;
 };
 
-void LinkedList::deleteFirst()
+template <typename T>
+void LinkedList<T>::deleteFirst()
 {
     if (isListEmpty())
         throw logic_error("List is empty");
-    Node *newHead = head->next;
+    Node<T> *newHead = head->next;
     delete head;
     head = newHead;
 }
 
-void LinkedList::deleteLast()
+template <typename T>
+void LinkedList<T>::deleteLast()
 {
     if (isListEmpty())
     {
         throw logic_error("List is empty");
     }
-    Node *currentNode = head;
+    Node<T> *currentNode = head;
 
     while (currentNode->next)
     {
@@ -101,13 +111,14 @@ void LinkedList::deleteLast()
     }
 }
 
-bool LinkedList::contains(int value) const
+template <typename T>
+bool LinkedList<T>::contains(T value) const
 {
     if (isListEmpty())
         throw logic_error("List is empty");
 
     bool isFound = false;
-    Node *currentNode = head;
+    Node<T> *currentNode = head;
 
     while (currentNode)
     {
@@ -121,13 +132,14 @@ bool LinkedList::contains(int value) const
     return isFound;
 }
 
-int LinkedList::indexOf(int value) const
+template <typename T>
+int LinkedList<T>::indexOf(T value) const
 {
     if (isListEmpty())
         throw logic_error("List is empty");
 
     int index = 0;
-    Node *currentNode = head;
+    Node<T> *currentNode = head;
 
     while (currentNode)
     {
@@ -142,14 +154,15 @@ int LinkedList::indexOf(int value) const
     return -1;
 }
 
-void LinkedList::reverse()
+template <typename T>
+void LinkedList<T>::reverse()
 {
     if (isListEmpty())
         throw logic_error("List is empty");
 
-    Node *prevNode = nullptr;
-    Node *currentNode = head;
-    Node *nextNode = nullptr;
+    Node<T> *prevNode = nullptr;
+    Node<T> *currentNode = head;
+    Node<T> *nextNode = nullptr;
 
     while (currentNode)
     {
@@ -161,7 +174,8 @@ void LinkedList::reverse()
     head = prevNode;
 }
 
-int LinkedList::getKthFromEnd(int kth)
+template <typename T>
+int LinkedList<T>::getKthFromEnd(int kth)
 {
     if (isListEmpty())
         throw logic_error("List is empty");
@@ -169,8 +183,8 @@ int LinkedList::getKthFromEnd(int kth)
     if (kth <= 0)
         throw logic_error("Only positive numbers are allowed");
 
-    Node *kthNode = head;
-    Node *lastNode = head;
+    Node<T> *kthNode = head;
+    Node<T> *lastNode = head;
 
     for (int i = 0; i < kth; i++)
     {
