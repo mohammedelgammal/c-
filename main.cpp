@@ -14,7 +14,7 @@ bool isBalanced(string *str)
             {'<', '>'},
         };
 
-    if (str->length() == 0 || str == nullptr)
+    if (!str || str->length() == 0)
         throw logic_error("Invalid input");
 
     Stack<char> *stack = new Stack<char>;
@@ -22,7 +22,6 @@ bool isBalanced(string *str)
 
     for (char ch : *str)
     {
-        if(stack)
         for (const auto bracket : brackets_map)
         {
             if (ch == bracket.first)
@@ -30,20 +29,36 @@ bool isBalanced(string *str)
                 stack->push(ch);
                 break;
             }
-            if (ch == bracket.second)
+            else if (ch == bracket.second)
             {
-                const char lastOpenningBracket = stack->pop();
-                const char equivalentBracket = brackets_map[lastOpenningBracket];
-
-                if (ch != equivalentBracket)
+                try
+                {
+                    const char lastOpenningBracket = stack->pop();
+                    const char equivalentBracket = brackets_map[lastOpenningBracket];
+                    if (ch != equivalentBracket)
+                    {
+                        isBalanced = false;
+                        return isBalanced;
+                    }
+                }
+                catch (logic_error &error)
                 {
                     isBalanced = false;
                     return isBalanced;
                 }
-                break;
+            }
+            else
+            {
+                continue;
             }
         }
     }
+    if (stack->getLength() != 0)
+    {
+        isBalanced = false;
+        return isBalanced;
+    }
+
     delete stack;
     stack = nullptr;
 
@@ -52,9 +67,12 @@ bool isBalanced(string *str)
 
 int main()
 {
+    // string *str = new string("{{()}}");
     // string *str = new string("{()}}");
-
-    string *str = new string("{()}");
+    // string *str = new string("{()");
+    // string *str = new string("()");
+    // string *str = new string("<[{(1,2,3)}]>");
+    string *str = new string("");
 
     cout << boolalpha << isBalanced(str) << endl;
 
