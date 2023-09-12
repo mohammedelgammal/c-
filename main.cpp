@@ -54,7 +54,7 @@ public:
 
             else if (isRightBracket(character))
             {
-                try
+                if (!stack.isStackEmpty())
                 {
                     const char lastOpenningBracket = stack.pop();
                     const char equivalentBracket = brackets_map[lastOpenningBracket];
@@ -62,10 +62,8 @@ public:
                     if (character != equivalentBracket)
                         return false;
                 }
-                catch (logic_error &error)
-                {
+                else
                     return false;
-                };
             }
             else
                 continue;
@@ -81,11 +79,11 @@ int main()
 {
 
     // string *str = new string("{{()}}");
-    // string *str = new string("{()}}");
+    string *str = new string("{()}}");
     // string *str = new string("{()");
     // string *str = new string("()");
     // string *str = new string("<[{(1,2,3)}]>");
-    string *str = new string("(3]");
+    // string *str = new string("(3]");
     Balance balancer;
 
     cout << boolalpha << balancer.isBalanced(str) << endl;
