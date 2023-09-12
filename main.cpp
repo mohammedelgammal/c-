@@ -19,11 +19,18 @@ int main()
     stack.pop();
     stack.pop();
     stack.pop();
+    stack.pop();
 
-    for (int i = 0; i < stack.getLength(); i++)
-    {
-        cout << stack[i] << endl;
-    }
+    cout << stack.getLength() << endl;
+
+    // cout << stack.getPeak() << endl;
+
+    // cout << boolalpha << stack.isEmpty() << endl;
+
+    // for (int i = 0; i < stack.getLength(); i++)
+    // {
+    //     cout << stack[i] << endl;
+    // }
 
     return 0;
 }

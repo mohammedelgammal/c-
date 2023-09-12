@@ -25,11 +25,12 @@ void StackLinkedList<T>::push(const T value)
 }
 
 template <typename T>
-T StackLinkedList<T>::pop()
+void StackLinkedList<T>::pop()
 {
-    T lastNode = stack->getKthFromEnd(1);
+    if (isEmpty())
+        throw logic_error("Stack is empty");
+
     stack->deleteLast();
-    return lastNode;
 }
 
 template <typename T>

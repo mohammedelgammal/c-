@@ -15,7 +15,7 @@ public:
 
     // Methods
     void push(const T node);
-    T pop();
+    void pop();
     T getPeak() const;
     bool isEmpty() const;
     int getLength() const;

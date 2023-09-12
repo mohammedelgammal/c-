@@ -99,6 +99,12 @@ void LinkedList<T>::deleteLast()
     }
     Node<T> *currentNode = head;
 
+    if (head->next == nullptr)
+    {
+        delete head;
+        head = nullptr;
+    }
+
     while (currentNode->next)
     {
         if (currentNode->next->next == nullptr)
