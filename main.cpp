@@ -16,6 +16,10 @@ int main()
     stack.push(5);
     stack.push(6);
 
+    stack.pop();
+    stack.pop();
+    stack.pop();
+
     for (int i = 0; i < stack.getLength(); i++)
     {
         cout << stack[i] << endl;

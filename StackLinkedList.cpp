@@ -27,7 +27,9 @@ void StackLinkedList<T>::push(const T value)
 template <typename T>
 T StackLinkedList<T>::pop()
 {
+    T lastNode = stack->getKthFromEnd(1);
     stack->deleteLast();
+    return lastNode;
 }
 
 template <typename T>
