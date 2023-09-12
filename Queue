@@ -1,0 +1,18 @@
+#ifndef QUEUE
+#define QUEUE
+
+#include "Array"
+
+template <typename T>
+class Queue
+{
+public:
+    Queue();
+    Queue(const T value);
+    ~Queue();
+
+private:
+    Array<T> *stack;
+};
+
+#endif // QUEUE

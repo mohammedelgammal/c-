@@ -73,6 +73,7 @@
     "algorithm": "cpp",
     "stacklinkedlist": "cpp",
     "version": "cpp",
-    "functional": "cpp"
+    "functional": "cpp",
+    "queue": "cpp"
   }
 }
