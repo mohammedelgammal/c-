@@ -1,80 +1,94 @@
+// Libraries
 #include <iostream>
+
+// Data Structures
 #include "Stack"
 #include "Stack.cpp"
 
 using namespace std;
 
-bool isBalanced(string *str)
+struct Balance
 {
+private:
+    Stack<char> stack;
     unordered_map<char, char> brackets_map =
         {
             {'[', ']'},
             {'{', '}'},
             {'(', ')'},
             {'<', '>'},
-        };
+    };
 
-    if (!str || str->length() == 0)
-        throw logic_error("Invalid input");
-
-    Stack<char> *stack = new Stack<char>;
-    bool isBalanced = true;
-
-    for (char ch : *str)
+    // Methods
+    bool isLeftBracket(char character)
     {
+        bool isLeftBracket = false;
         for (const auto bracket : brackets_map)
+            if (character == bracket.first)
+                isLeftBracket = true;
+        return isLeftBracket;
+    }
+    bool isRightBracket(char character)
+    {
+        bool isRightBracket = false;
+        for (const auto bracket : brackets_map)
+            if (character == bracket.second)
+                isRightBracket = true;
+        return isRightBracket;
+    }
+    void validateInput(string *str)
+    {
+        if (!str || str->length() == 0)
+            throw invalid_argument("Invalid string input");
+    }
+
+public:
+    bool isBalanced(string *str)
+    {
+        validateInput(str);
+
+        for (char character : *str)
         {
-            if (ch == bracket.first)
-            {
-                stack->push(ch);
-                break;
-            }
-            else if (ch == bracket.second)
+            if (isLeftBracket(character))
+                stack.push(character);
+
+            else if (isRightBracket(character))
             {
                 try
                 {
-                    const char lastOpenningBracket = stack->pop();
+                    const char lastOpenningBracket = stack.pop();
                     const char equivalentBracket = brackets_map[lastOpenningBracket];
-                    if (ch != equivalentBracket)
-                    {
-                        isBalanced = false;
-                        return isBalanced;
-                    }
+
+                    if (character != equivalentBracket)
+                        return false;
                 }
                 catch (logic_error &error)
                 {
-                    isBalanced = false;
-                    return isBalanced;
-                }
+                    return false;
+                };
             }
             else
-            {
                 continue;
-            }
         }
-    }
-    if (stack->getLength() != 0)
-    {
-        isBalanced = false;
-        return isBalanced;
-    }
+        if (!stack.isStackEmpty())
+            return false;
 
-    delete stack;
-    stack = nullptr;
-
-    return isBalanced;
-}
+        return true;
+    }
+};
 
 int main()
 {
+
     // string *str = new string("{{()}}");
     // string *str = new string("{()}}");
     // string *str = new string("{()");
     // string *str = new string("()");
     // string *str = new string("<[{(1,2,3)}]>");
-    string *str = new string("");
+    string *str = new string("(3]");
+    Balance balancer;
 
-    cout << boolalpha << isBalanced(str) << endl;
+    cout << boolalpha << balancer.isBalanced(str) << endl;
 
     delete str;
     str = nullptr;
