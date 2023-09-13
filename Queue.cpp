@@ -70,10 +70,10 @@ void Queue<T>::reverse()
     Stack<T> reverseStack;
     Queue<T> *reversedQueue = new Queue<T>;
 
-    for (int i = 0; i < stack->length; i++)
-        reverseStack.push((*stack)[i]);
+    while (!isEmpty())
+        reverseStack.push(dequeue());
 
-    for (int i = 0; i < stack->length; i++)
+    while (!reverseStack.isStackEmpty())
         reversedQueue->enqueue(reverseStack.pop());
 
     delete stack;
