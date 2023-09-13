@@ -2,14 +2,25 @@
 #define QUEUE
 
 #include "Array"
+#include "Array.cpp"
 
 template <typename T>
 class Queue
 {
 public:
+    // Constructors
     Queue();
     Queue(const T value);
     ~Queue();
+
+    // Methods
+    void enqueue(const T value);
+    T dequeue();
+    T getPeak() const;
+    T getBottom() const;
+    bool isEmpty() const;
+    int getLength() const;
+    T operator[](const int index) const;
 
 private:
     Array<T> *stack;
