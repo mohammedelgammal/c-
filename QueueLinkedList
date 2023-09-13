@@ -1,0 +1,19 @@
+#ifndef QUEUELINKEDLIST
+#define QUEUELINKEDLIST
+
+#include "LinkedList"
+#include "LinkedList.cpp"
+
+template <typename T>
+class QueueLinkedList
+{
+public:
+    QueueLinkedList();
+    QueueLinkedList(const T value);
+    ~QueueLinkedList();
+
+private:
+    LinkedList *list;
+};
+
+#endif // QUEUELINKEDLIST

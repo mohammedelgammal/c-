@@ -74,6 +74,7 @@
     "stacklinkedlist": "cpp",
     "version": "cpp",
     "functional": "cpp",
-    "queue": "cpp"
+    "queue": "cpp",
+    "queuelinkedlist": "cpp"
   }
 }
