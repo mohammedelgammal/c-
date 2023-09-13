@@ -2,29 +2,24 @@
 #include <iostream>
 
 // Data Structures
-#include "QueueLinkedList"
-#include "QueueLinkedList.cpp"
+#include "QueueStack"
+#include "QueueStack.cpp"
 
 using namespace std;
 
 int main()
 {
-    QueueLinkedList<int> queue;
+    QueueStack<int> queue;
 
     queue.enqueue(3);
     queue.enqueue(4);
     queue.enqueue(5);
     queue.enqueue(6);
 
-    // queue.dequeue();
-    // queue.dequeue();
-    // queue.dequeue();
-    // queue.dequeue();
-
-    // cout << queue.getBottom() << endl;
-    // cout << queue.getPeak() << endl;
-    // cout << queue.getLength() << endl;
-    // cout << boolalpha << queue.isEmpty() << endl;
+    queue.dequeue();
+    queue.dequeue();
+    queue.dequeue();
+    queue.dequeue();
 
     for (int i = 0; i < queue.getLength(); i++)
         cout << queue[i] << endl;
