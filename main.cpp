@@ -16,23 +16,10 @@ int main()
     queue.enqueue(5);
     queue.enqueue(6);
 
-    // queue.dequeue();
-    // queue.dequeue();
-    // queue.dequeue();
-    // queue.dequeue();
-
-    // cout << queue.getPeak() << endl;
-
-    // cout << queue.getBottom() << endl;
-
-    // cout << queue.getLength() << endl;
-
-    // cout << boolalpha << queue.isEmpty() << endl;
+    queue.reverse();
 
     for (int i = 0; i < queue.getLength(); i++)
-    {
         cout << queue[i] << endl;
-    }
 
     return 0;
 }

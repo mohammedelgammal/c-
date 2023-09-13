@@ -2,7 +2,8 @@
 #define QUEUE
 
 #include "Array"
-#include "Array.cpp"
+#include "Stack"
+#include "Stack.cpp"
 
 template <typename T>
 class Queue
@@ -21,6 +22,7 @@ public:
     bool isEmpty() const;
     int getLength() const;
     T operator[](const int index) const;
+    void reverse();
 
 private:
     Array<T> *stack;

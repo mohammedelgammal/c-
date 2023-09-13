@@ -1,5 +1,6 @@
 #include "Queue"
 #include "Array"
+#include "Stack"
 
 template <typename T>
 Queue<T>::Queue() : stack{new Array<T>{0}}
@@ -61,4 +62,21 @@ template <typename T>
 T Queue<T>::operator[](const int index) const
 {
     return (*stack)[index];
+}
+
+template <typename T>
+void Queue<T>::reverse()
+{
+    Stack<T> reverseStack;
+    Queue<T> *reversedQueue = new Queue<T>;
+
+    for (int i = 0; i < stack->length; i++)
+        reverseStack.push((*stack)[i]);
+
+    for (int i = 0; i < stack->length; i++)
+        reversedQueue->enqueue(reverseStack.pop());
+
+    delete stack;
+    stack = reversedQueue->stack;
+    reversedQueue = nullptr;
 }
