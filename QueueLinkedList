@@ -8,12 +8,22 @@ template <typename T>
 class QueueLinkedList
 {
 public:
+    // Constructors
     QueueLinkedList();
     QueueLinkedList(const T value);
     ~QueueLinkedList();
 
+    // Methods
+    void enqueue(T value);
+    T dequeue();
+    T getPeak() const;
+    T getBottom() const;
+    bool isEmpty() const;
+    int getLength() const;
+    T operator[](const int index) const;
+
 private:
-    LinkedList *list;
+    LinkedList<T> *list;
 };
 
 #endif // QUEUELINKEDLIST

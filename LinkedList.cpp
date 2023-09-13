@@ -181,7 +181,7 @@ void LinkedList<T>::reverse()
 }
 
 template <typename T>
-int LinkedList<T>::getKthFromEnd(int kth)
+T LinkedList<T>::getKthFromEnd(int kth)
 {
     if (isListEmpty())
         throw logic_error("List is empty");

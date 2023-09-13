@@ -38,7 +38,7 @@ public:
     bool contains(T value) const; // O(n) Linear
     int indexOf(T value) const;   // O(n) Linear
     void reverse();               // O(n) Linear
-    int getKthFromEnd(int kth);   // O(n) Linear
+    T getKthFromEnd(int kth);     // O(n) Linear
     T operator[](const int index) const;
 
 private:
