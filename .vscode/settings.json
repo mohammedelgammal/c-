@@ -76,6 +76,7 @@
     "functional": "cpp",
     "queue": "cpp",
     "queuelinkedlist": "cpp",
-    "queuestack": "cpp"
+    "queuestack": "cpp",
+    "priorityqueue": "cpp"
   }
 }

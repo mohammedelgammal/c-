@@ -77,7 +77,7 @@ int Array<T>::indexOf(const T el) const
 };
 
 template <typename T>
-T Array<T>::operator[](const int targetIndex) const
+T &Array<T>::operator[](const int targetIndex) const
 {
     validateIndex(targetIndex);
     return this->array[targetIndex];

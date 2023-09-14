@@ -2,24 +2,18 @@
 #include <iostream>
 
 // Data Structures
-#include "QueueStack"
-#include "QueueStack.cpp"
+#include "PriorityQueue"
 
 using namespace std;
 
 int main()
 {
-    QueueStack<int> queue;
+    PriorityQueue<int> queue;
 
+    // queue.enqueue(6);
+    // queue.enqueue(5);
+    // queue.enqueue(4);
     queue.enqueue(3);
-    queue.enqueue(4);
-    queue.enqueue(5);
-    queue.enqueue(6);
-
-    queue.dequeue();
-    queue.dequeue();
-    queue.dequeue();
-    queue.dequeue();
 
     for (int i = 0; i < queue.getLength(); i++)
         cout << queue[i] << endl;

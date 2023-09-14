@@ -15,14 +15,15 @@ public:
     ~Queue();
 
     // Methods
-    void enqueue(const T value);
+    virtual void enqueue(const T value);
     T dequeue();
     T getPeak() const;
     T getBottom() const;
     bool isEmpty() const;
     int getLength() const;
-    T operator[](const int index) const;
+    T &operator[](const int index) const;
     void reverse();
+    Array<T> *getStack() const;
 
 private:
     Array<T> *stack;

@@ -59,7 +59,7 @@ int Queue<T>::getLength() const
 }
 
 template <typename T>
-T Queue<T>::operator[](const int index) const
+T &Queue<T>::operator[](const int index) const
 {
     return (*stack)[index];
 }
@@ -79,4 +79,10 @@ void Queue<T>::reverse()
     delete stack;
     stack = reversedQueue->stack;
     reversedQueue = nullptr;
+}
+
+template <typename T>
+Array<T> *Queue<T>::getStack() const
+{
+    return this->stack;
 }

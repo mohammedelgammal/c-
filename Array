@@ -13,7 +13,7 @@ public:
     // Methods
     void insert(const T el);
     void removeAt(const int targetIndex);
-    T operator[](const int targetIndex) const;
+    T &operator[](const int targetIndex) const;
     void validateIndex(const int targetIndex) const;
     int indexOf(const T el) const;
 
