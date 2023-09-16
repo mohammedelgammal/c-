@@ -12,6 +12,7 @@ public:
 
     // Methods
     void insert(const T el);
+    void insertAt(const T el, const int index);
     void removeAt(const int targetIndex);
     T &operator[](const int targetIndex) const;
     void validateIndex(const int targetIndex) const;

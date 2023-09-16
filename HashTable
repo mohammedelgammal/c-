@@ -1,29 +1,35 @@
 #ifndef HASHTABLE
 #define HASHTABLE
 
-#include <string>
-using namespace std;
+#include "Array"
 
-template <typename T>
-int hash(T key)
-{
-    const int index = 1;
-    key = index;
-    return index;
-}
-
-template <typename T>
+template <typename K, typename V>
 class Node
 {
 public:
     // Constructors
     Node();
-    Node(const T key, const T value);
+    Node(const K key, const V value);
 
 private:
-    T key;
-    T value;
-    friend int hash(T key);
+    K key;
+    V value;
+};
+
+template <typename K, typename V>
+class HashTable
+{
+public:
+    // Constructors
+    HashTable();
+    ~HashTable();
+
+    // Methods
+    int hash(const K key) const;
+    void put(const K key, const V value);
+
+private:
+    Array<Node<K, V>> *list;
 };
 
 #endif // HASHTABLE

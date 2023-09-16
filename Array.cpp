@@ -43,6 +43,21 @@ void Array<T>::insert(const T el)
 }
 
 template <typename T>
+void Array<T>::insertAt(const T el, const int index)
+{
+    if (index > length - 1)
+    {
+        T *resizedArray = new T[index + 1];
+        for (int i = 0; i < length; i++)
+            resizedArray[i] = array[i];
+        delete[] array;
+        array = resizedArray;
+        resizedArray = nullptr;
+    }
+    array[index] = el;
+}
+
+template <typename T>
 void Array<T>::removeAt(const int targetIndex)
 {
     validateIndex(targetIndex);

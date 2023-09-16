@@ -1,5 +1,6 @@
 // Libraries
 #include <iostream>
+#include <string>
 
 // Data Structures
 #include "HashTable"
@@ -9,7 +10,9 @@ using namespace std;
 
 int main()
 {
-    HashTable hashTable;
+    HashTable<int, int> hashTable;
+
+    hashTable.put(1, 1);
 
     return 0;
 }
