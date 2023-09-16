@@ -1,0 +1,29 @@
+#ifndef HASHTABLE
+#define HASHTABLE
+
+#include <string>
+using namespace std;
+
+template <typename T>
+int hash(T key)
+{
+    const int index = 1;
+    key = index;
+    return index;
+}
+
+template <typename T>
+class Node
+{
+public:
+    // Constructors
+    Node();
+    Node(const T key, const T value);
+
+private:
+    T key;
+    T value;
+    friend int hash(T key);
+};
+
+#endif // HASHTABLE

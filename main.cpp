@@ -2,21 +2,14 @@
 #include <iostream>
 
 // Data Structures
-#include "PriorityQueue"
+#include "HashTable"
+#include "HashTable.cpp"
 
 using namespace std;
 
 int main()
 {
-    PriorityQueue<int> queue;
-
-    // queue.enqueue(6);
-    // queue.enqueue(5);
-    // queue.enqueue(4);
-    queue.enqueue(3);
-
-    for (int i = 0; i < queue.getLength(); i++)
-        cout << queue[i] << endl;
+    HashTable hashTable;
 
     return 0;
 }
