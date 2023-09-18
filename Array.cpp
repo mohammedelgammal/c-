@@ -15,7 +15,7 @@ template <typename T>
 Array<T>::Array(int length)
 {
     this->length = length;
-    this->array = new int[length];
+    this->array = new T[length];
 }
 template <typename T>
 Array<T>::Array() : length{0}, array{new T[0]} {}
