@@ -3,18 +3,10 @@
 
 using namespace std;
 
-char getFirstUnrepeatedChar(string &str)
+char getFirstRepeatedChar(string &str)
 {
     char targetChar;
     unordered_map<char, int> hashTable;
-
-    for (char chr : str)
-    {
-        if (hashTable[chr] == 0)
-            hashTable[chr] = 1;
-        else
-            hashTable[chr] = 2;
-    }
 
     for (char chr : str)
     {
@@ -23,6 +15,7 @@ char getFirstUnrepeatedChar(string &str)
             targetChar = chr;
             break;
         }
+        hashTable[chr] = 1;
     }
 
     return targetChar;
@@ -31,10 +24,9 @@ char getFirstUnrepeatedChar(string &str)
 int main()
 {
     unordered_map<string, string> hashTable;
-    string targetString = "ggreen book";
+    string targetString = "green book";
 
-    // getFirstUnrepeatedChar(targetString);
-    cout << getFirstUnrepeatedChar(targetString) << endl;
+    cout << getFirstRepeatedChar(targetString) << endl;
 
     return 0;
 }
