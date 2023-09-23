@@ -1,67 +1,29 @@
 #include "HashTable"
+#include "LinkedList"
+#include "LinkedList.cpp"
 
-#include "Array"
-#include "Array.cpp"
-
-#include <iostream>
-
-using namespace std;
-
-template <typename K, typename V>
-Node<K, V>::Node() : key{}, value{}
+HashTable::HashTable(const size_t size) : size{size}, array{new LinkedList<Entry>[size]}
 {
 }
 
-template <typename K, typename V>
-Node<K, V>::Node(const K key, const V value) : key{key}, value{value}
+HashTable::~HashTable()
 {
+    delete[] array;
 }
 
-template <typename K, typename V>
-K Node<K, V>::getKey() const
-{
-    return key;
-}
-
-template <typename K, typename V>
-V Node<K, V>::getValue() const
-{
-    return value;
-}
-
-template <typename K, typename V>
-HashTable<K, V>::HashTable(const int length) : list{new Array<Node<K, V>>{length}}
-{
-}
-
-template <typename K, typename V>
-HashTable<K, V>::~HashTable()
-{
-    delete list;
-    list = nullptr;
-}
-
-template <typename K, typename V>
-int HashTable<K, V>::hash(const K key) const
+int HashTable::hash(const int key) const
 {
     int index;
-    int keyInt;
-
-    if (*(typeid(key).name()) == 'i')
-        keyInt = key;
-
-    index = keyInt % list->length;
-
-    cout << index << endl;
+    index = key % size;
     return index;
 }
 
-template <typename K, typename V>
-void HashTable<K, V>::put(const K key, const V value)
+void HashTable::put(const int key, const string value)
 {
-    Node<K, V> *newNode = new Node{key, value};
     int index = hash(key);
-    list->insertAt(*newNode, index);
-    delete newNode;
-    newNode = nullptr;
+
+    if (!array[index])
+    {
+        
+    }
 }
