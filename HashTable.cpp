@@ -26,16 +26,17 @@ void HashTable::put(const int key, const string value)
 string HashTable::get(const int key) const
 {
     int index = hash(key);
-    string targetValue = "";
-    cout << index << endl;
+    string targetValue;
+    vector<Entry> list = array[index].toArray();
 
-    for (int i = 0; i < size; i++)
+    for (Entry entry : list)
     {
-        if (array[index][i].key == key)
+        if (entry.key == key)
         {
-            targetValue = array[index][i].value;
+            targetValue = entry.value;
             return targetValue;
         }
     }
+
     return targetValue;
 }
