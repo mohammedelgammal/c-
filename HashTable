@@ -2,7 +2,11 @@
 #define HASHTABLE
 
 #include "LinkedList"
-#include "LinkedList.cpp"
+#include <vector>
+
+#include <string>
+
+using std::string;
 
 struct Entry
 {
@@ -15,15 +19,15 @@ class HashTable
 public:
     // Constructors
     HashTable(const size_t size);
-    ~HashTable();
 
     // Methods
     int hash(const int key) const;
     void put(const int key, const string value);
+    string get(const int key) const;
 
 private:
-    int size;
-    LinkedList<Entry> *array[];
+    size_t size;
+    LinkedList<Entry> *array;
 };
 
 #endif // HASHTABLE

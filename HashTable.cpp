@@ -2,13 +2,10 @@
 #include "LinkedList"
 #include "LinkedList.cpp"
 
+#include <string>
+
 HashTable::HashTable(const size_t size) : size{size}, array{new LinkedList<Entry>[size]}
 {
-}
-
-HashTable::~HashTable()
-{
-    delete[] array;
 }
 
 int HashTable::hash(const int key) const
@@ -21,9 +18,24 @@ int HashTable::hash(const int key) const
 void HashTable::put(const int key, const string value)
 {
     int index = hash(key);
+    Entry entry = {key, value};
 
-    if (!array[index])
+    array[index].addLast(entry);
+}
+
+string HashTable::get(const int key) const
+{
+    int index = hash(key);
+    string targetValue = "";
+    cout << index << endl;
+
+    for (int i = 0; i < size; i++)
     {
-        
+        if (array[index][i].key == key)
+        {
+            targetValue = array[index][i].value;
+            return targetValue;
+        }
     }
+    return targetValue;
 }
