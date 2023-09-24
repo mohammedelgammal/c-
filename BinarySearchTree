@@ -3,16 +3,22 @@
 
 struct Node
 {
-    Node(const int value) : value{value}, rightChildNode{nullptr}, leftChildNode{nullptr} {};
+    Node(const int value) : value{value}, rightChildNode{nullptr}, leftChildNode{nullptr}, parentNode{nullptr} {};
     int value;
     Node *rightChildNode;
     Node *leftChildNode;
+    Node *parentNode;
 };
 
 class BinarySearchTree
 {
 public:
+    // Constructors
     BinarySearchTree(const int value);
+    ~BinarySearchTree();
+    // Methods
+    void insert(const int value);
+    bool find(const int value) const;
 
 private:
     Node *root;
