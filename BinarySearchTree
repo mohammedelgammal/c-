@@ -1,0 +1,21 @@
+#ifndef BINARYSEARCHTREE
+#define BINARYSEARCHTREE
+
+struct Node
+{
+    Node(const int value) : value{value}, rightChildNode{nullptr}, leftChildNode{nullptr} {};
+    int value;
+    Node *rightChildNode;
+    Node *leftChildNode;
+};
+
+class BinarySearchTree
+{
+public:
+    BinarySearchTree(const int value);
+
+private:
+    Node *root;
+};
+
+#endif // BINARYSEARCHTREE

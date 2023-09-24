@@ -78,6 +78,7 @@
     "queuelinkedlist": "cpp",
     "queuestack": "cpp",
     "priorityqueue": "cpp",
-    "hashtable": "cpp"
+    "hashtable": "cpp",
+    "binarysearchtree": "cpp"
   }
 }
