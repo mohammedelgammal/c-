@@ -234,3 +234,40 @@ T LinkedList<T>::operator[](const int index) const
 
     return currentNode->value;
 }
+
+template <typename T>
+void LinkedList<T>::removeAt(const int index)
+{
+    if (isListEmpty())
+        throw logic_error("List is empty");
+
+    if (index < 0)
+        throw out_of_range("Invalid index");
+
+    if (index == 0)
+    {
+        // Special case: Removing the first node
+        Node<T> *temp = head;
+        head = head->next;
+        delete temp;
+        return;
+    }
+
+    int currentIndex = 0;
+    Node<T> *currentNode = head;
+    Node<T> *previousNode = nullptr;
+
+    while (currentNode && currentIndex < index)
+    {
+        previousNode = currentNode;
+        currentNode = currentNode->next;
+        currentIndex++;
+    }
+
+    if (!currentNode)
+        throw out_of_range("Index out of range");
+
+    // Remove the node at the specified index
+    previousNode->next = currentNode->next;
+    delete currentNode;
+}

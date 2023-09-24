@@ -40,3 +40,20 @@ string HashTable::get(const int key) const
 
     return targetValue;
 }
+
+void HashTable::remove(const int key) const
+{
+    int index = hash(key);
+    vector<Entry> list = array[index].toArray();
+    int entryIndex = 0;
+
+    for (Entry entry : list)
+    {
+        if (entry.key == key)
+        {
+            array[index].removeAt(entryIndex);
+            return;
+        }
+        entryIndex++;
+    }
+}

@@ -15,7 +15,9 @@ int main()
     hashTable.put(3, "Mahmoud");
     hashTable.put(5, "Ali");
 
-    cout << hashTable.get(55) << endl;
+    cout << hashTable.get(5) << endl;
+    hashTable.remove(5);
+    cout << hashTable.get(5) << endl;
 
     return 0;
 }

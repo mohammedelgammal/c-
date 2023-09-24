@@ -40,6 +40,7 @@ public:
     void reverse();               // O(n) Linear
     T getKthFromEnd(int kth);     // O(n) Linear
     T operator[](const int index) const;
+    void removeAt(const int index);
 
 private:
     Node<T> *head = nullptr;
