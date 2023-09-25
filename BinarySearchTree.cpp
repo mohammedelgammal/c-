@@ -73,7 +73,7 @@ void BinarySearchTree::traversePreOrder(const Node *root) const
     if (root == nullptr)
         return;
 
-    cout << root->value << endl;
+    cout << root->value << ',';
     traversePreOrder(root->leftChildNode);
     traversePreOrder(root->rightChildNode);
 }
@@ -81,4 +81,35 @@ void BinarySearchTree::traversePreOrder(const Node *root) const
 void BinarySearchTree::traversePreOrder() const
 {
     traversePreOrder(root);
+}
+
+void BinarySearchTree::traverseInOrder(Node *root) const
+{
+    if (root == nullptr)
+        return;
+
+    traverseInOrder(root->leftChildNode);
+    cout << root->value << ',';
+
+    traverseInOrder(root->rightChildNode);
+}
+
+void BinarySearchTree::traverseInOrder() const
+{
+    traverseInOrder(root);
+}
+
+void BinarySearchTree::traversePostOrder(Node *root) const
+{
+    if (root == nullptr)
+        return;
+
+    traversePostOrder(root->leftChildNode);
+    traversePostOrder(root->rightChildNode);
+    cout << root->value << ',';
+}
+
+void BinarySearchTree::traversePostOrder() const
+{
+    traversePostOrder(root);
 }

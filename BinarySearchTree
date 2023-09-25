@@ -21,6 +21,10 @@ public:
     bool find(const int value) const;
     void traversePreOrder(const Node *root) const;
     void traversePreOrder() const;
+    void traverseInOrder(Node *root) const;
+    void traverseInOrder() const;
+    void traversePostOrder(Node *root) const;
+    void traversePostOrder() const;
 
 private:
     Node *root;

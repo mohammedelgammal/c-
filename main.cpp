@@ -24,16 +24,24 @@ int main()
     tree.insert(8);
     tree.insert(10);
 
-    cout << boolalpha << tree.find(7) << endl
-         << tree.find(9) << endl
-         << tree.find(5) << endl
-         << tree.find(4) << endl
-         << tree.find(10) << endl
-         << tree.find(13) << endl;
+    // cout << boolalpha << tree.find(7) << endl
+    //      << tree.find(9) << endl
+    //      << tree.find(5) << endl
+    //      << tree.find(4) << endl
+    //      << tree.find(10) << endl
+    //      << tree.find(13) << endl;
 
     tree.traversePreOrder();
 
-    cout << factorial(5) << endl;
+    cout << endl;
+
+    tree.traverseInOrder();
+
+    cout << endl;
+
+    tree.traversePostOrder();
+
+    // cout << factorial(5) << endl;
 
     return 0;
 }
