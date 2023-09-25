@@ -64,6 +64,21 @@ bool BinarySearchTree::find(const int value) const
             currentNode = currentNode->leftChildNode;
         }
     }
-    
+
     return false;
+}
+
+void BinarySearchTree::traversePreOrder(const Node *root) const
+{
+    if (root == nullptr)
+        return;
+
+    cout << root->value << endl;
+    traversePreOrder(root->leftChildNode);
+    traversePreOrder(root->rightChildNode);
+}
+
+void BinarySearchTree::traversePreOrder() const
+{
+    traversePreOrder(root);
 }

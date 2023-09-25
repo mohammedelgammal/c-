@@ -19,6 +19,8 @@ public:
     // Methods
     void insert(const int value);
     bool find(const int value) const;
+    void traversePreOrder(const Node *root) const;
+    void traversePreOrder() const;
 
 private:
     Node *root;
