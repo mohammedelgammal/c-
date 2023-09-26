@@ -147,3 +147,16 @@ int BinarySearchTree::getHeight() const
 {
     return getHeight(root);
 }
+
+int BinarySearchTree::getMinimum(const Node *root) const
+{
+    if (root->leftChildNode == nullptr)
+        return root->value;
+
+    return getMinimum(root->leftChildNode);
+}
+
+int BinarySearchTree::getMinimum() const
+{
+    return getMinimum(root);
+}
