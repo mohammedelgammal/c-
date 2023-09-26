@@ -99,6 +99,22 @@ void BinarySearchTree::traverseInOrder() const
     traverseInOrder(root);
 }
 
+void BinarySearchTree::traverseInReverseOrder(Node *root) const
+{
+    if (root == nullptr)
+        return;
+
+    traverseInReverseOrder(root->rightChildNode);
+    cout << root->value << ',';
+
+    traverseInReverseOrder(root->leftChildNode);
+}
+
+void BinarySearchTree::traverseInReverseOrder() const
+{
+    traverseInReverseOrder(root);
+}
+
 void BinarySearchTree::traversePostOrder(Node *root) const
 {
     if (root == nullptr)

@@ -23,6 +23,8 @@ public:
     void traversePreOrder() const;
     void traverseInOrder(Node *root) const;
     void traverseInOrder() const;
+    void traverseInReverseOrder(Node *root) const;
+    void traverseInReverseOrder() const;
     void traversePostOrder(Node *root) const;
     void traversePostOrder() const;
 

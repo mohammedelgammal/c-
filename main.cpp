@@ -41,6 +41,10 @@ int main()
 
     tree.traversePostOrder();
 
+    cout << endl;
+
+    tree.traverseInReverseOrder();
+
     // cout << factorial(5) << endl;
 
     return 0;
