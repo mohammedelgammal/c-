@@ -57,5 +57,9 @@ int main()
 
     cout << tree.getMinimum();
 
+    cout << endl;
+
+    cout << tree.getMinimumUnordered();
+
     return 0;
 }

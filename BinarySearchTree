@@ -25,6 +25,7 @@ public:
     void traversePostOrder() const;
     int getHeight() const;
     int getMinimum() const;
+    int getMinimumUnordered() const;
 
 private:
     Node *root;
@@ -34,6 +35,7 @@ private:
     void traversePostOrder(Node *root) const;
     int getHeight(const Node *root) const;
     int getMinimum(const Node *root) const;
+    int getMinimumUnordered(const Node *root) const;
 };
 
 #endif // BINARYSEARCHTREE

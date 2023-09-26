@@ -24,8 +24,8 @@ void BinarySearchTree::insert(const int value)
         {
             if (currentNode->rightChildNode == nullptr)
             {
-                currentNode->rightChildNode = newNode;
                 newNode->parentNode = currentNode;
+                currentNode->rightChildNode = newNode;
                 return;
             }
             currentNode = currentNode->rightChildNode;
@@ -34,8 +34,8 @@ void BinarySearchTree::insert(const int value)
         {
             if (currentNode->leftChildNode == nullptr)
             {
-                currentNode->leftChildNode = newNode;
                 newNode->parentNode = currentNode;
+                currentNode->leftChildNode = newNode;
                 return;
             }
             currentNode = currentNode->leftChildNode;
@@ -159,4 +159,25 @@ int BinarySearchTree::getMinimum(const Node *root) const
 int BinarySearchTree::getMinimum() const
 {
     return getMinimum(root);
+}
+
+int min(const int numOne, const int numTwo)
+{
+    return numOne < numTwo ? numOne : numTwo;
+}
+
+int BinarySearchTree::getMinimumUnordered(const Node *root) const
+{
+    if (root == nullptr)
+        return INT_MAX;
+
+    return min(
+        min(getMinimumUnordered(root->leftChildNode),
+            getMinimumUnordered(root->rightChildNode)),
+        root->value);
+}
+
+int BinarySearchTree::getMinimumUnordered() const
+{
+    return getMinimumUnordered(root);
 }
