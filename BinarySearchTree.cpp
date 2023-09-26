@@ -125,7 +125,25 @@ void BinarySearchTree::traversePostOrder(Node *root) const
     cout << root->value << ',';
 }
 
+int max(const int numOne, const int numTwo)
+{
+    return numOne > numTwo ? numOne : numTwo;
+}
+
 void BinarySearchTree::traversePostOrder() const
 {
     traversePostOrder(root);
+}
+
+int BinarySearchTree::getHeight(const Node *root) const
+{
+    if (root == nullptr)
+        return -1;
+
+    return max(getHeight(root->leftChildNode), getHeight(root->rightChildNode)) + 1;
+}
+
+int BinarySearchTree::getHeight() const
+{
+    return getHeight(root);
 }

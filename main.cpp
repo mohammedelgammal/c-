@@ -15,11 +15,9 @@ int factorial(const int num)
 
 int main()
 {
-    BinarySearchTree tree{7};
+    BinarySearchTree tree{2};
 
     tree.insert(4);
-    tree.insert(9);
-    tree.insert(1);
     tree.insert(6);
     tree.insert(8);
     tree.insert(10);
@@ -46,6 +44,10 @@ int main()
     tree.traverseInReverseOrder();
 
     // cout << factorial(5) << endl;
+
+    cout << endl;
+
+    cout << tree.getHeight();
 
     return 0;
 }

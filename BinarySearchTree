@@ -19,17 +19,19 @@ public:
     // Methods
     void insert(const int value);
     bool find(const int value) const;
-    void traversePreOrder(const Node *root) const;
     void traversePreOrder() const;
-    void traverseInOrder(Node *root) const;
     void traverseInOrder() const;
-    void traverseInReverseOrder(Node *root) const;
     void traverseInReverseOrder() const;
-    void traversePostOrder(Node *root) const;
     void traversePostOrder() const;
+    int getHeight() const;
 
 private:
     Node *root;
+    void traversePreOrder(const Node *root) const;
+    void traverseInOrder(Node *root) const;
+    void traverseInReverseOrder(Node *root) const;
+    void traversePostOrder(Node *root) const;
+    int getHeight(const Node *root) const;
 };
 
 #endif // BINARYSEARCHTREE
