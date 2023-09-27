@@ -181,3 +181,21 @@ int BinarySearchTree::getMinimumUnordered() const
 {
     return getMinimumUnordered(root);
 }
+
+bool BinarySearchTree::isIdentical(const Node *originalRoot, const Node *otherRoot) const
+{
+    if (originalRoot == nullptr && otherRoot == nullptr)
+        return true;
+
+    if (originalRoot != nullptr && otherRoot != nullptr)
+        return originalRoot->value == otherRoot->value &&
+               isIdentical(originalRoot->leftChildNode, otherRoot->leftChildNode) &&
+               isIdentical(originalRoot->rightChildNode, otherRoot->rightChildNode);
+
+    return false;
+}
+
+bool BinarySearchTree::isIdentical(const BinarySearchTree *tree) const
+{
+    return isIdentical(root, tree->root);
+}

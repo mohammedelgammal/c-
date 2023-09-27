@@ -16,6 +16,7 @@ int factorial(const int num)
 int main()
 {
     BinarySearchTree tree{5};
+    BinarySearchTree *otherTree = new BinarySearchTree{5};
 
     tree.insert(3);
     tree.insert(8);
@@ -25,6 +26,15 @@ int main()
     tree.insert(9);
     tree.insert(1);
     tree.insert(7);
+
+    otherTree->insert(20);
+    otherTree->insert(48);
+    otherTree->insert(2);
+    otherTree->insert(4);
+    otherTree->insert(6);
+    otherTree->insert(9);
+    otherTree->insert(1);
+    otherTree->insert(7);
 
     // cout << boolalpha << tree.find(7) << endl
     //      << tree.find(9) << endl
@@ -60,6 +70,10 @@ int main()
     cout << endl;
 
     cout << tree.getMinimumUnordered();
+
+    cout << endl;
+
+    cout << boolalpha << tree.isIdentical(otherTree);
 
     return 0;
 }

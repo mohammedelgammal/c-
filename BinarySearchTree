@@ -26,6 +26,7 @@ public:
     int getHeight() const;
     int getMinimum() const;
     int getMinimumUnordered() const;
+    bool isIdentical(const BinarySearchTree *tree) const;
 
 private:
     Node *root;
@@ -36,6 +37,7 @@ private:
     int getHeight(const Node *root) const;
     int getMinimum(const Node *root) const;
     int getMinimumUnordered(const Node *root) const;
+    bool isIdentical(const Node *originalRoot, const Node *otherRoot) const;
 };
 
 #endif // BINARYSEARCHTREE
