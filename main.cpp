@@ -77,6 +77,7 @@ int main()
 
     cout << endl;
 
+    tree.swapRoot();
     cout << boolalpha << tree.isBinarySearchTree();
 
     return 0;

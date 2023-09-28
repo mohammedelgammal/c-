@@ -28,6 +28,7 @@ public:
     int getMinimumUnordered() const;
     bool isIdentical(const BinarySearchTree *tree) const;
     bool isBinarySearchTree() const;
+    void swapRoot();
 
 private:
     Node *root;

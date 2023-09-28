@@ -218,3 +218,10 @@ bool BinarySearchTree::isBinarySearchTree() const
 {
     return validateNode(root, INT_MIN, INT_MAX);
 }
+
+void BinarySearchTree::swapRoot()
+{
+    Node *oldRoot = root;
+    root = root->leftChildNode;
+    root->leftChildNode = oldRoot;
+}
