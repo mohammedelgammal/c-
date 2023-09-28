@@ -75,5 +75,9 @@ int main()
 
     cout << boolalpha << tree.isIdentical(otherTree);
 
+    cout << endl;
+
+    cout << boolalpha << tree.isBinarySearchTree();
+
     return 0;
 }

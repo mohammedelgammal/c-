@@ -1,6 +1,8 @@
 #include "BinarySearchTree"
 #include <iostream>
 
+#include <stddef.h>
+
 using std::cout, std::endl;
 
 BinarySearchTree::BinarySearchTree(const int value) : root{new Node{value}}
@@ -198,4 +200,21 @@ bool BinarySearchTree::isIdentical(const Node *originalRoot, const Node *otherRo
 bool BinarySearchTree::isIdentical(const BinarySearchTree *tree) const
 {
     return isIdentical(root, tree->root);
+}
+
+bool BinarySearchTree::validateNode(const Node *root, int min, int max) const
+{
+    if (root == nullptr)
+        return true;
+
+    if (root->value < min || root->value > max)
+        return false;
+
+    return validateNode(root->leftChildNode, INT_MIN, root->value - 1) &&
+           validateNode(root->rightChildNode, root->value + 1, INT_MAX);
+}
+
+bool BinarySearchTree::isBinarySearchTree() const
+{
+    return validateNode(root, INT_MIN, INT_MAX);
 }
