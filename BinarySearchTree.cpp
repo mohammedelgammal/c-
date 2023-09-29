@@ -142,7 +142,10 @@ int BinarySearchTree::getHeight(const Node *root) const
     if (root == nullptr)
         return -1;
 
-    return max(getHeight(root->leftChildNode), getHeight(root->rightChildNode)) + 1;
+    if (root->rightChildNode == nullptr && root->leftChildNode == nullptr)
+        return 0;
+
+    return (max(getHeight(root->leftChildNode), getHeight(root->rightChildNode)) + 1);
 }
 
 int BinarySearchTree::getHeight() const
@@ -228,14 +231,14 @@ void BinarySearchTree::swapRoot()
 
 void BinarySearchTree::getKthNode(const Node *root, const int kth) const
 {
+    if (root == nullptr)
+        return;
+
     if (kth == 0)
     {
         cout << root->value;
         return;
     }
-
-    if (root == nullptr)
-        return;
 
     getKthNode(root->leftChildNode, kth - 1);
     getKthNode(root->rightChildNode, kth - 1);

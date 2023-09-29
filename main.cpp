@@ -82,7 +82,7 @@ int main()
 
     cout << endl;
 
-    tree.getKthNode(2);
+    tree.getKthNode(3);
 
     return 0;
 }
