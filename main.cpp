@@ -84,5 +84,7 @@ int main()
 
     tree.getKthNode(3);
 
+    tree.levelOrderTreeTraverse();
+
     return 0;
 }

@@ -247,4 +247,11 @@ void BinarySearchTree::getKthNode(const Node *root, const int kth) const
 void BinarySearchTree::getKthNode(const int kth) const
 {
     getKthNode(root, kth);
+    cout << endl;
+}
+
+void BinarySearchTree::levelOrderTreeTraverse() const
+{
+    for (int i = 0; i <= getHeight(); i++)
+        getKthNode(i);
 }

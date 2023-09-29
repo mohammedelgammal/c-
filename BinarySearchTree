@@ -30,6 +30,7 @@ public:
     bool isBinarySearchTree() const;
     void swapRoot();
     void getKthNode(const int kth) const;
+    void levelOrderTreeTraverse() const;
 
 private:
     Node *root;
