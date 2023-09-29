@@ -29,6 +29,7 @@ public:
     bool isIdentical(const BinarySearchTree *tree) const;
     bool isBinarySearchTree() const;
     void swapRoot();
+    void getKthNode(const int kth) const;
 
 private:
     Node *root;
@@ -41,6 +42,7 @@ private:
     int getMinimumUnordered(const Node *root) const;
     bool isIdentical(const Node *originalRoot, const Node *otherRoot) const;
     bool validateNode(const Node *root, int min, int max) const;
+    void getKthNode(const Node *root, const int kth) const;
 };
 
 #endif // BINARYSEARCHTREE

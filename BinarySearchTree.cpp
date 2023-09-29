@@ -225,3 +225,23 @@ void BinarySearchTree::swapRoot()
     root = root->leftChildNode;
     root->leftChildNode = oldRoot;
 }
+
+void BinarySearchTree::getKthNode(const Node *root, const int kth) const
+{
+    if (kth == 0)
+    {
+        cout << root->value;
+        return;
+    }
+
+    if (root == nullptr)
+        return;
+
+    getKthNode(root->leftChildNode, kth - 1);
+    getKthNode(root->rightChildNode, kth - 1);
+}
+
+void BinarySearchTree::getKthNode(const int kth) const
+{
+    getKthNode(root, kth);
+}
