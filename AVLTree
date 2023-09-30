@@ -1,0 +1,17 @@
+#ifndef AVLTREE
+#define AVLTREE
+
+#include "BinarySearchTree"
+
+class AVLTree : public BinarySearchTree
+{
+public:
+    AVLTree(const int value);
+    // Methods
+    void insert(const int value) override;
+
+private:
+    void insert(const int value, const Node *root);
+};
+
+#endif // AVLTREE
