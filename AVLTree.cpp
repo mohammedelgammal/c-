@@ -9,6 +9,7 @@ Node *AVLTree::insert(const int value, Node *node)
     if (node == nullptr)
     {
         node = new Node(value);
+        node->height = getHeight(node);
         return node;
     }
     if (value > node->value)
@@ -19,6 +20,9 @@ Node *AVLTree::insert(const int value, Node *node)
     {
         node->leftChildNode = insert(value, node->leftChildNode);
     }
+
+    node->height = getHeight(node);
+
     return node;
 }
 

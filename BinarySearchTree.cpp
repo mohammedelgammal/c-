@@ -236,7 +236,8 @@ void BinarySearchTree::getKthNode(const Node *root, const int kth) const
 
     if (kth == 0)
     {
-        cout << root->value;
+        cout << "value: " << root->value << '|';
+        cout << "height: " << root->height << ", ";
         return;
     }
 

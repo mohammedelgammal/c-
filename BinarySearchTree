@@ -5,6 +5,7 @@ struct Node
 {
     Node(const int value) : value{value}, rightChildNode{nullptr}, leftChildNode{nullptr}, parentNode{nullptr} {};
     int value;
+    int height;
     Node *rightChildNode;
     Node *leftChildNode;
     Node *parentNode;
