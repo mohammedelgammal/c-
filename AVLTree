@@ -12,6 +12,9 @@ public:
 
 private:
     Node *insert(const int value, Node *node);
+    int getBalanceFactor(const Node *root) const;
+    bool isLeftHeavy() const;
+    bool isRightHeavy() const;
 };
 
 #endif // AVLTREE
