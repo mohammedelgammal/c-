@@ -4,23 +4,25 @@
 
 AVLTree::AVLTree(const int value) : BinarySearchTree(value) {}
 
-void AVLTree::insert(const int value, const Node *root)
+Node *AVLTree::insert(const int value, Node *node)
 {
-    Node *newNode = new Node{value};
-
-    if (root == nullptr)
+    if (node == nullptr)
     {
-        root = newNode;
-        return;
+        node = new Node(value);
+        return node;
     }
-    if (value > root->value)
-        insert(value, root->rightChildNode);
-
-    if (value < root->value)
-        insert(value, root->leftChildNode);
+    if (value > node->value)
+    {
+        node->rightChildNode = insert(value, node->rightChildNode);
+    }
+    if (value < node->value)
+    {
+        node->leftChildNode = insert(value, node->leftChildNode);
+    }
+    return node;
 }
 
 void AVLTree::insert(const int value)
 {
-    insert(value, this->root);
+    root = insert(value, root);
 }

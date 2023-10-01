@@ -11,7 +11,7 @@ public:
     void insert(const int value) override;
 
 private:
-    void insert(const int value, const Node *root);
+    Node *insert(const int value, Node *node);
 };
 
 #endif // AVLTREE

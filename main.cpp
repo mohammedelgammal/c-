@@ -9,10 +9,10 @@ int main()
 {
     AVLTree tree{10};
 
-    tree.insert(20);
-    tree.insert(30);
+    tree.insert(15);
+    tree.insert(5);
 
-    tree.traverseInOrder();
+    tree.levelOrderTreeTraverse();
 
     return 0;
 }
