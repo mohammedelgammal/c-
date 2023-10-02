@@ -4,6 +4,7 @@
 using namespace std;
 
 #include "AVLTree"
+#include "AVLTree.cpp"
 
 int main()
 {
