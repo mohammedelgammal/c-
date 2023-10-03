@@ -1,22 +1,18 @@
 // Libraries
 #include <iostream>
+#include "Heap"
+// #include "Heap.cpp"
 
 using namespace std;
 
-#include "AVLTree"
-#include "AVLTree.cpp"
-
 int main()
 {
-    AVLTree tree{10};
+    Heap heap{10};
 
-    tree.insert(5);
-    tree.insert(15);
-    tree.insert(3);
-    tree.insert(1);
-    tree.insert(20);
-
-    tree.levelOrderTreeTraverse();
+    heap.insert(5);
+    heap.insert(17);
+    heap.insert(4);
+    heap.insert(22);
 
     return 0;
 }

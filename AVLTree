@@ -2,7 +2,7 @@
 #define AVLTREE
 
 #include "BinarySearchTree"
-#include "BinarySearchTree.cpp"
+// #include "BinarySearchTree.cpp"
 
 class AVLTree : public BinarySearchTree
 {

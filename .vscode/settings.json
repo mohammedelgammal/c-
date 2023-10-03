@@ -80,6 +80,7 @@
     "priorityqueue": "cpp",
     "hashtable": "cpp",
     "binarysearchtree": "cpp",
-    "avltree": "cpp"
+    "avltree": "cpp",
+    "heap": "cpp"
   }
 }

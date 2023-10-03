@@ -1,0 +1,25 @@
+#ifndef HEAP
+#define HEAP
+
+#include <vector>
+
+using std::vector;
+
+class Heap
+{
+public:
+    // Constructors
+    Heap(const int root);
+    ~Heap();
+    // Methods
+    void insert(const int value);
+
+private:
+    vector<int> *arr;
+    int getParentIndex(const int value) const;
+    void setParent(const int value);
+    void bubbleUp(const int value);
+    void swap(const int index, const int value);
+};
+
+#endif // HEAP
