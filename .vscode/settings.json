@@ -82,6 +82,7 @@
     "binarysearchtree": "cpp",
     "avltree": "cpp",
     "heap": "cpp",
-    "climits": "cpp"
+    "climits": "cpp",
+    "PriorityQueueHeap": "cpp"
   }
 }

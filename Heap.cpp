@@ -131,3 +131,8 @@ int Heap::remove()
 
     return removed;
 }
+
+bool Heap::isEmpty() const
+{
+    return arr->empty();
+}

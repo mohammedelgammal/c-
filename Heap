@@ -15,6 +15,7 @@ public:
     void insert(const int value);
     void toArray() const;
     int remove();
+    bool isEmpty() const;
 
 private:
     vector<int> *arr;

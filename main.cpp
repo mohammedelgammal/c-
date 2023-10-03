@@ -19,13 +19,8 @@ int main()
     for (int i = 0; i < 4; i++)
         heap.insert(arr[i]);
 
-    heap.remove();
-    heap.remove();
-    heap.remove();
-    heap.remove();
-    heap.remove();
-
-    heap.toArray();
+    for (int i = 0; i < 4; i++)
+        heap.remove();
 
     return 0;
 }
