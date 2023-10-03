@@ -14,5 +14,7 @@ int main()
     heap.insert(4);
     heap.insert(22);
 
+    heap.toArray();
+
     return 0;
 }

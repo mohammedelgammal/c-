@@ -13,30 +13,30 @@ Heap::~Heap()
     arr = nullptr;
 }
 
-int Heap::getParentIndex(const int value) const
+int Heap::getParentIndex(int index) const
 {
-    return floor(((arr->size() - 1) - 1) / 2);
+    return floor(((index - 1) - 1) / 2);
 }
 
-void Heap::setParent(const int value)
+void Heap::setParent(const int index, const int value)
 {
-    arr->at(getParentIndex(value)) = value;
+    arr->at(getParentIndex(index)) = value;
 }
 
 void Heap::swap(const int index, const int value)
 {
-    setParent(value);
-    arr->at(index) = getParentIndex(value);
+    arr->at(index) = arr->at(getParentIndex(index));
+    setParent(index, value);
 }
 
 void Heap::bubbleUp(const int value)
 {
     int index = arr->size() - 1;
-    while (getParentIndex(value) >= 0 &&
-           value > arr->at(getParentIndex(value)))
+    while (getParentIndex(index) >= 0 &&
+           value > arr->at(getParentIndex(index)))
     {
         swap(index, value);
-        index = getParentIndex(value);
+        index = getParentIndex(index);
     }
 }
 
@@ -45,4 +45,10 @@ void Heap::insert(const int value)
     arr->push_back(value);
 
     bubbleUp(value);
+}
+
+void Heap::toArray() const
+{
+    for (int i = 0; i < arr->size(); i++)
+        cout << arr->at(i) << '|';
 }
