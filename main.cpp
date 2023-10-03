@@ -18,7 +18,7 @@ int main()
 
     cout << endl;
 
-    heap.remove();
+    cout << heap.remove() << endl;
 
     heap.toArray();
 

@@ -118,9 +118,12 @@ void Heap::bubbleDown(const int value)
     }
 }
 
-void Heap::remove()
+int Heap::remove()
 {
+    int removed = arr->front();
     arr->front() = arr->back();
     arr->pop_back();
     bubbleDown(arr->front());
+
+    return removed;
 }

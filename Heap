@@ -14,7 +14,7 @@ public:
     // Methods
     void insert(const int value);
     void toArray() const;
-    void remove();
+    int remove();
 
 private:
     vector<int> *arr;
