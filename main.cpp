@@ -1,7 +1,7 @@
 // Libraries
 #include <iostream>
 #include "Heap"
-#include "Heap.cpp"
+// #include "Heap.cpp"
 
 using namespace std;
 
@@ -9,16 +9,21 @@ int main()
 {
     Heap heap{10};
 
-    heap.insert(5);
-    heap.insert(17);
-    heap.insert(4);
-    heap.insert(22);
+    // heap.insert(5);
+    // heap.insert(17);
+    // heap.insert(4);
+    // heap.insert(22);
 
-    heap.toArray();
+    int arr[4]{5, 17, 4, 22};
 
-    cout << endl;
+    for (int i = 0; i < 4; i++)
+        heap.insert(arr[i]);
 
-    cout << heap.remove() << endl;
+    heap.remove();
+    heap.remove();
+    heap.remove();
+    heap.remove();
+    heap.remove();
 
     heap.toArray();
 

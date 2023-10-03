@@ -1,7 +1,7 @@
 #include "Heap"
 #include <iostream>
 
-using std::cout, std::endl, std::floor;
+using std::cout, std::endl, std::floor, std::logic_error;
 
 Heap::Heap(const int value) : arr{new vector<int>{value}}
 {
@@ -79,12 +79,12 @@ int Heap::getGreaterChildIndex(const int index) const
 
 bool Heap::hasRightChild(const int index) const
 {
-    return getRightChildIndex(index) <= arr->size();
+    return getRightChildIndex(index) < arr->size();
 }
 
 bool Heap::hasLeftChild(const int index) const
 {
-    return getLeftChildIndex(index) <= arr->size();
+    return getLeftChildIndex(index) < arr->size();
 }
 
 bool Heap::isValidParent(const int index) const
@@ -121,6 +121,10 @@ void Heap::bubbleDown(const int value)
 int Heap::remove()
 {
     int removed = arr->front();
+
+    if (arr->size() == 0)
+        throw logic_error("Heap is empty!");
+
     arr->front() = arr->back();
     arr->pop_back();
     bubbleDown(arr->front());
