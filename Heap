@@ -14,6 +14,7 @@ public:
     // Methods
     void insert(const int value);
     void toArray() const;
+    void remove();
 
 private:
     vector<int> *arr;
@@ -21,6 +22,14 @@ private:
     void setParent(const int index, const int value);
     void bubbleUp(const int value);
     void swap(const int index, const int value);
+    void bubbleDown(const int value);
+    int getLeftChildIndex(const int index) const;
+    int getRightChildIndex(const int index) const;
+    bool isValidParent(const int index) const;
+    int getGreaterChildIndex(const int index) const;
+    void swapWithChild(const int index, const int value);
+    bool hasRightChild(const int index) const;
+    bool hasLeftChild(const int index) const;
 };
 
 #endif // HEAP

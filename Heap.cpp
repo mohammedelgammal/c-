@@ -52,3 +52,75 @@ void Heap::toArray() const
     for (int i = 0; i < arr->size(); i++)
         cout << arr->at(i) << '|';
 }
+
+int Heap::getLeftChildIndex(const int index) const
+{
+    return (2 * index) + 1;
+}
+
+int Heap::getRightChildIndex(const int index) const
+{
+    return (2 * index) + 2;
+}
+
+int Heap::getGreaterChildIndex(const int index) const
+{
+    if (!hasRightChild(index))
+        return getLeftChildIndex(index);
+
+    if (!hasLeftChild(index))
+        return index;
+
+    return arr->at(getLeftChildIndex(index)) >
+                   arr->at(getRightChildIndex(index))
+               ? getLeftChildIndex(index)
+               : getRightChildIndex(index);
+}
+
+bool Heap::hasRightChild(const int index) const
+{
+    return getRightChildIndex(index) <= arr->size();
+}
+
+bool Heap::hasLeftChild(const int index) const
+{
+    return getLeftChildIndex(index) <= arr->size();
+}
+
+bool Heap::isValidParent(const int index) const
+{
+    bool isValid = false;
+
+    if (!hasLeftChild(index))
+        return true;
+
+    isValid = arr->at(getLeftChildIndex(index)) <= arr->at(index);
+
+    if (hasRightChild(index))
+        isValid &= arr->at(getRightChildIndex(index)) <= arr->at(index);
+
+    return isValid;
+}
+
+void Heap::swapWithChild(const int index, const int value)
+{
+    arr->at(index) = arr->at(getGreaterChildIndex(index));
+    arr->at(getGreaterChildIndex(index)) = value;
+}
+
+void Heap::bubbleDown(const int value)
+{
+    int index = 0;
+    while (index <= arr->size() && !isValidParent(index))
+    {
+        swapWithChild(index, value);
+        index = getGreaterChildIndex(index);
+    }
+}
+
+void Heap::remove()
+{
+    arr->front() = arr->back();
+    arr->pop_back();
+    bubbleDown(arr->front());
+}

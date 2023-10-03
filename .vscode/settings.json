@@ -81,6 +81,7 @@
     "hashtable": "cpp",
     "binarysearchtree": "cpp",
     "avltree": "cpp",
-    "heap": "cpp"
+    "heap": "cpp",
+    "climits": "cpp"
   }
 }
