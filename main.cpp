@@ -1,26 +1,54 @@
 // Libraries
 #include <iostream>
-#include "Heap"
-// #include "Heap.cpp"
 
 using namespace std;
 
+int leftChildIndex(const int index)
+{
+    return (index * 2) + 1;
+}
+
+int rightChildIndex(const int index)
+{
+    return (index * 2) + 2;
+}
+
+int greaterChildIndex(vector<int> &arr, const int index)
+{
+    return arr[leftChildIndex(index)] > arr[rightChildIndex(index)]
+               ? leftChildIndex(index)
+               : rightChildIndex(index);
+}
+
+void bubbleDown(vector<int> &arr, int index)
+{
+    while (greaterChildIndex(arr, index) < arr.size() &&
+           arr[index] < arr[greaterChildIndex(arr, index)])
+    {
+        int current = arr[index];
+        arr[index] = arr[greaterChildIndex(arr, index)];
+        arr[greaterChildIndex(arr, index)] = current;
+        index = greaterChildIndex(arr, index);
+    }
+}
+
+void heapify(vector<int> &arr)
+{
+    if (arr.empty())
+        return;
+
+    for (int i = 0; i < arr.size(); i++)
+        bubbleDown(arr, i);
+}
+
 int main()
 {
-    Heap heap{10};
+    vector<int> arr{5, 3, 8, 4, 1, 2};
 
-    // heap.insert(5);
-    // heap.insert(17);
-    // heap.insert(4);
-    // heap.insert(22);
+    heapify(arr);
 
-    int arr[4]{5, 17, 4, 22};
-
-    for (int i = 0; i < 4; i++)
-        heap.insert(arr[i]);
-
-    for (int i = 0; i < 4; i++)
-        heap.remove();
+    for (int i = 0; i < arr.size(); i++)
+        cout << arr[i] << '|';
 
     return 0;
 }
