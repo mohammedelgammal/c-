@@ -21,9 +21,10 @@ void Tries::insert(const string word)
     for (char character : word)
     {
         charIndex = character - 'a';
-        if (!current->children.at(charIndex)->character)
+        if (!current->children.at(charIndex))
             current->children.at(charIndex) = new Node{character};
 
         current = current->children.at(charIndex);
     }
+    current->isWordEnding = true;
 }

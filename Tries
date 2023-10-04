@@ -6,8 +6,12 @@ using std::vector, std::string;
 
 struct Node
 {
-    Node() : character{}, isWordEnding{false} {};
-    Node(const char character) : character{character}, isWordEnding{false} {};
+    Node() : children{vector<Node *>(26)},
+             isWordEnding{false} {};
+    Node(const char character) : character{character},
+                                 children{vector<Node *>(26)},
+                                 isWordEnding{false} {};
+
     char character;
     vector<Node *> children;
     bool isWordEnding;
