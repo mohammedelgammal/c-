@@ -1,0 +1,29 @@
+#ifndef TRIES
+#define TRIES
+
+#include <iostream>
+using std::vector, std::string;
+
+struct Node
+{
+    Node() : character{}, isWordEnding{false} {};
+    Node(const char character) : character{character}, isWordEnding{false} {};
+    char character;
+    vector<Node *> children;
+    bool isWordEnding;
+};
+
+class Tries
+{
+public:
+    // Constructors
+    Tries();
+    ~Tries();
+    // Methods
+    void insert(const string word);
+
+private:
+    Node *root;
+};
+
+#endif // Tries

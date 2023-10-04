@@ -83,6 +83,7 @@
     "avltree": "cpp",
     "heap": "cpp",
     "climits": "cpp",
-    "PriorityQueueHeap": "cpp"
+    "priorityqueueheap": "cpp",
+    "tries": "cpp"
   }
 }
