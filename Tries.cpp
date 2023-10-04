@@ -26,3 +26,22 @@ void Tries::insert(const string word)
     }
     current->markAsEnd();
 }
+
+bool Tries::contains(const string word) const
+{
+    Node *current = root;
+
+    if (word.length() == 0)
+        return true;
+
+    for (char character : word)
+    {
+        if (!current->has(character))
+            return false;
+        current = current->get(character);
+    }
+    if (!current->isWordEnding)
+        return false;
+
+    return true;
+}

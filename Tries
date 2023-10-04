@@ -42,6 +42,7 @@ public:
     ~Tries();
     // Methods
     void insert(const string word);
+    bool contains(const string word) const;
 
 private:
     Node *root;
