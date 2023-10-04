@@ -16,15 +16,13 @@ Tries::~Tries()
 void Tries::insert(const string word)
 {
     Node *current = root;
-    int charIndex;
 
     for (char character : word)
     {
-        charIndex = character - 'a';
-        if (!current->children.at(charIndex))
-            current->children.at(charIndex) = new Node{character};
+        if (!current->has(character))
+            current->insert(character);
 
-        current = current->children.at(charIndex);
+        current = current->get(character);
     }
-    current->isWordEnding = true;
+    current->markAsEnd();
 }

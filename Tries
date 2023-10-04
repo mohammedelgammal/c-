@@ -2,19 +2,36 @@
 #define TRIES
 
 #include <iostream>
-using std::vector, std::string;
+using namespace std;
 
 struct Node
 {
-    Node() : children{vector<Node *>(26)},
-             isWordEnding{false} {};
-    Node(const char character) : character{character},
-                                 children{vector<Node *>(26)},
-                                 isWordEnding{false} {};
+    // Constructors
+    Node(){};
+    Node(const char character) : character{character} {};
 
+    // Memeber variables
     char character;
-    vector<Node *> children;
-    bool isWordEnding;
+    unordered_map<char, Node *> children;
+    bool isWordEnding = false;
+
+    // Memeber functions
+    bool has(const char character)
+    {
+        return children.count(character) > 0;
+    }
+    void insert(const char character)
+    {
+        children.insert({character, new Node{character}});
+    }
+    Node *get(const char character)
+    {
+        return children.find(character)->second;
+    }
+    void markAsEnd()
+    {
+        this->isWordEnding = true;
+    }
 };
 
 class Tries
