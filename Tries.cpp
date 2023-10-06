@@ -45,3 +45,56 @@ bool Tries::contains(const string word) const
 
     return true;
 }
+
+void Tries::preOrderTraverse(const Node *root) const
+{
+    cout << root->character;
+
+    for (Node *child : root->getChildren())
+        preOrderTraverse(child);
+}
+
+void Tries::preOrderTraverse() const
+{
+    preOrderTraverse(root);
+}
+
+void Tries::postOrderTraverse(const Node *root) const
+{
+    for (Node *child : root->getChildren())
+        postOrderTraverse(child);
+
+    cout << root->character;
+}
+
+void Tries::postOrderTraverse() const
+{
+    postOrderTraverse(root);
+}
+
+bool isLastCharacter(const string word, const int index)
+{
+    return index == word.length();
+}
+
+void Tries::remove(Node *root, const string word, int index)
+{
+    if (index > word.length() || root == nullptr)
+        return;
+
+    remove(root->get(word[index]), word, index + 1);
+
+    if (index == word.length())
+        root->isWordEnding = false;
+
+    if (root->isLeafNode())
+    {
+        delete root;
+        root = nullptr;
+    }
+}
+
+void Tries::remove(const string word)
+{
+    remove(root, word, 0);
+}

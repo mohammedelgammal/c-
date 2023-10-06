@@ -26,11 +26,27 @@ struct Node
     }
     Node *get(const char character)
     {
+        if (children.count(character) == 0)
+            return nullptr;
+
         return children.find(character)->second;
     }
     void markAsEnd()
     {
         this->isWordEnding = true;
+    }
+    vector<Node *> getChildren() const
+    {
+        vector<Node *> childrenVec;
+
+        for (auto &child : children)
+            childrenVec.push_back(child.second);
+
+        return childrenVec;
+    };
+    bool isLeafNode() const
+    {
+        return children.empty();
     }
 };
 
@@ -43,9 +59,15 @@ public:
     // Methods
     void insert(const string word);
     bool contains(const string word) const;
+    void preOrderTraverse() const;
+    void postOrderTraverse() const;
+    void remove(const string word);
 
 private:
     Node *root;
+    void preOrderTraverse(const Node *root) const;
+    void postOrderTraverse(const Node *root) const;
+    void remove(Node *root, const string word, int index);
 };
 
 #endif // Tries

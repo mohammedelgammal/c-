@@ -9,15 +9,14 @@ using namespace std;
 int main()
 {
     Tries tries;
-    string str = "cat", str2 = "care";
-    string stra = "", stra2 = "car", stra3 = "care";
 
-    tries.insert(str);
-    tries.insert(str2);
+    tries.insert("cat");
 
-    cout << boolalpha << tries.contains(stra) << endl;
-    cout << boolalpha << tries.contains(stra2) << endl;
-    cout << boolalpha << tries.contains(stra3) << endl;
+    cout << boolalpha << tries.contains("cat");
+
+    tries.remove("cat");
+
+    cout << boolalpha << tries.contains("cat");
 
     return 0;
 }
