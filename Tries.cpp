@@ -22,7 +22,7 @@ void Tries::insert(const string word)
         if (!current->has(character))
             current->insert(character);
 
-        current = current->get(character);
+        current = &current->get(character);
     }
     current->markAsEnd();
 }
@@ -38,7 +38,7 @@ bool Tries::contains(const string word) const
     {
         if (!current->has(character))
             return false;
-        current = current->get(character);
+        current = &current->get(character);
     }
     if (!current->isWordEnding)
         return false;
@@ -77,24 +77,29 @@ bool isLastCharacter(const string word, const int index)
     return index == word.length();
 }
 
-void Tries::remove(Node *root, const string word, int index)
+void Tries::remove(Node &root, const string word, int index)
 {
-    if (index > word.length() || root == nullptr)
+    if (root.character == -1)
         return;
 
-    remove(root->get(word[index]), word, index + 1);
+    remove(root.get(word[index]), word, index + 1);
 
     if (index == word.length())
-        root->isWordEnding = false;
-
-    if (root->isLeafNode())
     {
-        delete root;
-        root = nullptr;
+        root.isWordEnding = false;
+    }
+
+    if (root.get(word[index]).isLeafNode())
+        root.deleteChild(word[index]);
+
+    if (root.isLeafNode() && !root.isWordEnding)
+    {
+        delete &root;
+        root = NULL;
     }
 }
 
 void Tries::remove(const string word)
 {
-    remove(root, word, 0);
+    remove(*root, word, 0);
 }

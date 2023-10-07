@@ -23,13 +23,14 @@ struct Node
     void insert(const char character)
     {
         children.insert({character, new Node{character}});
+        children.insert({-1, new Node{-1}});
     }
-    Node *get(const char character)
+    Node &get(const char character)
     {
         if (children.count(character) == 0)
-            return nullptr;
+            return *children.find(-1)->second;
 
-        return children.find(character)->second;
+        return *children.find(character)->second;
     }
     void markAsEnd()
     {
@@ -47,6 +48,10 @@ struct Node
     bool isLeafNode() const
     {
         return children.empty();
+    }
+    void deleteChild(const char character)
+    {
+        children.erase({character});
     }
 };
 
@@ -67,7 +72,7 @@ private:
     Node *root;
     void preOrderTraverse(const Node *root) const;
     void postOrderTraverse(const Node *root) const;
-    void remove(Node *root, const string word, int index);
+    void remove(Node &root, const string word, int index);
 };
 
 #endif // Tries

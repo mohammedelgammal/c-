@@ -10,13 +10,14 @@ int main()
 {
     Tries tries;
 
-    tries.insert("cat");
+    tries.insert("car");
+    tries.insert("care");
 
-    cout << boolalpha << tries.contains("cat");
+    cout << boolalpha << tries.contains("car");
 
-    tries.remove("cat");
+    tries.remove("care");
 
-    cout << boolalpha << tries.contains("cat");
+    cout << boolalpha << tries.contains("car");
 
     return 0;
 }
