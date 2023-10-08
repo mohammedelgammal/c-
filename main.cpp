@@ -17,7 +17,7 @@ int main()
     tries.insert("careful");
     tries.insert("carefless");
 
-    tries.autoComplete("care");
+    tries.autoComplete("cargo");
 
     return 0;
 }

@@ -120,7 +120,11 @@ Node *Tries::findLastCharacterNode(string word)
 {
     Node *lastNode = root;
     for (char character : word)
+    {
         lastNode = lastNode->get(character);
+        if (lastNode == nullptr)
+            return nullptr;
+    }
 
     return lastNode;
 }
@@ -130,6 +134,9 @@ void Tries::autoComplete(const string word)
     vector<string> words{};
 
     Node *lastNode = findLastCharacterNode(word);
+
+    if (lastNode == nullptr)
+        return;
 
     preOrderTraversal(lastNode, word, words);
 
