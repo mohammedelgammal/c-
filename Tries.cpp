@@ -22,7 +22,7 @@ void Tries::insert(const string word)
         if (!current->has(character))
             current->insert(character);
 
-        current = &current->get(character);
+        current = current->get(character);
     }
     current->markAsEnd();
 }
@@ -38,7 +38,7 @@ bool Tries::contains(const string word) const
     {
         if (!current->has(character))
             return false;
-        current = &current->get(character);
+        current = current->get(character);
     }
     if (!current->isWordEnding)
         return false;
@@ -82,14 +82,14 @@ void Tries::remove(Node &root, const string word, int index)
     if (root.character == -1)
         return;
 
-    remove(root.get(word[index]), word, index + 1);
+    remove(*root.get(word[index]), word, index + 1);
 
     if (index == word.length())
     {
         root.isWordEnding = false;
     }
 
-    if (root.get(word[index]).isLeafNode())
+    if (root.get(word[index])->isLeafNode())
         root.deleteChild(word[index]);
 
     if (root.isLeafNode() && !root.isWordEnding)
@@ -102,4 +102,37 @@ void Tries::remove(Node &root, const string word, int index)
 void Tries::remove(const string word)
 {
     remove(*root, word, 0);
+}
+
+void Tries::preOrderTraversal(Node *root, string word, vector<string> &words)
+{
+    if (root == nullptr)
+        return;
+
+    if (root->isWordEnding)
+        words.push_back(word);
+
+    for (Node *child : root->getChildren())
+        preOrderTraversal(child, word + child->character, words);
+}
+
+Node *Tries::findLastCharacterNode(string word)
+{
+    Node *lastNode = root;
+    for (char character : word)
+        lastNode = lastNode->get(character);
+
+    return lastNode;
+}
+
+void Tries::autoComplete(const string word)
+{
+    vector<string> words{};
+
+    Node *lastNode = findLastCharacterNode(word);
+
+    preOrderTraversal(lastNode, word, words);
+
+    for (int i = 0; i < words.size(); i++)
+        cout << words[i] << endl;
 }

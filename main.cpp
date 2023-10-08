@@ -12,12 +12,12 @@ int main()
 
     tries.insert("car");
     tries.insert("care");
+    tries.insert("cars");
+    tries.insert("card");
+    tries.insert("careful");
+    tries.insert("carefless");
 
-    cout << boolalpha << tries.contains("car");
-
-    tries.remove("care");
-
-    cout << boolalpha << tries.contains("car");
+    tries.autoComplete("care");
 
     return 0;
 }

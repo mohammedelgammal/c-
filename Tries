@@ -23,14 +23,13 @@ struct Node
     void insert(const char character)
     {
         children.insert({character, new Node{character}});
-        children.insert({-1, new Node{-1}});
     }
-    Node &get(const char character)
+    Node *get(const char character)
     {
         if (children.count(character) == 0)
-            return *children.find(-1)->second;
+            return nullptr;
 
-        return *children.find(character)->second;
+        return children.find(character)->second;
     }
     void markAsEnd()
     {
@@ -67,12 +66,15 @@ public:
     void preOrderTraverse() const;
     void postOrderTraverse() const;
     void remove(const string word);
+    void autoComplete(string word);
 
 private:
     Node *root;
     void preOrderTraverse(const Node *root) const;
     void postOrderTraverse(const Node *root) const;
     void remove(Node &root, const string word, int index);
+    void preOrderTraversal(Node *root, string word, vector<string> &words);
+    Node *findLastCharacterNode(string word);
 };
 
 #endif // Tries
