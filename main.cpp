@@ -1,23 +1,21 @@
 // Libraries
 #include <iostream>
 
-#include "Tries"
-// #include "Tries.cpp"
+#include "Graph"
 
 using namespace std;
 
 int main()
 {
-    Tries tries;
+    Graph graph;
 
-    tries.insert("car");
-    tries.insert("care");
-    tries.insert("cars");
-    tries.insert("card");
-    tries.insert("careful");
-    tries.insert("carefless");
+    graph.addNode("A");
+    graph.addNode("B");
+    graph.addNode("C");
 
-    tries.autoComplete("cargo");
+    graph.removeNode("C");
+
+    graph.traverse();
 
     return 0;
 }

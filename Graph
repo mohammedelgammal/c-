@@ -14,11 +14,17 @@ struct Node
 class Graph
 {
 public:
+    // Constructors
     Graph();
     ~Graph();
 
+    // Methods
+    void addNode(const string label);
+    void removeNode(const string label);
+    void traverse() const;
+
 private:
-    unordered_map<string, list<Node *>> *graph;
+    unordered_map<string, list<Node *>> *adjanecyList;
 };
 
 #endif // GRAPH
