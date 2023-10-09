@@ -13,9 +13,7 @@ int main()
     graph.addNode("B");
     graph.addNode("C");
 
-    graph.addEdge("A", "B");
-    graph.addEdge("A", "C");
-    graph.addEdge("A", "A");
+    graph.addEdge("S", "D");
 
     graph.removeNode("C");
 

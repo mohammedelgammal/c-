@@ -27,16 +27,22 @@ void Graph::addNode(const string label)
     adjanecyList->insert({label, list});
 }
 
+void removeNodeFromList(list<Node *> &list, const string label)
+{
+    for (const auto &node : list)
+        if (node->label == label)
+            list.remove(node);
+}
+
 void Graph::removeNode(const string label)
 {
-    if (hasNode(label))
+    if (!hasNode(label))
         return;
 
     adjanecyList->erase(label);
+
     for (auto &child : *adjanecyList)
-        for (const auto &node : child.second)
-            if (node->label == label)
-                child.second.remove(node);
+        removeNodeFromList(child.second, label);
 }
 
 bool Graph::hasTarget(const string source, const string target) const
@@ -51,9 +57,14 @@ bool Graph::hasTarget(const string source, const string target) const
     return hasTarget;
 }
 
+bool Graph::isValidEdge(const string source, const string target) const
+{
+    return (source != target) && hasNode(source) && hasNode(target);
+}
+
 void Graph::addEdge(const string source, const string target)
 {
-    if (!hasNode(source) || !hasNode(target) || source == target)
+    if (!isValidEdge(source, target))
         return;
 
     if (!hasTarget(source, target))
@@ -61,6 +72,16 @@ void Graph::addEdge(const string source, const string target)
         list<Node *> &sourceList = adjanecyList->find(source)->second;
         sourceList.push_back(new Node{target});
     }
+}
+
+void Graph::removeEdge(const string source, const string target)
+{
+    if (!isValidEdge(source, target) || !hasTarget(source, target))
+        return;
+
+    list<Node *> &sourceList = adjanecyList->find(source)->second;
+
+    removeNodeFromList(sourceList, target);
 }
 
 bool isLast(const list<Node *> &list, auto &child)
