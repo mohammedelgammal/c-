@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <list>
+#include <set>
 using namespace std;
 
 Graph::Graph() : adjanecyList{new unordered_map<string, list<Node *>>{}} {};
@@ -101,4 +102,24 @@ void Graph::traverse() const
             cout << node->label << (!isLast(child.second, node) ? ", " : "");
         cout << "]" << endl;
     }
+}
+
+void Graph::depthTraverse(string label, list<Node *> list, set<string> &set) const
+{
+    cout << label << endl;
+    set.insert(label);
+    for (Node *child : list)
+        if (set.count(child->label) == 0)
+            depthTraverse(child->label, adjanecyList->find(child->label)->second, set);
+}
+
+void Graph::depthTraverse(const string start) const
+{
+    if (!hasNode(start))
+        return;
+
+    set<string> set;
+    auto iter = adjanecyList->find(start);
+
+    depthTraverse(iter->first, iter->second, set);
 }

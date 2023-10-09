@@ -86,6 +86,7 @@
     "priorityqueueheap": "cpp",
     "tries": "cpp",
     "graph": "cpp",
-    "list": "cpp"
+    "list": "cpp",
+    "set": "cpp"
   }
 }

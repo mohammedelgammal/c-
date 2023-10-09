@@ -12,10 +12,16 @@ int main()
     graph.addNode("A");
     graph.addNode("B");
     graph.addNode("C");
+    graph.addNode("D");
 
-    graph.addEdge("B", "C");
+    graph.addEdge("A", "B");
+    graph.addEdge("B", "D");
+    graph.addEdge("D", "C");
+    graph.addEdge("A", "C");
 
-    graph.traverse();
+    // graph.traverse();
+
+    graph.depthTraverse("B");
 
     return 0;
 }
