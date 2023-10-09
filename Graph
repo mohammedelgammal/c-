@@ -19,8 +19,12 @@ public:
     ~Graph();
 
     // Methods
+    bool hasNode(const string label) const;
+    bool hasTarget(const string source, const string target) const;
     void addNode(const string label);
     void removeNode(const string label);
+    void addEdge(const string source, const string target);
+    void removeEdge(const string label);
     void traverse() const;
 
 private:
