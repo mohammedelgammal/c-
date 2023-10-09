@@ -29,9 +29,12 @@ void Graph::addNode(const string label)
 
 void removeNodeFromList(list<Node *> &list, const string label)
 {
-    for (const auto &node : list)
+    for (auto node : list)
         if (node->label == label)
+        {
             list.remove(node);
+            break;
+        }
 }
 
 void Graph::removeNode(const string label)
