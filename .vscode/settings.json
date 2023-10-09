@@ -84,6 +84,7 @@
     "heap": "cpp",
     "climits": "cpp",
     "priorityqueueheap": "cpp",
-    "tries": "cpp"
+    "tries": "cpp",
+    "graph": "cpp"
   }
 }
