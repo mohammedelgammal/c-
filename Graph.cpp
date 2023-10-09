@@ -19,7 +19,7 @@ bool Graph::hasNode(const string label) const
 
 void Graph::addNode(const string label)
 {
-    if (label.length() == 0)
+    if (label.length() == 0 || hasNode(label))
         return;
 
     list<Node *> list;
@@ -29,7 +29,7 @@ void Graph::addNode(const string label)
 
 void removeNodeFromList(list<Node *> &list, const string label)
 {
-    for (auto node : list)
+    for (auto &node : list)
         if (node->label == label)
         {
             list.remove(node);

@@ -13,17 +13,7 @@ int main()
     graph.addNode("B");
     graph.addNode("C");
 
-    graph.addEdge("A", "C");
-    graph.addEdge("A", "B");
-    graph.addEdge("A", "N");
-    graph.addEdge("B", "A");
     graph.addEdge("B", "C");
-
-    // graph.removeEdge("B", "C");
-    graph.removeEdge("A", "C");
-    graph.removeEdge("C", "A");
-
-    graph.removeNode("C");
 
     graph.traverse();
 

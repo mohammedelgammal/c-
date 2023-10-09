@@ -19,17 +19,17 @@ public:
     ~Graph();
 
     // Methods
-    bool hasNode(const string label) const;
-    bool hasTarget(const string source, const string target) const;
     void addNode(const string label);
     void removeNode(const string label);
-    bool isValidEdge(const string source, const string target) const;
     void addEdge(const string source, const string target);
     void removeEdge(const string source, const string target);
     void traverse() const;
 
 private:
     unordered_map<string, list<Node *>> *adjanecyList;
+    bool hasNode(const string label) const;
+    bool hasTarget(const string source, const string target) const;
+    bool isValidEdge(const string source, const string target) const;
 };
 
 #endif // GRAPH
