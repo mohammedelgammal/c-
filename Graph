@@ -30,6 +30,7 @@ public:
     void depthTraverseIter(const string start) const;
     void breadthTraverseQueue(const string label) const;
     void topologicalOrder(const string start) const;
+    bool hasCycle() const;
 
 private:
     unordered_map<string, list<Node *>> *adjanecyList;
@@ -40,6 +41,7 @@ private:
     void topologicalOrder(const string label, stack<string> &stack, set<string> &set) const;
     list<Node *> getAdjacents(const string label) const;
     bool hasAdjacents(const string label) const;
+    void cycleTraverse(const string label, set<string> &visiting, bool &hasCycle) const;
 };
 
 #endif // GRAPH

@@ -231,3 +231,36 @@ void Graph::topologicalOrder(const string start) const
         stack.pop();
     }
 }
+
+void Graph::cycleTraverse(const string label, set<string> &visiting, bool &hasCycle) const
+{
+    if (visiting.contains(label))
+    {
+        hasCycle = true;
+        return;
+    }
+    visiting.insert(label);
+
+    for (Node *adjacent : getAdjacents(label))
+        cycleTraverse(adjacent->label, visiting, hasCycle);
+
+    visiting.erase(label);
+}
+
+bool Graph::hasCycle() const
+{
+    set<string> all, visiting;
+    bool hasCycle = false;
+
+    for (auto &child : *adjanecyList)
+        all.insert(child.first);
+
+    for (string label : all)
+    {
+        if (hasCycle)
+            break;
+        cycleTraverse(label, visiting, hasCycle);
+    }
+
+    return hasCycle;
+}
