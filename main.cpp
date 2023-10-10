@@ -9,15 +9,15 @@ int main()
 {
     Graph graph;
 
+    graph.addNode("X");
     graph.addNode("A");
     graph.addNode("B");
-    graph.addNode("C");
-    graph.addNode("D");
+    graph.addNode("P");
 
-    graph.addEdge("A", "B");
-    graph.addEdge("B", "D");
-    graph.addEdge("D", "C");
-    graph.addEdge("A", "C");
+    graph.addEdge("X", "A");
+    graph.addEdge("X", "B");
+    graph.addEdge("A", "P");
+    graph.addEdge("B", "P");
 
     // graph.traverse();
 
@@ -27,7 +27,9 @@ int main()
 
     // graph.depthTraverseIter("C");
 
-    graph.breadthTraverseQueue("A");
+    // graph.breadthTraverseQueue("D");
+
+    graph.topologicalOrder("X");
 
     return 0;
 }

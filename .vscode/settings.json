@@ -87,6 +87,7 @@
     "tries": "cpp",
     "graph": "cpp",
     "list": "cpp",
-    "set": "cpp"
+    "set": "cpp",
+    "__tree": "cpp"
   }
 }

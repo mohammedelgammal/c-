@@ -179,3 +179,55 @@ void Graph::breadthTraverseQueue(const string label) const
             queue.push(child->label);
     }
 }
+
+bool Graph::hasAdjacents(const string label) const
+{
+    if (adjanecyList->find(label) != adjanecyList->end())
+        return true;
+    return false;
+}
+
+list<Node *> Graph::getAdjacents(const string label) const
+{
+    return adjanecyList->find(label)->second;
+}
+
+void Graph::topologicalOrder(const string label, stack<string> &stack, set<string> &set) const
+{
+    if (!hasAdjacents(label) && !set.contains(label))
+    {
+        stack.push(label);
+        set.insert(label);
+        return;
+    }
+
+    for (Node *adjacent : getAdjacents(label))
+        topologicalOrder(adjacent->label, stack, set);
+
+    if (!set.contains(label))
+    {
+        set.insert(label);
+        stack.push(label);
+    }
+}
+
+void Graph::topologicalOrder(const string start) const
+{
+    if (!hasNode(start))
+        return;
+
+    stack<string> stack;
+    auto iter = adjanecyList->find(start);
+    set<string> set;
+    int stackSize;
+
+    topologicalOrder(start, stack, set);
+
+    stackSize = stack.size();
+
+    for (int i = 0; i < stackSize; i++)
+    {
+        cout << stack.top();
+        stack.pop();
+    }
+}
