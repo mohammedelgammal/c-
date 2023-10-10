@@ -26,6 +26,7 @@ public:
     void removeEdge(const string source, const string target);
     void traverse() const;
     void depthTraverse(const string start) const;
+    void depthTraverseIter(const string start) const;
 
 private:
     unordered_map<string, list<Node *>> *adjanecyList;

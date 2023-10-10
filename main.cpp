@@ -21,7 +21,11 @@ int main()
 
     // graph.traverse();
 
-    graph.depthTraverse("B");
+    graph.depthTraverse("A");
+
+    cout << "====" << endl;
+
+    graph.depthTraverseIter("A");
 
     return 0;
 }
