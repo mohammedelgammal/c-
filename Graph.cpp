@@ -4,6 +4,7 @@
 #include <list>
 #include <set>
 #include <stack>
+#include <queue>
 using namespace std;
 
 Graph::Graph() : adjanecyList{new unordered_map<string, list<Node *>>{}} {};
@@ -149,5 +150,32 @@ void Graph::depthTraverseIter(const string label) const
 
         for (Node *child : adjanecyList->find(current)->second)
             stack.push(child->label);
+    }
+}
+
+void Graph::breadthTraverseQueue(const string label) const
+{
+    if (!hasNode(label))
+        return;
+
+    queue<string> queue;
+    set<string> set;
+    string current = label;
+
+    queue.push(current);
+
+    while (!queue.empty())
+    {
+        current = queue.front();
+        queue.pop();
+
+        if (!set.contains(current))
+        {
+            cout << current << endl;
+            set.insert(current);
+        }
+
+        for (Node *child : adjanecyList->find(current)->second)
+            queue.push(child->label);
     }
 }

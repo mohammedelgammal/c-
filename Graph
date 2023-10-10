@@ -27,6 +27,7 @@ public:
     void traverse() const;
     void depthTraverse(const string start) const;
     void depthTraverseIter(const string start) const;
+    void breadthTraverseQueue(const string label) const;
 
 private:
     unordered_map<string, list<Node *>> *adjanecyList;
