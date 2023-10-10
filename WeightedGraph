@@ -1,0 +1,42 @@
+#ifndef WEIGHTEDGRAPH
+#define WEIGHTEDGRAPH
+
+#include <iostream>
+#include <string>
+#include <set>
+
+using namespace std;
+
+struct Node
+{
+    Node(const string label) : label{label} {};
+    string label;
+};
+
+struct Edge
+{
+    Edge(){};
+    Edge(const int weight, string from, string to)
+        : weight{weight}, from{from}, to{to} {};
+    int weight;
+    string from;
+    string to;
+};
+
+class WeightedGraph
+{
+public:
+    // Constructors
+    WeightedGraph(){};
+    ~WeightedGraph();
+
+    // Methods
+    void insert(const string label);
+    void addEdge(const int weight, const string from, const string to);
+    bool hasNode(const string label) const;
+
+private:
+    unordered_map<string, set<Edge *>> *graph;
+};
+
+#endif // WEIGHTEDGRAPH

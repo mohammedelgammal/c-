@@ -86,6 +86,7 @@
     "priorityqueueheap": "cpp",
     "tries": "cpp",
     "graph": "cpp",
+    "weightedgraph": "cpp",
     "list": "cpp",
     "set": "cpp",
     "__tree": "cpp"
