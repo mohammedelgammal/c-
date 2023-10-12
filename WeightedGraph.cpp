@@ -1,7 +1,10 @@
 #include "WeightedGraph"
+
 #include <iostream>
 #include <string>
 #include <set>
+#include <queue>
+#include <climits>
 
 using namespace std;
 
@@ -58,5 +61,52 @@ void WeightedGraph::traverse() const
         for (Edge *edge : node.second)
             cout << edge->toString() << (!isLast(edge, node.second) ? ", " : "");
         cout << ']' << endl;
+    }
+}
+
+struct NodeEntry
+{
+    NodeEntry(const string label, const int priority) : label{label}, priority{priority} {};
+    string label;
+    int priority;
+    bool operator<(const NodeEntry &other) const
+    {
+        return priority > other.priority;
+    }
+};
+
+void WeightedGraph::shortestPath(const string label) const
+{
+    unordered_map<string, int> shortestDistances;
+
+    for (const auto &child : *graph)
+    {
+        int defaultDistance = child.first == label ? 0 : INT_MAX;
+        shortestDistances.insert({child.first, defaultDistance});
+    }
+
+    priority_queue<NodeEntry *> visiting;
+    set<string> visited;
+
+    visiting.push(new NodeEntry{label, 0});
+
+    while (!visiting.empty())
+    {
+        NodeEntry *current = visiting.top();
+        visiting.pop();
+        visited.insert(current->label);
+
+        for (const Edge *edge : graph->find(current->label)->second)
+        {
+            if (visited.contains(edge->to))
+                continue;
+
+            const int newDistance = shortestDistances.find(edge->from)->second + edge->weight;
+
+            if (newDistance < shortestDistances.find(edge->to)->second)
+                shortestDistances.find(edge->to)->second = newDistance;
+
+            visiting.push(new NodeEntry{edge->to, shortestDistances.find(edge->from)->second});
+        }
     }
 }

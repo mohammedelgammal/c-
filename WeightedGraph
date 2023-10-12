@@ -41,6 +41,7 @@ public:
     void addNode(const string label);
     void addEdge(const int weight, const string from, const string to);
     void traverse() const;
+    void shortestPath(const string label) const;
 
 private:
     unordered_map<string, set<Edge *>> *graph;
