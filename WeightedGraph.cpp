@@ -140,3 +140,31 @@ stack<string> WeightedGraph::shortestPath(const string from, const string to) co
 
     return path;
 }
+
+void WeightedGraph::cycleTraverse(const string root, const string parent, bool &hasCycle, set<string> &visited) const
+{
+    if (visited.contains(root))
+    {
+        hasCycle = true;
+        return;
+    }
+
+    visited.insert(root);
+
+    for (Edge *edge : graph->find(root)->second)
+        if (edge->to != parent)
+            cycleTraverse(edge->to, root, hasCycle, visited);
+}
+
+bool WeightedGraph::hasCycle() const
+{
+    if (graph->empty())
+        return true;
+
+    bool hasCycle = false;
+    set<string> visited;
+
+    cycleTraverse(graph->begin()->first, "", hasCycle, visited);
+
+    return hasCycle;
+}

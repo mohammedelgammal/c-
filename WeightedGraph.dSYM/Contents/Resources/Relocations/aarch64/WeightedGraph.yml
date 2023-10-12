@@ -1,6 +1,6 @@
 ---
 triple:          'arm64-apple-darwin'
-binary-path:     '/Users/mohammedelgammal/dev/c-/main'
+binary-path:     '/Users/mohammedelgammal/dev/c-/WeightedGraph'
 relocations:
   - { offsetInCU: 0x300A, offset: 0x300A, size: 0x8, addend: 0x0, symName: __ZNSt3__124__put_character_sequenceB7v160006IcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_PKS4_m, symObjAddr: 0x454, symBinAddr: 0x100000A58, symSize: 0x1EC }
   - { offsetInCU: 0x49A5, offset: 0x49A5, size: 0x8, addend: 0x0, symName: __ZNSt3__1lsB7v160006INS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc, symObjAddr: 0x294, symBinAddr: 0x100000898, symSize: 0x48 }

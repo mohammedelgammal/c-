@@ -43,10 +43,12 @@ public:
 	void addEdge(const int weight, const string from, const string to);
 	void traverse() const;
 	stack<string> shortestPath(const string from, const string to) const;
+	bool hasCycle() const;
 
 private:
 	unordered_map<string, set<Edge *>> *graph;
 	bool hasNode(const string label) const;
+	void cycleTraverse(const string root, const string parent, bool &hasCycle, set<string> &visited) const;
 };
 
 #endif // WEIGHTEDGRAPH

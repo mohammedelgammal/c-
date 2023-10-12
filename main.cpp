@@ -20,14 +20,10 @@ int main()
 
     // graph.traverse();
 
-    stack<string> path = graph.shortestPath("A", "E");
-    int stackSize = path.size();
+    // stack<string> path = graph.shortestPath("A", "E");
+    // int stackSize = path.size();
 
-    for (int i = 0; i < stackSize; i++)
-    {
-        cout << path.top();
-        path.pop();
-    }
+    cout << boolalpha << graph.hasCycle() << endl;
 
     return 0;
 }
