@@ -31,6 +31,17 @@ struct Edge
 	string to;
 };
 
+struct NodeEntry
+{
+	NodeEntry(const string label, const int priority) : label{label}, priority{priority} {};
+	string label;
+	int priority;
+	bool operator<(const NodeEntry &other) const
+	{
+		return priority > other.priority;
+	}
+};
+
 class WeightedGraph
 {
 public:
@@ -44,11 +55,13 @@ public:
 	void traverse() const;
 	stack<string> shortestPath(const string from, const string to) const;
 	bool hasCycle() const;
+	WeightedGraph *spanningTree() const;
 
 private:
 	unordered_map<string, set<Edge *>> *graph;
 	bool hasNode(const string label) const;
 	void cycleTraverse(const string root, const string parent, bool &hasCycle, set<string> &visited) const;
+	void getLowestNode(string current, WeightedGraph &spanningGraph, set<string> &visited) const;
 };
 
 #endif // WEIGHTEDGRAPH

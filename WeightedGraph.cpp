@@ -65,17 +65,6 @@ void WeightedGraph::traverse() const
     }
 }
 
-struct NodeEntry
-{
-    NodeEntry(const string label, const int priority) : label{label}, priority{priority} {};
-    string label;
-    int priority;
-    bool operator<(const NodeEntry &other) const
-    {
-        return priority > other.priority;
-    }
-};
-
 stack<string> WeightedGraph::shortestPath(const string from, const string to) const
 {
     unordered_map<string, int> shortestDistances;
@@ -167,4 +156,39 @@ bool WeightedGraph::hasCycle() const
     cycleTraverse(graph->begin()->first, "", hasCycle, visited);
 
     return hasCycle;
+}
+
+void WeightedGraph::getLowestNode(const string current, WeightedGraph &spanningTree, set<string> &visited) const
+{
+    priority_queue<NodeEntry> pq;
+
+    visited.insert(current);
+
+    for (auto &child : *spanningTree.graph)
+        for (Edge *edge : graph->find(child.first)->second)
+            if (!visited.contains(edge->to))
+                pq.push(NodeEntry{edge->to, edge->weight});
+
+    if (pq.empty())
+        return;
+
+    NodeEntry lowest = pq.top();
+
+    spanningTree.addNode(lowest.label);
+    spanningTree.addEdge(lowest.priority, current, lowest.label);
+
+    getLowestNode(lowest.label, spanningTree, visited);
+}
+
+WeightedGraph *WeightedGraph::spanningTree() const
+{
+    WeightedGraph *spanningTree = new WeightedGraph{};
+    string current = "A";
+    set<string> visited;
+
+    spanningTree->addNode(current);
+
+    getLowestNode(current, *spanningTree, visited);
+
+    return spanningTree;
 }
