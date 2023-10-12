@@ -1,5 +1,6 @@
 // Libraries
 #include <iostream>
+#include <stack>
 
 #include "WeightedGraph"
 
@@ -12,20 +13,21 @@ int main()
     graph.addNode("A");
     graph.addNode("B");
     graph.addNode("C");
-    graph.addNode("D");
-    graph.addNode("E");
 
-    graph.addEdge(3, "A", "B");
-    graph.addEdge(4, "A", "C");
-    graph.addEdge(2, "A", "D");
-    graph.addEdge(6, "B", "D");
-    graph.addEdge(1, "C", "D");
-    graph.addEdge(1, "B", "E");
-    graph.addEdge(5, "D", "E");
+    graph.addEdge(1, "A", "B");
+    graph.addEdge(2, "B", "C");
+    graph.addEdge(10, "A", "C");
 
     // graph.traverse();
 
-    graph.shortestPath("A");
+    stack<string> path = graph.shortestPath("A", "E");
+    int stackSize = path.size();
+
+    for (int i = 0; i < stackSize; i++)
+    {
+        cout << path.top();
+        path.pop();
+    }
 
     return 0;
 }

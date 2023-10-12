@@ -4,6 +4,7 @@
 #include <string>
 #include <set>
 #include <queue>
+#include <stack>
 #include <climits>
 
 using namespace std;
@@ -75,20 +76,21 @@ struct NodeEntry
     }
 };
 
-void WeightedGraph::shortestPath(const string label) const
+stack<string> WeightedGraph::shortestPath(const string from, const string to) const
 {
     unordered_map<string, int> shortestDistances;
+    unordered_map<string, string> prevNodes;
 
     for (const auto &child : *graph)
     {
-        int defaultDistance = child.first == label ? 0 : INT_MAX;
+        int defaultDistance = child.first == from ? 0 : INT_MAX;
         shortestDistances.insert({child.first, defaultDistance});
     }
 
     priority_queue<NodeEntry *> visiting;
     set<string> visited;
 
-    visiting.push(new NodeEntry{label, 0});
+    visiting.push(new NodeEntry{from, 0});
 
     while (!visiting.empty())
     {
@@ -101,12 +103,40 @@ void WeightedGraph::shortestPath(const string label) const
             if (visited.contains(edge->to))
                 continue;
 
-            const int newDistance = shortestDistances.find(edge->from)->second + edge->weight;
+            const int newDistance = shortestDistances.find(current->label)->second + edge->weight;
 
             if (newDistance < shortestDistances.find(edge->to)->second)
+            {
                 shortestDistances.find(edge->to)->second = newDistance;
-
+                prevNodes.insert({edge->to, current->label});
+            }
             visiting.push(new NodeEntry{edge->to, shortestDistances.find(edge->from)->second});
         }
     }
+
+    stack<string> stack, path;
+    stack.push(to);
+
+    string prevNode = prevNodes.find(to)->second;
+
+    while (prevNode.length())
+    {
+        stack.push(prevNode);
+
+        if (prevNodes.count(prevNode) == 0)
+        {
+            prevNode = "";
+            break;
+        }
+
+        prevNode = prevNodes.find(prevNode)->second;
+    }
+
+    while (!stack.empty())
+    {
+        path.push(stack.top());
+        stack.pop();
+    }
+
+    return path;
 }

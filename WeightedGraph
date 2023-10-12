@@ -4,48 +4,49 @@
 #include <iostream>
 #include <string>
 #include <set>
+#include <stack>
 
 using namespace std;
 
 struct Node
 {
-    Node(const string label) : label{label} {};
-    string label;
+	Node(const string label) : label{label} {};
+	string label;
 };
 
 struct Edge
 {
-    Edge(){};
-    Edge(const int weight, string from, string to)
-        : weight{weight}, from{from}, to{to} {};
-    string toString()
-    {
-        string edgeStr;
-        edgeStr += from += string("->") += to;
+	Edge(){};
+	Edge(const int weight, string from, string to)
+		: weight{weight}, from{from}, to{to} {};
+	string toString()
+	{
+		string edgeStr;
+		edgeStr += from += string("->") += to;
 
-        return edgeStr;
-    }
-    int weight;
-    string from;
-    string to;
+		return edgeStr;
+	}
+	int weight;
+	string from;
+	string to;
 };
 
 class WeightedGraph
 {
 public:
-    // Constructors
-    WeightedGraph();
-    ~WeightedGraph();
+	// Constructors
+	WeightedGraph();
+	~WeightedGraph();
 
-    // Methods
-    void addNode(const string label);
-    void addEdge(const int weight, const string from, const string to);
-    void traverse() const;
-    void shortestPath(const string label) const;
+	// Methods
+	void addNode(const string label);
+	void addEdge(const int weight, const string from, const string to);
+	void traverse() const;
+	stack<string> shortestPath(const string from, const string to) const;
 
 private:
-    unordered_map<string, set<Edge *>> *graph;
-    bool hasNode(const string label) const;
+	unordered_map<string, set<Edge *>> *graph;
+	bool hasNode(const string label) const;
 };
 
 #endif // WEIGHTEDGRAPH
