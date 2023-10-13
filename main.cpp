@@ -4,32 +4,37 @@
 
 using namespace std;
 
-void bubbleSort(vector<int> &unsorted)
+int getMinIndex(vector<int> &sliced)
 {
-    size_t size = unsorted.size();
-    bool isSorted;
+    int minIndex = 0;
 
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < sliced.size(); i++)
+        if (sliced[i] < sliced[minIndex])
+            minIndex = i;
+
+    return minIndex;
+}
+
+void selectionSort(vector<int> &unsorted)
+{
+    for (int i = 0; i < unsorted.size(); i++)
     {
-        for (int j = 0; j < size - 1; j++)
-            if (unsorted[i] > unsorted[j])
-            {
-                int temp = unsorted[i];
-                unsorted[i] = unsorted[j];
-                unsorted[j] = temp;
-                isSorted = false;
-            }
-        if (isSorted)
-            return;
+        vector<int> sliced{unsorted.begin() + i, unsorted.end()};
+        int unsortedIndex = getMinIndex(sliced) + i;
+        if (unsorted[i] != unsorted[unsortedIndex])
+        {
+            int temp = unsorted[i];
+            unsorted[i] = unsorted[unsortedIndex];
+            unsorted[unsortedIndex] = temp;
+        }
     }
 }
 
 int main()
 {
-    // Bubble Sort
     vector<int> unsorted{7, 3, 1, 4, 6, 2, 3};
 
-    bubbleSort(unsorted);
+    selectionSort(unsorted);
 
     for (int i = 0; i < unsorted.size(); i++)
         cout << unsorted[i];
