@@ -4,37 +4,33 @@
 
 using namespace std;
 
-int getMinIndex(vector<int> &sliced)
+void insertionSort(vector<int> &unsorted)
 {
-    int minIndex = 0;
+    vector<int> *sorted = new vector<int>{};
 
-    for (int i = 0; i < sliced.size(); i++)
-        if (sliced[i] < sliced[minIndex])
-            minIndex = i;
-
-    return minIndex;
-}
-
-void selectionSort(vector<int> &unsorted)
-{
     for (int i = 0; i < unsorted.size(); i++)
     {
-        vector<int> sliced{unsorted.begin() + i, unsorted.end()};
-        int unsortedIndex = getMinIndex(sliced) + i;
-        if (unsorted[i] != unsorted[unsortedIndex])
+        vector<int>::iterator iterIndex = sorted->end();
+
+        for (int j = 0; j < sorted->size(); j++)
         {
-            int temp = unsorted[i];
-            unsorted[i] = unsorted[unsortedIndex];
-            unsorted[unsortedIndex] = temp;
+            if (unsorted[i] < (*sorted)[j])
+            {
+                iterIndex = sorted->begin() + j;
+                break;
+            }
         }
+        sorted->insert(iterIndex, unsorted[i]);
     }
+    unsorted = *sorted;
+    sorted = nullptr;
 }
 
 int main()
 {
     vector<int> unsorted{7, 3, 1, 4, 6, 2, 3};
 
-    selectionSort(unsorted);
+    insertionSort(unsorted);
 
     for (int i = 0; i < unsorted.size(); i++)
         cout << unsorted[i];
