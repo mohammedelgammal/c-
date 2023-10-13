@@ -2,35 +2,31 @@
 #include <iostream>
 #include <stack>
 
-#include "WeightedGraph"
-
 using namespace std;
+
+void bubbleSort(vector<int> &unsorted)
+{
+    int size = unsorted.size();
+
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
+            if (unsorted[i] < unsorted[j])
+            {
+                int temp = unsorted[i];
+                unsorted[i] = unsorted[j];
+                unsorted[j] = temp;
+            }
+}
 
 int main()
 {
-    WeightedGraph graph;
+    // Bubble Sort
+    vector<int> unsorted{7, 3, 1, 4, 6, 2, 3};
 
-    graph.addNode("A");
-    graph.addNode("B");
-    graph.addNode("C");
-    graph.addNode("D");
+    bubbleSort(unsorted);
 
-    graph.addEdge(3, "A", "B");
-    graph.addEdge(1, "A", "C");
-    graph.addEdge(2, "B", "C");
-    graph.addEdge(5, "C", "D");
-    graph.addEdge(4, "B", "D");
-
-    // graph.traverse();
-
-    // stack<string> path = graph.shortestPath("A", "E");
-    // int stackSize = path.size();
-
-    // cout << boolalpha << graph.hasCycle() << endl;
-
-    WeightedGraph *spanning = graph.spanningTree();
-
-    spanning->traverse();
+    for (int i = 0; i < unsorted.size(); i++)
+        cout << unsorted[i];
 
     return 0;
 }
