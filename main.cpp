@@ -6,16 +6,22 @@ using namespace std;
 
 void bubbleSort(vector<int> &unsorted)
 {
-    int size = unsorted.size();
+    size_t size = unsorted.size();
+    bool isSorted;
 
     for (int i = 0; i < size; i++)
-        for (int j = 0; j < size; j++)
-            if (unsorted[i] < unsorted[j])
+    {
+        for (int j = 0; j < size - 1; j++)
+            if (unsorted[i] > unsorted[j])
             {
                 int temp = unsorted[i];
                 unsorted[i] = unsorted[j];
                 unsorted[j] = temp;
+                isSorted = false;
             }
+        if (isSorted)
+            return;
+    }
 }
 
 int main()
