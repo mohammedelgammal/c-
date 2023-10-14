@@ -4,33 +4,46 @@
 
 using namespace std;
 
-void insertionSort(vector<int> &unsorted)
+void merge(vector<int> &left, vector<int> &right, vector<int> &unsorted)
 {
-    vector<int> *sorted = new vector<int>{};
+    int i = 0, j = 0, k = 0;
 
-    for (int i = 0; i < unsorted.size(); i++)
+    while (i < left.size() && j < right.size())
     {
-        vector<int>::iterator iterIndex = sorted->end();
-
-        for (int j = 0; j < sorted->size(); j++)
-        {
-            if (unsorted[i] < (*sorted)[j])
-            {
-                iterIndex = sorted->begin() + j;
-                break;
-            }
-        }
-        sorted->insert(iterIndex, unsorted[i]);
+        if (left[i] < right[j])
+            unsorted[k++] = left[i++];
+        else
+            unsorted[k++] = right[j++];
     }
-    unsorted = *sorted;
-    sorted = nullptr;
+
+    while (i < left.size())
+        unsorted[k++] = left[i++];
+
+    while (j < right.size())
+        unsorted[k++] = right[j++];
+}
+
+void mergeSort(vector<int> &unsorted)
+{
+    if (unsorted.size() < 2)
+        return;
+
+    int middleIndex = unsorted.size() / 2;
+
+    vector<int> left{unsorted.begin(), (unsorted.begin() + middleIndex)},
+        right{(unsorted.begin() + middleIndex), unsorted.end()};
+
+    mergeSort(left);
+    mergeSort(right);
+
+    merge(left, right, unsorted);
 }
 
 int main()
 {
     vector<int> unsorted{7, 3, 1, 4, 6, 2, 3};
 
-    insertionSort(unsorted);
+    mergeSort(unsorted);
 
     for (int i = 0; i < unsorted.size(); i++)
         cout << unsorted[i];
