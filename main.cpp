@@ -4,41 +4,43 @@
 
 using namespace std;
 
-void quickSort(vector<int> &unsorted)
+int maxOf(vector<int> &unsorted)
 {
-    if (unsorted.size() <= 1)
-        return;
+    int max = unsorted[0];
 
-    int pivot = unsorted.back(),
-        boundary = -1;
-        
     for (int i = 0; i < unsorted.size(); i++)
+        if (unsorted[i] > max)
+            max = unsorted[i];
+
+    return max;
+}
+
+void countSort(vector<int> &unsorted)
+{
+    vector<int> count;
+    int size = maxOf(unsorted) + 1, value = 0, i = 0, j = 0, h = 0;
+
+    count.assign(size, value);
+
+    while (i < unsorted.size())
+        count[unsorted[i++]]++;
+
+    while (j < count.size())
     {
-        if (unsorted[i] <= pivot)
-        {
-            int temp = unsorted[i];
+        int occurences = count[j],
+            num = j++, k = 0;
 
-            unsorted[i] = unsorted[++boundary];
-            unsorted[boundary] = temp;
-        }
+        if (occurences != 0)
+            while (k++ < occurences)
+                unsorted[h++] = num;
     }
-
-    vector<int> left = {unsorted.begin(), (unsorted.begin() + boundary)},
-                right = {(unsorted.begin() + boundary), unsorted.end()};
-
-    quickSort(left);
-    quickSort(right);
-
-    // merge left & right by adding right to left
-    left.insert(left.end(), right.begin(), right.end());
-    unsorted = left;
 }
 
 int main()
 {
     vector<int> unsorted{7, 3, 1, 4, 6, 2, 3};
 
-    quickSort(unsorted);
+    countSort(unsorted);
 
     for (int i = 0; i < unsorted.size(); i++)
         cout << unsorted[i];

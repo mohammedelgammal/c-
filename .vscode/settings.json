@@ -89,6 +89,7 @@
     "weightedgraph": "cpp",
     "list": "cpp",
     "set": "cpp",
-    "__tree": "cpp"
+    "__tree": "cpp",
+    "__memory": "cpp"
   }
 }
