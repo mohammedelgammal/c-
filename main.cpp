@@ -4,46 +4,47 @@
 
 using namespace std;
 
-int maxOf(vector<int> &unsorted)
+void bubbleSort(vector<int> &unsorted)
 {
-    int max = unsorted[0];
+    int size = unsorted.size();
 
-    for (int i = 0; i < unsorted.size(); i++)
-        if (unsorted[i] > max)
-            max = unsorted[i];
-
-    return max;
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
+            if (unsorted[i] < unsorted[j])
+            {
+                int temp = unsorted[i];
+                unsorted[i] = unsorted[j];
+                unsorted[j] = temp;
+            }
 }
 
-void countSort(vector<int> &unsorted)
+void bucketSort(vector<int> &unsorted)
 {
-    if (unsorted.empty())
-        return;
+    vector<vector<int>> buckets;
+    vector<int> sorted;
 
-    vector<int> count;
-    int size = maxOf(unsorted) + 1, value = 0, i = 0, j = 0, h = 0;
+    buckets.assign(3, vector<int>{});
 
-    count.assign(size, value);
-
-    while (i < unsorted.size())
-        count[unsorted[i++]]++;
-
-    while (j < count.size())
+    for (int i = 0; i < unsorted.size(); i++)
     {
-        int occurences = count[j],
-            num = j++, k = 0;
-
-        if (occurences != 0)
-            while (k++ < occurences)
-                unsorted[h++] = num;
+        int bucketIndex = unsorted[i] / 3;
+        buckets[bucketIndex].push_back(unsorted[i]);
     }
+
+    for (int j = 0; j < buckets.size(); j++)
+        bubbleSort(buckets[j]);
+
+    for (int k = 0; k < buckets.size(); k++)
+        sorted.insert(sorted.end(), buckets[k].begin(), buckets[k].end());
+
+    unsorted = sorted;
 }
 
 int main()
 {
-    vector<int> unsorted{};
+    vector<int> unsorted{7, 3, 1, 4, 6, 2, 3};
 
-    countSort(unsorted);
+    bucketSort(unsorted);
 
     for (int i = 0; i < unsorted.size(); i++)
         cout << unsorted[i];
