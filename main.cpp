@@ -10,9 +10,8 @@ void quickSort(vector<int> &unsorted)
         return;
 
     int pivot = unsorted.back(),
-        boundary = -1,
-        i = 0;
-
+        boundary = -1;
+        
     for (int i = 0; i < unsorted.size(); i++)
     {
         if (unsorted[i] <= pivot)
