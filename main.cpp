@@ -4,21 +4,41 @@
 
 using namespace std;
 
-int linearSearch(vector<int> &unsorted, int target)
+int binarySearchRecursion(vector<int> &unsorted, int target)
 {
-    for (int i = 0; i < unsorted.size(); i++)
+    if (unsorted.empty())
+        return -1;
+
+    int middleIndex = unsorted.size() / 2, targetIndex;
+    vector<int>::iterator start, end;
+
+    if (unsorted.size() < 1)
+        return -1;
+
+    if (unsorted[middleIndex] == target)
+        return middleIndex;
+
+    if (unsorted[middleIndex] > target)
     {
-        if (unsorted[i] == target)
-            return i;
+        start = unsorted.begin();
+        end = unsorted.begin() + middleIndex;
     }
-    return -1;
+    else
+    {
+        start = unsorted.begin() + middleIndex;
+        end = unsorted.end();
+    }
+
+    vector<int> sorted{start, end};
+
+    return binarySearchRecursion(sorted, target);
 }
 
 int main()
 {
-    vector<int> unsorted{7, 3, 1, 4, 6, 2, 3};
+    vector<int> unsorted{};
 
-    int result = linearSearch(unsorted, 0);
+    int result = binarySearchRecursion(unsorted, 0);
 
     cout << result << endl;
 
