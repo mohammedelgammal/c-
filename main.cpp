@@ -17,6 +17,9 @@ int maxOf(vector<int> &unsorted)
 
 void countSort(vector<int> &unsorted)
 {
+    if (unsorted.empty())
+        return;
+
     vector<int> count;
     int size = maxOf(unsorted) + 1, value = 0, i = 0, j = 0, h = 0;
 
@@ -38,7 +41,7 @@ void countSort(vector<int> &unsorted)
 
 int main()
 {
-    vector<int> unsorted{7, 3, 1, 4, 6, 2, 3};
+    vector<int> unsorted{};
 
     countSort(unsorted);
 
