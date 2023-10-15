@@ -4,41 +4,46 @@
 
 using namespace std;
 
-int binarySearchRecursion(vector<int> &unsorted, int target)
+int binarySearchIter(vector<int> &unsorted, int target)
 {
     if (unsorted.empty())
         return -1;
 
-    int middleIndex = unsorted.size() / 2, targetIndex;
-    vector<int>::iterator start, end;
+    int middleIndex = unsorted.size() / 2;
+    vector<int>::iterator leftBoundary = unsorted.begin(),
+                          rightBoundary = unsorted.end();
 
-    if (unsorted.size() < 1)
-        return -1;
-
-    if (unsorted[middleIndex] == target)
-        return middleIndex;
-
-    if (unsorted[middleIndex] > target)
+    while (!unsorted.empty())
     {
-        start = unsorted.begin();
-        end = unsorted.begin() + middleIndex;
-    }
-    else
-    {
-        start = unsorted.begin() + middleIndex;
-        end = unsorted.end();
+        if (unsorted[middleIndex] == target)
+            return middleIndex;
+
+        if (middleIndex == 0)
+            return -1;
+
+        if (unsorted[middleIndex] > target)
+        {
+            leftBoundary = unsorted.begin();
+            rightBoundary = unsorted.begin() + middleIndex;
+        }
+        else
+        {
+            leftBoundary = unsorted.begin() + middleIndex;
+            rightBoundary = unsorted.end();
+        }
+
+        unsorted.assign(leftBoundary, rightBoundary);
+        middleIndex = unsorted.size() / 2;
     }
 
-    vector<int> sorted{start, end};
-
-    return binarySearchRecursion(sorted, target);
+    return -1;
 }
 
 int main()
 {
-    vector<int> unsorted{};
+    vector<int> unsorted{1, 2, 3, 4, 5, 6, 7};
 
-    int result = binarySearchRecursion(unsorted, 0);
+    int result = binarySearchIter(unsorted, 7);
 
     cout << result << endl;
 
