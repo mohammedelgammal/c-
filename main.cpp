@@ -1,48 +1,29 @@
 // Libraries
 #include <iostream>
+#include <set>
 
 using namespace std;
 
-int exponentialSearch(vector<int> &unsorted, int target)
+int countVowels(string &input)
 {
-    int startIndex = 0,
-        endIndex = 0;
+    if (input.length() == 0)
+        return 0;
 
-    while (startIndex < unsorted.size())
-    {
-        if (endIndex > unsorted.size())
-            endIndex = unsorted.size() - 1;
+    set<char> vowels{'a', 'e', 'o', 'u'};
+    int vowelsCount = 0;
 
-        if (unsorted[endIndex] == target)
-            return endIndex;
+    for (int i = 0; i < input.length(); i++)
+        if (vowels.contains(input[i]))
+            vowelsCount++;
 
-        if (unsorted[endIndex] > target)
-        {
-            for (int i = startIndex; i <= endIndex; i++)
-                if (unsorted[i] == target)
-                    return i;
-
-            return -1;
-        }
-
-        startIndex = endIndex + 1;
-
-        if (endIndex < 2)
-            endIndex++;
-
-        endIndex *= endIndex;
-    }
-
-    return -1;
+    return vowelsCount;
 }
 
 int main()
 {
-    vector<int> unsorted{};
+    string input = "Hey";
 
-    int result = exponentialSearch(unsorted, 4);
-
-    cout << result << endl;
+    cout << countVowels(input);
 
     return 0;
 }
