@@ -3,26 +3,26 @@
 
 using namespace std;
 
-int biSearch(vector<int> &unsorted, int left, int right, int target)
-{
-    int middle = (left + right) / 2;
-
-    if (unsorted[middle] == target)
-        return middle;
-
-    if (left == right)
-        return -1;
-
-    unsorted[middle] > target
-        ? right = middle - 1
-        : left = middle + 1;
-
-    return biSearch(unsorted, left, right, target);
-}
-
 int binarySearch(vector<int> &unsorted, int target)
 {
-    return biSearch(unsorted, 0, unsorted.size() - 1, target);
+    int leftIndex = 0, rightIndex = unsorted.size() - 1, middleIndex;
+
+    while (true)
+    {
+        middleIndex = (leftIndex + rightIndex) / 2;
+
+        if (unsorted[middleIndex] == target)
+            return middleIndex;
+
+        if (leftIndex == rightIndex)
+            return -1;
+
+        unsorted[middleIndex] > target
+            ? rightIndex = middleIndex - 1
+            : leftIndex = middleIndex + 1;
+    }
+
+    return -1;
 }
 
 int main()
