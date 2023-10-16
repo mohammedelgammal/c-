@@ -1,49 +1,35 @@
 // Libraries
 #include <iostream>
-#include <stack>
 
 using namespace std;
 
-int binarySearchIter(vector<int> &unsorted, int target)
+int biSearch(vector<int> &unsorted, int left, int right, int target)
 {
-    if (unsorted.empty())
+    int middle = (left + right) / 2;
+
+    if (unsorted[middle] == target)
+        return middle;
+
+    if (left == right)
         return -1;
 
-    int middleIndex = unsorted.size() / 2;
-    vector<int>::iterator leftBoundary = unsorted.begin(),
-                          rightBoundary = unsorted.end();
+    unsorted[middle] > target
+        ? right = middle - 1
+        : left = middle + 1;
 
-    while (!unsorted.empty())
-    {
-        if (unsorted[middleIndex] == target)
-            return middleIndex;
+    return biSearch(unsorted, left, right, target);
+}
 
-        if (middleIndex == 0)
-            return -1;
-
-        if (unsorted[middleIndex] > target)
-        {
-            leftBoundary = unsorted.begin();
-            rightBoundary = unsorted.begin() + middleIndex;
-        }
-        else
-        {
-            leftBoundary = unsorted.begin() + middleIndex;
-            rightBoundary = unsorted.end();
-        }
-
-        unsorted.assign(leftBoundary, rightBoundary);
-        middleIndex = unsorted.size() / 2;
-    }
-
-    return -1;
+int binarySearch(vector<int> &unsorted, int target)
+{
+    return biSearch(unsorted, 0, unsorted.size() - 1, target);
 }
 
 int main()
 {
     vector<int> unsorted{1, 2, 3, 4, 5, 6, 7};
 
-    int result = binarySearchIter(unsorted, 7);
+    int result = binarySearch(unsorted, 9);
 
     cout << result << endl;
 
