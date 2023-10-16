@@ -1,30 +1,36 @@
 // Libraries
 #include <iostream>
-#include <set>
+#include <stack>
 
 using namespace std;
 
-int countVowels(string &input)
+void reverse(string &input)
 {
     if (input.length() == 0)
-        return 0;
+        return;
 
-    set<char> vowels{'a', 'e', 'o', 'u', 'i',
-                     'A', 'E', 'O', 'U', 'I'};
-    int vowelsCount = 0;
+    stack<char> stack;
+    string reversed;
 
     for (int i = 0; i < input.length(); i++)
-        if (vowels.contains(input[i]))
-            vowelsCount++;
+        stack.push(input[i]);
 
-    return vowelsCount;
+    for (int i = 0; i < input.length(); i++)
+    {
+        reversed += stack.top();
+        stack.pop();
+    }
+
+    input = reversed;
 }
 
 int main()
 {
     string input = "Hey";
 
-    cout << countVowels(input);
+    reverse(input);
+
+    cout << input;
 
     return 0;
 }
