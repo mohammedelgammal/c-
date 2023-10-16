@@ -3,30 +3,34 @@
 
 using namespace std;
 
-int jumpSearch(vector<int> &unsorted, int target)
+int exponentialSearch(vector<int> &unsorted, int target)
 {
-    int blockSize = sqrt(unsorted.size()),
-        firstIndex = 0,
-        lastIndex = blockSize - 1;
+    int startIndex = 0,
+        endIndex = 0;
 
-    while (firstIndex < unsorted.size())
+    while (startIndex < unsorted.size())
     {
-        if (lastIndex >= unsorted.size())
-            lastIndex = unsorted.size() - 1;
+        if (endIndex > unsorted.size())
+            endIndex = unsorted.size() - 1;
 
-        if (unsorted[lastIndex] == target)
-            return lastIndex;
+        if (unsorted[endIndex] == target)
+            return endIndex;
 
-        if (unsorted[lastIndex] > target)
+        if (unsorted[endIndex] > target)
         {
-            for (int i = firstIndex; i < blockSize; i++)
+            for (int i = startIndex; i <= endIndex; i++)
                 if (unsorted[i] == target)
                     return i;
+
             return -1;
         }
 
-        firstIndex = lastIndex + 1;
-        lastIndex = lastIndex + blockSize;
+        startIndex = endIndex + 1;
+
+        if (endIndex < 2)
+            endIndex++;
+
+        endIndex *= endIndex;
     }
 
     return -1;
@@ -34,9 +38,9 @@ int jumpSearch(vector<int> &unsorted, int target)
 
 int main()
 {
-    vector<int> unsorted{1, 2, 3, 4, 5, 6, 7};
+    vector<int> unsorted{};
 
-    int result = jumpSearch(unsorted, 7);
+    int result = exponentialSearch(unsorted, 4);
 
     cout << result << endl;
 
