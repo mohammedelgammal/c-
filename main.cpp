@@ -3,46 +3,40 @@
 
 using namespace std;
 
-int terSearch(vector<int> &unsorted, int left, int right, int target)
+int jumpSearch(vector<int> &unsorted, int target)
 {
-    int partition = right - left,
-        midOne = left + partition,
-        midTwo = right - partition;
+    int blockSize = sqrt(unsorted.size()),
+        firstIndex = 0,
+        lastIndex = blockSize - 1;
 
-    if (unsorted[midOne] == target)
-        return midOne;
-
-    if (unsorted[midTwo] == target)
-        return midTwo;
-
-    if (left == right)
-        return -1;
-
-    if (target < unsorted[midOne])
-        right = midOne - 1;
-
-    if (target > unsorted[midTwo])
-        left = midTwo + 1;
-
-    if (target > unsorted[midOne] && target < unsorted[midTwo])
+    while (firstIndex < unsorted.size())
     {
-        right = midTwo - 1;
-        left = midOne + 1;
+        if (lastIndex >= unsorted.size())
+            lastIndex = unsorted.size() - 1;
+
+        if (unsorted[lastIndex] == target)
+            return lastIndex;
+
+        if (unsorted[lastIndex] > target)
+        {
+            for (int i = firstIndex; i < blockSize; i++)
+                if (unsorted[i] == target)
+                    return i;
+            return -1;
+        }
+
+        firstIndex = lastIndex + 1;
+        lastIndex = lastIndex + blockSize;
     }
 
-    return terSearch(unsorted, left, right, target);
-}
-
-int ternarySearch(vector<int> &unsorted, int target)
-{
-    return terSearch(unsorted, 0, unsorted.size() - 1, target);
+    return -1;
 }
 
 int main()
 {
     vector<int> unsorted{1, 2, 3, 4, 5, 6, 7};
 
-    int result = ternarySearch(unsorted, 9);
+    int result = jumpSearch(unsorted, 7);
 
     cout << result << endl;
 
