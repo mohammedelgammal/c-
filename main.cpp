@@ -6,20 +6,39 @@ using namespace std;
 
 void reverse(string &input)
 {
-    if (input.length() == 0)
+    if (input.empty())
         return;
 
-    string reversed;
+    stack<string> stack;
+    string word, reversed;
 
-    for (int i = input.length() - 1; i >= 0; i--)
-        reversed += input[i];
+    for (int i = 0; i < input.size(); i++)
+    {
+        word += input[i];
+        if (input[i] == ' ')
+        {
+            word.pop_back();
+            stack.push(word);
+            stack.push(" ");
+            word.clear();
+        }
+    }
+    stack.push(word);
+
+    int size = stack.size();
+
+    for (int i = 0; i < size; i++)
+    {
+        reversed += stack.top();
+        stack.pop();
+    }
 
     input = reversed;
 }
 
 int main()
 {
-    string input = "Hey";
+    string input = "";
 
     reverse(input);
 
