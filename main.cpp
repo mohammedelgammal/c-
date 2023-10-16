@@ -3,33 +3,46 @@
 
 using namespace std;
 
-int binarySearch(vector<int> &unsorted, int target)
+int terSearch(vector<int> &unsorted, int left, int right, int target)
 {
-    int leftIndex = 0, rightIndex = unsorted.size() - 1, middleIndex;
+    int partition = right - left,
+        midOne = left + partition,
+        midTwo = right - partition;
 
-    while (true)
+    if (unsorted[midOne] == target)
+        return midOne;
+
+    if (unsorted[midTwo] == target)
+        return midTwo;
+
+    if (left == right)
+        return -1;
+
+    if (target < unsorted[midOne])
+        right = midOne - 1;
+
+    if (target > unsorted[midTwo])
+        left = midTwo + 1;
+
+    if (target > unsorted[midOne] && target < unsorted[midTwo])
     {
-        middleIndex = (leftIndex + rightIndex) / 2;
-
-        if (unsorted[middleIndex] == target)
-            return middleIndex;
-
-        if (leftIndex == rightIndex)
-            return -1;
-
-        unsorted[middleIndex] > target
-            ? rightIndex = middleIndex - 1
-            : leftIndex = middleIndex + 1;
+        right = midTwo - 1;
+        left = midOne + 1;
     }
 
-    return -1;
+    return terSearch(unsorted, left, right, target);
+}
+
+int ternarySearch(vector<int> &unsorted, int target)
+{
+    return terSearch(unsorted, 0, unsorted.size() - 1, target);
 }
 
 int main()
 {
     vector<int> unsorted{1, 2, 3, 4, 5, 6, 7};
 
-    int result = binarySearch(unsorted, 9);
+    int result = ternarySearch(unsorted, 9);
 
     cout << result << endl;
 
