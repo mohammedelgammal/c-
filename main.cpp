@@ -4,33 +4,29 @@
 
 using namespace std;
 
-bool areAnagram(string &first, string &second)
+bool isPalindrome(string &input)
 {
-    if (first.length() != second.length())
+    if (input.empty())
         return false;
 
-    int firstSum = 0,
-        secondSum = 0,
-        i = 0,
-        j = 0;
+    int i = 0, j = input.size() - 1;
 
-    while (i < first.length())
+    while (i < input.size())
     {
-        firstSum += first[i++];
-        secondSum += second[j++];
+        if (input[i] != input[j])
+            return false;
+        i++;
+        j--;
     }
-
-    if (firstSum != secondSum)
-        return false;
 
     return true;
 }
 
 int main()
 {
-    string input = "ABCD", anagram = "ADCB";
+    string input = "";
 
-    cout << boolalpha << areAnagram(input, anagram);
+    cout << boolalpha << isPalindrome(input);
 
     return 0;
 }
