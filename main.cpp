@@ -1,23 +1,31 @@
 // Libraries
 #include <iostream>
-#include <stack>
+#include <set>
 
 using namespace std;
 
-bool areRotations(string &first, string &second)
+void removeDuplicates(string &input)
 {
-    if (!first.length() || !second.length())
-        return false;
+    set<char> set;
+    string nonDuplicates;
 
-    return (first.length() == second.length()) &&
-           (first.append(first).find(second) != string::npos);
+    for (char character : input)
+        if (!set.contains(character))
+            set.insert(character);
+
+    for (char character : set)
+        nonDuplicates += character;
+
+    input = nonDuplicates;
 }
 
 int main()
 {
-    string input = "ABCD", rotation = "BCADa";
+    string input = "Hello";
 
-    cout << boolalpha << areRotations(input, rotation);
+    removeDuplicates(input);
+
+    cout << input;
 
     return 0;
 }
