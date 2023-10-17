@@ -1,40 +1,37 @@
 // Libraries
 #include <iostream>
+#include <set>
 
 using namespace std;
 
-vector<string> split(string &word, char regex)
+bool areAnagram(string &first, string &second)
 {
-    vector<string> wordArray;
-    string nextWord;
-    size_t SPACE_ASCI = regex;
-    int startIndex = 0, endIndex = 0;
+    set<char> set;
+    bool areAnagram = true;
+    int i = 0, j = 0;
 
-    while (endIndex < word.length())
+    if (first.length() != second.length())
+        return false;
+
+    while (i < first.length())
+        if (!set.contains(first[i]))
+            set.insert(first[i++]);
+
+    while (j < first.length())
     {
-        if (word[endIndex] == SPACE_ASCI | endIndex == word.length() - 1)
-        {
-            while (startIndex < endIndex)
-                if (word[startIndex] != SPACE_ASCI)
-                    nextWord += word[startIndex++];
-
-            if (nextWord.length())
-            {
-                wordArray.push_back(nextWord);
-                nextWord.clear();
-            }
-
-            startIndex = endIndex + 1;
-        }
-        endIndex++;
+        if (!set.contains(second[j]))
+            return false;
+        j++;
     }
 
-    return wordArray;
+    return true;
 }
 
 int main()
 {
-    string input = "hello,there,Good,mornning!";
+    string input = "", anagram = "";
+
+    cout << boolalpha << areAnagram(input, anagram);
 
     return 0;
 }
