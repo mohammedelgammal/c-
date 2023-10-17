@@ -11,10 +11,10 @@ void removeDuplicates(string &input)
 
     for (char character : input)
         if (!set.contains(character))
+        {
             set.insert(character);
-
-    for (char character : set)
-        nonDuplicates += character;
+            nonDuplicates += character;
+        }
 
     input = nonDuplicates;
 }
