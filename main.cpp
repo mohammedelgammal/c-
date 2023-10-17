@@ -3,30 +3,38 @@
 
 using namespace std;
 
-void capitalize(string &input)
+vector<string> split(string &word, char regex)
 {
+    vector<string> wordArray;
+    string nextWord;
+    size_t SPACE_ASCI = regex;
     int startIndex = 0, endIndex = 0;
-    int CASE_DIFFERENCE = 32;
 
-    while (endIndex < input.length())
+    while (endIndex < word.length())
     {
-        if (input[endIndex] == ' ' || endIndex >= input.length() - 1)
+        if (word[endIndex] == SPACE_ASCI | endIndex == word.length() - 1)
         {
-            if (input[startIndex] != ' ' && input[startIndex] >= 97)
-                input[startIndex] -= CASE_DIFFERENCE;
+            while (startIndex < endIndex)
+                if (word[startIndex] != SPACE_ASCI)
+                    nextWord += word[startIndex++];
+
+            if (nextWord.length())
+            {
+                wordArray.push_back(nextWord);
+                nextWord.clear();
+            }
+
             startIndex = endIndex + 1;
         }
         endIndex++;
     }
+
+    return wordArray;
 }
 
 int main()
 {
-    string input = "  hello there,   Good mornning!  ";
-
-    capitalize(input);
-
-    cout << input;
+    string input = "hello,there,Good,mornning!";
 
     return 0;
 }
