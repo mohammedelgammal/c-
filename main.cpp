@@ -6,30 +6,29 @@ using namespace std;
 
 bool areAnagram(string &first, string &second)
 {
-    set<char> set;
-    bool areAnagram = true;
-    int i = 0, j = 0;
-
     if (first.length() != second.length())
         return false;
 
-    while (i < first.length())
-        if (!set.contains(first[i]))
-            set.insert(first[i++]);
+    int firstSum = 0,
+        secondSum = 0,
+        i = 0,
+        j = 0;
 
-    while (j < first.length())
+    while (i < first.length())
     {
-        if (!set.contains(second[j]))
-            return false;
-        j++;
+        firstSum += first[i++];
+        secondSum += second[j++];
     }
+
+    if (firstSum != secondSum)
+        return false;
 
     return true;
 }
 
 int main()
 {
-    string input = "", anagram = "";
+    string input = "ABCD", anagram = "ADCB";
 
     cout << boolalpha << areAnagram(input, anagram);
 
