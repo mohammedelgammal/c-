@@ -6,25 +6,17 @@ using namespace std;
 
 bool isPalindrome(string &input)
 {
-    if (input.empty())
-        return false;
+    string reversed;
 
-    int i = 0, j = input.size() - 1;
+    for (int i = input.length() - 1; i >= 0; i--)
+        reversed.push_back(input[i]);
 
-    while (i < input.size())
-    {
-        if (input[i] != input[j])
-            return false;
-        i++;
-        j--;
-    }
-
-    return true;
+    return reversed == input;
 }
 
 int main()
 {
-    string input = "";
+    string input = "racecare";
 
     cout << boolalpha << isPalindrome(input);
 
