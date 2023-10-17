@@ -12,37 +12,35 @@ bool areRotations(string &first, string &second)
     if (first.length() != second.length())
         return false;
 
-    int pivot = first.front(), difference = -1;
+    int i = 0, j = 0;
+    bool areRotations = false;
 
-    for (int i = 0; i < second.length(); i++)
+    while (i < first.length())
     {
-        if (second[i] == pivot)
-            difference = i;
+        if (j >= first.length())
+            j = 0;
+
+        if (first[i] == second[j])
+        {
+            areRotations = true;
+            i++;
+        }
+        else
+        {
+            areRotations = false;
+
+            if (i != 0)
+                return false;
+        }
+        j++;
     }
 
-    if (difference < 0)
-        return false;
-
-    int firstIndex = 0, secondIndex = difference;
-
-    while (firstIndex < first.length())
-    {
-        if (secondIndex >= second.length())
-            secondIndex = 0;
-
-        if (first[firstIndex] != second[secondIndex])
-            return false;
-
-        firstIndex++;
-        secondIndex++;
-    }
-
-    return true;
+    return areRotations;
 }
 
 int main()
 {
-    string input = "ABCD", rotation = "BCAD";
+    string input = "ABCD", rotation = "DBAC";
 
     cout << boolalpha << areRotations(input, rotation);
 
