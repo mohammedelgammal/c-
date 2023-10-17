@@ -4,45 +4,47 @@
 
 using namespace std;
 
-void reverse(string &input)
+bool areRotations(string &first, string &second)
 {
-    if (input.empty())
-        return;
+    if (first == second)
+        return true;
 
-    stack<string> stack;
-    string word, reversed;
+    if (first.length() != second.length())
+        return false;
 
-    for (int i = 0; i < input.size(); i++)
+    int pivot = first.front(), difference = -1;
+
+    for (int i = 0; i < second.length(); i++)
     {
-        word += input[i];
-        if (input[i] == ' ')
-        {
-            word.pop_back();
-            stack.push(word);
-            stack.push(" ");
-            word.clear();
-        }
-    }
-    stack.push(word);
-
-    int size = stack.size();
-
-    for (int i = 0; i < size; i++)
-    {
-        reversed += stack.top();
-        stack.pop();
+        if (second[i] == pivot)
+            difference = i;
     }
 
-    input = reversed;
+    if (difference < 0)
+        return false;
+
+    int firstIndex = 0, secondIndex = difference;
+
+    while (firstIndex < first.length())
+    {
+        if (secondIndex >= second.length())
+            secondIndex = 0;
+
+        if (first[firstIndex] != second[secondIndex])
+            return false;
+
+        firstIndex++;
+        secondIndex++;
+    }
+
+    return true;
 }
 
 int main()
 {
-    string input = "";
+    string input = "ABCD", rotation = "BCAD";
 
-    reverse(input);
-
-    cout << input;
+    cout << boolalpha << areRotations(input, rotation);
 
     return 0;
 }
