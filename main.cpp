@@ -1,31 +1,36 @@
 // Libraries
 #include <iostream>
-#include <set>
 
 using namespace std;
 
-void removeDuplicates(string &input)
+char findMostRepeatedChar(string &input)
 {
-    set<char> set;
-    string nonDuplicates;
+    unordered_map<char, int> map;
+    int max = 0;
+    char mostRepeatedChar;
 
     for (char character : input)
-        if (!set.contains(character))
+    {
+        if (map.contains(character))
+            map.find(character)->second++;
+        map.insert({character, 0});
+    }
+
+    for (pair<char, int> child : map)
+        if (child.second > max)
         {
-            set.insert(character);
-            nonDuplicates += character;
+            max = child.second;
+            mostRepeatedChar = child.first;
         }
 
-    input = nonDuplicates;
+    return mostRepeatedChar;
 }
 
 int main()
 {
     string input = "Hello";
 
-    removeDuplicates(input);
-
-    cout << input;
+    cout << findMostRepeatedChar(input);
 
     return 0;
 }
