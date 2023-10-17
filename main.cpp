@@ -5,33 +5,26 @@ using namespace std;
 
 char findMostRepeatedChar(string &input)
 {
-    unordered_map<char, int> map;
+    vector<int> asciArray(256);
     int maxRepitions = 0;
-    char mostRepeatedChar;
+    char maxCharacter;
 
     for (char character : input)
-    {
-        if (map.contains(character))
+        asciArray[character]++;
+
+    for (int i = 0; i < asciArray.size(); i++)
+        if (asciArray[i] > maxRepitions)
         {
-            int &repitions = map.find(character)->second;
-
-            repitions++;
-
-            if (repitions > maxRepitions)
-            {
-                maxRepitions = repitions;
-                mostRepeatedChar = character;
-            }
+            maxRepitions = asciArray[i];
+            maxCharacter = i;
         }
-        map.insert({character, 0});
-    }
 
-    return mostRepeatedChar;
+    return maxCharacter;
 }
 
 int main()
 {
-    string input = "Hello";
+    string input = "hello";
 
     cout << findMostRepeatedChar(input);
 
