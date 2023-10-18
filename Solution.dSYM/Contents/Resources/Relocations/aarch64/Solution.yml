@@ -1,6 +1,6 @@
 ---
 triple:          'arm64-apple-darwin'
-binary-path:     '/Users/mohammedelgammal/dev/c-/main'
+binary-path:     '/Users/mohammedelgammal/dev/c-/Solution'
 relocations:
   - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: __ZN8Solution5mergeERNSt3__16vectorIiNS0_9allocatorIiEEEEiS5_i, symObjAddr: 0x0, symBinAddr: 0x100001300, symSize: 0x148 }
   - { offsetInCU: 0x3C63, offset: 0x3C63, size: 0x8, addend: 0x0, symName: __ZN8Solution5mergeERNSt3__16vectorIiNS0_9allocatorIiEEEEiS5_i, symObjAddr: 0x0, symBinAddr: 0x100001300, symSize: 0x148 }
