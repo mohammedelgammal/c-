@@ -1,18 +1,33 @@
 #include <iostream>
+#include <set>
 
 #include "Solution"
 
 using namespace std;
 
-void Solution::merge(vector<int> &first, int m, vector<int> &second, int n)
+int Solution::majorityElement(vector<int> &nums)
 {
-    int i = m - 1, j = n - 1, k = m + n - 1;
+    unordered_map<int, int> map;
+    int major, max = 0;
 
-    while (j >= 0)
+    for (int i = 0; i < nums.size(); i++)
     {
-        if (i >= 0 && first[i] > second[j])
-            first[k--] = first[i--];
+        if (map.contains(nums[i]))
+            map.find(nums[i])->second++;
         else
-            first[k--] = second[j--];
+            map.insert({nums[i], 1});
     }
+
+    for (int j = 0; j < nums.size(); j++)
+    {
+        unordered_map<int, int>::iterator iter = map.find(nums[j]);
+
+        if (map.find(nums[j])->second > max)
+        {
+            max = iter->second;
+            major = iter->first;
+        }
+    }
+
+    return major;
 }
