@@ -33,7 +33,10 @@ string Solution::longestCommonPrefix(vector<string> &strs)
         }
     }
 
-    cout << "Prefix: " << oldMin << endl;
+    string longestPrefix;
 
-    return pivot;
+    for (int l = 0; l < oldMin; l++)
+        longestPrefix += pivot[l];
+
+    return longestPrefix;
 }
