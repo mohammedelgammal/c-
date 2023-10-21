@@ -9,7 +9,7 @@ int main()
 {
     Solution solution;
 
-    vector<string> words = {"feflower", "faow", "flight"};
+    vector<string> words = {"cir", "car"};
 
     cout << solution.longestCommonPrefix(words);
 
