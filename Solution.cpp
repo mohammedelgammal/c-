@@ -5,18 +5,32 @@
 
 using namespace std;
 
-int Solution::maxProfit(vector<int> &prices)
+int Solution::romanToInt(string s)
 {
-    int profit = 0, lowestPrice = 0;
+    int totalSum = 0;
 
-    for (int currentPrice = 1; currentPrice < prices.size(); currentPrice++)
+    unordered_map<char, int> roman;
+
+    roman.insert({'I', 1});
+    roman.insert({'V', 5});
+    roman.insert({'X', 10});
+    roman.insert({'L', 50});
+    roman.insert({'C', 100});
+    roman.insert({'D', 500});
+    roman.insert({'M', 1000});
+
+    for (int i = 0; i < s.size(); i++)
     {
-        if (prices[currentPrice] > prices[lowestPrice])
-            profit = max(prices[currentPrice] - prices[lowestPrice],
-                         profit);
+        if (roman[s[i]] < roman[s[i + 1]])
+        {
+            totalSum += (roman[s[i + 1]] - roman[s[i]]);
+            i++;
+        }
         else
-            lowestPrice = currentPrice;
+        {
+            totalSum += roman[s[i]];
+        }
     }
 
-    return profit;
+    return totalSum;
 }

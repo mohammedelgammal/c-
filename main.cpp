@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> prices = {7, 1, 5, 3, 6, 4};
+    string roman = "MCMXCIV";
 
-    cout << solution.maxProfit(prices);
+    cout << solution.romanToInt(roman);
 
     return 0;
 }
