@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    string roman = "MCMXCIV";
+    vector<string> words = {"feflower", "faow", "flight"};
 
-    cout << solution.romanToInt(roman);
+    cout << solution.longestCommonPrefix(words);
 
     return 0;
 }

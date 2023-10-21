@@ -5,32 +5,35 @@
 
 using namespace std;
 
-int Solution::romanToInt(string s)
+string Solution::longestCommonPrefix(vector<string> &strs)
 {
-    int totalSum = 0;
+    int minMatches = 0, SPACE_CHAR = 32;
+    string pivot = strs.front(),
+           whole;
 
-    unordered_map<char, int> roman;
+    for (int i = 1; i < strs.size(); i++)
+        whole += strs[i] + (i == strs.size() - 1 ? "" : " ");
 
-    roman.insert({'I', 1});
-    roman.insert({'V', 5});
-    roman.insert({'X', 10});
-    roman.insert({'L', 50});
-    roman.insert({'C', 100});
-    roman.insert({'D', 500});
-    roman.insert({'M', 1000});
+    int k = 0, oldMin = INT_MAX, currentMin = 0;
 
-    for (int i = 0; i < s.size(); i++)
+    for (int j = 0; j < whole.size(); j++)
     {
-        if (roman[s[i]] < roman[s[i + 1]])
+        if (whole[j] != SPACE_CHAR)
         {
-            totalSum += (roman[s[i + 1]] - roman[s[i]]);
-            i++;
+            if (whole[j] == pivot[k++])
+            {
+                currentMin++;
+            }
         }
         else
         {
-            totalSum += roman[s[i]];
+            k = 0;
+            oldMin = min(oldMin, currentMin);
+            currentMin = 0;
         }
     }
 
-    return totalSum;
+    cout << "Prefix: " << oldMin << endl;
+
+    return pivot;
 }
