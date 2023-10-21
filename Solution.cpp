@@ -5,19 +5,18 @@
 
 using namespace std;
 
-int Solution ::lengthOfLastWord(string s)
+int Solution::maxProfit(vector<int> &prices)
 {
-    int j = s.size() - 1;
+    int profit = 0, lowestPrice = 0;
 
-    for (int i = s.size() - 1; i >= 0; i--)
+    for (int currentPrice = 1; currentPrice < prices.size(); currentPrice++)
     {
-        if (s[i] == 32)
-        {
-            if (i != j)
-                return j - i;
-            j--;
-        }
+        if (prices[currentPrice] > prices[lowestPrice])
+            profit = max(prices[currentPrice] - prices[lowestPrice],
+                         profit);
+        else
+            lowestPrice = currentPrice;
     }
 
-    return j + 1;
+    return profit;
 }
