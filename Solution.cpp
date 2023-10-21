@@ -5,7 +5,19 @@
 
 using namespace std;
 
-int Solution::majorityElement(vector<int> &nums)
+int Solution ::lengthOfLastWord(string s)
 {
-    return 0;
+    int j = s.size() - 1;
+
+    for (int i = s.size() - 1; i >= 0; i--)
+    {
+        if (s[i] == 32)
+        {
+            if (i != j)
+                return j - i;
+            j--;
+        }
+    }
+
+    return j + 1;
 }
