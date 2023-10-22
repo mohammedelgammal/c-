@@ -9,7 +9,7 @@ int main()
 {
     Solution solution;
 
-    string haystack = "saebsad", needle = "sad";
+    string haystack = "leetcode", needle = "leeto";
 
     cout << solution.strStr(haystack, needle);
 

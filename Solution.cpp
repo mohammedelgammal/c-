@@ -7,16 +7,14 @@ using namespace std;
 
 int Solution::strStr(string haystack, string needle)
 {
-    int partitionSize = needle.size(),
-        range = haystack.size() - needle.size();
+    int partitionSize = needle.size();
 
-    for (int i = 0; i <= range; i++)
+    for (int i = 0; i <= haystack.size() - partitionSize; i++)
     {
-        string partition{haystack.begin() + i,
-                         haystack.begin() + i + partitionSize};
-        if (partition == needle)
+        string subStr{haystack.begin() + i,
+                      haystack.begin() + i + partitionSize};
+        if (subStr == needle)
             return i;
     }
-
     return -1;
 }
