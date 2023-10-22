@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    string haystack = "leetcode", needle = "leeto";
+    string str = "r ac e  car";
 
-    cout << solution.strStr(haystack, needle);
+    cout << boolalpha << solution.isPalindrome(str);
 
     return 0;
 }

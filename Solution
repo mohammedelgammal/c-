@@ -8,7 +8,7 @@ using namespace std;
 class Solution
 {
 public:
-    int strStr(string haystack, string needle);
+    bool isPalindrome(string s);
 };
 
 #endif // SOLUTION

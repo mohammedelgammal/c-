@@ -5,16 +5,25 @@
 
 using namespace std;
 
-int Solution::strStr(string haystack, string needle)
+bool Solution::isPalindrome(string s)
 {
-    int partitionSize = needle.size();
+    int start = 0, end = s.size() - 1;
 
-    for (int i = 0; i <= haystack.size() - partitionSize; i++)
+    while (start < end)
     {
-        string subStr{haystack.begin() + i,
-                      haystack.begin() + i + partitionSize};
-        if (subStr == needle)
-            return i;
+        if (!isalnum(s[start]))
+        {
+            start++;
+            continue;
+        }
+        if (!isalnum(s[end]))
+        {
+            end--;
+            continue;
+        }
+        if (tolower(s[start++]) != tolower(s[end--]))
+            return false;
     }
-    return -1;
+
+    return true;
 }
