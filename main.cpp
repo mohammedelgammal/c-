@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    string ransomNote = "aa", magazine = "ab";
+    string str1 = "badc", str2 = "baba";
 
-    cout << boolalpha << solution.canConstruct(ransomNote, magazine);
+    cout << boolalpha << solution.isIsomorphic(str1, str2);
 
     return 0;
 }

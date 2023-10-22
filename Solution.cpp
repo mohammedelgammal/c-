@@ -10,26 +10,29 @@ int getCharIndex(const char character)
     return character - 97;
 }
 
-bool Solution::canConstruct(string ransomNote, string magazine)
+bool Solution::isIsomorphic(string s, string t)
 {
-    vector<int> ascii;
+    unordered_map<char, char> map;
+    set<int> set;
 
-    ascii.assign(26, 0);
-
-    if (ransomNote.size() < magazine.size())
+    if (s.size() != t.size())
         return false;
 
-    for (int i = 0; i < magazine.size(); i++)
-        ascii[getCharIndex(magazine[i])]++;
-
-    for (int j = 0; j < ransomNote.size(); j++)
+    for (int i = 0; i < s.size(); i++)
     {
-        int &repititions = ascii[getCharIndex(ransomNote[j])];
-
-        if (repititions == 0)
-            return false;
+        if (map.contains(s[i]))
+        {
+            if (map.find(s[i])->second != t[i])
+                return false;
+        }
         else
-            repititions--;
+        {
+            if (set.contains(t[i]))
+                return false;
+
+            set.insert(t[i]);
+            map.insert({s[i], t[i]});
+        }
     }
 
     return true;
