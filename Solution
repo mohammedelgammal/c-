@@ -8,7 +8,7 @@ using namespace std;
 class Solution
 {
 public:
-    string longestCommonPrefix(vector<string> &strs);
+    int strStr(string haystack, string needle);
 };
 
 #endif // SOLUTION

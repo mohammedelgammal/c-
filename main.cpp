@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    vector<string> words = {"flower", "flow", "flight"};
+    string haystack = "saebsad", needle = "sad";
 
-    cout << solution.longestCommonPrefix(words);
+    cout << solution.strStr(haystack, needle);
 
     return 0;
 }

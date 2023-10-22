@@ -5,25 +5,18 @@
 
 using namespace std;
 
-string Solution::longestCommonPrefix(vector<string> &strs)
+int Solution::strStr(string haystack, string needle)
 {
-    string prefix;
+    int partitionSize = needle.size(),
+        range = haystack.size() - needle.size();
 
-    sort(strs.begin(), strs.end());
-
-    string first = strs[0],
-           last = strs[strs.size() - 1];
-    int i = 0,
-        j = 0,
-        size = min(first.size(), last.size());
-
-    while (i < size)
+    for (int i = 0; i <= range; i++)
     {
-        if (first[i] == last[j++])
-            prefix += first[i++];
-        else
-            return prefix;
+        string partition{haystack.begin() + i,
+                         haystack.begin() + i + partitionSize};
+        if (partition == needle)
+            return i;
     }
 
-    return prefix;
+    return -1;
 }
