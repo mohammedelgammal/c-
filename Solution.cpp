@@ -5,13 +5,32 @@
 
 using namespace std;
 
-bool Solution::isSubsequence(string s, string t)
+int getCharIndex(const char character)
 {
-    int j = 0;
+    return character - 97;
+}
 
-    for (int i = 0; i < t.size(); i++)
-        if (t[i] == s[j])
-            j++;
+bool Solution::canConstruct(string ransomNote, string magazine)
+{
+    vector<int> ascii;
 
-    return j == s.size();
+    ascii.assign(26, 0);
+
+    if (ransomNote.size() < magazine.size())
+        return false;
+
+    for (int i = 0; i < magazine.size(); i++)
+        ascii[getCharIndex(magazine[i])]++;
+
+    for (int j = 0; j < ransomNote.size(); j++)
+    {
+        int &repititions = ascii[getCharIndex(ransomNote[j])];
+
+        if (repititions == 0)
+            return false;
+        else
+            repititions--;
+    }
+
+    return true;
 }

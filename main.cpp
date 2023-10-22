@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    string s = "abc", t = "atcgbdecer";
+    string ransomNote = "aa", magazine = "ab";
 
-    cout << boolalpha << solution.isSubsequence(s, t);
+    cout << boolalpha << solution.canConstruct(ransomNote, magazine);
 
     return 0;
 }
