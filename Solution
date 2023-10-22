@@ -8,7 +8,7 @@ using namespace std;
 class Solution
 {
 public:
-    bool isPalindrome(string s);
+    bool isSubsequence(string s, string t);
 };
 
 #endif // SOLUTION

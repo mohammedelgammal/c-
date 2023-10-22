@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    string str = "r ac e  car";
+    string s = "abc", t = "atcgbdecer";
 
-    cout << boolalpha << solution.isPalindrome(str);
+    cout << boolalpha << solution.isSubsequence(s, t);
 
     return 0;
 }
