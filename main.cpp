@@ -10,7 +10,7 @@ int main()
 {
     Solution solution;
 
-    cout << boolalpha << solution.isAnagram("silent", "listen");
+    cout << boolalpha << solution.isAnagram("silent", "liaten");
 
     return 0;
 }
