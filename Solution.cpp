@@ -5,27 +5,28 @@
 
 using namespace std;
 
-bool Solution::wordPattern(string pattern, string s)
+bool Solution::isAnagram(string s, string t)
 {
     unordered_map<char, int> map1;
-    unordered_map<string, int> map2;
 
-    istringstream iss(s);
-    int i = 0;
+    if (s.length() != t.length())
+        return false;
 
-    for (string token; iss >> token; i++)
+    for (int i = 0; i < s.size(); i++)
     {
-        if (!map1.contains(pattern[i]))
-            map1.insert({pattern[i], i});
-        if (!map2.contains(token))
-            map2.insert({token, i});
-
-        if (i == pattern.size() || map1[pattern[i]] != map2[token])
-            return false;
+        if (map1.contains(s[i]))
+            map1[s[i]]++;
+        else
+            map1.insert({s[i], 1});
     }
 
-    if (i <= pattern.size() - 1)
-        return false;
+    for (int j = 0; j < t.size(); j++)
+    {
+        if (!map1.contains(t[j]) || map1[t[j]] <= 0)
+            return false;
+        else
+            map1[t[j]]--;
+    }
 
     return true;
 }

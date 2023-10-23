@@ -10,7 +10,7 @@ int main()
 {
     Solution solution;
 
-    cout << boolalpha << solution.wordPattern(string pattern, string s)("aa", "unit unit unit");
+    cout << boolalpha << solution.isAnagram("silent", "listen");
 
     return 0;
 }

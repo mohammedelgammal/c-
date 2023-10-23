@@ -8,6 +8,6 @@ using namespace std;
 class Solution
 {
 public:
-    bool wordPattern(string pattern, string s);
+    bool isAnagram(string s, string t);
 };
 #endif // SOLUTION
