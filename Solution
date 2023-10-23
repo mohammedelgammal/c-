@@ -8,6 +8,6 @@ using namespace std;
 class Solution
 {
 public:
-    bool isIsomorphic(string s, string t);
+    bool wordPattern(string pattern, string s);
 };
 #endif // SOLUTION

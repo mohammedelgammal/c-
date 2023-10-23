@@ -5,18 +5,27 @@
 
 using namespace std;
 
-bool Solution::isIsomorphic(string s, string t)
+bool Solution::wordPattern(string pattern, string s)
 {
-    if (s.size() != t.size())
+    unordered_map<char, int> map1;
+    unordered_map<string, int> map2;
+
+    istringstream iss(s);
+    int i = 0;
+
+    for (string token; iss >> token; i++)
+    {
+        if (!map1.contains(pattern[i]))
+            map1.insert({pattern[i], i});
+        if (!map2.contains(token))
+            map2.insert({token, i});
+
+        if (i == pattern.size() || map1[pattern[i]] != map2[token])
+            return false;
+    }
+
+    if (i <= pattern.size() - 1)
         return false;
 
-    int m1[256] = {0}, m2[256] = {0}, n = s.size();
-    for (int i = 0; i < n; ++i)
-    {
-        if (m1[s[i]] != m2[t[i]])
-            return false;
-        m1[s[i]] = i + 1;
-        m2[t[i]] = i + 1;
-    }
     return true;
 }

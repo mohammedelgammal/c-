@@ -1,5 +1,6 @@
 // Libraries
 #include <iostream>
+#include <sstream>
 
 #include "Solution"
 
@@ -9,9 +10,7 @@ int main()
 {
     Solution solution;
 
-    string str1 = "badc", str2 = "baba";
-
-    cout << boolalpha << solution.isIsomorphic(str1, str2);
+    cout << boolalpha << solution.wordPattern(string pattern, string s)("aa", "unit unit unit");
 
     return 0;
 }
