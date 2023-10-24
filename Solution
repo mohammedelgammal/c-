@@ -8,6 +8,6 @@ using namespace std;
 class Solution
 {
 public:
-    bool isAnagram(string s, string t);
+    vector<int> twoSum(vector<int> &nums, int target);
 };
 #endif // SOLUTION

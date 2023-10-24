@@ -1,28 +1,23 @@
 #include <iostream>
-#include <set>
 
 #include "Solution"
 
 using namespace std;
 
-bool Solution::isAnagram(string s, string t)
+vector<int> Solution::twoSum(vector<int> &nums, int target)
 {
-    if (s.size() != t.size())
-        return false;
+    unordered_map<int, int> map;
 
-    vector<int> arr(26, 0);
-    int aASCII = 97;
+    for (int i = 0; i < nums.size(); i++)
+        map[nums[i]] = i;
 
-    for (int i = 0; i < s.size(); i++)
-        arr[s[i] - aASCII]++;
-
-    for (int j = 0; j < t.size(); j++)
+    for (int j = 0; j < nums.size(); j++)
     {
-        if (arr[t[j] - aASCII] <= 0)
-            return false;
+        int compliment = target - nums[j];
 
-        arr[t[j] - aASCII]--;
+        if (map[compliment] && map[compliment] != j)
+            return {j, map[compliment]};
     }
 
-    return true;
+    return {};
 }
