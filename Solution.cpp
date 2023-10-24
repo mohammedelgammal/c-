@@ -8,15 +8,14 @@ vector<int> Solution::twoSum(vector<int> &nums, int target)
 {
     unordered_map<int, int> map;
 
-    for (int i = 0; i < nums.size(); i++)
-        map[nums[i]] = i;
-
     for (int j = 0; j < nums.size(); j++)
     {
         int compliment = target - nums[j];
 
-        if (map[compliment] && map[compliment] != j)
+        if (map.count(compliment))
             return {j, map[compliment]};
+
+        map[nums[j]] = j;
     }
 
     return {};

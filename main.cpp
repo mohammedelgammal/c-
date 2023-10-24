@@ -10,9 +10,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> nums = {1, 3, 4, 2};
+    vector<int> nums = {2, 7, 11, 15};
 
-    vector<int> result = solution.twoSum(nums, 6);
+    vector<int> result = solution.twoSum(nums, 9);
 
     for (int i = 0; i < result.size(); i++)
         cout << result[i] << ", ";
