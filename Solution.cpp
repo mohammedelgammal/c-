@@ -1,22 +1,24 @@
 #include <iostream>
+#include <set>
 
 #include "Solution"
 
 using namespace std;
 
-vector<int> Solution::twoSum(vector<int> &nums, int target)
+bool Solution::containsNearbyDuplicate(vector<int> &nums, int k)
 {
-    unordered_map<int, int> map;
+    set<int> visited;
 
-    for (int j = 0; j < nums.size(); j++)
+    for (int i = 0; i < nums.size(); i++)
     {
-        int compliment = target - nums[j];
+        if (i > k)
+            visited.erase(nums[i - k - 1]);
 
-        if (map.count(compliment))
-            return {j, map[compliment]};
+        if (visited.contains(nums[i]))
+            return true;
 
-        map[nums[j]] = j;
+        visited.insert(nums[i]);
     }
 
-    return {};
+    return false;
 }

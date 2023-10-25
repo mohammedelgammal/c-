@@ -8,6 +8,6 @@ using namespace std;
 class Solution
 {
 public:
-    vector<int> twoSum(vector<int> &nums, int target);
+    bool containsNearbyDuplicate(vector<int> &nums, int k);
 };
 #endif // SOLUTION
