@@ -8,16 +8,15 @@ using namespace std;
 
 bool Solution::hasCycle(ListNode *head)
 {
-    set<ListNode *> set;
-    ListNode *current = head;
+    ListNode *tortoise = head, *hare = head;
 
-    while (current != nullptr)
+    while (hare != nullptr && hare->next)
     {
-        if (set.contains(current))
-            return true;
+        tortoise = tortoise->next;
+        hare = hare->next->next;
 
-        set.insert(current);
-        current = current->next;
+        if (hare == tortoise)
+            return true;
     }
 
     return false;
