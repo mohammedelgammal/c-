@@ -5,9 +5,16 @@
 
 using namespace std;
 
+struct ListNode
+{
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+
 class Solution
 {
 public:
-    bool isValid(string s);
+    bool hasCycle(ListNode *head);
 };
 #endif // SOLUTION

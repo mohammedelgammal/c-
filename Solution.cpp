@@ -6,49 +6,19 @@
 
 using namespace std;
 
-bool isOpenningBracket(const char character)
+bool Solution::hasCycle(ListNode *head)
 {
-    return character == '(' ||
-           character == '[' ||
-           character == '{';
-}
+    set<ListNode *> set;
+    ListNode *current = head;
 
-char getClosing(const char character)
-{
-    char result;
-    switch (character)
+    while (current != nullptr)
     {
-    case '(':
-        result = ')';
-        break;
-    case '[':
-        result = ']';
-        break;
-    case '{':
-        result = '}';
-        break;
-    default:
-        break;
+        if (set.contains(current))
+            return true;
+
+        set.insert(current);
+        current = current->next;
     }
 
-    return result;
-}
-
-bool Solution::isValid(string s)
-{
-    stack<char> stack;
-
-    for (char character : s)
-    {
-        if (!isOpenningBracket(character))
-        {
-            if (stack.empty() || getClosing(stack.top()) != character)
-                return false;
-            stack.pop();
-        }
-        else
-            stack.push(character);
-    }
-
-    return stack.empty();
+    return false;
 }

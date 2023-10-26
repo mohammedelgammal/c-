@@ -10,9 +10,13 @@ int main()
 {
     Solution solution;
 
-    string paranthese = "{}}";
+    ListNode *newHead = new ListNode{3};
+    newHead->next->val = 2;
+    newHead->next->val = 0;
+    newHead->next->val = -4;
+    newHead->next->val = 2;
 
-    cout << boolalpha << solution.isValid(paranthese);
+    cout << boolalpha << solution.hasCycle(newHead);
 
     return 0;
 }
