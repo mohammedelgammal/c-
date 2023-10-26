@@ -1,24 +1,54 @@
 #include <iostream>
+#include <stack>
 #include <set>
 
 #include "Solution"
 
 using namespace std;
 
-bool Solution::containsNearbyDuplicate(vector<int> &nums, int k)
+bool isOpenningBracket(const char character)
 {
-    set<int> visited;
+    return character == '(' ||
+           character == '[' ||
+           character == '{';
+}
 
-    for (int i = 0; i < nums.size(); i++)
+char getClosing(const char character)
+{
+    char result;
+    switch (character)
     {
-        if (i > k)
-            visited.erase(nums[i - k - 1]);
-
-        if (visited.contains(nums[i]))
-            return true;
-
-        visited.insert(nums[i]);
+    case '(':
+        result = ')';
+        break;
+    case '[':
+        result = ']';
+        break;
+    case '{':
+        result = '}';
+        break;
+    default:
+        break;
     }
 
-    return false;
+    return result;
+}
+
+bool Solution::isValid(string s)
+{
+    stack<char> stack;
+
+    for (char character : s)
+    {
+        if (!isOpenningBracket(character))
+        {
+            if (stack.empty() || getClosing(stack.top()) != character)
+                return false;
+            stack.pop();
+        }
+        else
+            stack.push(character);
+    }
+
+    return stack.empty();
 }

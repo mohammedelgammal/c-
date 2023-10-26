@@ -10,5 +10,9 @@ int main()
 {
     Solution solution;
 
+    string paranthese = "{}}";
+
+    cout << boolalpha << solution.isValid(paranthese);
+
     return 0;
 }
