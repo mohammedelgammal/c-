@@ -18,6 +18,6 @@ struct TreeNode
 class Solution
 {
 public:
-    bool isSameTree(TreeNode *p, TreeNode *q);
+    TreeNode *invertTree(TreeNode *root);
 };
 #endif // SOLUTION
