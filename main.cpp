@@ -9,9 +9,11 @@ int main()
 {
     Solution solution;
 
-    TreeNode left{1}, right{3}, root{2, &left, &right};
+    TreeNode left{1},
+        right{3, &left, nullptr},
+        root{2, &right, nullptr};
 
-    solution.invertTree(&root);
+    cout << boolalpha << solution.isSymmetric(&root);
 
     return 0;
 }

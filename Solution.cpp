@@ -5,25 +5,23 @@
 
 using namespace std;
 
-void swapChildren(TreeNode *&root)
+bool isMirror(TreeNode *left, TreeNode *right)
 {
-    TreeNode *temp = root->left;
-    root->left = root->right;
-    root->right = temp;
+    if (!left && !right)
+        return true;
+
+    if (!left || !right)
+        return false;
+
+    return left->val == right->val &&
+           isMirror(left->left, right->right) &&
+           isMirror(left->right, right->left);
 }
 
-TreeNode *Solution::invertTree(TreeNode *root)
+bool Solution::isSymmetric(TreeNode *root)
 {
-    if (root == nullptr)
-        return nullptr;
+    if (!root)
+        return true;
 
-    swapChildren(root);
-
-    if (root->left != nullptr)
-        invertTree(root->left);
-
-    if (root->right != nullptr)
-        invertTree(root->right);
-
-    return root;
+    return isMirror(root->left, root->right);
 }

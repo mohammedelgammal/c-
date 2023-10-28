@@ -18,6 +18,6 @@ struct TreeNode
 class Solution
 {
 public:
-    TreeNode *invertTree(TreeNode *root);
+    bool isSymmetric(TreeNode *root);
 };
 #endif // SOLUTION
