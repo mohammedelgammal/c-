@@ -13,7 +13,7 @@ int main()
         right{3, &left, nullptr},
         root{2, &right, nullptr};
 
-    cout << boolalpha << solution;
+    cout << boolalpha << solution.countNodes(&root);
 
     return 0;
 }

@@ -18,6 +18,6 @@ struct TreeNode
 class Solution
 {
 public:
-    bool hasPathSum(TreeNode *root, int targetSum);
+    int countNodes(TreeNode *root);
 };
 #endif // SOLUTION

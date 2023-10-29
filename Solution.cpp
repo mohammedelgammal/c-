@@ -5,13 +5,10 @@
 
 using namespace std;
 
-bool Solution::hasPathSum(TreeNode *root, int targetSum)
+int Solution::countNodes(TreeNode *root)
 {
-    if (!root)
-        return false;
+    if (root == nullptr)
+        return 0;
 
-    if (root->val == targetSum && !root->right && !root->left)
-        return true;
-
-    return hasPathSum(root->left, targetSum - root->val) || hasPathSum(root->right, targetSum - root->val);
+    return countNodes(root->left) + countNodes(root->right) + 1;
 }
