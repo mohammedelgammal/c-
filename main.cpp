@@ -13,7 +13,7 @@ int main()
         right{3, &left, nullptr},
         root{2, &right, nullptr};
 
-    cout << boolalpha << solution.isSymmetric(&root);
+    cout << boolalpha << solution;
 
     return 0;
 }
