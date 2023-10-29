@@ -11,7 +11,7 @@ int main()
 
     TreeNode left{1},
         right{3, &left, nullptr},
-        root{2, &right, nullptr};
+        root{2, &right, &left};
 
     cout << boolalpha << solution.countNodes(&root);
 
