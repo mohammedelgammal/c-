@@ -13,7 +13,10 @@ int main()
         right{3, &left, nullptr},
         root{2, &right, &left};
 
-    cout << boolalpha << solution.countNodes(&root);
+    vector<double> avgs = solution.averageOfLevels(&root);
+
+    for (int i = 0; i < avgs.size(); i++)
+        cout << avgs[i] << ", ";
 
     return 0;
 }

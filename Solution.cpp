@@ -1,75 +1,40 @@
 #include <iostream>
 #include <queue>
+#include <algorithm>
+#include <cmath>
 
 #include "Solution"
 
 using namespace std;
 
-int getDepth(TreeNode *root)
+vector<double> Solution::averageOfLevels(TreeNode *root)
 {
-    int depth = 0;
+    vector<double> avgs;
+    queue<TreeNode *> queue;
 
-    while (root->left)
+    queue.push(root);
+
+    while (!queue.empty())
     {
-        depth++;
-        root = root->left;
-    }
+        int levelCount = queue.size();
+        double sum = 0;
 
-    return depth;
-}
-
-bool nodeExists(TreeNode *root, const int index, const int depth)
-{
-    int left = 0,
-        right = pow(2, depth) - 1;
-
-    for (int i = 0; i < depth; i++)
-    {
-        int mid = left + (right - left) / 2;
-
-        if (index > mid)
+        for (int i = 0; i < levelCount; i++)
         {
-            if (!root->right)
-                return false;
+            TreeNode *front = queue.front();
+            sum += front->val;
 
-            root = root->right;
-            left = mid + 1;
-        }
-        else
-        {
-            if (!root->left)
-                return false;
+            if (front->left)
+                queue.push(front->left);
+            if (front->right)
+                queue.push(front->right);
 
-            root = root->left;
-            right = mid;
+            queue.pop();
         }
+
+        double avg = sum / levelCount;
+        avgs.push_back(avg);
     }
 
-    return true;
-}
-
-int Solution::countNodes(TreeNode *root)
-{
-    if (root == nullptr)
-        return 0;
-
-    int depth = getDepth(root);
-
-    if (depth == 0)
-        return 1;
-
-    int left = 0,
-        right = pow(2, depth) - 1;
-
-    while (left <= right)
-    {
-        int mid = left + (right - left) / 2;
-
-        if (!nodeExists(root, mid, depth))
-            right = mid - 1;
-        else
-            left = left + 1;
-    }
-
-    return pow(2, depth) - 1 + left;
+    return avgs;
 }
