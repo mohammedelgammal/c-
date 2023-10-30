@@ -1,40 +1,27 @@
 #include <iostream>
-#include <queue>
 #include <algorithm>
-#include <cmath>
 
 #include "Solution"
 
 using namespace std;
 
-vector<double> Solution::averageOfLevels(TreeNode *root)
+void inOrder(const TreeNode *root, int &ans, int &prev)
 {
-    vector<double> avgs;
-    queue<TreeNode *> queue;
+    if (root->left)
+        inOrder(root->left, ans, prev);
 
-    queue.push(root);
+    ans = min(ans, abs(root->val - prev));
+    prev = root->val;
 
-    while (!queue.empty())
-    {
-        int levelCount = queue.size();
-        double sum = 0;
+    if (root->left)
+        inOrder(root->left, ans, prev);
+}
 
-        for (int i = 0; i < levelCount; i++)
-        {
-            TreeNode *front = queue.front();
-            sum += front->val;
+int Solution::minDiffInBST(TreeNode *root)
+{
+    int ans = INT_MAX, prev = INT_MAX;
 
-            if (front->left)
-                queue.push(front->left);
-            if (front->right)
-                queue.push(front->right);
+    inOrder(root, ans, prev);
 
-            queue.pop();
-        }
-
-        double avg = sum / levelCount;
-        avgs.push_back(avg);
-    }
-
-    return avgs;
+    return ans;
 }

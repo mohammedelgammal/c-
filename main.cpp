@@ -13,10 +13,7 @@ int main()
         right{3, &left, nullptr},
         root{2, &right, &left};
 
-    vector<double> avgs = solution.averageOfLevels(&root);
-
-    for (int i = 0; i < avgs.size(); i++)
-        cout << avgs[i] << ", ";
+    cout << solution.minDiffInBST(&root);
 
     return 0;
 }
