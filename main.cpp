@@ -9,11 +9,9 @@ int main()
 {
     Solution solution;
 
-    TreeNode left{1},
-        right{3, &left, nullptr},
-        root{2, &right, &left};
+    vector<int> arr{1, 2, 3};
 
-    cout << solution.minDiffInBST(&root);
+    solution.sortedArrayToBST(arr);
 
     return 0;
 }

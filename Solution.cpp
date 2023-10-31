@@ -5,23 +5,19 @@
 
 using namespace std;
 
-void inOrder(const TreeNode *root, int &ans, int &prev)
+TreeNode *buildTree(vector<int> nums, int left, int right)
 {
-    if (root->left)
-        inOrder(root->left, ans, prev);
+    if (left >= right)
+        return nullptr;
 
-    ans = min(ans, abs(root->val - prev));
-    prev = root->val;
+    int rootIndex = left + (right - left) / 2;
 
-    if (root->left)
-        inOrder(root->left, ans, prev);
+    return new TreeNode{nums[rootIndex],
+                        buildTree(nums, left, rootIndex),
+                        buildTree(nums, rootIndex + 1, right)};
 }
 
-int Solution::minDiffInBST(TreeNode *root)
+TreeNode *Solution::sortedArrayToBST(vector<int> &nums)
 {
-    int ans = INT_MAX, prev = INT_MAX;
-
-    inOrder(root, ans, prev);
-
-    return ans;
+    return buildTree(nums, 0, nums.size());
 }

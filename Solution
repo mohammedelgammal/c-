@@ -16,7 +16,7 @@ struct TreeNode
 class Solution
 {
 public:
-	int minDiffInBST(TreeNode *root);
+	TreeNode *sortedArrayToBST(vector<int> &nums);
 };
 
 #endif // SOLUTION
