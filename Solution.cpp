@@ -5,7 +5,7 @@
 
 using namespace std;
 
-TreeNode *buildTree(vector<int> nums, int left, int right)
+TreeNode *buildTree(vector<int> &nums, int left, int right)
 {
     if (left >= right)
         return nullptr;
