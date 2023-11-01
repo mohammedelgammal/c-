@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> arr{1, 2, 3};
+    string str1 = "11", str2 = "1";
 
-    solution.sortedArrayToBST(arr);
+    cout << solution.addBinary(str1, str2);
 
     return 0;
 }
