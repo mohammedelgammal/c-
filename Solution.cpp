@@ -5,13 +5,16 @@
 
 using namespace std;
 
-int Solution::hammingWeight(uint32_t n)
+int Solution::singleNumber(vector<int> &nums)
 {
-    int size = 32, i = 0, weight = 0;
+    int i = 0, size = nums.size();
+    bitset<32> res;
 
     while (i < size)
-        if ((n >> i++ & 1) == 1)
-            weight++;
+    {
+        bitset<32> current = nums[i++];
+        res ^= current;
+    }
 
-    return weight;
+    return res.to_ullong();
 }

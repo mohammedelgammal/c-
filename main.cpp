@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    uint32_t input = 00000010100101;
+    vector<int> input = {4, 1, 2, 2, 1};
 
-    cout << solution.hammingWeight(input);
+    cout << solution.singleNumber(input);
 
     return 0;
 }
