@@ -7,14 +7,10 @@ using namespace std;
 
 int Solution::singleNumber(vector<int> &nums)
 {
-    int i = 0, size = nums.size();
-    bitset<32> res;
+    int ans = 0;
 
-    while (i < size)
-    {
-        bitset<32> current = nums[i++];
-        res ^= current;
-    }
+    for (int n : nums)
+        ans ^= n;
 
-    return res.to_ullong();
+    return ans;
 }
