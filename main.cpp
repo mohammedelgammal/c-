@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> input = {4, 1, 2, 2, 1};
+    int input = 8;
 
-    cout << solution.singleNumber(input);
+    cout << solution.mySqrt(input);
 
     return 0;
 }

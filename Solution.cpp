@@ -5,12 +5,23 @@
 
 using namespace std;
 
-int Solution::singleNumber(vector<int> &nums)
+int Solution::mySqrt(int x)
 {
-    int ans = 0;
+    if(x <= 1)
+    return x;
 
-    for (int n : nums)
-        ans ^= n;
+    int left = 1, right = x;
 
-    return ans;
+    while (left <= right)
+    {
+        uint64_t mid = left + (right - left) / 2;
+
+        if(mid * mid == x)
+            return mid;
+        else if(mid * mid > x)
+            right = mid - 1;
+        else    
+            left = mid + 1;
+    }
+        return right;
 }
