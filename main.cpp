@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    string str1 = "11", str2 = "1";
+    uint32_t input = 000000101001010000011;
 
-    cout << solution.addBinary(str1, str2);
+    cout << solution.reverseBits(input);
 
     return 0;
 }

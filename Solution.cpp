@@ -5,29 +5,17 @@
 
 using namespace std;
 
-int toBinary(char character)
+uint32_t Solution::reverseBits(uint32_t n)
 {
-    return character == '0' ? 0 : 1;
-}
+    uint32_t ans = 0;
+    int size = 32, i = 0;
 
-string Solution::addBinary(string a, string b)
-{
-    string ans;
-    string::reverse_iterator i = a.rbegin(), j = b.rbegin();
-    int carry = 0,
-        sum = 0;
-
-    while (i != a.rend() || j != b.rend())
+    while (i < size)
     {
-        int biA = i != a.rend() ? toBinary(*i++) : 0;
-        int biB = j != b.rend() ? toBinary(*j++) : 0;
-        sum = biA + biB + carry;
-        ans.insert(0, to_string(sum % 2));
-        carry = sum / 2;
+        uint32_t bit = (n >> i) & 1;
+        bit <<= (size - 1) - i++;
+        ans |= bit;
     }
-
-    if (carry > 0)
-        ans.insert(0, to_string(carry));
 
     return ans;
 }

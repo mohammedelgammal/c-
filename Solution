@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    string addBinary(string a, string b);
+    uint32_t reverseBits(uint32_t n);
 };
 
 #endif // SOLUTION
