@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    uint32_t input = 000000101001010000011;
+    uint32_t input = 00000010100101;
 
-    cout << solution.reverseBits(input);
+    cout << solution.hammingWeight(input);
 
     return 0;
 }
