@@ -7,16 +7,14 @@ using namespace std;
 
 int Solution::climbStairs(int n)
 {
-    if (n <= 0)
-        return 1;
+    int last = 1, bfLast = 1;
 
-    int leftShift = 0,
-        rightShift = 0;
+    for (int i = 0; i < n - 1; i++)
+    {
+        int temp = bfLast;
+        bfLast += last;
+        last = temp;
+    }
 
-    if (n >= 2)
-        rightShift = climbStairs(n - 2);
-
-    leftShift = climbStairs(n - 1);
-
-    return leftShift + rightShift;
+    return bfLast;
 }
