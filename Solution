@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    int mySqrt(int x);
+    int climbStairs(int n);
 };
 
 #endif // SOLUTION

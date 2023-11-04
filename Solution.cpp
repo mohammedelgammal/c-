@@ -5,23 +5,18 @@
 
 using namespace std;
 
-int Solution::mySqrt(int x)
+int Solution::climbStairs(int n)
 {
-    if(x <= 1)
-    return x;
+    if (n <= 0)
+        return 1;
 
-    int left = 1, right = x;
+    int leftShift = 0,
+        rightShift = 0;
 
-    while (left <= right)
-    {
-        uint64_t mid = left + (right - left) / 2;
+    if (n >= 2)
+        rightShift = climbStairs(n - 2);
 
-        if(mid * mid == x)
-            return mid;
-        else if(mid * mid > x)
-            right = mid - 1;
-        else    
-            left = mid + 1;
-    }
-        return right;
+    leftShift = climbStairs(n - 1);
+
+    return leftShift + rightShift;
 }
