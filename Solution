@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    int climbStairs(int n);
+    int removeDuplicates(vector<int> &nums);
 };
 
 #endif // SOLUTION

@@ -5,16 +5,26 @@
 
 using namespace std;
 
-int Solution::climbStairs(int n)
+int Solution::removeDuplicates(vector<int> &nums)
 {
-    int last = 1, bfLast = 1;
+    int left = 0, right = 0;
 
-    for (int i = 0; i < n - 1; i++)
+    while (right < nums.size())
     {
-        int temp = bfLast;
-        bfLast += last;
-        last = temp;
-    }
+        int count = 1;
+        while (right + 1 < nums.size() && nums[right + 1] == nums[right])
+        {
+            count++;
+            right++;
+        }
 
-    return bfLast;
+        for (int i = 0; i < min(count, 2); i++)
+        {
+            nums[left] = nums[right];
+            left++;
+        }
+
+        right++;
+    }
+    return left;
 }
