@@ -5,13 +5,19 @@
 
 using namespace std;
 
-void Solution::rotate(vector<int> &nums, int k)
+int Solution:: fib(int n)
 {
-    int size = nums.size();
+    if (n < 2)
+        return n;
 
-    k %= size;
+    int first = 1, second = 0;
 
-    reverse(nums.begin(), nums.end());
-    reverse(nums.begin(), nums.begin() + k);
-    reverse(nums.begin() + k, nums.end());
+    for (int i = 0; i < n - 1; i++)
+    {
+        int temp = first;
+        first += second;
+        second = temp;
+    }
+
+    return first;
 }
