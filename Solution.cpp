@@ -5,26 +5,31 @@
 
 using namespace std;
 
-int Solution::removeDuplicates(vector<int> &nums)
+int Solution::maxProfit(vector<int> &prices)
 {
-    int left = 0, right = 0;
+    int left = 0, right = 1;
+    vector<int> buy, sell;
 
-    while (right < nums.size())
+    while (right < prices.size())
     {
-        int count = 1;
-        while (right + 1 < nums.size() && nums[right + 1] == nums[right])
+        if (prices[left] < prices[right])
         {
-            count++;
-            right++;
+            buy.push_back(prices[left]);
+            sell.push_back(prices[right]);
         }
-
-        for (int i = 0; i < min(count, 2); i++)
-        {
-            nums[left] = nums[right];
-            left++;
-        }
-
+        left++;
         right++;
     }
-    return left;
+
+    int maxProfit = sell[sell.size() - 1] - buy[0];
+    int j = 0;
+    int profit = 0;
+
+    while (j < max(sell.size(), buy.size()))
+    {
+        profit += (sell[j] - buy[j]);
+        j++;
+    }
+
+    return max(profit, maxProfit);
 }

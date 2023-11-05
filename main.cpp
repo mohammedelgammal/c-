@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> duplicate = {1, 1, 1, 2, 2, 3, 4};
+    vector<int> prices = {1, 2, 3, 4, 5};
 
-    cout << solution.removeDuplicates(duplicate);
+    cout << solution.maxProfit(prices);
 
     return 0;
 }
