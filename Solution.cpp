@@ -5,20 +5,16 @@
 
 using namespace std;
 
-int Solution::maxProfit(vector<int> &prices)
+void Solution::rotate(vector<int> &nums, int k)
 {
-    int left = 0,
-        right = 1,
-        size = prices.size(),
-        maxProfit = 0;
+    int size = nums.size();
+    vector<int> rotated(size);
 
-    while (right < size)
+    for (int i = 0; i < size; i++)
     {
-        int todayPrice = prices[left++],
-            nextPrice = prices[right++];
-
-        if (todayPrice < nextPrice)
-            maxProfit += (nextPrice - todayPrice);
+        int newIndex = (i + k) < size ? (i + k) : (i + k) % size;
+        rotated[newIndex] = nums[i];
     }
-    return maxProfit;
+
+    nums = rotated;
 }

@@ -11,7 +11,7 @@ int main()
 
     vector<int> prices = {1, 2, 3, 4, 5};
 
-    cout << solution.maxProfit(prices);
+    solution.rotate(prices, 3);
 
     return 0;
 }
