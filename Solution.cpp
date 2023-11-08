@@ -5,10 +5,15 @@
 
 using namespace std;
 
-int Solution:: fib(int n)
+bool Solution::canJump(vector<int> &nums)
 {
-    if (n < 2)
-        return n;
+    int size = nums.size(), target = size - 1;
 
-    return fib(n - 2) + fib(n - 1);
+    for (int i = target; i >= 0; i--)
+    {
+        if (i + nums[i] >= target)
+            target = i;
+    }
+
+    return !target;
 }

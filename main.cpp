@@ -9,7 +9,9 @@ int main()
 {
     Solution solution;
 
-    cout << solution.fib(4);
+    vector<int> arr = {6, 2, 1, 2, 4, 5};
+
+    cout << boolalpha << solution.canJump(arr);
 
     return 0;
 }
