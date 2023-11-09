@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> arr = {6, 2, 1, 2, 4, 5};
+    vector<int> citations = {3, 0, 1, 1, 4};
 
-    cout << boolalpha << solution.canJump(arr);
+    cout << boolalpha << solution.hIndex(citations);
 
     return 0;
 }

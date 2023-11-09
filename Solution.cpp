@@ -5,15 +5,19 @@
 
 using namespace std;
 
-bool Solution::canJump(vector<int> &nums)
+int Solution::hIndex(vector<int> &citations)
 {
-    int size = nums.size(), target = size - 1;
+    int size = citations.size(),
+        hIndex = 0;
 
-    for (int i = target; i >= 0; i--)
+    sort(citations.begin(), citations.end());
+
+    for (int i = 0; i < size; i++)
     {
-        if (i + nums[i] >= target)
-            target = i;
+        hIndex = size - i;
+        if (hIndex <= citations[i])
+            return hIndex;
     }
 
-    return !target;
+    return 0;
 }
