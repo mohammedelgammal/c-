@@ -7,13 +7,11 @@ using namespace std;
 
 int main()
 {
-    RandomizedSet set;
+    Solution solution;
 
-    set.insert(1);
-    set.insert(2);
-    set.remove(1);
+    vector<int> product{1, 2, 3, 4};
 
-    cout << set.getRandom();
-
+    for (int el : solution.productExceptSelf(product))
+        cout << el << ',';
     return 0;
 }
