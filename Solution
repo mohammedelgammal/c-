@@ -3,10 +3,49 @@
 
 using namespace std;
 
-class Solution
+class RandomizedSet
 {
 public:
-    int hIndex(vector<int> &citations);
+    RandomizedSet()
+    {
+    }
+
+    bool insert(int val)
+    {
+        if (map.count(val))
+            return false;
+
+        int nextEmptyIndex = indicies.size();
+        map[val] = nextEmptyIndex;
+        indicies.push_back(val);
+
+        return true;
+    }
+
+    bool remove(int val)
+    {
+        if (!map.count(val))
+            return false;
+
+        int valIndex = map[val],
+            lastElement = indicies[indicies.size() - 1];
+
+        map[lastElement] = valIndex;
+        map.erase(val);
+        indicies[valIndex] = lastElement;
+        indicies.pop_back();
+
+        return true;
+    }
+
+    int getRandom()
+    {
+        return indicies[rand() % indicies.size()];
+    }
+
+private:
+    unordered_map<int, int> map;
+    vector<int> indicies;
 };
 
 #endif // SOLUTION

@@ -7,11 +7,13 @@ using namespace std;
 
 int main()
 {
-    Solution solution;
+    RandomizedSet set;
 
-    vector<int> citations = {3, 0, 1, 1, 4};
+    set.insert(1);
+    set.insert(2);
+    set.remove(1);
 
-    cout << boolalpha << solution.hIndex(citations);
+    cout << set.getRandom();
 
     return 0;
 }
