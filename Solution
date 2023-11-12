@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    int canCompleteCircuit(vector<int> &gas, vector<int> &cost);
+    string intToRoman(int num);
 };
 
 #endif // SOLUTION
