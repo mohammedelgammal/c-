@@ -5,24 +5,25 @@
 
 using namespace std;
 
-vector<int> Solution::productExceptSelf(vector<int> &nums)
+int Solution::canCompleteCircuit(vector<int> &gas, vector<int> &cost)
 {
-    int size = nums.size();
-    vector<int> ans(size, 1);
-    int prefix = 1;
-    int postfix = 1;
+    int size = gas.size(),
+        currentGas = 0,
+        totalGas = 0,
+        start = 0;
 
-    for (int i = 0; i < size; i++)
+    for(int i = 0; i < size; i++)
     {
-        ans[i] *= prefix;
-        prefix *= nums[i];
+        int netGas = gas[i] - cost[i];
+        currentGas += netGas;
+        totalGas += netGas;
+
+        if(currentGas < 0)
+        {
+            currentGas = 0;
+            start = i + 1;
+        }
     }
 
-    for (int j = size - 1; j >= 0; j--)
-    {
-        ans[j] *= postfix;
-        postfix *= nums[j];
-    }
-
-    return ans;
+    return totalGas >= 0 ? start : -1;
 }

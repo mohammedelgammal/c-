@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    vector<int> productExceptSelf(vector<int> &nums);
+    int canCompleteCircuit(vector<int> &gas, vector<int> &cost);
 };
 
 #endif // SOLUTION

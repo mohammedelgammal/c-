@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> product{1, 2, 3, 4};
+    vector<int> gas{1, 2, 3, 4, 5}, cost{3, 4, 5, 1, 2};
 
-    for (int el : solution.productExceptSelf(product))
-        cout << el << ',';
+    cout << solution.canCompleteCircuit(gas, cost);
+
     return 0;
 }
