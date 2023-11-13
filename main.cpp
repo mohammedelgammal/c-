@@ -9,7 +9,9 @@ int main()
 {
     Solution solution;
 
-    cout << solution.intToRoman(1994);
+    string word = "sky is blue";
+
+    cout << solution.reverseWords(word);
 
     return 0;
 }
