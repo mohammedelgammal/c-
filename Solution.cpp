@@ -5,21 +5,22 @@
 
 using namespace std;
 
-string Solution::reverseWords(string s)
+string Solution::convert(string s, int numRows)
 {
-    int size = s.size(), i = 0, right = 0, left = 0;
-    reverse(s.begin(), s.end());
-    while (i < size)
+    int size = s.size(),
+        jump = numRows * 2 - 2;
+    string zigzag;
+
+    for (int row = 0; row < numRows; row++)
     {
-        while (i < size && s[i] == ' ')
-            i++;
-        while (i < size && s[i] != ' ')
-            s[right++] = s[i++];
-        reverse(s.begin() + left, s.begin() + right);
-        if (right != left)
-            s[right++] = ' ';
-        left = right;
+        for (int idx = row; idx < size; idx += jump)
+        {
+            int midJump = jump -  2 * row;
+            zigzag.push_back(s[idx]);
+            if (row > 0 && row < numRows - 1 && idx + midJump < size)
+                zigzag.push_back(s[idx + midJump]);
+        }
     }
-    s.resize(left - 1);
-    return s;
+
+    return zigzag;
 }

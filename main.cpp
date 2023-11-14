@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    string word = "sky is blue";
+    string word = "PAYPALISHIRING";
 
-    cout << solution.reverseWords(word);
+    cout << solution.convert(word, 4);
 
     return 0;
 }
