@@ -9,11 +9,11 @@ int main()
 {
     Solution solution;
 
-    vector<int> numbers{2, 7, 11, 15};
+    vector<int> numbers{0, 1, 3, 0, 3, 0};
 
-    vector<int> ans = solution.twoSum(numbers, 9);
+    solution.moveZeroes(numbers);
 
-    for (int num : ans)
+    for (int num : numbers)
         cout << num;
 
     return 0;

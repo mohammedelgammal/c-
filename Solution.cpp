@@ -5,21 +5,18 @@
 
 using namespace std;
 
-vector<int> Solution::twoSum(vector<int> &numbers, int target)
+void Solution::moveZeroes(vector<int> &nums)
 {
-    int size = numbers.size(),
-        right = size - 1,
-        left = 0;
+    int left = 0, right = 0, size = nums.size();
 
-    while (left < right)
+    while (right < size)
     {
-        int currentLooking = target - numbers[right];
-        if (numbers[left] == currentLooking)
-            return {left + 1, right + 1};
-        if (numbers[left] > currentLooking)
-            right--;
-        else
-            left++;
+        if (nums[right] != 0)
+        {
+            int temp = nums[right];
+            nums[right] = nums[left];
+            nums[left++] = temp;
+        }
+        right++;
     }
-    return {};
 }
