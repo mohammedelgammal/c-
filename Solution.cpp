@@ -5,22 +5,21 @@
 
 using namespace std;
 
-string Solution::convert(string s, int numRows)
+vector<int> Solution::twoSum(vector<int> &numbers, int target)
 {
-    int size = s.size(),
-        jump = numRows * 2 - 2;
-    string zigzag;
+    int size = numbers.size(),
+        right = size - 1,
+        left = 0;
 
-    for (int row = 0; row < numRows; row++)
+    while (left < right)
     {
-        for (int idx = row; idx < size; idx += jump)
-        {
-            int midJump = jump -  2 * row;
-            zigzag.push_back(s[idx]);
-            if (row > 0 && row < numRows - 1 && idx + midJump < size)
-                zigzag.push_back(s[idx + midJump]);
-        }
+        int currentLooking = target - numbers[right];
+        if (numbers[left] == currentLooking)
+            return {left + 1, right + 1};
+        if (numbers[left] > currentLooking)
+            right--;
+        else
+            left++;
     }
-
-    return zigzag;
+    return {};
 }

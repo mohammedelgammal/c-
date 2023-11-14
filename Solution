@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    string convert(string s, int numRows);
+    vector<int> twoSum(vector<int> &numbers, int target);
 };
 
 #endif // SOLUTION

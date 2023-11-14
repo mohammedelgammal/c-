@@ -9,9 +9,12 @@ int main()
 {
     Solution solution;
 
-    string word = "PAYPALISHIRING";
+    vector<int> numbers{2, 7, 11, 15};
 
-    cout << solution.convert(word, 4);
+    vector<int> ans = solution.twoSum(numbers, 9);
+
+    for (int num : ans)
+        cout << num;
 
     return 0;
 }
