@@ -13,6 +13,13 @@ void Solution::moveZeroes(vector<int> &nums)
     {
         if (nums[right] != 0)
         {
+            if (left == right)
+            {
+                left++;
+                right++;
+                continue;
+            }
+
             int temp = nums[right];
             nums[right] = nums[left];
             nums[left++] = temp;
