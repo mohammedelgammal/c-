@@ -6,7 +6,7 @@ using namespace std;
 
 vector<int> Solution::applyOperations(vector<int> &nums)
 {
-    int left = 0, right = 0, size = nums.size();
+    int left = 0, right = 1, size = nums.size();
 
     while (right < size)
     {

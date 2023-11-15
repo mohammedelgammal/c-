@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> numbers{0, 1, 3, 0, 3, 0};
+    vector<int> numbers{1, 2, 2, 1, 1, 0};
 
-    solution.moveZeroes(numbers);
+    solution.applyOperations(numbers);
 
     for (int num : numbers)
         cout << num;
