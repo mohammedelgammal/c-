@@ -1,19 +1,31 @@
 #include <iostream>
-#include <algorithm>
 
 #include "Solution"
 
 using namespace std;
 
-void Solution::moveZeroes(vector<int> &nums)
+vector<int> Solution::applyOperations(vector<int> &nums)
 {
     int left = 0, right = 0, size = nums.size();
 
     while (right < size)
     {
+        if (nums[left] == nums[right])
+        {
+            nums[left] *= 2;
+            nums[right] = 0;
+        }
+        left++;
+        right++;
+    }
+
+    left = right = 0;
+
+    while (right < size)
+    {
         if (nums[right] != 0)
         {
-            if (left == right)
+            if(left == right)
             {
                 left++;
                 right++;
@@ -26,4 +38,6 @@ void Solution::moveZeroes(vector<int> &nums)
         }
         right++;
     }
+
+    return nums;
 }

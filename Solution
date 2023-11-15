@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    void moveZeroes(vector<int> &nums);
+    vector<int> applyOperations(vector<int> &nums);
 };
 
 #endif // SOLUTION
