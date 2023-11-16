@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> numbers{2, 3, 1, 2, 4, 3};
+    string str = "abcabcbb";
 
-    cout << solution.minSubArrayLen(7, numbers);
+    cout << solution.lengthOfLongestSubstring(str);
 
     return 0;
 }

@@ -1,27 +1,26 @@
 #include <iostream>
-#include <vector>
+#include <set>
 
 #include "Solution"
 
-int Solution::minSubArrayLen(int target, vector<int> &nums)
+int Solution::lengthOfLongestSubstring(string s)
 {
-    int size = nums.size(), left = 0, right = 0,
-        sum = 0, len = INT_MAX;
+    set<char> set;
+    int size = s.size(), left = 0, right = 0,
+        len = 0;
+
+    if (size < 2)
+        return size;
 
     while (right < size)
     {
-        sum += nums[right++];
-        while (sum >= target)
+        while (set.count(s[right]))
         {
-            sum -= nums[left++];
-            len = min(len, right - left + 1);
+            len = max(len, right - left);
+            set.erase(s[left++]);
         }
+        set.insert(s[right++]);
     }
 
-    if(len == INT_MAX)
-        return 0;
-    
-    return len;
+    return max(len, right - left);
 }
-
-// 4
