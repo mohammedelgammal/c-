@@ -9,12 +9,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> numbers{1, 2, 2, 1, 1, 0};
+    vector<int> numbers{2, 3, 1, 2, 4, 3};
 
-    solution.applyOperations(numbers);
-
-    for (int num : numbers)
-        cout << num;
+    cout << solution.minSubArrayLen(7, numbers);
 
     return 0;
 }

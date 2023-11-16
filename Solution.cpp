@@ -1,43 +1,27 @@
 #include <iostream>
+#include <vector>
 
 #include "Solution"
 
-using namespace std;
-
-vector<int> Solution::applyOperations(vector<int> &nums)
+int Solution::minSubArrayLen(int target, vector<int> &nums)
 {
-    int left = 0, right = 1, size = nums.size();
+    int size = nums.size(), left = 0, right = 0,
+        sum = 0, len = INT_MAX;
 
     while (right < size)
     {
-        if (nums[left] == nums[right])
+        sum += nums[right++];
+        while (sum >= target)
         {
-            nums[left] *= 2;
-            nums[right] = 0;
+            sum -= nums[left++];
+            len = min(len, right - left + 1);
         }
-        left++;
-        right++;
     }
 
-    left = right = 0;
-
-    while (right < size)
-    {
-        if (nums[right] != 0)
-        {
-            if(left == right)
-            {
-                left++;
-                right++;
-                continue;
-            }
-
-            int temp = nums[right];
-            nums[right] = nums[left];
-            nums[left++] = temp;
-        }
-        right++;
-    }
-
-    return nums;
+    if(len == INT_MAX)
+        return 0;
+    
+    return len;
 }
+
+// 4

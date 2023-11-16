@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    vector<int> applyOperations(vector<int> &nums);
+    int minSubArrayLen(int target, vector<int> &nums);
 };
 
 #endif // SOLUTION
