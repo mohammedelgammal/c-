@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    int lengthOfLongestSubstring(string s);
+    int maxArea(vector<int> &height);
 };
 
 #endif // SOLUTION

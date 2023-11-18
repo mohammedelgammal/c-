@@ -1,26 +1,21 @@
 #include <iostream>
-#include <set>
+#include <algorithm>
 
 #include "Solution"
 
-int Solution::lengthOfLongestSubstring(string s)
+int Solution::maxArea(vector<int> &height)
 {
-    set<char> set;
-    int size = s.size(), left = 0, right = 0,
-        len = 0;
+    int right = height.size() - 1, left = 0, ans = 0;
 
-    if (size < 2)
-        return size;
-
-    while (right < size)
+    while (left < right)
     {
-        while (set.count(s[right]))
-        {
-            len = max(len, right - left);
-            set.erase(s[left++]);
-        }
-        set.insert(s[right++]);
+        int area = min(height[right], height[left]) * (right - left);
+        ans = max(area, ans);
+        if (height[right] > height[left])
+            left++;
+        else
+            right--;
     }
 
-    return max(len, right - left);
+    return ans;
 }
