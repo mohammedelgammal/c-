@@ -3,18 +3,40 @@
 
 #include "Solution"
 
-int Solution::maxArea(vector<int> &height)
+vector<vector<int>> Solution::threeSum(vector<int> &nums)
 {
-    int right = height.size() - 1, left = 0, ans = 0;
+    vector<vector<int>> ans;
+    int size = nums.size();
 
-    while (left < right)
+    sort(nums.begin(), nums.end());
+
+    for (int i = 0; i < size - 2; i++)
     {
-        int area = min(height[right], height[left]) * (right - left);
-        ans = max(area, ans);
-        if (height[right] > height[left])
-            left++;
-        else
-            right--;
+        if (i > 0 && nums[i] == nums[i - 1])
+            continue;
+
+        int left = i + 1, right = size - 1;
+
+        while (left < right)
+        {
+            int threeSum = nums[i] + nums[right] + nums[left];
+
+            if (threeSum == 0)
+            {
+                ans.push_back({nums[i], nums[right], nums[left]});
+                while (left < right + 1 && nums[left] == nums[left + 1])
+                    left++;
+                left++;
+            }
+            else if (threeSum > 0)
+            {
+                right--;
+            }
+            else
+            {
+                left++;
+            }
+        }
     }
 
     return ans;

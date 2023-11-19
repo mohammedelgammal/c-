@@ -9,9 +9,19 @@ int main()
 {
     Solution solution;
 
-    vector<int> height{1, 8, 6, 2, 5, 4, 8, 3, 7};
+    vector<int> nums{-1, 0, 1, 2, -1, -4};
 
-    cout << solution.maxArea(height);
+    vector<vector<int>> ans = solution.threeSum(nums);
+
+    cout << '[';
+    for (vector<int> vec : ans)
+    {
+        cout << '[';
+        for (int num : vec)
+            cout << num << ',';
+        cout << ']';
+    }
+    cout << ']';
 
     return 0;
 }
