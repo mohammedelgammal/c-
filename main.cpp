@@ -1,5 +1,6 @@
 // Libraries
 #include <iostream>
+#include <set>
 
 #include "Solution"
 
@@ -9,19 +10,17 @@ int main()
 {
     Solution solution;
 
-    vector<int> nums{-1, 0, 1, 2, -1, -4};
+    vector<vector<char>> sudoku = {{'8', '3', '.', '.', '7', '.', '.', '.', '.'},
+                                   {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+                                   {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+                                   {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+                                   {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+                                   {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+                                   {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+                                   {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+                                   {'.', '.', '.', '.', '8', '.', '.', '7', '9'}};
 
-    vector<vector<int>> ans = solution.threeSum(nums);
-
-    cout << '[';
-    for (vector<int> vec : ans)
-    {
-        cout << '[';
-        for (int num : vec)
-            cout << num << ',';
-        cout << ']';
-    }
-    cout << ']';
+    cout << boolalpha << solution.isValidSudoku(sudoku);
 
     return 0;
 }

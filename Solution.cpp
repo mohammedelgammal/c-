@@ -3,41 +3,28 @@
 
 #include "Solution"
 
-vector<vector<int>> Solution::threeSum(vector<int> &nums)
+bool Solution::isValidSudoku(vector<vector<char>> &board)
 {
-    vector<vector<int>> ans;
-    int size = nums.size();
+    bool rows[9][9] = {false},
+         cols[9][9] = {false},
+         boxes[9][9] = {false};
 
-    sort(nums.begin(), nums.end());
-
-    for (int i = 0; i < size - 2; i++)
+    for (int row = 0; row < 9; row++)
     {
-        if (i > 0 && nums[i] == nums[i - 1])
-            continue;
-
-        int left = i + 1, right = size - 1;
-
-        while (left < right)
+        for (int col = 0; col < 9; col++)
         {
-            int threeSum = nums[i] + nums[right] + nums[left];
+            if (board[row][col] == '.')
+                continue;
 
-            if (threeSum == 0)
-            {
-                ans.push_back({nums[i], nums[right], nums[left]});
-                while (left < right + 1 && nums[left] == nums[left + 1])
-                    left++;
-                left++;
-            }
-            else if (threeSum > 0)
-            {
-                right--;
-            }
-            else
-            {
-                left++;
-            }
+            int currentNumIndex = board[row][col] - '0' - 1,
+                boxIndex = row / 3 * 3 + col / 3;
+
+            if (rows[row][currentNumIndex] || cols[col][currentNumIndex] || boxes[boxIndex][currentNumIndex])
+                return false;
+
+            rows[row][currentNumIndex] = cols[col][currentNumIndex] = boxes[boxIndex][currentNumIndex] = true;
         }
     }
 
-    return ans;
+    return true;
 }
