@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    vector<int> spiralOrder(vector<vector<int>> &matrix);
+    vector<vector<int>> generateMatrix(int n);
 };
 
 #endif // SOLUTION

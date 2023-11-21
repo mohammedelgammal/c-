@@ -3,36 +3,31 @@
 
 #include "Solution"
 
-vector<int> Solution::spiralOrder(vector<vector<int>> &matrix)
+vector<vector<int>> Solution::generateMatrix(int n)
 {
-    vector<int> ans;
-    int top = 0,
-        left = 0,
-        right = matrix[0].size(),
-        bottom = matrix.size();
+    vector<vector<int>> ans(n, vector<int>(n, 0));
+    int num = 1,
+        left = 0, top = 0,
+        right = n, bottom = n;
 
     while (left < right && top < bottom)
     {
-        // iterating top row
-        for(int i = left; i < right; i++)
-            ans.push_back(matrix[top][i]);
+        for (int i = left; i < right; i++)
+            ans[top][i] = num++;
         top++;
 
-        // iterating right col
-        for(int j = top; j < bottom; j++)
-            ans.push_back(matrix[j][right - 1]);
+        for (int j = top; j < bottom; j++)
+            ans[j][right - 1] = num++;
         right--;
 
-        // iterating bottom row
-        for(int k = right - 1; k >= left && bottom != top; k--)
-            ans.push_back(matrix[bottom - 1][k]);
+        for (int k = right - 1; k >= left; k--)
+            ans[bottom - 1][k] = num++;
         bottom--;
 
-        // iterating left col
-        for(int l = bottom - 1; l >= top && left != right; l--)
-            ans.push_back(matrix[l][left]);
+        for (int l = bottom - 1; l >= top; l--)
+            ans[l][left] = num++;
         left++;
     }
-    
+
     return ans;
 }

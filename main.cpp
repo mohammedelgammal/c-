@@ -10,12 +10,19 @@ int main()
 {
     Solution solution;
 
-    vector<vector<int>> matrix = {{1,2,3,4}};
+    vector<vector<int>> ans = solution.generateMatrix(3);
 
-    vector<int> ans = solution.spiralOrder(matrix);
+    cout << '[';
 
-    for (int num : ans)
-        cout << num;
+    for (vector<int> vec : ans)
+    {
+        cout << '[';
+        for (int num : vec)
+            cout << num << ',';
+        cout << ']';
+    }
+
+    cout << ']';
 
     return 0;
 }
