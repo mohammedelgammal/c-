@@ -3,28 +3,36 @@
 
 #include "Solution"
 
-bool Solution::isValidSudoku(vector<vector<char>> &board)
+vector<int> Solution::spiralOrder(vector<vector<int>> &matrix)
 {
-    bool rows[9][9] = {false},
-         cols[9][9] = {false},
-         boxes[9][9] = {false};
+    vector<int> ans;
+    int top = 0,
+        left = 0,
+        right = matrix[0].size(),
+        bottom = matrix.size();
 
-    for (int row = 0; row < 9; row++)
+    while (left < right && top < bottom)
     {
-        for (int col = 0; col < 9; col++)
-        {
-            if (board[row][col] == '.')
-                continue;
+        // iterating top row
+        for(int i = left; i < right; i++)
+            ans.push_back(matrix[top][i]);
+        top++;
 
-            int currentNumIndex = board[row][col] - '0' - 1,
-                boxIndex = row / 3 * 3 + col / 3;
+        // iterating right col
+        for(int j = top; j < bottom; j++)
+            ans.push_back(matrix[j][right - 1]);
+        right--;
 
-            if (rows[row][currentNumIndex] || cols[col][currentNumIndex] || boxes[boxIndex][currentNumIndex])
-                return false;
+        // iterating bottom row
+        for(int k = right - 1; k >= left && bottom != top; k--)
+            ans.push_back(matrix[bottom - 1][k]);
+        bottom--;
 
-            rows[row][currentNumIndex] = cols[col][currentNumIndex] = boxes[boxIndex][currentNumIndex] = true;
-        }
+        // iterating left col
+        for(int l = bottom - 1; l >= top && left != right; l--)
+            ans.push_back(matrix[l][left]);
+        left++;
     }
-
-    return true;
+    
+    return ans;
 }
