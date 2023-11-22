@@ -3,37 +3,54 @@
 
 #include "Solution"
 
-vector<vector<int>> Solution::spiralMatrixIII(int rows, int cols, int rStart, int cStart)
+vector<vector<int>> Solution::spiralMatrixIV(int m, int n, ListNode *head)
 {
-    vector<vector<int>> ans;
-    int left = cStart, top = rStart,
-        right = cStart + 1, bottom = cStart + 1;
+    vector<vector<int>> ans(m, vector<int>(n, -1));
+    int left = 0,
+        top = 0,
+        right = n,
+        bottom = m;
+    ListNode *current = head;
 
-    while (ans.size() < rows * cols)
+    while (left < right && top < bottom && current)
     {
-        // iterate top rows
+        // iterate top row
         for (int i = left; i < right; i++)
-            if (top >= 0 && i >= 0 && i < cols)
-                ans.push_back({top, i});
-        right++;
+        {
+            if (!current)
+                return ans;
+            ans[top][i] = current->val;
+            current = current->next;
+        }
+        top++;
 
         // iterate right col
         for (int j = top; j < bottom; j++)
-            if (j >= 0 && j < rows && right - 1 < cols)
-                ans.push_back({j, right - 1});
-        bottom++;
+        {
+            if (!current)
+                return ans;
+            ans[j][right - 1] = current->val;
+            current = current->next;
+        }
+        right--;
 
         // iterate bottom row
-        for (int k = right - 1; k >= left; k--)
-            if (bottom - 1 < rows && k >= 0 && k < cols)
-                ans.push_back({bottom - 1, k});
-        left--;
+        for (int k = right - 1; k >= left && bottom != top; k--)
+        {
+            if (!current)
+                return ans;
+            ans[bottom - 1][k] = current->val;
+            current = current->next;
+        }
+        bottom--;
 
         // iterate left col
-        for (int l = bottom - 1; l >= top; l--)
-            if (l >= 0 && l < rows && left >= 0)
-                ans.push_back({l, left});
-        top--;
+        for (int l = bottom - 1; l >= top && left != right; l--)
+        {
+            ans[l][left] = current->val;
+            current = current->next;
+        }
+        left++;
     }
 
     return ans;

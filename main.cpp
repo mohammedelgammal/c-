@@ -10,7 +10,11 @@ int main()
 {
     Solution solution;
 
-    vector<vector<int>> ans = solution.spiralMatrixIII(1, 4, 0, 0);
+    ListNode *second = new ListNode(2),
+             *first = new ListNode(1, second),
+             *head = new ListNode(0, first);
+
+    vector<vector<int>> ans = solution.spiralMatrixIV(1, 4, head);
 
     cout << '[';
 
@@ -23,6 +27,9 @@ int main()
     }
 
     cout << ']';
+
+    delete head;
+    head = nullptr;
 
     return 0;
 }
