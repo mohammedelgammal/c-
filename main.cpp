@@ -10,7 +10,7 @@ int main()
 {
     Solution solution;
 
-    vector<vector<int>> ans = solution.generateMatrix(3);
+    vector<vector<int>> ans = solution.spiralMatrixIII(1, 4, 0, 0);
 
     cout << '[';
 

@@ -3,30 +3,37 @@
 
 #include "Solution"
 
-vector<vector<int>> Solution::generateMatrix(int n)
+vector<vector<int>> Solution::spiralMatrixIII(int rows, int cols, int rStart, int cStart)
 {
-    vector<vector<int>> ans(n, vector<int>(n, 0));
-    int num = 1,
-        left = 0, top = 0,
-        right = n, bottom = n;
+    vector<vector<int>> ans;
+    int left = cStart, top = rStart,
+        right = cStart + 1, bottom = cStart + 1;
 
-    while (left < right && top < bottom)
+    while (ans.size() < rows * cols)
     {
+        // iterate top rows
         for (int i = left; i < right; i++)
-            ans[top][i] = num++;
-        top++;
+            if (top >= 0 && i >= 0 && i < cols)
+                ans.push_back({top, i});
+        right++;
 
+        // iterate right col
         for (int j = top; j < bottom; j++)
-            ans[j][right - 1] = num++;
-        right--;
+            if (j >= 0 && j < rows && right - 1 < cols)
+                ans.push_back({j, right - 1});
+        bottom++;
 
+        // iterate bottom row
         for (int k = right - 1; k >= left; k--)
-            ans[bottom - 1][k] = num++;
-        bottom--;
+            if (bottom - 1 < rows && k >= 0 && k < cols)
+                ans.push_back({bottom - 1, k});
+        left--;
 
+        // iterate left col
         for (int l = bottom - 1; l >= top; l--)
-            ans[l][left] = num++;
-        left++;
+            if (l >= 0 && l < rows && left >= 0)
+                ans.push_back({l, left});
+        top--;
     }
 
     return ans;
