@@ -3,55 +3,14 @@
 
 #include "Solution"
 
-vector<vector<int>> Solution::spiralMatrixIV(int m, int n, ListNode *head)
+void Solution::rotate(vector<vector<int>> &matrix)
 {
-    vector<vector<int>> ans(m, vector<int>(n, -1));
-    int left = 0,
-        top = 0,
-        right = n,
-        bottom = m;
-    ListNode *current = head;
+    int size = matrix.size();
 
-    while (left < right && top < bottom && current)
-    {
-        // iterate top row
-        for (int i = left; i < right; i++)
-        {
-            if (!current)
-                return ans;
-            ans[top][i] = current->val;
-            current = current->next;
-        }
-        top++;
+    for (int row = 0; row < size; row++)
+        for (int col = row + 1; col < size; col++)
+            swap(matrix[row][col], matrix[col][row]);
 
-        // iterate right col
-        for (int j = top; j < bottom; j++)
-        {
-            if (!current)
-                return ans;
-            ans[j][right - 1] = current->val;
-            current = current->next;
-        }
-        right--;
-
-        // iterate bottom row
-        for (int k = right - 1; k >= left && bottom != top; k--)
-        {
-            if (!current)
-                return ans;
-            ans[bottom - 1][k] = current->val;
-            current = current->next;
-        }
-        bottom--;
-
-        // iterate left col
-        for (int l = bottom - 1; l >= top && left != right; l--)
-        {
-            ans[l][left] = current->val;
-            current = current->next;
-        }
-        left++;
-    }
-
-    return ans;
+    for (int row = 0; row < size; row++)
+        reverse(matrix[row].begin(), matrix[row].end());
 }

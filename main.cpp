@@ -10,15 +10,13 @@ int main()
 {
     Solution solution;
 
-    ListNode *second = new ListNode(2),
-             *first = new ListNode(1, second),
-             *head = new ListNode(0, first);
+    vector<vector<int>> matrix{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
-    vector<vector<int>> ans = solution.spiralMatrixIV(1, 4, head);
+    solution.rotate(matrix);
 
     cout << '[';
 
-    for (vector<int> vec : ans)
+    for (vector<int> vec : matrix)
     {
         cout << '[';
         for (int num : vec)
@@ -27,9 +25,6 @@ int main()
     }
 
     cout << ']';
-
-    delete head;
-    head = nullptr;
 
     return 0;
 }
