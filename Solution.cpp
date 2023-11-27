@@ -1,22 +1,25 @@
 #include <iostream>
-#include <algorithm>
+#include <set>
 
 #include "Solution"
 
 void Solution::setZeroes(vector<vector<int>> &matrix)
 {
-    vector<vector<int>> ans = matrix;
     int rows = matrix.size(),
         cols = matrix[0].size();
+    set<int> rs, cs;
 
     for (int r = 0; r < rows; r++)
         for (int c = 0; c < cols; c++)
             if (matrix[r][c] == 0)
             {
-                for (int row = 0; row < rows; row++)
-                    ans[row][c] = 0;
-                for (int col = 0; col < cols; col++)
-                    ans[r][col] = 0;
+                rs.insert(r);
+                cs.insert(c);
             }
-    matrix = ans;
+    for (int r : rs)
+        for (int c = 0; c < cols; c++)
+            matrix[r][c] = 0;
+    for (int c : cs)
+        for (int r = 0; r < rows; r++)
+            matrix[r][c] = 0;
 }
