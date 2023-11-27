@@ -3,25 +3,28 @@
 
 #include "Solution"
 
-void Solution::rotate(vector<vector<int>> &matrix)
+bool Solution::findRotation(vector<vector<int>> &mat, vector<vector<int>> &target)
 {
-    int left = 0, top = left,
-        right = matrix.size() - 1, bottom = right;
-
-    while (left < right)
+    for (int i = 0, size = mat.size(); i < 3 && mat != target; i++)
     {
-        for (int i = 0; i < right - left; i++)
+        int l = 0, t = l, r = mat.size() - 1, b = r;
+        while (t < b)
         {
-            int topLeft = matrix[top][left + i];
+            for (int i = 0; i < r - l; i++)
+            {
+                int tl = mat[t][l + i];
 
-            matrix[top][left + i] = matrix[bottom - i][left];
-            matrix[bottom - i][left] = matrix[bottom][right - i];
-            matrix[bottom][right - i] = matrix[top + i][right];
-            matrix[top + i][right] = topLeft;
+                mat[t][l + i] = mat[b - i][l];
+                mat[b - i][l] = mat[b][r - i];
+                mat[b][r - i] = mat[t + i][r];
+                mat[t + i][r] = tl;
+            }
+            l++;
+            t++;
+            r--;
+            b--;
         }
-        top++;
-        left++;
-        right--;
-        bottom--;
     }
+
+    return mat == target;
 }
