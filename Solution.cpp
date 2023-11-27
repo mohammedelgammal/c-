@@ -3,17 +3,25 @@
 
 #include "Solution"
 
-bool Solution::findRotation(vector<vector<int>> &mat, vector<vector<int>> &target)
+void Solution::rotate(vector<vector<int>> &matrix)
 {
-    for (int rotations = 0, size = mat.size(); rotations < 3 && target != mat; rotations++)
+    int left = 0, top = left,
+        right = matrix.size() - 1, bottom = right;
+
+    while (left < right)
     {
-        for (int row = 0; row < size; row++)
-            for (int col = row + 1; col < size; col++)
-                swap(mat[row][col], mat[col][row]);
+        for (int i = 0; i < right - left; i++)
+        {
+            int topLeft = matrix[top][left + i];
 
-        for (int row = 0; row < size; row++)
-            reverse(mat[row].begin(), mat[row].end());
+            matrix[top][left + i] = matrix[bottom - i][left];
+            matrix[bottom - i][left] = matrix[bottom][right - i];
+            matrix[bottom][right - i] = matrix[top + i][right];
+            matrix[top + i][right] = topLeft;
+        }
+        top++;
+        left++;
+        right--;
+        bottom--;
     }
-
-    return mat == target;
 }
