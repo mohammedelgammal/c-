@@ -10,10 +10,21 @@ int main()
 {
     Solution solution;
 
-    vector<vector<int>> mat{{0, 0, 0}, {0, 1, 0}, {1, 1, 1}},
-        target{{1, 1, 1}, {0, 1, 0}, {0, 0, 0}};
+    vector<vector<int>> mat{{1, 1, 1}, {1, 0, 1}, {1, 1, 1}};
 
-    cout << boolalpha << solution.findRotation(mat, target);
+    solution.setZeroes(mat);
+
+    cout << '[';
+
+    for (vector<int> vec : mat)
+    {
+        cout << '[';
+        for (int el : vec)
+            cout << el << ',';
+        cout << ']';
+    }
+
+    cout << ']';
 
     return 0;
 }

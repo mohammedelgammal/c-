@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    bool findRotation(vector<vector<int>> &mat, vector<vector<int>> &target);
+    void setZeroes(vector<vector<int>> &matrix);
 };
 
 #endif // SOLUTION
