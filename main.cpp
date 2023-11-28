@@ -10,9 +10,9 @@ int main()
 {
     Solution solution;
 
-    vector<vector<int>> mat{{1, 1, 1}, {1, 0, 1}, {1, 1, 1}};
+    vector<vector<int>> mat{{1, 1}, {1, 0}};
 
-    solution.setZeroes(mat);
+    solution.gameOfLife(mat);
 
     cout << '[';
 
