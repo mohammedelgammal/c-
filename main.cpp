@@ -9,7 +9,12 @@ int main()
 {
     Solution solution;
 
-    string s = "anagram", t = "nagaram";
+    string s = "cbaebabacd", p = "abc";
 
-    solution.isAnagram(s, t);
+    vector<int> count = solution.findAnagrams(s, p);
+
+    cout << '[';
+    for (int n : count)
+        cout << n << ',';
+    cout << ']';
 }

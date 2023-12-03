@@ -2,20 +2,26 @@
 
 #include "Solution"
 
-vector<vector<string>> Solution::groupAnagrams(vector<string> &strs)
+vector<int> Solution::findAnagrams(string s, string p)
 {
-    vector<vector<string>> ans;
-    unordered_map<string, vector<string>> map;
+    vector<int> ans;
+    int left = 0, right = p.size() - 1;
 
-    for (string str : strs)
+    while (right < s.size())
     {
-        string original = str;
-        sort(str.begin(), str.end());
-        map[str].push_back(original);
+        bool isAnagram = true;
+        int count[26] = {0};
+        for (int i = left; i < right + 1; i++)
+            count[s[i] - 'a']++;
+        for (char c : p)
+            count[c - 'a']--;
+        for (int n : count)
+            if (n)
+                isAnagram = false;
+        if (isAnagram)
+            ans.push_back(left);
+        left++;
+        right++;
     }
-
-    for (const unordered_map<string, vector<string>>::iterator::value_type it : map)
-        ans.push_back(it.second);
-
     return ans;
 }
