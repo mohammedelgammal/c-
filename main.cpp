@@ -9,12 +9,9 @@ int main()
 {
     Solution solution;
 
-    string s = "cbaebabacd", p = "abc";
+    vector<int> nums = {100, 4, 200, 3, 1, 2};
 
-    vector<int> count = solution.findAnagrams(s, p);
+    cout << solution.longestConsecutive(nums);
 
-    cout << '[';
-    for (int n : count)
-        cout << n << ',';
-    cout << ']';
+    return 0;
 }

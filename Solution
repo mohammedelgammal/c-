@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    vector<int> findAnagrams(string s, string p);
+    int longestConsecutive(vector<int> &nums);
 };
 
 #endif // SOLUTION
