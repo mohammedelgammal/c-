@@ -4,22 +4,21 @@
 
 int Solution::longestConsecutive(vector<int> &nums)
 {
-    int size = nums.size(), ans = 0;
+    int size = nums.size(),
+        ans = 0;
     unordered_set<int> set;
 
     for (int num : nums)
         set.insert(num);
 
-    for (int i = 0; i < size; i++)
+    for (int num : set)
     {
-        int current = nums[i],
-            length = 0;
-        if ((!set.contains(current - 1)))
-            while (set.contains(current++))
+        int length = 0;
+        if (!set.contains(num - 1))
+            while (set.contains(num + length))
                 length++;
-        else
-            length = 1;
         ans = max(length, ans);
     }
+
     return ans;
 }
