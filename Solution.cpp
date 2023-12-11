@@ -2,23 +2,21 @@
 #include <unordered_set>
 #include "Solution"
 
-int Solution::longestConsecutive(vector<int> &nums)
+int Solution::findSpecialInteger(vector<int> &arr)
 {
-    int size = nums.size(),
-        ans = 0;
-    unordered_set<int> set;
+    int size = arr.size(), l = 0, r = 0, len = 0;
 
-    for (int num : nums)
-        set.insert(num);
-
-    for (int num : set)
+    while (r < size)
     {
-        int length = 0;
-        if (!set.contains(num - 1))
-            while (set.contains(num + length))
-                length++;
-        ans = max(length, ans);
+        if (arr[r] != arr[l])
+        {
+            if (len > size / 4)
+                return arr[l];
+            len = 0;
+            l = r;
+        }
+        len++;
+        r++;
     }
-
-    return ans;
+    return arr[l];
 }

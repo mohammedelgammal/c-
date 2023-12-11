@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    int longestConsecutive(vector<int> &nums);
+    int findSpecialInteger(vector<int> &arr);
 };
 
 #endif // SOLUTION

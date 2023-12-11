@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> nums = {100, 4, 200, 3, 1, 2};
+    vector<int> nums = {1, 2, 2, 6, 6, 6, 6, 7, 10};
 
-    cout << solution.longestConsecutive(nums);
+    cout << solution.findSpecialInteger(nums);
 
     return 0;
 }
