@@ -4,19 +4,10 @@
 
 int Solution::findSpecialInteger(vector<int> &arr)
 {
-    int size = arr.size(), l = 0, r = 0, len = 0;
+    int size = arr.size();
 
-    while (r < size)
-    {
-        if (arr[r] != arr[l])
-        {
-            if (len > size / 4)
-                return arr[l];
-            len = 0;
-            l = r;
-        }
-        len++;
-        r++;
-    }
-    return arr[l];
+    for(int i = 0; i < size - size / 4; i++)
+        if(arr[i] == arr[i + size / 4])
+            return arr[i];
+    return -1;
 }
