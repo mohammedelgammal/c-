@@ -4,6 +4,11 @@
 
 int Solution::maxProduct(vector<int> &nums)
 {
-    sort(nums.rbegin(), nums.rend());
-    return (nums[0] - 1) * (nums[1] - 1);
+    int l1 = 0, l2 = 0;
+    for (int n : nums)
+        if (n > l1)
+            l2 = exchange(l1, n);
+        else
+            l2 = max(l2, n);
+    return (l1 - 1) * (l2 - 1);
 }
