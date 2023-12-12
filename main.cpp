@@ -9,9 +9,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> nums = {1, 2, 2, 6, 6, 6, 6, 7, 10};
+    vector<int> nums = {3, 4, 5, 2};
 
-    cout << solution.findSpecialInteger(nums);
+    cout << solution.maxProduct(nums);
 
     return 0;
 }

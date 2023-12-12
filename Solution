@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    int findSpecialInteger(vector<int> &arr);
+    int maxProduct(vector<int> &nums);
 };
 
 #endif // SOLUTION
