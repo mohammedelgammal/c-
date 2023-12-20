@@ -9,12 +9,14 @@ int main()
 {
     Solution solution;
 
-    vector<int> nums = {0, 1, 2, 4, 5, 7};
-    vector<string> ans = solution.summaryRanges(nums);
+    vector<vector<int>> nums = {{1, 4}, {0, 4}};
+
+    vector<vector<int>> ans = solution.merge(nums);
 
     cout << '[';
-    for(string a : ans)
-        cout << a << ',';
+    for (vector<int> vec : ans)
+        for (int a : vec)
+            cout << a << ',';
     cout << ']';
 
     return 0;

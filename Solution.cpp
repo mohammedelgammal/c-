@@ -2,22 +2,20 @@
 #include <unordered_set>
 #include "Solution"
 
-vector<string> Solution::summaryRanges(vector<int> &nums)
+vector<vector<int>> Solution::merge(vector<vector<int>> &intervals)
 {
-    int size = nums.size(), l = 0, r = 1;
-    vector<string> ans;
+    vector<vector<int>> ans;
 
-    while (r <= size)
+    sort(intervals.begin(), intervals.end());
+    ans.push_back(intervals[0]);
+
+    for (int i = 1; i < intervals.size(); i++)
     {
-        if (r == size || nums[r] > nums[r - 1] + 1)
-        {
-            if (l == r - 1)
-                ans.push_back(to_string(nums[l]));
-            else
-                ans.push_back(to_string(nums[l]) + "->" + to_string(nums[r - 1]));
-            l = r;
-        }
-        r++;
+        if (ans.back()[1] >= intervals[i][0])
+            ans.back()[1] = max(ans.back()[1], intervals[i][1]);
+        else
+            ans.push_back(intervals[i]);
     }
+
     return ans;
 }
