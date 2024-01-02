@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    vector<vector<int>> findMatrix(vector<int> &nums);
+    int findContentChildren(vector<int> &g, vector<int> &s);
 };
 
 #endif // SOLUTION

@@ -9,9 +9,10 @@ int main()
 {
     Solution solution;
 
-    vector<int> nums = {4, 5, 3, 3, 3};
+    vector<int> g = {1, 2, 3},
+                s = {1, 1};
 
-    vector<vector<int>> matrix = solution.findMatrix(nums);
+    cout << solution.findContentChildren(g, s);
 
     return 0;
 }

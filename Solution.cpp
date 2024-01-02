@@ -1,29 +1,18 @@
 #include <iostream>
 #include "Solution"
 
-vector<vector<int>> Solution::findMatrix(vector<int> &nums)
+int Solution::findContentChildren(vector<int> &g, vector<int> &s)
 {
-    vector<vector<int>> ans;
-    vector<int> reps(nums.size() + 1);
     int max = 0;
-
-    for (int num : nums)
-        if (++reps[num] > max)
-            max = reps[num];
-
-    for (int j = 0; j <= max; j++)
+    sort(g.begin(), g.end());
+    sort(s.begin(), s.end());
+    for (int l = 0, r = 0; l < g.size() && r < s.size(); r++)
     {
-        vector<int> sub;
-        for (int i = 0; i <= nums.size(); i++)
+        if (s[r] >= g[l])
         {
-            if (reps[i])
-            {
-                sub.push_back(i);
-                reps[i]--;
-            }
+            max++;
+            l++;
         }
-        if (!sub.empty())
-            ans.push_back(sub);
     }
-    return ans;
+    return max;
 }
