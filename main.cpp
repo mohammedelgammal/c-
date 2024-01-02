@@ -9,15 +9,9 @@ int main()
 {
     Solution solution;
 
-    vector<vector<int>> nums = {{1, 4}, {0, 4}};
+    vector<int> nums = {4, 5, 3, 3, 3};
 
-    vector<vector<int>> ans = solution.merge(nums);
-
-    cout << '[';
-    for (vector<int> vec : ans)
-        for (int a : vec)
-            cout << a << ',';
-    cout << ']';
+    vector<vector<int>> matrix = solution.findMatrix(nums);
 
     return 0;
 }

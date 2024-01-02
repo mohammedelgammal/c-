@@ -1,21 +1,29 @@
 #include <iostream>
-#include <unordered_set>
 #include "Solution"
 
-vector<vector<int>> Solution::merge(vector<vector<int>> &intervals)
+vector<vector<int>> Solution::findMatrix(vector<int> &nums)
 {
     vector<vector<int>> ans;
+    vector<int> reps(nums.size() + 1);
+    int max = 0;
 
-    sort(intervals.begin(), intervals.end());
-    ans.push_back(intervals[0]);
+    for (int num : nums)
+        if (++reps[num] > max)
+            max = reps[num];
 
-    for (int i = 1; i < intervals.size(); i++)
+    for (int j = 0; j <= max; j++)
     {
-        if (ans.back()[1] >= intervals[i][0])
-            ans.back()[1] = max(ans.back()[1], intervals[i][1]);
-        else
-            ans.push_back(intervals[i]);
+        vector<int> sub;
+        for (int i = 0; i <= nums.size(); i++)
+        {
+            if (reps[i])
+            {
+                sub.push_back(i);
+                reps[i]--;
+            }
+        }
+        if (!sub.empty())
+            ans.push_back(sub);
     }
-
     return ans;
 }
