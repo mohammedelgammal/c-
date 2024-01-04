@@ -1,18 +1,19 @@
 #include <iostream>
 #include "Solution"
 
-int Solution::findContentChildren(vector<int> &g, vector<int> &s)
+int Solution::minOperations(vector<int> &nums)
 {
-    int max = 0;
-    sort(g.begin(), g.end());
-    sort(s.begin(), s.end());
-    for (int l = 0, r = 0; l < g.size() && r < s.size(); r++)
+    unordered_map<int, int> reps;
+    int ans = 0;
+
+    for (int num : nums)
+        reps[num]++;
+
+    for (auto &it : reps)
     {
-        if (s[r] >= g[l])
-        {
-            max++;
-            l++;
-        }
+        if (it.second == 1)
+            return -1;
+        ans += ceil(it.second / 3.0F);
     }
-    return max;
+    return ans;
 }
