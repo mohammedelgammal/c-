@@ -1,19 +1,10 @@
 #include <iostream>
 #include "Solution"
 
-int Solution::minOperations(vector<int> &nums)
+int Solution::fib(int n)
 {
-    unordered_map<int, int> reps;
-    int ans = 0;
+    if (n < 2)
+        return n;
 
-    for (int num : nums)
-        reps[num]++;
-
-    for (auto &it : reps)
-    {
-        if (it.second == 1)
-            return -1;
-        ans += ceil(it.second / 3.0F);
-    }
-    return ans;
+    return fib(n - 1) + fib(n - 2);
 }
