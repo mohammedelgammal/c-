@@ -10,7 +10,7 @@ int main()
 {
     Solution solution;
 
-    cout << solution.fib(0);
+    cout << solution.fib(4);
 
     return 0;
 }
