@@ -3,11 +3,14 @@
 
 int Solution::fib(int n)
 {
-    vector<int> memo(n + 1, 0);
     if (n < 2)
         return n;
-    memo[1] = 1;
+    int bLast = 0, last = 1;
     for (int i = 2; i <= n; i++)
-        memo[i] = memo[i - 1] + memo[i - 2];
-    return memo[n];
+    {
+        int temp = bLast;
+        bLast = last;
+        last += temp;
+    }
+    return last;
 }
