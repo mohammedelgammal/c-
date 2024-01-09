@@ -1,11 +1,14 @@
-Object.prototype[Symbol.iterator] = function* () {
-  for (let key in this) yield [key, this[key]];
+Number.prototype[Symbol.iterator] = function () {
+  const digits = this.toString();
+  let index = digits.length - 1;
+  return {
+    next() {
+      if (index < 0) return { done: true };
+      return { value: +digits[index--], done: false };
+    },
+  };
 };
 
-const person = {
-  name: "ali",
-  age: 28,
-  country: "Syria",
-};
+const num = 566908;
 
-for (let [key, val] of person) console.log(key, val);
+for (let digit of num) console.log(digit);
