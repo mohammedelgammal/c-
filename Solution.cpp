@@ -1,18 +1,16 @@
 #include <iostream>
 #include "Solution"
 
-int memoFib(int n, unordered_map<int, int> &memo)
+int Solution::fib(int n)
 {
     if (n < 2)
         return n;
-    if (memo.contains(n))
-        return memo[n];
-    memo[n] = memoFib(n - 1, memo) + memoFib(n - 2, memo);
-    return memo[n];
-}
-
-int Solution::fib(int n)
-{
-    unordered_map<int, int> map;
-    return memoFib(n, map);
+    int bLast = 0, last = 1;
+    for (int i = 2; i <= n; i++)
+    {
+        int temp = bLast;
+        bLast = last;
+        last += temp;
+    }
+    return last;
 }
