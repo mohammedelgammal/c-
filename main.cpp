@@ -10,7 +10,7 @@ int main()
 {
     Solution solution;
 
-    cout << solution.fib(4);
+    cout << solution.climbStairs(45);
 
     return 0;
 }
