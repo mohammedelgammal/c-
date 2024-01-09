@@ -1,5 +1,6 @@
 {
   "files.associations": {
-    "solution": "cpp"
+    "solution": "cpp",
+    "vector": "cpp"
   }
 }
