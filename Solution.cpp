@@ -3,9 +3,13 @@
 
 int Solution::tribonacci(int n)
 {
-    vector<int> memo(n + 1, 1);
-    memo.front() = 0;
-    for (int i = 3; i < memo.size(); i++)
-        memo[i] = memo[i - 1] + memo[i - 2] + memo[i - 3];
-    return memo.back();
+    int f = 0, s = 1, t = 1;
+    for (int i = 3; i <= n; i++)
+    {
+        int l = f + s + t;
+        f = s;
+        s = t;
+        t = l;
+    }
+    return t;
 }
