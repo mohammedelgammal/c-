@@ -10,7 +10,7 @@ int main()
 {
     Solution solution;
 
-    cout << solution.climbStairs(4);
+    cout << solution.tribonacci(35);
 
     return 0;
 }
