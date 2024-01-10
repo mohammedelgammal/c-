@@ -3,6 +3,8 @@
 
 int Solution::tribonacci(int n)
 {
+    if (n < 2)
+        return n;
     int f = 0, s = 1, t = 1;
     for (int i = 3; i <= n; i++)
     {
