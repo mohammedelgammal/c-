@@ -1,8 +1,3 @@
-// determine if the number is an integer
-const isInt = function (n) {
-  return !isNaN(n) && parseInt(n) === n;
-};
+const n = ((x = 2), (y = 7), (z = 3));
 
-console.log(isInt(3));
-console.log(isInt(3.5));
-console.log(isInt(9));
+console.log(n);
