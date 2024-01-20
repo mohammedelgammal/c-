@@ -1,3 +1,7 @@
-const n = ((x = 2), (y = 7), (z = 3));
+function f(n, m) {
+  return arguments.length === f.length;
+}
 
-console.log(n);
+console.log( f(1));
+console.log( f(1, 2));
+console.log( f(1, 2, 3));
