@@ -3,18 +3,13 @@
 
 #include "Solution"
 
-int climb(int step, vector<int> &cost, unordered_map<int, int> &memo)
-{
-    if (step >= cost.size())
-        return 0;
-    if (memo.contains(step))
-        return memo[step];
-    memo[step] = cost[step] + min(climb(step + 1, cost, memo), climb(step + 2, cost, memo));
-    return memo[step];
-}
-
 int Solution::minCostClimbingStairs(vector<int> &cost)
 {
-    unordered_map<int, int> memo;
-    return min(climb(0, cost, memo), climb(1, cost, memo));
+    int size = cost.size() + 1;
+    vector<int> memo(size, 0);
+    cost.push_back(0);
+    memo[size - 2] = cost[size - 2];
+    for (int i = size - 3; i >= 0; i--)
+        memo[i] = cost[i] + min(memo[i + 1], memo[i + 2]);
+    return min(memo[0], memo[1]);
 }
