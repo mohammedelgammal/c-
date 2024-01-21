@@ -1,17 +1,16 @@
 #include <iostream>
+#include <algorithm>
+
 #include "Solution"
 
-int Solution::tribonacci(int n)
+int climb(int step, vector<int> &cost)
 {
-    if (n < 2)
-        return n;
-    int f = 0, s = 1, t = 1;
-    for (int i = 3; i <= n; i++)
-    {
-        int l = f + s + t;
-        f = s;
-        s = t;
-        t = l;
-    }
-    return t;
+    if (step >= cost.size())
+        return 0;
+    return cost[step] + min(climb(step + 1, cost), climb(step + 2, cost));
+}
+
+int Solution::minCostClimbingStairs(vector<int> &cost)
+{
+    return min(climb(0, cost), climb(1, cost));
 }

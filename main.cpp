@@ -1,6 +1,5 @@
 // Libraries
 #include <iostream>
-#include <unordered_map>
 
 #include "Solution"
 
@@ -10,7 +9,9 @@ int main()
 {
     Solution solution;
 
-    // cout << solution.tribonacci(35);
+    vector<int> cost = {10, 15, 20};
+
+    cout << solution.minCostClimbingStairs(cost);
 
     return 0;
 }
