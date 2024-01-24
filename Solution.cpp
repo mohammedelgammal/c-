@@ -3,14 +3,13 @@
 
 #include "Solution"
 
-int robIt(int index, vector<int> &nums)
-{
-    if (index >= nums.size())
-        return 0;
-    return max(nums[index] + robIt(index + 2, nums), robIt(index + 1, nums));
-}
-
 int Solution::rob(vector<int> &nums)
 {
-    return robIt(0, nums);
+    int size = nums.size() + 1;
+    vector<int> memo(size);
+    nums.push_back(0);
+    memo[size - 2] = nums[size - 2];
+    for (int i = size - 3; i >= 0; i--)
+        memo[i] = max(nums[i] + memo[i + 2], memo[i + 1]);
+    return memo.front();
 }
