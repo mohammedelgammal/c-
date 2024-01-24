@@ -3,16 +3,14 @@
 
 #include "Solution"
 
-int Solution::minCostClimbingStairs(vector<int> &cost)
+int robIt(int index, vector<int> &nums)
 {
-    int size = cost.size(),
-        first = cost.back(),
-        second = cost[size - 2];
-    for (int i = size - 3; i >= 0; i--)
-    {
-        int temp = second;
-        second = cost[i] + min(second, first);
-        first = temp;
-    }
-    return min(first, second);
+    if (index >= nums.size())
+        return 0;
+    return max(nums[index] + robIt(index + 2, nums), robIt(index + 1, nums));
+}
+
+int Solution::rob(vector<int> &nums)
+{
+    return robIt(0, nums);
 }
