@@ -5,11 +5,14 @@
 
 int Solution::rob(vector<int> &nums)
 {
-    int size = nums.size() + 1;
-    vector<int> memo(size);
-    nums.push_back(0);
-    memo[size - 2] = nums[size - 2];
-    for (int i = size - 3; i >= 0; i--)
-        memo[i] = max(nums[i] + memo[i + 2], memo[i + 1]);
-    return memo.front();
+    int size = nums.size(),
+        choiceOne = 0,
+        choiceTwo = nums[size - 1];
+    for (int i = size - 2; i >= 0; i--)
+    {
+        int temp = choiceTwo;
+        choiceTwo = max(nums[i] + choiceOne, choiceTwo);
+        choiceOne = temp;
+    }
+    return choiceTwo;
 }
