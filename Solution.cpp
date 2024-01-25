@@ -3,15 +3,17 @@
 
 #include "Solution"
 
-int robIt(int index, vector<int> &nums, bool isStart)
+int robIt(int l, int r, vector<int> &nums)
 {
-    if (index >= nums.size() || (index + 1 == nums.size() && isStart))
+    if (l > r)
         return 0;
-    return max(nums[index] + robIt(index + 2, nums, true),
-               robIt(index + 1, nums, false));
+    return max(nums[l] + robIt(l + 2, r, nums), robIt(l + 1, r, nums));
 }
 
 int Solution::rob(vector<int> &nums)
 {
-    return robIt(0, nums, true);
+    if (nums.size() == 1)
+        return nums.front();
+    int size = nums.size();
+    return max(robIt(0, size - 2, nums), robIt(1, size - 1, nums));
 }
