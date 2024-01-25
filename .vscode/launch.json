@@ -1,6 +1,14 @@
 {
   "configurations": [
     {
+      "type": "node",
+      "request": "launch",
+      "name": "TypeScript Builder & Debugger",
+      "program": "${workspaceFolder}/ts/index.ts",
+      "preLaunchTask": "TypeScript Builder & Debugger",
+      "outFiles": ["${workspaceFolder}/ts/dist/**/*.js"]
+    },
+    {
       "name": "C++ Builder & Debugger",
       "type": "cppdbg",
       "request": "launch",
