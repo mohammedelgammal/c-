@@ -5,12 +5,14 @@
 
 int robIt(int l, int r, vector<int> &nums)
 {
-    int size = nums.size();
-    vector<int> memo(size);
-    memo[size - 2] = nums[r];
-    for (int i = r - 1, k = size - 3; i >= l; i--, k--)
-        memo[k] = max(nums[i] + memo[k + 2], memo[k + 1]);
-    return memo.front();
+    int size = nums.size(), first = 0, second = nums[r];
+    for (int i = r - 1; i >= l; i--)
+    {
+        int temp = second;
+        second = max(nums[i] + first, second);
+        first = temp;
+    }
+    return second;
 }
 
 int Solution::rob(vector<int> &nums)
