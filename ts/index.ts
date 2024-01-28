@@ -20,7 +20,7 @@ enum Size {
 }
 const mySize: Size = Size.Large; // 3
 // functions and optional args
-function print(age: number): number {
+function printe(age: number): number {
   let x: number = 10;
   if (age < 18) return -1;
   return 1 * x;
@@ -68,7 +68,7 @@ function getEmployee(emplyee: Employee | null): Employee | null | undefined {
 let commonWeight: number = weigh("10kg") as number;
 let otherWeight: number = <number>weigh(10);
 // unknown type
-function print(object: unknown): void {
+function printea(object: unknown): void {
   if (typeof object === "string") console.log(object.length);
   if (typeof object === "number") console.log(object.toString().length);
   if (object instanceof Boolean) console.log(object);
@@ -79,10 +79,85 @@ function thrower(message: string): never {
   throw new Error(message);
 }
 // thrower("an error ocurred!"); // code below this line is unreachable using config file
+// Classes
+class Account {
+  // readonly
+  // readonly id: number;
+  // name: string;
+  // private _amount: number;
+  // // optional properties
+  // location?: string;
 
-console.log(mySize);
-console.log(print(10));
-obj.retire(new Date());
-console.log(weigh("10kg"));
-console.log(weigh(12));
-console.log(getEmployee(null)?.name); // undefined
+  // constructor(id: number, name: string, amount: number) {
+  //   this.id = id;
+  //   this.name = name;
+  //   this._amount = amount;
+  // }
+
+  // parameter property
+  constructor(
+    public readonly id: number,
+    public name: string,
+    private _amount: number,
+    public location?: string | null,
+    private _ssn?: number
+  ) {
+    if (typeof id !== "number") throw new Error("Invalid id...");
+    this._ssn;
+  }
+
+  deposit(amount: number): void {
+    if (amount <= 0) throw new Error("Invalid amount!");
+    this._amount += amount;
+  }
+  //getter
+  get amount(): number {
+    return this._amount;
+  }
+  //setter
+  set ssn(ssn: number) {
+    if (ssn <= 0) throw new Error("Invalid ssn");
+    this._ssn = ssn;
+  }
+}
+// creating objects instances
+const newAccount = new Account(1, "Mosh", 20);
+newAccount.deposit(20);
+
+// static props
+class Ride {
+  private static _rides = 0;
+  start(): void {
+    Ride._rides++;
+  }
+  stop(): void {
+    Ride._rides--;
+  }
+  static get rides(): number {
+    return Ride._rides;
+  }
+}
+const rideOne = new Ride();
+const rideTwo = new Ride();
+
+rideOne.start();
+rideTwo.start();
+rideTwo.start();
+
+class Person {
+  constructor(public firstName: string, public lastName: string) {}
+  public get fullName(): string {
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+class Professor extends Person {
+  override get fullName(): string {
+    return "Professor ";
+  }
+}
+
+const professor = new Professor("Amy", "Floyd");
+console.log(professor.fullName);
+
+console.log("erer");
