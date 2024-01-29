@@ -3,22 +3,37 @@
 
 #include "Solution"
 
-int robIt(int l, int r, vector<int> &nums)
+string Solution::longestPalindrome(string s)
 {
-    int size = nums.size(), first = 0, second = nums[r];
-    for (int i = r - 1; i >= l; i--)
+    int maxLen = 0;
+    string ans;
+    for (int i = 0; i < s.size(); i++)
     {
-        int temp = second;
-        second = max(nums[i] + first, second);
-        first = temp;
+        int l = i, r = i;
+        while (l >= 0 && r < s.size() && s.at(l) == s.at(r))
+        {
+            int currentLen = r - l + 1;
+            if (currentLen > maxLen)
+            {
+                maxLen = currentLen;
+                ans = s.substr(l, currentLen);
+            }
+            l--;
+            r++;
+        }
+        l = i - 1;
+        r = i;
+        while (l >= 0 && r < s.size() && s.at(l) == s.at(r))
+        {
+            int currentLen = r - l + 1;
+            if (currentLen > maxLen)
+            {
+                maxLen = currentLen;
+                ans = s.substr(l, currentLen);
+            }
+            l--;
+            r++;
+        }
     }
-    return second;
-}
-
-int Solution::rob(vector<int> &nums)
-{
-    if (nums.size() == 1)
-        return nums.front();
-    return max(robIt(0, nums.size() - 2, nums),
-               robIt(1, nums.size() - 1, nums));
+    return ans;
 }
