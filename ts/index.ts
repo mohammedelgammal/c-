@@ -156,8 +156,71 @@ class Professor extends Person {
     return "Professor ";
   }
 }
+// generic classes
+class KeyValuePair<K, V> {
+  constructor(public key: K, public value: V) {}
+}
+const kv = new KeyValuePair(39, null);
 
-const professor = new Professor("Amy", "Floyd");
-console.log(professor.fullName);
+// generic functions
+function gener<V>(value: V): [V] {
+  return [value];
+}
 
-console.log("erer");
+const vegen = gener(+"3"); // array of numbers
+// generic interface
+interface Result<T> {
+  data: T | null;
+  error: string | null;
+}
+
+function fetche<T>(): Result<T> {
+  return { data: null, error: null };
+}
+
+interface User {
+  name: string;
+}
+
+interface Product {
+  price: number;
+}
+
+const data = fetche<Product>();
+data.data?.price;
+
+interface Pet {
+  isPet: boolean;
+  id: string | number;
+}
+
+// type mapping
+interface Citizen {
+  name: string;
+  age: number;
+}
+// mapping to readonly type
+type ReadonlyType<T> = {
+  readonly [K in keyof T]: T[K];
+};
+type OptionalType<T> = {
+  [K in keyof T]?: T[K];
+};
+type NullishType<T> = {
+  [K in keyof T]: T[K] | null;
+};
+
+const citizen: ReadonlyType<Citizen> = {
+  name: "howard",
+  age: 32,
+};
+
+const optionalCitizen: OptionalType<Citizen> = {
+  name: "kyle",
+};
+
+const nullableCitizen: NullishType<Citizen> = {
+  name: null,
+  age: 32,
+};
+
