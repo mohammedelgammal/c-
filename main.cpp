@@ -9,7 +9,7 @@ int main()
 {
     Solution solution;
 
-    cout << solution.longestPalindrome("ab");
+    cout << solution.longestPalindrome("aba");
 
     return 0;
 }
