@@ -224,3 +224,140 @@ const nullableCitizen: NullishType<Citizen> = {
   age: 32,
 };
 
+// class decorator
+
+interface ElementSelector {
+  selector: string;
+}
+
+// decorator factory
+function SelectorComponent(options: ElementSelector): Function {
+  return function (constructor: Function): void {
+    // console.log("Component decorator is called...");
+    // prototype
+    constructor.prototype.id = new Date();
+    constructor.prototype.options = options;
+    constructor.prototype.insertIntoDOM = function (): void {
+      console.log("inserted into DOM");
+    };
+  };
+}
+
+// decorator composition
+function Pipe(constructor: Function): void {
+  // console.log("Pipe decorator is called...");
+  constructor.prototype.pipe = true;
+}
+
+// pipe is called first
+@SelectorComponent({ selector: "#users-id" })
+@Pipe
+class ProfileComponent {}
+
+const profile: ProfileComponent = new ProfileComponent();
+
+function Log(
+  target: any,
+  methodName: string,
+  descriptor: PropertyDescriptor
+): void {
+  const originalMethod = descriptor.value as Function;
+  descriptor.value = function <T>(...args: T[]) {
+    console.log("Hello ");
+    originalMethod.call(this, ...args);
+    console.log("How are you doing");
+  };
+}
+
+class Robot {
+  @Log
+  call<T>(name: T): void {
+    console.log(name);
+  }
+}
+
+function Capitalize(
+  target: any,
+  methodName: string,
+  descriptor: PropertyDescriptor
+): void {
+  const originalGetter = descriptor.get as Function;
+  descriptor.get = function (): string {
+    const value = originalGetter.call(this);
+    return typeof value === "string" ? value.toUpperCase() : value;
+  };
+}
+
+function Underscore(
+  target: any,
+  methodName: string,
+  descriptor: PropertyDescriptor
+): void {
+  const originalGetter = descriptor.get as Function;
+  descriptor.get = function () {
+    const value = originalGetter.call(this);
+    return typeof value === "string" ? value.replace(" ", "_") : value;
+  };
+}
+
+function MinLen(yoe: number): Function {
+  return function (target: any, propertyName: string): void {
+    let value: number = 0;
+    const descriptor = {
+      get: function (): number {
+        return value;
+      },
+      set: (exp: number): void => {
+        if (exp < yoe) throw new Error(`Minimum ${yoe} years required`);
+        value = exp;
+      },
+    };
+    Object.defineProperty(target, propertyName, descriptor);
+  };
+}
+
+class Driver {
+  @MinLen(4)
+  public experience: number;
+  constructor(
+    public firstName: string,
+    public lastName: string,
+    experience: number
+  ) {
+    this.experience = experience;
+  }
+  @Underscore
+  @Capitalize
+  get fullName(): string {
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+
+try {
+  const busDriver = new Driver("Howard", "Hisenberg", 3);
+  console.log(busDriver.fullName);
+  console.log(busDriver.experience);
+} catch (error: any) {
+  console.log(error.message);
+}
+
+// parameter decorators
+type WatchedParameter = {
+  methodName: string;
+  methodIndex: number;
+};
+
+const watchedParameters: WatchedParameter[] = [];
+function Watch(target: any, methodName: string, methodIndex: number): void {
+  watchedParameters.push({
+    methodName,
+    methodIndex,
+  });
+}
+
+class Vehicle {
+  move(distance: number, @Watch speed?: string | number) {}
+}
+
+const car = new Vehicle();
+console.log(watchedParameters);
