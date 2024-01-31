@@ -14,4 +14,14 @@ type ButtonProps = {
   color?: "danger" | "primary" | "success";
 };
 
-export { type ListGroupProps, type AlertProps, type ButtonProps };
+type ExpandableTextProps = {
+  maxChars?: number;
+  children: string;
+};
+
+export {
+  type ListGroupProps,
+  type AlertProps,
+  type ButtonProps,
+  type ExpandableTextProps,
+};
