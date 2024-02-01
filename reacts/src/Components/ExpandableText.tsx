@@ -1,35 +1,25 @@
 import { useState } from "react";
-// types
 import { ExpandableTextProps } from "../types";
 
-export default ({
-  maxChars = 20,
-  children,
-}: ExpandableTextProps): JSX.Element => {
-  interface Text {
-    length: number;
-    isTrimmed: boolean;
-  }
-  const [text, setText] = useState<Text>({
-    length: maxChars,
-    isTrimmed: true,
-  });
-  const btnText = text.isTrimmed ? "Show more" : "Show less";
-  const content: string =
-    children.substring(0, text.length) + (text.isTrimmed && "...");
-  const toggleTrimHandler = (): void => {
-    setText({
-      length: text.isTrimmed ? children.length : maxChars,
-      isTrimmed: !text.isTrimmed,
-    });
+export default ({ maxChars, children }: ExpandableTextProps) => {
+  const [isTrimmed, setTrimmed] = useState<boolean>(true);
+  const computedChildren: string =
+    maxChars && isTrimmed ? children.substring(0, maxChars) : children;
+  const btnContent: string = isTrimmed ? "Show more" : "Show less";
+  const trimHandler = (): void => {
+    setTrimmed((isTrimmed) => !isTrimmed);
   };
+  const isExpandable: boolean =
+    !!maxChars && Boolean(maxChars < children.length);
+
   return (
     <>
-      <br />
-      <span>{content}</span>
-      {children.length < maxChars && (
-        <button onClick={toggleTrimHandler}>{btnText}</button>
-      )}
+      <p>
+        {isExpandable && isTrimmed
+          ? computedChildren.concat("...")
+          : computedChildren}
+      </p>
+      {isExpandable && <button onClick={trimHandler}>{btnContent}</button>}
     </>
   );
 };

@@ -12,8 +12,8 @@ export default (): JSX.Element => {
         heading={"Citizens"}
         onSelectItem={selectItemHandler}
       />
-      <ExpandableText maxChars={5}>
-        Lorem
+      <ExpandableText>
+        Lorem vb
       </ExpandableText>
     </>
   );
