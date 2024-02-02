@@ -1,33 +1,24 @@
-import { useState } from "react";
-// types
-import { Person } from "../types";
+import { FieldValues, useForm } from "react-hook-form";
 
 export default (): JSX.Element => {
-  const [person, setPerson] = useState<Person>({ name: "", age: 0 });
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setPerson((person) => ({ ...person, name: e.target.value }));
-  };
-  const handleAgeChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setPerson((person) => ({ ...person, age: parseInt(e.target.value) }));
-  };
-  const computedAge = person.age ? person.age : "";
-  const handleSubmit = (e: React.FormEvent): void => {
-    e.preventDefault();
-    console.log(person.age, person.name);
+  const { register, handleSubmit } = useForm();
+  const nameField = register("name");
+  const ageField = register("age");
+  const submitHandler = (formValues: FieldValues): void => {
+    console.log(formValues.name);
   };
   return (
     <div className="m-3">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(submitHandler)}>
         <div className="mb-3">
           <label className="form-label" htmlFor="name">
             Name
           </label>
           <input
-            onChange={(e) => handleNameChange(e)}
             type="text"
             className="form-control"
             id="name"
-            value={person.name}
+            {...nameField}
           />
         </div>
         <div className="mb-3">
@@ -35,11 +26,10 @@ export default (): JSX.Element => {
             Age
           </label>
           <input
-            onChange={(e) => handleAgeChange(e)}
             type="number"
             className="form-control"
             id="age"
-            value={computedAge}
+            {...ageField}
           />
         </div>
         <button className="btn btn-primary" type="submit">
