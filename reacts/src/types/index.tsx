@@ -19,9 +19,15 @@ type ExpandableTextProps = {
   children: string;
 };
 
+type Person = {
+  name: string;
+  age: number;
+};
+
 export {
   type ListGroupProps,
   type AlertProps,
   type ButtonProps,
   type ExpandableTextProps,
+  type Person,
 };
