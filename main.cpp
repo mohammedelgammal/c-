@@ -9,7 +9,7 @@ int main()
 {
     Solution solution;
 
-    cout << solution.countSubstrings("aba");
+    cout << solution.numDecodings("226");
 
     return 0;
 }

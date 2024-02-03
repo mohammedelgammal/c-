@@ -3,19 +3,10 @@
 
 #include "Solution"
 
-void countIt(int l, int r, int &ans, string &s)
+int decode(int start, int end, string &s)
 {
-    while (l >= 0 && r < s.size() && s.at(l) == s.at(r))
-        (ans++, l--, r++);
+    int len = end - start + 1;
+    return decode(start + 1, end + 1, s) +
+           decode(start + 1, end + 2, s);
 }
-
-int Solution::countSubstrings(string s)
-{
-    int ans = 0;
-    for (int i = 0; i < s.size(); i++)
-    {
-        countIt(i, i, ans, s);
-        countIt(i - 1, i, ans, s);
-    }
-    return ans;
-}
+int Solution::numDecodings(string s) { return decode(0, 0, s); }
