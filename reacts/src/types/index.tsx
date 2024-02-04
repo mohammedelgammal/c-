@@ -24,10 +24,29 @@ type Person = {
   age: number;
 };
 
+type Expense = {
+  id: number;
+  description: string;
+  amount: number;
+  category: "groceries" | "utilities" | "entertainment";
+};
+
+type ShoppingFormProps = {
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
+};
+
+type ShoppingListProps = {
+  expenses: Expense[];
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
+};
+
 export {
   type ListGroupProps,
   type AlertProps,
   type ButtonProps,
   type ExpandableTextProps,
   type Person,
+  type Expense,
+  type ShoppingFormProps,
+  type ShoppingListProps,
 };

@@ -1,5 +1,5 @@
-import Form from "./Components/Form";
+import ExpensesTracker from "./Components/ExpensesTracker";
 
 export default (): JSX.Element => {
-  return <Form />;
+  return <ExpensesTracker />;
 };

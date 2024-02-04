@@ -24,7 +24,7 @@ export default (): JSX.Element => {
   const {
     register,
     handleSubmit,
-    formState: { errors: formErrors },
+    formState: { errors: formErrors, isValid: isFormValid },
   } = useForm<Person>({ resolver: zodResolver(schema) });
   const submitHandler: SubmitHandler<Person> = (data: FieldValues): void => {
     console.log(data);
@@ -56,7 +56,11 @@ export default (): JSX.Element => {
           />
           <p className="text-danger">{formErrors.age?.message}</p>
         </div>
-        <button className="btn btn-primary" type="submit">
+        <button
+          disabled={!isFormValid}
+          className="btn btn-primary"
+          type="submit"
+        >
           Submit
         </button>
       </form>
