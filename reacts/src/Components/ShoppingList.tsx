@@ -1,4 +1,5 @@
 import { useState } from "react";
+import _ from "lodash";
 import { Expense, ShoppingListProps } from "../types";
 
 export default ({ expenses, setExpenses }: ShoppingListProps): JSX.Element => {
@@ -11,6 +12,10 @@ export default ({ expenses, setExpenses }: ShoppingListProps): JSX.Element => {
   const handleDelete = (id: number) => {
     setExpenses((expenses) => expenses.filter((expense) => expense.id !== id));
   };
+  const total = expenses.reduce(
+    (total, currentExpense) => currentExpense.amount + total,
+    0
+  );
   return (
     <div className="my-3">
       <div>
@@ -49,7 +54,7 @@ export default ({ expenses, setExpenses }: ShoppingListProps): JSX.Element => {
                   <tr key={index + 1}>
                     <th scope="row">{index + 1}</th>
                     <td>{expense.description}</td>
-                    <td>{expense.amount}</td>
+                    <td>{`$${expense.amount}.00`}</td>
                     <td>{expense.category}</td>
                     <td>
                       <button onClick={() => handleDelete(expense.id)}>
@@ -60,6 +65,17 @@ export default ({ expenses, setExpenses }: ShoppingListProps): JSX.Element => {
                 )
               )}
           </tbody>
+          {total ? (
+            <tfoot>
+              <tr>
+                <th>Total is: </th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>${total}.00</td>
+              </tr>
+            </tfoot>
+          ) : null}
         </table>
       </div>
     </div>

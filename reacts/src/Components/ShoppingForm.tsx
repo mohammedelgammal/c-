@@ -51,7 +51,6 @@ export default ({ setExpenses }: ShoppingFormProps): JSX.Element => {
         {...register("category")}
         className="form-select mb-3"
         id="category"
-        defaultValue=""
       >
         <option disabled>All Categories</option>
         <option value="groceries">Groceries</option>
