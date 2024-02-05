@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import { User } from "../types";
 import { AxiosError, AxiosResponse, CanceledError } from "axios";
-import apiClient from "../services/apiClient";
+import userService from "../services/userService";
+import { User } from "../types";
 
 export default (): JSX.Element => {
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState({ fetch: "", delete: "", create: "" });
   const getUsers = (): (() => void) => {
-    const controller = new AbortController();
-    apiClient
-      .get("users/", { signal: controller.signal })
+    const { request, cancel } = userService.getAllUsers();
+    request
       .then(
         (res: AxiosResponse<User[]>): void => {
           setUsers(res.data);
@@ -23,13 +22,13 @@ export default (): JSX.Element => {
         }
       )
       .then(() => setLoading(false));
-    return () => controller.abort();
+    return cancel;
   };
   useEffect(getUsers, []);
   const handleDeleteUser = (id: number): void => {
     const originalUsers: User[] = users;
     setUsers(users.filter((user) => user.id !== id));
-    apiClient.delete("users/" + id).catch((error: AxiosError) => {
+    userService.deleteUser(id).catch((error: AxiosError) => {
       setError((err) => ({ ...err, delete: error.message }));
       setUsers(originalUsers);
     });
@@ -39,7 +38,7 @@ export default (): JSX.Element => {
       id: users.length + 1,
       name: "Mosh Hamedani",
     };
-    apiClient.post("users/", newUser).then(
+    userService.createUser(newUser).then(
       ({ data: createdUser }) => setUsers((users) => [...users, createdUser]),
       (err: AxiosError) => {
         const originalUsers: User[] = users;
@@ -71,7 +70,7 @@ export default (): JSX.Element => {
               {user.name}
               <button
                 className="btn btn-danger"
-                onClick={handleDeleteUser.bind(this, user.id)}
+                onClick={() => handleDeleteUser(user.id)}
               >
                 Delete
               </button>
