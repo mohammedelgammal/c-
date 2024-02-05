@@ -40,6 +40,11 @@ type ShoppingListProps = {
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
 };
 
+type User = {
+  id: number;
+  name: string;
+};
+
 export {
   type ListGroupProps,
   type AlertProps,
@@ -49,4 +54,5 @@ export {
   type Expense,
   type ShoppingFormProps,
   type ShoppingListProps,
+  type User,
 };

@@ -1,5 +1,5 @@
-import ExpensesTracker from "./Components/ExpensesTracker";
+import Users from "./Components/Users";
 
 export default (): JSX.Element => {
-  return <ExpensesTracker />;
+  return <Users />;
 };
