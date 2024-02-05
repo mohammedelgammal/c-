@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AxiosError, AxiosResponse, CanceledError } from "axios";
-import userService from "../services/userService";
+import userService from "../services/httpService";
 import { User } from "../types";
 
 export default (): JSX.Element => {
@@ -8,7 +8,7 @@ export default (): JSX.Element => {
   const [isLoading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState({ fetch: "", delete: "", create: "" });
   const getUsers = (): (() => void) => {
-    const { request, cancel } = userService.getAllUsers();
+    const { request, cancel } = userService("users/").getAll<User>();
     request
       .then(
         (res: AxiosResponse<User[]>): void => {
@@ -28,24 +28,28 @@ export default (): JSX.Element => {
   const handleDeleteUser = (id: number): void => {
     const originalUsers: User[] = users;
     setUsers(users.filter((user) => user.id !== id));
-    userService.deleteUser(id).catch((error: AxiosError) => {
-      setError((err) => ({ ...err, delete: error.message }));
-      setUsers(originalUsers);
-    });
+    userService("users/")
+      .delete(id)
+      .catch((error: AxiosError) => {
+        setError((err) => ({ ...err, delete: error.message }));
+        setUsers(originalUsers);
+      });
   };
   const handleAddUser = (): void => {
     const newUser: User = {
       id: users.length + 1,
       name: "Mosh Hamedani",
     };
-    userService.createUser(newUser).then(
-      ({ data: createdUser }) => setUsers((users) => [...users, createdUser]),
-      (err: AxiosError) => {
-        const originalUsers: User[] = users;
-        setError((error) => ({ ...error, create: err.message }));
-        setUsers(originalUsers);
-      }
-    );
+    userService("users/")
+      .create(newUser)
+      .then(
+        ({ data: createdUser }) => setUsers((users) => [...users, createdUser]),
+        (err: AxiosError) => {
+          const originalUsers: User[] = users;
+          setError((error) => ({ ...error, create: err.message }));
+          setUsers(originalUsers);
+        }
+      );
   };
 
   return (
