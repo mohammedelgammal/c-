@@ -45,6 +45,17 @@ type User = {
   name: string;
 };
 
+type UseUser = {
+  users: User[];
+  isLoading: boolean;
+  error: { fetch: string; delete: string; create: string };
+  setUsers: React.Dispatch<React.SetStateAction<User[]>>;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setError: React.Dispatch<
+    React.SetStateAction<{ fetch: string; delete: string; create: string }>
+  >;
+};
+
 export {
   type ListGroupProps,
   type AlertProps,
@@ -55,4 +66,5 @@ export {
   type ShoppingFormProps,
   type ShoppingListProps,
   type User,
+  type UseUser,
 };

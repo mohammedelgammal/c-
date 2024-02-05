@@ -1,30 +1,11 @@
-import { useEffect, useState } from "react";
-import { AxiosError, AxiosResponse, CanceledError } from "axios";
-import userService from "../services/httpService";
+import { AxiosError } from "axios";
 import { User } from "../types";
+import useUsers from "../hooks/useUsers";
+import userService from "../services/httpService";
 
 export default (): JSX.Element => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [isLoading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState({ fetch: "", delete: "", create: "" });
-  const getUsers = (): (() => void) => {
-    const { request, cancel } = userService("users/").getAll<User>();
-    request
-      .then(
-        (res: AxiosResponse<User[]>): void => {
-          setUsers(res.data);
-          setLoading(true);
-        },
-        (error: AxiosError) => {
-          if (error instanceof CanceledError) return;
-          console.error(error.message);
-          setError((err) => ({ ...err, fetch: error.message }));
-        }
-      )
-      .then(() => setLoading(false));
-    return cancel;
-  };
-  useEffect(getUsers, []);
+  const { users, isLoading, error, setUsers, setError } = useUsers();
+
   const handleDeleteUser = (id: number): void => {
     const originalUsers: User[] = users;
     setUsers(users.filter((user) => user.id !== id));
