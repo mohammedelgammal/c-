@@ -1,6 +1,5 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
-import Navbar from "./containers/Navbar/Navbar";
-import Aside from "./containers/Aside/Aside";
+import { Navbar, Aside, Main } from "./containers";
 
 export default (): JSX.Element => {
   return (
@@ -25,8 +24,8 @@ export default (): JSX.Element => {
           <Aside genres={[]} />
         </GridItem>
       </Show>
-      <GridItem area={"main"} bg={"royalblue"}>
-        main
+      <GridItem area={"main"}>
+        <Main categoryTitle="" games={[]} />
       </GridItem>
     </Grid>
   );

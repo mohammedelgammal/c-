@@ -8,4 +8,16 @@ type AsideProps = {
   genres: Genre[];
 };
 
-export { type Genre, type AsideProps };
+type MainProps = {
+  categoryTitle: string;
+  games: GameProps[];
+};
+
+type GameProps = {
+  src: string;
+  platforms: string[];
+  rating: number;
+  title: string;
+};
+
+export { type Genre, type AsideProps, type MainProps, type GameProps };
