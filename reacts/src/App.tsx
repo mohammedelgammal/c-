@@ -1,27 +1,9 @@
-import { useEffect, useState } from "react";
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import { Navbar, Aside, Main } from "./containers";
-import apiClient from "./services/apiClient";
-import { Genre } from "./types";
-import { AxiosError } from "axios";
+import useGenre from "./services/useGenre";
 
 export default (): JSX.Element => {
-  const [genres, setGenres] = useState<Genre[]>([]);
-  const [isLoading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>("");
-  useEffect(() => {
-    const controller = new AbortController();
-    apiClient
-      .get<{
-        results: Genre[];
-      }>("/genres")
-      .then(
-        (response) => setGenres(response.data.results),
-        (error: AxiosError) => setError(error.message)
-      )
-      .then(() => setLoading(false));
-    return () => controller.abort();
-  }, []);
+  const { genres, isLoading, error } = useGenre();
   return (
     <Grid
       templateAreas={{
