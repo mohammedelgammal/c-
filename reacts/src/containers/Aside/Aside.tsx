@@ -1,8 +1,9 @@
 import { Stack, Text } from "@chakra-ui/react";
-import Genre from "./components/Genre";
+import { AsideLoading, Genre } from "./components";
+import ErrorMessage from "../../common/ErrorMessage";
 import { AsideProps } from "../../types";
 
-export default ({ genres }: AsideProps): JSX.Element => {
+export default ({ genres, isLoading, error }: AsideProps): JSX.Element => {
   return (
     <Stack spacing="10px">
       <Text as="h2">
@@ -10,13 +11,19 @@ export default ({ genres }: AsideProps): JSX.Element => {
           Genres:
         </Text>
       </Text>
-      <Stack>
-        {genres.map(
-          ({ id, name, image_background }): JSX.Element => (
-            <Genre key={id} name={name} image_background={image_background} />
-          )
-        )}
-      </Stack>
+      {isLoading ? (
+        <AsideLoading length={20} />
+      ) : error ? (
+        <ErrorMessage error={error} />
+      ) : (
+        <Stack>
+          {genres.map(
+            ({ id, name, image_background }): JSX.Element => (
+              <Genre key={id} name={name} image_background={image_background} />
+            )
+          )}
+        </Stack>
+      )}
     </Stack>
   );
 };

@@ -6,6 +6,8 @@ type Genre = {
 
 type AsideProps = {
   genres: Genre[];
+  isLoading: boolean;
+  error: string;
 };
 
 type MainProps = {
