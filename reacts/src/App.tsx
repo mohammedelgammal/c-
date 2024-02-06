@@ -35,6 +35,7 @@ export default (): JSX.Element => {
         base: "1fr",
         lg: "200px auto",
       }}
+      gap={10}
     >
       <GridItem area={"navbar"}>
         <Navbar />

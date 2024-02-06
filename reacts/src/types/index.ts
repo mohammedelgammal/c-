@@ -52,6 +52,9 @@ type GameProps = {
   background_image: string;
   added: number;
   platforms: Platform[];
+  released: string;
+  rating: number;
+  genres: { name: string }[];
 };
 
 type Game = {
