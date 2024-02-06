@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { AxiosError } from "axios";
-import { AsideProps, Genre } from "../types";
+import { GenreHook, Genre } from "../types";
 import createHttpService from "./HttpService";
 
-export default (): AsideProps => {
+export default (): GenreHook => {
   const [genres, setGenres] = useState<Genre[]>([]);
   const [isLoading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
   useEffect(() => {
-    const { request, cancel } = createHttpService("/genres").getAll<{
+    const { request, cancel } = createHttpService("/genress").getAll<{
       results: Genre[];
     }>();
     request

@@ -1,14 +1,15 @@
 import { AxiosResponse } from "axios";
 import apiClient from "./apiClient";
+import { QueryParams } from "../types";
 
 class HttpService {
   constructor(private endPoint: string) {}
-  getAll<T>(): {
+  getAll<T>(queryParams: QueryParams = {}): {
     request: Promise<AxiosResponse<T>>;
     cancel: () => void;
   } {
     const controller = new AbortController();
-    const request = apiClient.get<T>(this.endPoint + "/?/");
+    const request = apiClient.get<T>(this.endPoint, { params: queryParams });
     return {
       request,
       cancel: () => {

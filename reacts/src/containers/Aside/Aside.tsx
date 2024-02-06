@@ -3,7 +3,13 @@ import { AsideLoading, Genre } from "./components";
 import ErrorMessage from "../../common/ErrorMessage";
 import { AsideProps } from "../../types";
 
-export default ({ genres, isLoading, error }: AsideProps): JSX.Element => {
+export default ({
+  genres,
+  isLoading,
+  error,
+  genre,
+  setGenre,
+}: AsideProps): JSX.Element => {
   return (
     <Stack spacing="10px">
       <Text as="h2">
@@ -19,7 +25,15 @@ export default ({ genres, isLoading, error }: AsideProps): JSX.Element => {
         <Stack>
           {genres.map(
             ({ id, name, image_background }): JSX.Element => (
-              <Genre key={id} name={name} image_background={image_background} />
+              <Genre
+                id={id}
+                key={id}
+                name={name}
+                image_background={image_background}
+                isActive={genre.id === id}
+                genres={genres}
+                setGenre={setGenre}
+              />
             )
           )}
         </Stack>
