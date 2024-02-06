@@ -8,7 +8,7 @@ class HttpService {
     cancel: () => void;
   } {
     const controller = new AbortController();
-    const request = apiClient.get<T>(this.endPoint);
+    const request = apiClient.get<T>(this.endPoint + "/?/");
     return {
       request,
       cancel: () => {
