@@ -1,8 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 
-import Logo from "./components/Logo";
-import Search from "./components/Search";
-import Switch from "./components/Switch";
+import { Logo, Search, Switch } from "./components";
 
 export default (): JSX.Element => {
   return (
