@@ -85,6 +85,15 @@ type Platforms = {
   slug: string;
 };
 
+type ResponseHandler = {
+  error: string;
+  isLoading: boolean;
+  loaderComponent?: JSX.Element;
+  errorComponent?: JSX.Element;
+  dataLength: number;
+  children: JSX.Element;
+};
+
 export {
   type Genre,
   type GenreHook,
@@ -98,4 +107,5 @@ export {
   type Filters,
   type SelectProps,
   type Platforms,
+  type ResponseHandler,
 };

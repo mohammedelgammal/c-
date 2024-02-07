@@ -20,7 +20,8 @@ export default ({
       <ResponseHandler
         error={error}
         isLoading={isLoading}
-        loader={<AsideLoading length={20} />}
+        loaderComponent={<AsideLoading length={20} />}
+        dataLength={genres.length}
       >
         <Stack>
           {genres.map(

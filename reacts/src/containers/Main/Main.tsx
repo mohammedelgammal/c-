@@ -22,6 +22,7 @@ export default ({
         error={error}
         isLoading={isLoading}
         loaderComponent={<LoadingGames length={15} />}
+        dataLength={games.length}
       >
         <SimpleGrid marginTop="30px" columns={3} spacing={10}>
           {games.map((game, index) => (
