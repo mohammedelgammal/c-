@@ -11,6 +11,12 @@ export default ({ setFilters }: SelectProps): JSX.Element => {
       platforms: e.target.value,
     }));
   };
+  const handleOrderChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      ordering: e.target.value,
+    }));
+  };
   return (
     <Flex gap="20px">
       <Select
@@ -27,11 +33,15 @@ export default ({ setFilters }: SelectProps): JSX.Element => {
           );
         })}
       </Select>
-      <Select w="fit-content" variant="filled">
-        {order.map((platform) => {
+      <Select
+        onChange={(e) => handleOrderChange(e)}
+        w="fit-content"
+        variant="filled"
+      >
+        {order.map((order) => {
           return (
-            <option key={platform} value={platform}>
-              Order by: {platform}
+            <option key={order.slug} value={order.slug}>
+              Order by: {order.name}
             </option>
           );
         })}

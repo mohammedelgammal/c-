@@ -65,13 +65,15 @@ const platforms = [
   { id: 77, name: "Game Gear", slug: "game-gear" },
   { id: 12, name: "Neo Geo", slug: "neogeo" },
 ];
-const order: string[] = [
-  "Relevance",
-  "Date added",
-  "Name",
-  "Release date",
-  "Popularity",
-  "Average rating",
+const order: {
+  name: string;
+  slug: string;
+}[] = [
+  { name: "Date added", slug: "added" },
+  { name: "Date updated", slug: "updated" },
+  { name: "Name", slug: "name" },
+  { name: "Release date", slug: "released" },
+  { name: "Average rating", slug: "rating" },
 ];
 
 const iconsMap: { [K: string]: IconType } = {

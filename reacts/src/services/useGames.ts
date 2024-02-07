@@ -9,7 +9,7 @@ export default ({ genres, platforms, ordering }: Filters): GamesHook => {
   const [error, setError] = useState<string>("");
 
   useEffect((): (() => void) => {
-    const { request, cancel } = createService("/gamess").getAll<{
+    const { request, cancel } = createService("/games").getAll<{
       results: GameProps[];
     }>({
       ...(genres.slug ? { genres: genres.slug } : {}),
