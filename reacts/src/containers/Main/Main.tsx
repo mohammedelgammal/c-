@@ -2,8 +2,8 @@ import { Stack, Text, SimpleGrid } from "@chakra-ui/react";
 import { MainProps } from "../../types";
 import Select from "./components/Select";
 import Game from "./components/Game";
-import ErrorMessage from "../../common/ErrorMessage";
 import LoadingGames from "./components/LoadingGames";
+import ResponseHandler from "../../common/ResponseHandler";
 
 export default ({
   categoryTitle,
@@ -17,17 +17,17 @@ export default ({
         {categoryTitle || "Games"}
       </Text>
       <Select />
-      {isLoading ? (
-        <LoadingGames length={5} />
-      ) : error && !games.length ? (
-        <ErrorMessage error={error} />
-      ) : (
+      <ResponseHandler
+        error={error}
+        isLoading={isLoading}
+        loader={<LoadingGames length={15} />}
+      >
         <SimpleGrid marginTop="30px" columns={3} spacing={10}>
           {games.map((game, index) => (
             <Game key={index} {...game} />
           ))}
         </SimpleGrid>
-      )}
+      </ResponseHandler>
     </Stack>
   );
 };

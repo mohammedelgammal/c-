@@ -1,7 +1,7 @@
 import { Stack, Text } from "@chakra-ui/react";
 import { AsideLoading, Genre } from "./components";
-import ErrorMessage from "../../common/ErrorMessage";
 import { AsideProps } from "../../types";
+import ResponseHandler from "../../common/ResponseHandler";
 
 export default ({
   genres,
@@ -17,11 +17,11 @@ export default ({
           Genres:
         </Text>
       </Text>
-      {isLoading ? (
-        <AsideLoading length={20} />
-      ) : error && !genres.length ? (
-        <ErrorMessage error={error} />
-      ) : (
+      <ResponseHandler
+        error={error}
+        isLoading={isLoading}
+        loader={<AsideLoading length={20} />}
+      >
         <Stack>
           {genres.map(
             ({ id, name, image_background }): JSX.Element => (
@@ -37,7 +37,7 @@ export default ({
             )
           )}
         </Stack>
-      )}
+      </ResponseHandler>
     </Stack>
   );
 };
