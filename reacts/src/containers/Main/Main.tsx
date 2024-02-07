@@ -20,7 +20,7 @@ export default ({
       <ResponseHandler
         error={error}
         isLoading={isLoading}
-        loader={<LoadingGames length={15} />}
+        loaderComponent={<LoadingGames length={15} />}
       >
         <SimpleGrid marginTop="30px" columns={3} spacing={10}>
           {games.map((game, index) => (

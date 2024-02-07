@@ -1,16 +1,19 @@
+import { Spinner } from "@chakra-ui/react";
 import ErrorMessage from "./ErrorMessage";
 
 export default ({
   error,
   isLoading,
-  loader,
+  loaderComponent = <Spinner />,
+  errorComponent = <ErrorMessage error={error} />,
   children,
 }: {
   error: string;
   isLoading: boolean;
-  loader: JSX.Element;
+  loaderComponent?: JSX.Element;
+  errorComponent?: JSX.Element;
   children: JSX.Element;
 }): JSX.Element => {
-  if (error && error !== "canceled") return <ErrorMessage error={error} />;
-  return <>{isLoading ? loader : children}</>;
+  if (error && error !== "canceled") return errorComponent;
+  return <>{isLoading ? loaderComponent : children}</>;
 };
