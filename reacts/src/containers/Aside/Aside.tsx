@@ -8,7 +8,7 @@ export default ({
   isLoading,
   error,
   genre,
-  setGenre,
+  setFilters,
 }: AsideProps): JSX.Element => {
   return (
     <Stack spacing="10px">
@@ -32,7 +32,7 @@ export default ({
                 image_background={image_background}
                 isActive={genre.id === id}
                 genres={genres}
-                setGenre={setGenre}
+                setFilters={setFilters}
               />
             )
           )}

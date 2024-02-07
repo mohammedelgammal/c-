@@ -8,11 +8,14 @@ export default ({
   image_background,
   isActive,
   genres,
-  setGenre,
+  setFilters,
 }: GenreProps): JSX.Element => {
   const handleGenre = (id: number): void => {
     const genre: Genre = genres.filter((genre) => genre.id === id)[0];
-    setGenre(genre);
+    setFilters((filters) => ({
+      ...filters,
+      genres: genre,
+    }));
   };
   return (
     <Box display="flex" alignItems="center" gap="10px">

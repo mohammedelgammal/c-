@@ -14,7 +14,7 @@ type GenreProps = {
   image_background: string;
   isActive: boolean;
   genres: Genre[];
-  setGenre: React.Dispatch<SetStateAction<Genre>>;
+  setFilters: React.Dispatch<SetStateAction<Filters>>;
 };
 
 type GenreHook = {
@@ -25,7 +25,7 @@ type GenreHook = {
 
 type AsideProps = GenreHook & {
   genre: Genre;
-  setGenre: React.Dispatch<SetStateAction<Genre>>;
+  setFilters: React.Dispatch<SetStateAction<Filters>>;
 };
 
 type GamesHook = {
@@ -39,6 +39,7 @@ type MainProps = {
   games: GameProps[];
   isLoading: boolean;
   error: string;
+  setFilters: React.Dispatch<SetStateAction<Filters>>;
 };
 
 type Platform = {
@@ -68,6 +69,12 @@ type QueryParams = {
   [K: string]: string | number;
 };
 
+type Filters = {
+  genres: Genre;
+  platforms: string;
+  ordering: string;
+};
+
 export {
   type Genre,
   type GenreHook,
@@ -78,4 +85,5 @@ export {
   type Game,
   type GamesHook,
   type QueryParams,
+  type Filters,
 };
