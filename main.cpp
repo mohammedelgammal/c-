@@ -9,7 +9,7 @@ int main()
 {
     Solution solution;
 
-    cout << solution.numDecodings("226");
+    cout << solution.numDecodings("111111111111111111111111111111111111111111111");
 
     return 0;
 }
