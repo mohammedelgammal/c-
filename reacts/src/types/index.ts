@@ -75,6 +75,16 @@ type Filters = {
   ordering: string;
 };
 
+type SelectProps = {
+  setFilters: React.Dispatch<SetStateAction<Filters>>;
+};
+
+type Platforms = {
+  id?: number;
+  name: string;
+  slug: string;
+};
+
 export {
   type Genre,
   type GenreHook,
@@ -86,4 +96,6 @@ export {
   type GamesHook,
   type QueryParams,
   type Filters,
+  type SelectProps,
+  type Platforms,
 };

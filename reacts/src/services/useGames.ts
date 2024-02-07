@@ -1,17 +1,21 @@
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
-import { GameProps, GamesHook, Genre } from "../types";
+import { Filters, GameProps, GamesHook } from "../types";
 import createService from "./HttpService";
 
-export default (genre: Genre): GamesHook => {
+export default ({ genres, platforms, ordering }: Filters): GamesHook => {
   const [games, setGames] = useState<GameProps[]>([]);
   const [isLoading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
   useEffect((): (() => void) => {
-    const { request, cancel } = createService("/games").getAll<{
+    const { request, cancel } = createService("/gamess").getAll<{
       results: GameProps[];
-    }>({ genres: genre.slug as string });
+    }>({
+      ...(genres.slug ? { genres: genres.slug } : {}),
+      ...(platforms ? { platforms } : {}),
+      ...(ordering ? { ordering } : {}),
+    });
     request
       .then(
         (response) => setGames(response.data.results),
@@ -19,6 +23,6 @@ export default (genre: Genre): GamesHook => {
       )
       .then(() => setLoading(false));
     return cancel;
-  }, [genre]);
+  }, [genres, platforms, ordering]);
   return { games, isLoading, error };
 };

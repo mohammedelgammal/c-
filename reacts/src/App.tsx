@@ -15,6 +15,7 @@ export default (): JSX.Element => {
     genres: {
       id: 0,
       name: "",
+      slug: "",
       games: [],
       image_background: "",
     },
@@ -25,7 +26,8 @@ export default (): JSX.Element => {
     games,
     isLoading: isGamesLoading,
     error: gamesError,
-  } = useGames(filters.genres);
+  } = useGames(filters);
+
   return (
     <Grid
       templateAreas={{

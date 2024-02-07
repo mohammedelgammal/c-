@@ -10,13 +10,14 @@ export default ({
   games,
   isLoading,
   error,
+  setFilters,
 }: MainProps): JSX.Element => {
   return (
     <Stack>
       <Text as="h2" fontSize="5xl" fontWeight="bold">
         {categoryTitle || "Games"}
       </Text>
-      <Select />
+      <Select setFilters={setFilters} />
       <ResponseHandler
         error={error}
         isLoading={isLoading}
