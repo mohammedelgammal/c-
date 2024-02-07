@@ -1,9 +1,17 @@
 import { Box, InputGroup, Input, InputLeftElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
+import { Filters, SetState } from "../../../types";
 
-export default (): JSX.Element => {
+export default ({
+  setFilters,
+}: {
+  setFilters: SetState<Filters>;
+}): JSX.Element => {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    console.log(e.target.value);
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      search: e.target.value,
+    }));
   };
   return (
     <Box flex="auto">

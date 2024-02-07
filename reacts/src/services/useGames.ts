@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import { Filters, GameProps, GamesHook } from "../types";
 import createService from "./HttpService";
 
-export default ({ genres, platforms, ordering }: Filters): GamesHook => {
+export default ({
+  genres,
+  platforms,
+  ordering,
+  search,
+}: Filters): GamesHook => {
   const [games, setGames] = useState<GameProps[]>([]);
   const [isLoading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
@@ -15,6 +20,7 @@ export default ({ genres, platforms, ordering }: Filters): GamesHook => {
       ...(genres.slug ? { genres: genres.slug } : {}),
       ...(platforms ? { platforms } : {}),
       ...(ordering ? { ordering } : {}),
+      ...(search ? { search } : {}),
     });
     request
       .then(
@@ -23,6 +29,6 @@ export default ({ genres, platforms, ordering }: Filters): GamesHook => {
       )
       .then(() => setLoading(false));
     return cancel;
-  }, [genres, platforms, ordering]);
+  }, [genres, platforms, ordering, search]);
   return { games, isLoading, error };
 };

@@ -21,6 +21,7 @@ export default (): JSX.Element => {
     },
     platforms: "",
     ordering: "",
+    search: "",
   });
   const {
     games,
@@ -44,7 +45,7 @@ export default (): JSX.Element => {
       gap={10}
     >
       <GridItem area={"navbar"}>
-        <Navbar />
+        <Navbar setFilters={setFilters} />
       </GridItem>
       <Show above="lg">
         <GridItem area={"aside"}>
