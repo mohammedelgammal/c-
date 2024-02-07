@@ -9,7 +9,10 @@ class HttpService {
     cancel: () => void;
   } {
     const controller = new AbortController();
-    const request = apiClient.get<T>(this.endPoint, { params: queryParams });
+    const request = apiClient.get<T>(this.endPoint, {
+      signal: controller.signal,
+      params: queryParams,
+    });
     return {
       request,
       cancel: () => {

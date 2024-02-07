@@ -18,36 +18,14 @@ export default ({
       </Text>
       <Select />
       {isLoading ? (
-        <LoadingGames length={15} />
-      ) : error ? (
+        <LoadingGames length={5} />
+      ) : error && !games.length ? (
         <ErrorMessage error={error} />
       ) : (
         <SimpleGrid marginTop="30px" columns={3} spacing={10}>
-          {games.map(
-            (
-              {
-                name,
-                background_image,
-                added,
-                platforms,
-                rating,
-                released,
-                genres,
-              },
-              index
-            ) => (
-              <Game
-                key={index}
-                name={name}
-                background_image={background_image}
-                added={added}
-                platforms={platforms}
-                released={released}
-                rating={rating}
-                genres={genres}
-              />
-            )
-          )}
+          {games.map((game, index) => (
+            <Game key={index} {...game} />
+          ))}
         </SimpleGrid>
       )}
     </Stack>

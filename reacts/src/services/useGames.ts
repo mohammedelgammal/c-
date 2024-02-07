@@ -8,14 +8,10 @@ export default (genre: Genre): GamesHook => {
   const [isLoading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
-  const queryParams = {
-    genre: genre.id || 0,
-  };
-
   useEffect((): (() => void) => {
-    const { request, cancel } = createService("/gamess").getAll<{
+    const { request, cancel } = createService("/games").getAll<{
       results: GameProps[];
-    }>(queryParams);
+    }>({ genres: genre.slug as string });
     request
       .then(
         (response) => setGames(response.data.results),

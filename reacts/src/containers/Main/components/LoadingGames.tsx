@@ -7,7 +7,7 @@ export default ({ length }: { length: number }): JSX.Element => {
       {skeletons.map((sk) => (
         <Stack key={sk} spacing={5}>
           <Skeleton height="200px" flex="auto" />
-          <SkeletonText mt="2" noOfLines={5} spacing="2" skeletonHeight="5" />
+          <SkeletonText mt="2" noOfLines={3} spacing="2" skeletonHeight="5" />
         </Stack>
       ))}
     </SimpleGrid>

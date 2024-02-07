@@ -19,7 +19,7 @@ export default ({
       </Text>
       {isLoading ? (
         <AsideLoading length={20} />
-      ) : error ? (
+      ) : error && !genres.length ? (
         <ErrorMessage error={error} />
       ) : (
         <Stack>

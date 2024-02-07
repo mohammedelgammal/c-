@@ -5,6 +5,7 @@ type Genre = {
   name: string;
   image_background: string;
   games: Game[];
+  slug?: string;
 };
 
 type GenreProps = {

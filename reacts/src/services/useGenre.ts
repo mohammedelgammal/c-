@@ -8,7 +8,7 @@ export default (): GenreHook => {
   const [isLoading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
   useEffect(() => {
-    const { request, cancel } = createHttpService("/genress").getAll<{
+    const { request, cancel } = createHttpService("/genres").getAll<{
       results: Genre[];
     }>();
     request
