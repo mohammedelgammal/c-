@@ -24,7 +24,15 @@ export default ({
         loaderComponent={<LoadingGames length={15} />}
         dataLength={games.length}
       >
-        <SimpleGrid marginTop="30px" columns={3} spacing={10}>
+        <SimpleGrid
+          marginTop="30px"
+          columns={{
+            sm: 1,
+            md: 2,
+            lg: 3,
+          }}
+          spacing={10}
+        >
           {games.map((game, index) => (
             <Game key={index} {...game} />
           ))}
