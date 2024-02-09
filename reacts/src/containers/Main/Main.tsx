@@ -4,6 +4,7 @@ import Select from "./components/Select";
 import Game from "./components/Game";
 import LoadingGames from "./components/LoadingGames";
 import ResponseHandler from "../../common/ResponseHandler";
+import NoData from "../../common/NoData";
 
 export default ({
   categoryTitle,
@@ -22,7 +23,6 @@ export default ({
         error={error}
         isLoading={isLoading}
         loaderComponent={<LoadingGames length={15} />}
-        dataLength={games.length}
       >
         <SimpleGrid
           marginTop="30px"
@@ -33,9 +33,11 @@ export default ({
           }}
           spacing={10}
         >
-          {games.map((game, index) => (
-            <Game key={index} {...game} />
-          ))}
+          {games.length ? (
+            games.map((game, index) => <Game key={index} {...game} />)
+          ) : (
+            <NoData />
+          )}
         </SimpleGrid>
       </ResponseHandler>
     </Stack>

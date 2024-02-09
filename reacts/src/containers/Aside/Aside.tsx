@@ -21,7 +21,6 @@ export default ({
         error={error}
         isLoading={isLoading}
         loaderComponent={<AsideLoading length={20} />}
-        dataLength={genres.length}
       >
         <Stack>
           {genres.map(

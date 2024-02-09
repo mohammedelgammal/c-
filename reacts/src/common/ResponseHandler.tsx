@@ -1,6 +1,5 @@
 import { Spinner } from "@chakra-ui/react";
 import ErrorMessage from "./ErrorMessage";
-import NoData from "./NoData";
 import { ResponseHandler } from "../types";
 
 export default ({
@@ -8,10 +7,8 @@ export default ({
   isLoading,
   loaderComponent = <Spinner />,
   errorComponent = <ErrorMessage error={error} />,
-  dataLength,
   children,
 }: ResponseHandler): JSX.Element => {
-  if (error && error !== "canceled") return errorComponent;
-  if (!dataLength) return <NoData />;
+  if (error) return errorComponent;
   return <>{isLoading ? loaderComponent : children}</>;
 };

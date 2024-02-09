@@ -91,7 +91,6 @@ type ResponseHandler = {
   isLoading: boolean;
   loaderComponent?: JSX.Element;
   errorComponent?: JSX.Element;
-  dataLength: number;
   children: JSX.Element;
 };
 
