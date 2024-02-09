@@ -1,17 +1,8 @@
-import axios, { AxiosError } from "axios";
-import { useQuery } from "react-query";
-import Todos, { Todo } from "./components/Todos";
+import Todos from "./components/Todos";
+import useTodos from "./services/useTodos";
 
 export default (): JSX.Element => {
-  const fetchTodos = () =>
-    axios
-      .get<Todo[]>("https://jsonplaceholder.typicode.com/todos")
-      .then((res) => res.data);
-  const {
-    data: todos,
-    isLoading,
-    error,
-  } = useQuery<Todo[], AxiosError>("todos", fetchTodos);
+  const { data: todos, isLoading, error } = useTodos();
 
   return <Todos todos={todos} isLoading={isLoading} error={error} />;
 };
