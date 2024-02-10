@@ -16,13 +16,7 @@ export default (query: QueryProps): UseQueryResult<Post[], AxiosError> => {
       })
       .then((res) => res.data);
   return useQuery(
-    [
-      "posts",
-      {
-        page: query.page,
-        ...(query.userId ? { userId: query.userId } : {}),
-      },
-    ],
+    ["posts", query.page, ...(query.userId ? [query.userId] : []), ,],
     {
       queryFn: fetchPosts,
       staleTime: 5 * 60 * 1000,

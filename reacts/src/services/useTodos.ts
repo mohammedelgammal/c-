@@ -1,14 +1,24 @@
-import axios, { AxiosError } from "axios";
-import { useQuery } from "@tanstack/react-query";
+import { AxiosError } from "axios";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import apiClient from "./apiClient";
 import { Todo } from "../components/Todos";
 
-export default () => {
+export default (query: {
+  page: number;
+  pageSize: number;
+}): UseQueryResult<Todo[], AxiosError> => {
   const fetchTodos = () =>
-    axios
-      .get<Todo[]>("https://jsonplaceholder.typicode.com/todos")
-      .then((res) => res.data);
-
-  return useQuery<Todo[], AxiosError>(["todos"], fetchTodos, {
-    staleTime: 10 * 1000,
+    apiClient
+      .get<Todo[]>("/todos", {
+        params: {
+          _start: (query.page - 1) * query.pageSize,
+          _limit: query.pageSize,
+        },
+      })
+      .then((response) => response.data);
+  return useQuery<Todo[], AxiosError>(["todos", query.page], {
+    queryFn: fetchTodos,
+    staleTime: 2 * 60 * 1000,
+    keepPreviousData: true,
   });
 };

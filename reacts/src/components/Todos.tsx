@@ -1,5 +1,7 @@
-import { AxiosError } from "axios";
-import { List, ListIcon, ListItem, Spinner } from "@chakra-ui/react";
+import { useState } from "react";
+import _ from "lodash";
+import useTodos from "../services/useTodos";
+import { Button, List, ListIcon, ListItem, Spinner } from "@chakra-ui/react";
 import { MdCheckCircle, MdError } from "react-icons/md";
 
 interface Todo {
@@ -8,13 +10,14 @@ interface Todo {
   completed: boolean;
 }
 
-interface TodoProps {
-  todos: Todo[] | undefined;
-  isLoading: boolean;
-  error: AxiosError | null;
-}
-
-export default ({ todos, isLoading, error }: TodoProps): JSX.Element => {
+export default (): JSX.Element => {
+  const maxPageSize = 10;
+  const [page, setPage] = useState<number>(1);
+  const {
+    data: todos,
+    isLoading,
+    error,
+  } = useTodos({ page, pageSize: maxPageSize });
   return (
     <List spacing={3}>
       {isLoading && <Spinner />}
@@ -28,6 +31,31 @@ export default ({ todos, isLoading, error }: TodoProps): JSX.Element => {
           {title}
         </ListItem>
       ))}
+      <p>Page number: {page}</p>
+      <Button
+        isDisabled={page === 1}
+        onClick={() => setPage((page) => page - 1)}
+      >
+        Prev
+      </Button>
+      {_.range(page - 2, page + 2).map(
+        (pageNum) =>
+          pageNum <= 20 &&
+          pageNum >= 1 && (
+            <Button
+              isActive={page === pageNum}
+              onClick={() => setPage(pageNum)}
+            >
+              {pageNum}
+            </Button>
+          )
+      )}
+      <Button
+        isDisabled={page === 20}
+        onClick={() => setPage((page) => page + 1)}
+      >
+        Next
+      </Button>
     </List>
   );
 };
