@@ -11,8 +11,17 @@ import { useState } from "react";
 import { MdCheckCircle } from "react-icons/md";
 
 export default (): JSX.Element => {
+  const pageSize = 10;
   const [userId, setUserId] = useState<number>(0);
-  const { data: posts, isLoading, error } = usePosts(userId);
+  const {
+    data: posts,
+    isLoading,
+    error,
+  } = usePosts({
+    page: 1,
+    pageSize,
+    userId,
+  });
   const handleUserChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     setUserId(parseInt(e.target.value));
   };

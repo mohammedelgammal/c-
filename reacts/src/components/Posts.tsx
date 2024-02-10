@@ -1,5 +1,6 @@
-import { AxiosError } from "axios";
-import { Card, Spinner, Stack, Text } from "@chakra-ui/react";
+import { Button, Card, Spinner, Stack, Text } from "@chakra-ui/react";
+import usePosts from "../services/usePosts";
+import { useState } from "react";
 
 interface Post {
   id: number;
@@ -7,13 +8,11 @@ interface Post {
   body: string;
 }
 
-interface PostsProps {
-  posts: Post[] | undefined;
-  isLoading: boolean;
-  error: AxiosError | null;
-}
+export default (): JSX.Element => {
+  const pageSize = 10;
+  const [page, setPage] = useState<number>(1);
+  const { data: posts, isLoading, error } = usePosts({ page, pageSize });
 
-export default ({ posts, isLoading, error }: PostsProps): JSX.Element => {
   return (
     <Stack spacing={5}>
       <Text fontSize="3xl" fontWeight="bolder" as="h1">
@@ -27,6 +26,13 @@ export default ({ posts, isLoading, error }: PostsProps): JSX.Element => {
           <p>{body}</p>
         </Card>
       ))}
+      <Button
+        onClick={() => setPage((page) => page - 1)}
+        isDisabled={page === 1}
+      >
+        Previous
+      </Button>
+      <Button onClick={() => setPage((page) => page + 1)}>Next</Button>
     </Stack>
   );
 };
