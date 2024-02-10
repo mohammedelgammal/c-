@@ -1,8 +1,7 @@
-import Todos from "./components/Todos";
-import useTodos from "./services/useTodos";
+import Posts from "./components/Posts";
+import usePosts from "./services/usePosts";
 
 export default (): JSX.Element => {
-  const { data: todos, isLoading, error } = useTodos();
-
-  return <Todos todos={todos} isLoading={isLoading} error={error} />;
+  const { data: posts, isLoading, error } = usePosts();
+  return <Posts posts={posts} isLoading={isLoading} error={error} />;
 };
