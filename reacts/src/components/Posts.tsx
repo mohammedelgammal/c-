@@ -1,6 +1,5 @@
 import { Button, Card, Spinner, Stack, Text } from "@chakra-ui/react";
 import usePosts from "../services/usePosts";
-import { useState } from "react";
 
 interface Post {
   id: number;
@@ -9,9 +8,15 @@ interface Post {
 }
 
 export default (): JSX.Element => {
-  const pageSize = 10;
-  const [page, setPage] = useState<number>(1);
-  const { data: posts, isLoading, error } = usePosts({ page, pageSize });
+  const pageSize = 50;
+  const {
+    data: postsPages,
+    isLoading,
+    error,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+  } = usePosts({ pageSize });
 
   return (
     <Stack spacing={5}>
@@ -20,19 +25,19 @@ export default (): JSX.Element => {
       </Text>
       {isLoading && <Spinner />}
       {error?.message && <span>{error?.message}</span>}
-      {posts?.map(({ id, title, body }) => (
-        <Card bg="green.100" key={id}>
-          <Text fontWeight="bold">{title}</Text>
-          <p>{body}</p>
-        </Card>
-      ))}
-      <Button
-        onClick={() => setPage((page) => page - 1)}
-        isDisabled={page === 1}
-      >
-        Previous
-      </Button>
-      <Button onClick={() => setPage((page) => page + 1)}>Next</Button>
+      {postsPages?.pages.map((postPage) =>
+        postPage.map(({ id, title, body }) => (
+          <Card bg="green.100" key={id}>
+            <Text fontWeight="bold">{title}</Text>
+            <p>{body}</p>
+          </Card>
+        ))
+      )}
+      {hasNextPage && (
+        <Button onClick={() => fetchNextPage()}>
+          {isFetchingNextPage ? <Spinner /> : "Load more"}
+        </Button>
+      )}
     </Stack>
   );
 };
