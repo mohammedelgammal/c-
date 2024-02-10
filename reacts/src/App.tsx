@@ -1,7 +1,5 @@
-import Posts from "./components/Posts";
-import usePosts from "./services/usePosts";
+import PostsList from "./components/PostsList";
 
 export default (): JSX.Element => {
-  const { data: posts, isLoading, error } = usePosts();
-  return <Posts posts={posts} isLoading={isLoading} error={error} />;
+  return <PostsList />;
 };
