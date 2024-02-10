@@ -1,24 +1,28 @@
 import { AxiosError } from "axios";
-import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import {
+  UseInfiniteQueryResult,
+  useInfiniteQuery,
+} from "@tanstack/react-query";
 import apiClient from "./apiClient";
 import { Todo } from "../components/Todos";
 
 export default (query: {
-  page: number;
   pageSize: number;
-}): UseQueryResult<Todo[], AxiosError> => {
-  const fetchTodos = () =>
+}): UseInfiniteQueryResult<Todo[], AxiosError> => {
+  const fetchTodos = (pageParam: number = 1) =>
     apiClient
       .get<Todo[]>("/todos", {
         params: {
-          _start: (query.page - 1) * query.pageSize,
+          _start: (pageParam - 1) * query.pageSize,
           _limit: query.pageSize,
         },
       })
       .then((response) => response.data);
-  return useQuery<Todo[], AxiosError>(["todos", query.page], {
-    queryFn: fetchTodos,
+  return useInfiniteQuery<Todo[], AxiosError>(["todos"], {
+    queryFn: ({ pageParam }) => fetchTodos(pageParam),
     staleTime: 2 * 60 * 1000,
     keepPreviousData: true,
+    getNextPageParam: (lastPage, allPages) =>
+      lastPage.length ? allPages.length + 1 : undefined,
   });
 };
