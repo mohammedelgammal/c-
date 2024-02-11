@@ -1,5 +1,5 @@
-import Posts from "./components/Posts";
+import Todos from "./components/Todos";
 
 export default (): JSX.Element => {
-  return <Posts />;
+  return <Todos />;
 };
