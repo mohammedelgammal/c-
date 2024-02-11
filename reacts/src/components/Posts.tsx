@@ -24,7 +24,7 @@ interface Pages {
 }
 
 export default (): JSX.Element => {
-  const pageSize = 50;
+  const pageSize = 10;
   const inputRef = useRef<HTMLInputElement>(null);
   const queryClient = useQueryClient();
   const addPost = useMutation<Post, Error, Post>({
@@ -65,7 +65,10 @@ export default (): JSX.Element => {
       {error?.message && <span>{error?.message}</span>}
       {addPost.error ? <Alert>{addPost.error.message}</Alert> : null}
       <form onSubmit={(e) => handleSubmit(e)}>
-        <Input ref={inputRef} type="text" size="lg" />
+        <Input ref={inputRef} type="text" size="lg" isRequired />
+        <Button type="submit" isDisabled={addPost.isLoading}>
+          {addPost.isLoading ? "Adding..." : "Add"}
+        </Button>
       </form>
       {postsPages?.pages.map((postPage) =>
         postPage.map(({ id, title, body }) => (

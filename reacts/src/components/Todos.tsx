@@ -66,6 +66,9 @@ export default (): JSX.Element => {
           placeholder="Add Todo title"
           isRequired
         />
+        <Button isDisabled={addTodo.isLoading} type="submit">
+          {addTodo.isLoading ? "Adding..." : "Add"}
+        </Button>
       </form>
       {todos?.pages.map((page, index) => (
         <React.Fragment key={index}>
@@ -80,7 +83,6 @@ export default (): JSX.Element => {
           ))}
         </React.Fragment>
       ))}
-
       <Button isDisabled={isFetchingNextPage} onClick={() => fetchNextPage()}>
         {isFetchingNextPage ? "loading..." : "Load more"}
       </Button>
