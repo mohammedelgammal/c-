@@ -1,4 +1,12 @@
-import { Button, Card, Input, Spinner, Stack, Text } from "@chakra-ui/react";
+import {
+  Alert,
+  Button,
+  Card,
+  Input,
+  Spinner,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import usePosts from "../services/usePosts";
 import { useRef } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -19,7 +27,7 @@ export default (): JSX.Element => {
   const pageSize = 50;
   const inputRef = useRef<HTMLInputElement>(null);
   const queryClient = useQueryClient();
-  const addPost = useMutation({
+  const addPost = useMutation<Post, Error, Post>({
     mutationFn: (newPost: Post) =>
       apiClient.post("/posts", newPost).then((res) => res.data),
     onSuccess: (resPost: Post) => {
@@ -55,6 +63,7 @@ export default (): JSX.Element => {
       </Text>
       {isLoading && <Spinner />}
       {error?.message && <span>{error?.message}</span>}
+      {addPost.error ? <Alert>{addPost.error.message}</Alert> : null}
       <form onSubmit={(e) => handleSubmit(e)}>
         <Input ref={inputRef} type="text" size="lg" />
       </form>
