@@ -20,7 +20,7 @@ export default (
         },
       })
       .then((res) => res.data);
-  return useInfiniteQuery(["posts", ...(query.userId ? [query.userId] : [])], {
+  return useInfiniteQuery(["posts"], {
     queryFn: ({ pageParam }) => fetchPosts(pageParam),
     staleTime: 5 * 60 * 1000,
     keepPreviousData: true,
