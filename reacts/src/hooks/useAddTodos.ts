@@ -27,7 +27,7 @@ export default (
         todos?.map((todo) => (todo === newTodo ? savedTodo : todo))
       );
     },
-    onError: (...[, , previousContext]) =>
+    onError: (...[, , previousContext = []]) =>
       queryClient.setQueryData<Todo[]>(TODO_QUERY_KEY, previousContext),
   });
 };
