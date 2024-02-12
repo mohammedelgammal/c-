@@ -11,63 +11,12 @@ import {
 } from "@chakra-ui/react";
 import { MdCheckCircle, MdError } from "react-icons/md";
 import React, { useRef } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import apiClient from "../services/apiClient";
-
-interface Todo {
-  id: 1;
-  title: string;
-  completed: boolean;
-}
+import useAddTodo from "../hooks/useAddTodo";
 
 export default (): JSX.Element => {
   const maxPageSize = 10;
   const inputRef = useRef<HTMLInputElement>(null);
-  const queryClient = useQueryClient();
-  const addTodo = useMutation<
-    Todo,
-    Error,
-    Todo,
-    { pages: Todo[][] | undefined }
-  >({
-    mutationFn: (newTodo: Todo) =>
-      apiClient.post("/todoss", newTodo).then((res) => res.data),
-    onMutate: (newTodo: Todo): { pages: Todo[][] } | undefined => {
-      const previousTodos = queryClient.getQueryData<{ pages: Todo[][] }>([
-        "todos",
-      ]);
-      queryClient.setQueryData<{ pages: Todo[][] }>(
-        ["todos"],
-        (currentTodos) => ({
-          ...currentTodos,
-          pages: [[newTodo, ...currentTodos!.pages[0]], ...currentTodos!.pages],
-        })
-      );
-      inputRef.current!.value = "";
-      return previousTodos;
-    },
-    onSuccess: (savedTodo): void => {
-      queryClient.setQueryData<{ pages: Todo[][] }>(
-        ["todos"],
-        (currentTodos) => {
-          return {
-            ...currentTodos,
-            pages: [
-              [...currentTodos!.pages[0], savedTodo],
-              ...currentTodos!.pages,
-            ],
-          };
-        }
-      );
-    },
-    onError: (error, newTodo, context) => {
-      if (context)
-        queryClient.setQueryData<{ pages: Todo[][] | undefined }>(
-          ["todos"],
-          context
-        );
-    },
-  });
+  const addTodo = useAddTodo(() => (inputRef.current!.value = ""));
   const {
     data: todos,
     isLoading,
@@ -119,5 +68,3 @@ export default (): JSX.Element => {
     </List>
   );
 };
-
-export { type Todo };

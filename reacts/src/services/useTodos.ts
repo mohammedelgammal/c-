@@ -4,7 +4,7 @@ import {
   useInfiniteQuery,
 } from "@tanstack/react-query";
 import apiClient from "./apiClient";
-import { Todo } from "../components/Todos";
+import { Todo } from "../hooks/useAddTodo";
 
 export default (query: {
   pageSize: number;
