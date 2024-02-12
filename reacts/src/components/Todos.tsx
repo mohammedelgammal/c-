@@ -24,10 +24,18 @@ export default (): JSX.Element => {
   const maxPageSize = 10;
   const inputRef = useRef<HTMLInputElement>(null);
   const queryClient = useQueryClient();
-  const addTodo = useMutation<Todo, Error, Todo>({
+  const addTodo = useMutation<
+    Todo,
+    Error,
+    Todo,
+    { pages: Todo[][] | undefined }
+  >({
     mutationFn: (newTodo: Todo) =>
-      apiClient.post("/todos", newTodo).then((res) => res.data),
-    onSuccess: (newTodo: Todo): void => {
+      apiClient.post("/todoss", newTodo).then((res) => res.data),
+    onMutate: (newTodo: Todo): { pages: Todo[][] } | undefined => {
+      const previousTodos = queryClient.getQueryData<{ pages: Todo[][] }>([
+        "todos",
+      ]);
       queryClient.setQueryData<{ pages: Todo[][] }>(
         ["todos"],
         (currentTodos) => ({
@@ -36,6 +44,28 @@ export default (): JSX.Element => {
         })
       );
       inputRef.current!.value = "";
+      return previousTodos;
+    },
+    onSuccess: (savedTodo): void => {
+      queryClient.setQueryData<{ pages: Todo[][] }>(
+        ["todos"],
+        (currentTodos) => {
+          return {
+            ...currentTodos,
+            pages: [
+              [...currentTodos!.pages[0], savedTodo],
+              ...currentTodos!.pages,
+            ],
+          };
+        }
+      );
+    },
+    onError: (error, newTodo, context) => {
+      if (context)
+        queryClient.setQueryData<{ pages: Todo[][] | undefined }>(
+          ["todos"],
+          context
+        );
     },
   });
   const {
