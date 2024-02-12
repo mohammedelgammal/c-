@@ -1,16 +1,20 @@
-import { Stack } from "@chakra-ui/react";
+import { Flex, Stack } from "@chakra-ui/react";
 import Posts from "./components/Posts";
 import PostsForm from "./components/PostsForm";
-// import Todos from "./components/Todos";
-// import TodosForm from "./components/TodosForm";
+import Todos from "./components/Todos";
+import TodosForm from "./components/TodosForm";
 
 export default (): JSX.Element => {
   return (
-    <Stack spacing={10}>
-      {/* <TodosForm />
-      <Todos /> */}
-      <PostsForm />
-      <Posts />
-    </Stack>
+    <Flex gap={20}>
+      <Stack spacing={10} flex={1}>
+        <TodosForm />
+        <Todos />
+      </Stack>
+      <Stack spacing={10} flex={1}>
+        <PostsForm />
+        <Posts />
+      </Stack>
+    </Flex>
   );
 };
