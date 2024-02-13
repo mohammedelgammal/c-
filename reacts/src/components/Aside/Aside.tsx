@@ -1,6 +1,7 @@
-import { Alert, GridItem, Show, Spinner, Stack, Text } from "@chakra-ui/react";
+import { Alert, GridItem, Show, Stack, Text } from "@chakra-ui/react";
 import Genre from "./Genre";
 import useGenres from "../../hooks/useGenres";
+import AsideLoading from "./AsideLoading";
 
 export default (): JSX.Element => {
   const { data: genres, isLoading, error } = useGenres();
@@ -11,7 +12,7 @@ export default (): JSX.Element => {
           <Text fontSize="2xl" fontWeight="bold" as="h2">
             Genres
           </Text>
-          {isLoading && <Spinner />}
+          {isLoading && <AsideLoading length={20} />}
           {error?.message && <Alert status="error">{error.message}</Alert>}
           <Stack spacing={3}>
             {genres?.results?.map(({ id, name, image_background }) => (

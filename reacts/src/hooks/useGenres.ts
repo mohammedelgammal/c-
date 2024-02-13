@@ -9,5 +9,4 @@ export default () =>
     queryKey: GENRES_QUERY_KEY,
     queryFn: genresService.getAll,
     staleTime: ms("1d"),
-    retry: 3,
   });

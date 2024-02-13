@@ -9,7 +9,6 @@ import {
   Text,
   Icon,
   Wrap,
-  Badge,
 } from "@chakra-ui/react";
 import { iconsMap } from "./data";
 import { Game } from "../../services/gamesServices";
