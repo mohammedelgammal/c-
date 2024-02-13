@@ -9,4 +9,4 @@ export interface Genre {
   description: string;
 }
 
-export default new ApiClient<Genre>("/genres");
+export default new ApiClient<Genre>("/genresx");
