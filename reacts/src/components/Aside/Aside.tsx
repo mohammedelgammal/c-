@@ -4,7 +4,6 @@ import useGenres from "../../hooks/useGenres";
 
 export default (): JSX.Element => {
   const { data: genres, isLoading, error } = useGenres();
-  console.log(genres?.results);
   return (
     <Show above="lg">
       <GridItem area="aside">

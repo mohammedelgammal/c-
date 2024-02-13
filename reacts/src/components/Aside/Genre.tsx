@@ -1,4 +1,5 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
+import useCropImage from "../../services/useCropImage";
 
 interface GenreProps {
   id: number;
@@ -9,7 +10,7 @@ interface GenreProps {
 export default ({ src, title }: GenreProps): JSX.Element => {
   return (
     <Flex gap={3} alignItems="center">
-      <Image src={src} borderRadius="10px" w={8} h={8} />
+      <Image src={useCropImage(src)} borderRadius="10px" w={8} h={8} />
       <Text
         as="span"
         textAlign="left"
