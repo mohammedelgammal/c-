@@ -10,7 +10,7 @@ export default ({ children }: { children: React.ReactNode }): JSX.Element => {
              "main main"`,
       }}
       gridTemplateColumns={{
-        lg: "200px 1fr",
+        lg: "250px 1fr",
         sm: "1fr",
       }}
       gridTemplateRows={"50px 1fr"}
