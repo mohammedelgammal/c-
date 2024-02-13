@@ -1,3 +1,11 @@
+import { Navbar, Aside, Main, Layout } from "./components";
+
 export default (): JSX.Element => {
-  return <>This is App</>;
+  return (
+    <Layout>
+      <Main />
+      <Navbar />
+      <Aside />
+    </Layout>
+  );
 };
