@@ -11,8 +11,10 @@ export default () =>
       gamesServices.getAll({
         params: {
           page: pageParam,
-          page_size: 6,
+          page_size: 10,
         },
       }),
     staleTime: ms("2h"),
+    getNextPageParam: (lastPage, allPages) =>
+      lastPage.next ? allPages.length + 1 : undefined,
   });

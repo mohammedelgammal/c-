@@ -1,6 +1,6 @@
 import {
   Alert,
-  Button,
+  Flex,
   GridItem,
   SimpleGrid,
   Spinner,
@@ -8,10 +8,13 @@ import {
 } from "@chakra-ui/react";
 import { Game, GamesLoading } from "./";
 import useGames from "../../hooks/useGames";
+import useOnScreen from "../../hooks/useOnScreen";
 
 export default (): JSX.Element => {
   const { data, isLoading, error, fetchNextPage, isFetchingNextPage } =
     useGames();
+  const { isVisible, containerRef } = useOnScreen<HTMLDivElement>();
+  if (isVisible) fetchNextPage();
   return (
     <GridItem area="main" px={5}>
       <Text fontSize="5xl" fontWeight="bold" as="h2" mb={5}>
@@ -31,14 +34,18 @@ export default (): JSX.Element => {
           page?.results?.map((game) => <Game key={game.id} {...game} />)
         )}
       </SimpleGrid>
-      <Button
-        mt={5}
-        w={"100%"}
-        onClick={() => fetchNextPage()}
-        isDisabled={isFetchingNextPage}
-      >
-        {isFetchingNextPage ? <Spinner /> : "load more"}
-      </Button>
+      <Flex ref={containerRef} justifyContent="center" alignItems="center">
+        {isFetchingNextPage && (
+          <Spinner
+            m={5}
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+        )}
+      </Flex>
     </GridItem>
   );
 };
