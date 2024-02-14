@@ -21,13 +21,13 @@ export default ({ setFilters, selectedGenre }: AsideProps): JSX.Element => {
           {isLoading && <AsideLoading length={20} />}
           {error?.message && <Alert status="error">{error.message}</Alert>}
           <Stack spacing={3}>
-            {genres?.results?.map(({ id, name, image_background }) => (
+            {genres?.results?.map(({ id, name, slug, image_background }) => (
               <Genre
                 setFilters={setFilters}
                 key={id}
                 src={image_background}
                 title={name}
-                id={id}
+                slug={slug}
                 selectedGenre={selectedGenre}
               />
             ))}

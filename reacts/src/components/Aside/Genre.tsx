@@ -3,17 +3,17 @@ import useCropImage from "../../services/useCropImage";
 import { Filters } from "../../App";
 
 interface GenreProps {
-  id: number;
   src: string;
   title: string;
+  slug: string;
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
   selectedGenre: string;
 }
 
 export default ({
-  id,
   src,
   title,
+  slug,
   setFilters,
   selectedGenre,
 }: GenreProps): JSX.Element => {
@@ -30,10 +30,10 @@ export default ({
         onClick={() =>
           setFilters((filters) => ({
             ...filters,
-            genres: id.toString(),
+            genres: slug,
           }))
         }
-        fontWeight={selectedGenre === id.toString() ? "bold" : ""}
+        fontWeight={selectedGenre === slug ? "bold" : ""}
       >
         {title}
       </Text>
