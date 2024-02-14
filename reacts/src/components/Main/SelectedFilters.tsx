@@ -1,6 +1,7 @@
 import { Button, Flex, Select } from "@chakra-ui/react";
 import { platforms, orderings } from "./data";
 import { Filters } from "../../App";
+import { CiFilter } from "react-icons/ci";
 
 interface SelectedFiltersProps {
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
@@ -61,7 +62,9 @@ export default ({ setFilters, filters }: SelectedFiltersProps): JSX.Element => {
           );
         })}
       </Select>
-      <Button onClick={handleResetFilters}>Reset filters</Button>
+      <Button onClick={handleResetFilters}>
+        Reset filters &nbsp; <CiFilter />
+      </Button>
     </Flex>
   );
 };
