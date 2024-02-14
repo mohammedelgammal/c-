@@ -1,12 +1,13 @@
-import { Flex, Select } from "@chakra-ui/react";
+import { Button, Flex, Select } from "@chakra-ui/react";
 import { platforms, orderings } from "./data";
 import { Filters } from "../../App";
 
 interface SelectedFiltersProps {
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  filters: Filters;
 }
 
-export default ({ setFilters }: SelectedFiltersProps): JSX.Element => {
+export default ({ setFilters, filters }: SelectedFiltersProps): JSX.Element => {
   const platformChangeHandler = (
     e: React.ChangeEvent<HTMLSelectElement>
   ): void => {
@@ -21,6 +22,14 @@ export default ({ setFilters }: SelectedFiltersProps): JSX.Element => {
       ordering: e.target.value,
     }));
   };
+  const handleResetFilters = (): void => {
+    setFilters({
+      genres: "",
+      platforms: "",
+      ordering: "",
+      search: "",
+    });
+  };
   return (
     <Flex gap="20px">
       <Select
@@ -28,6 +37,7 @@ export default ({ setFilters }: SelectedFiltersProps): JSX.Element => {
         w="fit-content"
         variant="filled"
         placeholder="Platforms"
+        value={filters.platforms}
       >
         {platforms.map((platform, index) => {
           return (
@@ -37,7 +47,12 @@ export default ({ setFilters }: SelectedFiltersProps): JSX.Element => {
           );
         })}
       </Select>
-      <Select onChange={handleOrderChange} w="fit-content" variant="filled">
+      <Select
+        onChange={handleOrderChange}
+        w="fit-content"
+        variant="filled"
+        value={filters.ordering}
+      >
         {orderings.map((order) => {
           return (
             <option key={order.slug} value={order.slug}>
@@ -46,6 +61,7 @@ export default ({ setFilters }: SelectedFiltersProps): JSX.Element => {
           );
         })}
       </Select>
+      <Button onClick={handleResetFilters}>Reset filters</Button>
     </Flex>
   );
 };

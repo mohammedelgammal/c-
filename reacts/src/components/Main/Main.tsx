@@ -14,7 +14,7 @@ export default ({ setFilters, filters }: MainProps): JSX.Element => {
         <Text fontSize="5xl" fontWeight="bold" as="h2" mb={5}>
           Games
         </Text>
-        <SelectedFilters setFilters={setFilters} />
+        <SelectedFilters setFilters={setFilters} filters={filters} />
       </Box>
       <GamesGrid filters={filters} />
     </GridItem>

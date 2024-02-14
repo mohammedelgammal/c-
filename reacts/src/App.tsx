@@ -18,7 +18,7 @@ export default (): JSX.Element => {
   return (
     <Layout>
       <Main setFilters={setFilters} filters={filters} />
-      <Navbar setFilters={setFilters} />
+      <Navbar setFilters={setFilters} filters={filters} />
       <Aside setFilters={setFilters} selectedGenre={filters.genres} />
     </Layout>
   );

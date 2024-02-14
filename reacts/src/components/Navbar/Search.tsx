@@ -1,12 +1,18 @@
-import { Box, InputGroup, Input, InputLeftElement } from "@chakra-ui/react";
+import {
+  Box,
+  InputGroup,
+  Input,
+  InputLeftElement,
+} from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { Filters } from "../../App";
 
 interface SearchProps {
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  filters: Filters;
 }
 
-export default ({ setFilters }: SearchProps): JSX.Element => {
+export default ({ setFilters, filters }: SearchProps): JSX.Element => {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setFilters((prevFilters) => ({
       ...prevFilters,
@@ -24,6 +30,7 @@ export default ({ setFilters }: SearchProps): JSX.Element => {
           onChange={handleSearchChange}
           variant="filled"
           placeholder="Search"
+          value={filters.search}
         />
       </InputGroup>
     </Box>

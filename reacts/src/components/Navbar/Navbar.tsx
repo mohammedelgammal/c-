@@ -4,13 +4,14 @@ import { Filters } from "../../App";
 
 interface NavbarProps {
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  filters: Filters;
 }
 
-export default ({ setFilters }: NavbarProps): JSX.Element => {
+export default ({ setFilters, filters }: NavbarProps): JSX.Element => {
   return (
     <GridItem display="flex" alignItems="center" gap="30px" area="nav">
       <Logo />
-      <Search setFilters={setFilters} />
+      <Search setFilters={setFilters} filters={filters} />
       <ThemeSwitch />
     </GridItem>
   );

@@ -16,6 +16,7 @@ export default ({ children }: { children: React.ReactNode }): JSX.Element => {
       gridTemplateRows={"100px 1fr"}
       maxW="1440px"
       px={5}
+      gap={7}
     >
       {children}
     </Grid>
