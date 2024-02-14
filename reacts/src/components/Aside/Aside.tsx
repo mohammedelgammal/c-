@@ -2,8 +2,14 @@ import { Alert, GridItem, Show, Stack, Text } from "@chakra-ui/react";
 import Genre from "./Genre";
 import useGenres from "../../hooks/useGenres";
 import AsideLoading from "./AsideLoading";
+import { Filters } from "../../App";
 
-export default (): JSX.Element => {
+interface AsideProps {
+  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  selectedGenre: string;
+}
+
+export default ({ setFilters, selectedGenre }: AsideProps): JSX.Element => {
   const { data: genres, isLoading, error } = useGenres();
   return (
     <Show above="lg">
@@ -16,7 +22,14 @@ export default (): JSX.Element => {
           {error?.message && <Alert status="error">{error.message}</Alert>}
           <Stack spacing={3}>
             {genres?.results?.map(({ id, name, image_background }) => (
-              <Genre key={id} src={image_background} title={name} id={0} />
+              <Genre
+                setFilters={setFilters}
+                key={id}
+                src={image_background}
+                title={name}
+                id={id}
+                selectedGenre={selectedGenre}
+              />
             ))}
           </Stack>
         </Stack>
