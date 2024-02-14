@@ -29,6 +29,7 @@ export default ({
       variant="elevated"
       borderRadius={"20px"}
       colorScheme={tba ? "whiteAlpha" : "blackAlpha"}
+      height="500px"
     >
       <CardBody p={0}>
         <Image

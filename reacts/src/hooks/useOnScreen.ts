@@ -12,7 +12,7 @@ export default <T>(): {
   const options: IntersectionObserverInit = {
     root: null,
     rootMargin: "0",
-    threshold: 0.5,
+    threshold: 0,
   };
   useEffect(() => {
     const observer = new IntersectionObserver(beIntersecting, options);

@@ -14,7 +14,7 @@ export default (): JSX.Element => {
   const { data, isLoading, error, fetchNextPage, isFetchingNextPage } =
     useGames();
   const { isVisible, containerRef } = useOnScreen<HTMLDivElement>();
-  if (isVisible) fetchNextPage();
+  if (!error && isVisible) fetchNextPage();
   return (
     <GridItem area="main" px={5}>
       <Text fontSize="5xl" fontWeight="bold" as="h2" mb={5}>
