@@ -5,6 +5,7 @@ export interface Filters {
   genres: string;
   platforms: string;
   ordering: string;
+  search: string;
 }
 
 export default (): JSX.Element => {
@@ -12,11 +13,12 @@ export default (): JSX.Element => {
     genres: "",
     platforms: "",
     ordering: "",
+    search: "",
   });
   return (
     <Layout>
       <Main setFilters={setFilters} filters={filters} />
-      <Navbar />
+      <Navbar setFilters={setFilters} />
       <Aside setFilters={setFilters} selectedGenre={filters.genres} />
     </Layout>
   );

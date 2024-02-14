@@ -13,7 +13,9 @@ export default ({ children }: { children: React.ReactNode }): JSX.Element => {
         lg: "250px 1fr",
         sm: "1fr",
       }}
-      gridTemplateRows={"50px 1fr"}
+      gridTemplateRows={"100px 1fr"}
+      maxW="1440px"
+      px={5}
     >
       {children}
     </Grid>

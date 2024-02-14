@@ -14,7 +14,7 @@ export default ({ setFilters, selectedGenre }: AsideProps): JSX.Element => {
   return (
     <Show above="lg">
       <GridItem area="aside">
-        <Stack spacing={5} px="20px">
+        <Stack spacing={5}>
           <Text fontSize="2xl" fontWeight="bold" as="h2">
             Genres
           </Text>

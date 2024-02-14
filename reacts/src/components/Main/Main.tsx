@@ -9,7 +9,7 @@ interface MainProps {
 
 export default ({ setFilters, filters }: MainProps): JSX.Element => {
   return (
-    <GridItem area="main" px={5}>
+    <GridItem area="main">
       <Box mb={10}>
         <Text fontSize="5xl" fontWeight="bold" as="h2" mb={5}>
           Games

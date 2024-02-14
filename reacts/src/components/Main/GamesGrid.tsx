@@ -23,7 +23,9 @@ export default ({ filters }: GamesGridProps): JSX.Element => {
     <>
       {isLoading && <GamesLoading length={10} />}
       {error?.message && <Alert status="error">{error.message}</Alert>}
-      {!data?.pages[0].count && <Alert status="error">No matching data</Alert>}
+      {!data?.pages[0].count && !isLoading && (
+        <Alert status="error">No matching data</Alert>
+      )}
       <SimpleGrid
         columns={{
           lg: 3,
