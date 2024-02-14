@@ -1,9 +1,4 @@
-import {
-  Box,
-  InputGroup,
-  Input,
-  InputLeftElement,
-} from "@chakra-ui/react";
+import { Box, InputGroup, Input, InputLeftElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { Filters } from "../../App";
 

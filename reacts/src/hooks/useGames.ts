@@ -14,13 +14,14 @@ const cleanUpFilters = (filters: Filters): Filters => {
 export default (filters: Filters) =>
   useInfiniteQuery<Response<Game>, Error>({
     queryKey: GAMES_QUERY_KEY(filters),
-    queryFn: ({ pageParam }) =>
+    queryFn: ({ pageParam, signal }) =>
       gamesServices.getAll({
         params: {
           page: pageParam,
           page_size: 10,
           ...cleanUpFilters(filters),
         },
+        signal,
       }),
     staleTime: ms("2h"),
     getNextPageParam: (lastPage, allPages) =>
