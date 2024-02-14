@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 export interface Response<T> {
   count: number;
@@ -13,10 +13,12 @@ export default class ApiClient<T> {
   constructor(private endPoint: string) {
     this.endPoint = endPoint;
   }
-  getAll = (): Promise<Response<T>> =>
+  getAll = (reqConfig: AxiosRequestConfig): Promise<Response<T>> =>
     axiosInstance
       .get<Response<T>>(this.endPoint, {
+        ...reqConfig,
         params: {
+          ...reqConfig.params,
           key: import.meta.env.VITE_SECRET_KEY,
         },
       })

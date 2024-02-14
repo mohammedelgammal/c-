@@ -1,10 +1,17 @@
-import Game from "./Game";
-import { Alert, GridItem, SimpleGrid, Text } from "@chakra-ui/react";
+import {
+  Alert,
+  Button,
+  GridItem,
+  SimpleGrid,
+  Spinner,
+  Text,
+} from "@chakra-ui/react";
+import { Game, GamesLoading } from "./";
 import useGames from "../../hooks/useGames";
-import GamesLoading from "./GamesLoading";
 
 export default (): JSX.Element => {
-  const { data: games, isLoading, error } = useGames();
+  const { data, isLoading, error, fetchNextPage, isFetchingNextPage } =
+    useGames();
   return (
     <GridItem area="main" px={5}>
       <Text fontSize="5xl" fontWeight="bold" as="h2" mb={5}>
@@ -20,10 +27,18 @@ export default (): JSX.Element => {
         }}
         spacing={5}
       >
-        {games?.results?.map((game) => (
-          <Game key={game.id} {...game} />
-        ))}
+        {data?.pages.map((page) =>
+          page?.results?.map((game) => <Game key={game.id} {...game} />)
+        )}
       </SimpleGrid>
+      <Button
+        mt={5}
+        w={"100%"}
+        onClick={() => fetchNextPage()}
+        isDisabled={isFetchingNextPage}
+      >
+        {isFetchingNextPage ? <Spinner /> : "load more"}
+      </Button>
     </GridItem>
   );
 };
