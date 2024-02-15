@@ -6,6 +6,7 @@ import User from "./User";
 import Users from "./Users";
 import ErrorPage from "./ErrorPage";
 import Login from "./Login";
+import PrivateRoutes from "./PrivateRoutes";
 
 export default createBrowserRouter([
   {
@@ -14,6 +15,12 @@ export default createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: "login", element: <Login /> },
+    ],
+  },
+  {
+    element: <PrivateRoutes />,
+    children: [
       {
         path: "users",
         element: <Users />,
@@ -24,7 +31,6 @@ export default createBrowserRouter([
           },
         ],
       },
-      { path: "login", element: <Login /> },
       { path: "contact", element: <Contact /> },
     ],
   },

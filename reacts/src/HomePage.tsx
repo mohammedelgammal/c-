@@ -1,10 +1,7 @@
 import { Button, Stack, Text } from "@chakra-ui/react";
-import { Navigate, useNavigate } from "react-router-dom";
-import useAuth from "./hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export default (): JSX.Element => {
-  const { isLoggedIn } = useAuth();
-  if (!isLoggedIn) return <Navigate to={"/login"} />;
   const navigate = useNavigate();
   return (
     <Stack>
