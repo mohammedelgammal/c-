@@ -7,16 +7,16 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { useContext, useRef } from "react";
-import tasksContext from "./context/tasksContext";
-import loginContext from "./context/loginContext";
+import { useRef } from "react";
+import useTasks from "./hooks/useTasks";
+import useAuth from "./hooks/useAuth";
 
 export default (): JSX.Element => {
   const taskRef = useRef<HTMLInputElement>(null);
-  const { tasks, dispatch } = useContext(tasksContext);
+  const { tasks, dispatch } = useTasks();
   const {
     login: { name },
-  } = useContext(loginContext);
+  } = useAuth();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch({

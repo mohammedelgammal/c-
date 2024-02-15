@@ -1,12 +1,11 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
-import { useContext } from "react";
-import loginContext from "./context/loginContext";
+import useAuth from "./hooks/useAuth";
 
 export default (): JSX.Element => {
   const {
     login: { name, isLoggedIn },
     dispatch,
-  } = useContext(loginContext);
+  } = useAuth();
   return (
     <Flex flexDir="column">
       <Text mb={4}>Logged in as {name}</Text>
