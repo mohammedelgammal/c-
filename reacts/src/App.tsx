@@ -1,14 +1,25 @@
-import { Stack } from "@chakra-ui/react";
-import Counter from "./Counter";
-import TasksList from "./TasksList";
-import Login from "./Login";
+import { useState } from "react";
+import { Navbar, Aside, Main, Layout } from "./components";
+
+export interface Filters {
+  genres: string;
+  platforms: string;
+  ordering: string;
+  search: string;
+}
 
 export default (): JSX.Element => {
+  const [filters, setFilters] = useState<Filters>({
+    genres: "",
+    platforms: "",
+    ordering: "",
+    search: "",
+  });
   return (
-    <Stack spacing={10} p={10}>
-      <Login />
-      <Counter />
-      <TasksList />
-    </Stack>
+    <Layout>
+      <Main setFilters={setFilters} filters={filters} />
+      <Navbar setFilters={setFilters} filters={filters} />
+      <Aside setFilters={setFilters} selectedGenre={filters.genres} />
+    </Layout>
   );
 };
