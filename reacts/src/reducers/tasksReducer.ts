@@ -1,9 +1,9 @@
-interface Task {
+export interface Task {
   id: number;
   title: string;
 }
 
-interface Action {
+export interface Action {
   type: "ADD" | "DELETE";
   title?: string;
   id?: number;

@@ -7,12 +7,12 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { useReducer, useRef } from "react";
-import tasksReducer from "./reducers/tasksReducer";
+import { useContext, useRef } from "react";
+import tasksContext from "./context/tasksContext";
 
 export default (): JSX.Element => {
-  const [tasks, dispatch] = useReducer(tasksReducer, []);
   const taskRef = useRef<HTMLInputElement>(null);
+  const { tasks, dispatch } = useContext(tasksContext);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch({
