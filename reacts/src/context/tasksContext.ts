@@ -1,9 +1,9 @@
 import React from "react";
 import { Action, Task } from "../reducers/tasksReducer";
 
-interface TasksContext {
+export interface TasksContextType {
   tasks: Task[];
   dispatch: React.Dispatch<Action>;
 }
 
-export default React.createContext<TasksContext>({} as TasksContext);
+export default React.createContext<TasksContextType>({} as TasksContextType);
