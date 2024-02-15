@@ -1,37 +1,20 @@
 import { createBrowserRouter } from "react-router-dom";
-import Contact from "./Contact";
-import HomePage from "./HomePage";
-import Layout from "./Layout";
-import User from "./User";
-import Users from "./Users";
-import ErrorPage from "./ErrorPage";
-import Login from "./Login";
-import PrivateRoutes from "./PrivateRoutes";
+import App from "./App";
+import ErrorPage from "./components/ErrorPage";
+import GameDetails from "./components/GameDetails/GameDetails";
+import Games from "./components/Games";
 
 export default createBrowserRouter([
   {
-    path: "",
-    element: <Layout />,
+    path: "/",
+    element: <App />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <HomePage /> },
-      { path: "login", element: <Login /> },
-    ],
-  },
-  {
-    element: <PrivateRoutes />,
-    children: [
+      { index: true, element: <Games /> },
       {
-        path: "users",
-        element: <Users />,
-        children: [
-          {
-            path: ":id",
-            element: <User />,
-          },
-        ],
+        path: "games/:id",
+        element: <GameDetails />,
       },
-      { path: "contact", element: <Contact /> },
     ],
   },
 ]);

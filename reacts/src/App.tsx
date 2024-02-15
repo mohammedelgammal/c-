@@ -1,12 +1,11 @@
-import { Stack } from "@chakra-ui/react";
-import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
+import { Layout, Navbar } from "./components";
 
 export default (): JSX.Element => {
   return (
-    <Stack p={10}>
+    <Layout>
       <Navbar />
       <Outlet />
-    </Stack>
+    </Layout>
   );
 };
