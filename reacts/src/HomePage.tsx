@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default (): JSX.Element => {
   const navigate = useNavigate();
-
+  throw new Error("main page error");
   return (
     <Stack>
       <Text> HomePage</Text>
