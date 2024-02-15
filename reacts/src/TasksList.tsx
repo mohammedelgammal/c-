@@ -9,10 +9,18 @@ import {
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import useStore from "./store";
+import { useShallow } from "zustand/react/shallow";
 
 export default (): JSX.Element => {
   const taskRef = useRef<HTMLInputElement>(null);
-  const { tasks, add, del, name } = useStore();
+  const { tasks, add, del, name } = useStore(
+    useShallow((state) => ({
+      tasks: state.tasks,
+      add: state.add,
+      del: state.del,
+      name: state.name,
+    }))
+  );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
