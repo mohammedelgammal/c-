@@ -8,19 +8,16 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useRef } from "react";
-import useTasks from "./hooks/useTasks";
-import useAuth from "./hooks/useAuth";
+import useStore from "./store";
 
 export default (): JSX.Element => {
   const taskRef = useRef<HTMLInputElement>(null);
-  const { tasks, dispatch } = useTasks();
-  const {
-    login: { name },
-  } = useAuth();
+  const { tasks, add, del, name } = useStore();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch({
-      type: "ADD",
+    add({
+      id: tasks.length,
       title: taskRef.current!.value,
     });
     taskRef.current!.value = "";
@@ -44,15 +41,7 @@ export default (): JSX.Element => {
         {tasks.map(({ id, title }) => (
           <Flex key={id} justifyContent="space-between">
             <ListItem>{title}</ListItem>
-            <Button
-              colorScheme="red"
-              onClick={() =>
-                dispatch({
-                  type: "DELETE",
-                  id: id,
-                })
-              }
-            >
+            <Button colorScheme="red" onClick={() => del(id)}>
               Delete
             </Button>
           </Flex>
