@@ -1,12 +1,12 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
-import { useReducer } from "react";
-import loginReducer from "./reducers/loginReducer";
+import { useContext } from "react";
+import loginContext from "./context/loginContext";
 
 export default (): JSX.Element => {
-  const [{ name, isLoggedIn }, dispatch] = useReducer(loginReducer, {
-    name: "",
-    isLoggedIn: false,
-  });
+  const {
+    login: { name, isLoggedIn },
+    dispatch,
+  } = useContext(loginContext);
   return (
     <Flex flexDir="column">
       <Text mb={4}>Logged in as {name}</Text>

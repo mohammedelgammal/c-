@@ -9,10 +9,14 @@ import {
 } from "@chakra-ui/react";
 import { useContext, useRef } from "react";
 import tasksContext from "./context/tasksContext";
+import loginContext from "./context/loginContext";
 
 export default (): JSX.Element => {
   const taskRef = useRef<HTMLInputElement>(null);
   const { tasks, dispatch } = useContext(tasksContext);
+  const {
+    login: { name },
+  } = useContext(loginContext);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch({
@@ -31,6 +35,7 @@ export default (): JSX.Element => {
           placeholder="Add task"
           size="lg"
         />
+        <Text>Showing tasks for: {name}</Text>
       </form>
       <List mt={10} spacing={5}>
         {tasks.length === 0 && (

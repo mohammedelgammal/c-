@@ -1,6 +1,6 @@
-type Action = "LOGIN" | "LOGOUT";
+export type Action = "LOGIN" | "LOGOUT";
 
-interface Login {
+export interface Login {
   name: string;
   isLoggedIn: boolean;
 }
