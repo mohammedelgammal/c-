@@ -1,14 +1,19 @@
 import { Alert, Flex, SimpleGrid, Spinner } from "@chakra-ui/react";
-import { Game, GamesLoading } from "./";
+import { useShallow } from "zustand/react/shallow";
 import useGames from "../../hooks/useGames";
 import useOnScreen from "../../hooks/useOnScreen";
-import { Filters } from "../../App";
+import useStore from "../../store";
+import { Game, GamesLoading } from "./";
 
-interface GamesGridProps {
-  filters: Filters;
-}
-
-export default ({ filters }: GamesGridProps): JSX.Element => {
+export default (): JSX.Element => {
+  const { genres, platforms, ordering, search } = useStore(
+    useShallow((state) => ({
+      genres: state.genres,
+      platforms: state.platforms,
+      ordering: state.ordering,
+      search: state.search,
+    }))
+  );
   const {
     data,
     isLoading,
@@ -16,7 +21,12 @@ export default ({ filters }: GamesGridProps): JSX.Element => {
     fetchNextPage,
     isFetchingNextPage,
     hasNextPage,
-  } = useGames(filters);
+  } = useGames({
+    genres,
+    platforms,
+    ordering,
+    search,
+  });
   const { isVisible, containerRef } = useOnScreen<HTMLDivElement>();
   if (hasNextPage && !error && isVisible) fetchNextPage();
   return (

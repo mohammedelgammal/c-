@@ -1,9 +1,15 @@
-import ms from "ms";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import gamesServices, { Game } from "../services/gamesServices";
-import { Response } from "../services/apiClient";
-import { Filters } from "../App";
+import ms from "ms";
 import { GAMES_QUERY_KEY } from "../constants";
+import { Response } from "../services/apiClient";
+import gamesServices, { Game } from "../services/gamesServices";
+
+export interface Filters {
+  genres: string;
+  platforms: string;
+  ordering: string;
+  search: string;
+}
 
 const cleanUpFilters = (filters: Filters): Filters => {
   for (const key of Object.keys(filters))

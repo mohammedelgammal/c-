@@ -1,19 +1,16 @@
-import { Box, InputGroup, Input, InputLeftElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import { Filters } from "../../App";
+import { Box, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { useShallow } from "zustand/react/shallow";
+import useStore from "../../store";
 
-interface SearchProps {
-  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
-  filters: Filters;
-}
+export default (): JSX.Element => {
+  const { setSearch, search } = useStore(
+    useShallow((state) => ({
+      search: state.search,
+      setSearch: state.setSearch,
+    }))
+  );
 
-export default ({ setFilters, filters }: SearchProps): JSX.Element => {
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      search: e.target.value,
-    }));
-  };
   return (
     <Box flex="auto">
       <InputGroup>
@@ -22,10 +19,10 @@ export default ({ setFilters, filters }: SearchProps): JSX.Element => {
         </InputLeftElement>
         <Input
           borderRadius="50px"
-          onChange={handleSearchChange}
+          onChange={(e) => setSearch(e.target.value)}
           variant="filled"
           placeholder="Search"
-          value={filters.search}
+          value={search}
         />
       </InputGroup>
     </Box>

@@ -1,22 +1,21 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
+import { useShallow } from "zustand/react/shallow";
 import useCropImage from "../../services/useCropImage";
-import { Filters } from "../../App";
+import useStore from "../../store";
 
 interface GenreProps {
   src: string;
   title: string;
   slug: string;
-  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
-  selectedGenre: string;
 }
 
-export default ({
-  src,
-  title,
-  slug,
-  setFilters,
-  selectedGenre,
-}: GenreProps): JSX.Element => {
+export default ({ src, title, slug }: GenreProps): JSX.Element => {
+  const { genres, setGenres } = useStore(
+    useShallow((state) => ({
+      genres: state.genres,
+      setGenres: state.setGenres,
+    }))
+  );
   return (
     <Flex gap={3} alignItems="center">
       <Image src={useCropImage(src)} borderRadius="10px" w={8} h={8} />
@@ -27,13 +26,8 @@ export default ({
           textDecoration: "underline",
           cursor: "pointer",
         }}
-        onClick={() =>
-          setFilters((filters) => ({
-            ...filters,
-            genres: slug,
-          }))
-        }
-        fontWeight={selectedGenre === slug ? "bold" : ""}
+        onClick={() => setGenres(slug)}
+        fontWeight={genres === slug ? "bold" : ""}
       >
         {title}
       </Text>

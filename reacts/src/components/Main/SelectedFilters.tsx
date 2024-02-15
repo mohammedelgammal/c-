@@ -1,68 +1,48 @@
 import { Button, Flex, Select } from "@chakra-ui/react";
-import { platforms, orderings } from "./data";
-import { Filters } from "../../App";
 import { CiFilter } from "react-icons/ci";
+import { useShallow } from "zustand/react/shallow";
+import useStore from "../../store";
+import { orderings, platforms as plats } from "./data";
 
-interface SelectedFiltersProps {
-  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
-  filters: Filters;
-}
-
-export default ({ setFilters, filters }: SelectedFiltersProps): JSX.Element => {
-  const platformChangeHandler = (
-    e: React.ChangeEvent<HTMLSelectElement>
-  ): void => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      platforms: e.target.value,
-    }));
-  };
-  const handleOrderChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      ordering: e.target.value,
-    }));
-  };
-  const handleResetFilters = (): void => {
-    setFilters({
-      genres: "",
-      platforms: "",
-      ordering: "",
-      search: "",
-    });
-  };
+export default (): JSX.Element => {
+  const { platforms, setPlatforms, ordering, setOrdering, resetFilters } =
+    useStore(
+      useShallow((state) => ({
+        platforms: state.platforms,
+        setPlatforms: state.setPlatforms,
+        ordering: state.ordering,
+        setOrdering: state.setOrdering,
+        resetFilters: state.resetFilters,
+      }))
+    );
   return (
     <Flex gap="20px">
       <Select
-        onChange={platformChangeHandler}
+        onChange={(e) => setPlatforms(e.target.value)}
         w="fit-content"
         variant="filled"
         placeholder="Platforms"
-        value={filters.platforms}
+        value={platforms}
       >
-        {platforms.map((platform, index) => {
-          return (
-            <option key={index} value={platform.id}>
-              {platform.name}
-            </option>
-          );
-        })}
+        {plats.map(({ id, name }) => (
+          <option key={id} value={id}>
+            {name}
+          </option>
+        ))}
       </Select>
       <Select
-        onChange={handleOrderChange}
+        onChange={(e) => setOrdering(e.target.value)}
         w="fit-content"
         variant="filled"
-        value={filters.ordering}
+        value={ordering}
       >
-        {orderings.map((order) => {
-          return (
-            <option key={order.slug} value={order.slug}>
-              Order by: {order.name}
-            </option>
-          );
-        })}
+        {orderings.map(({ slug, name }) => (
+          <option key={slug} value={slug}>
+            Order by: {name}
+          </option>
+        ))}
       </Select>
-      <Button onClick={handleResetFilters}>
+      <Button onClick={() => resetFilters()}>
         Reset filters &nbsp; <CiFilter />
       </Button>
     </Flex>
