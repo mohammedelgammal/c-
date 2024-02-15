@@ -5,6 +5,7 @@ import Layout from "./Layout";
 import User from "./User";
 import Users from "./Users";
 import ErrorPage from "./ErrorPage";
+import Login from "./Login";
 
 export default createBrowserRouter([
   {
@@ -23,6 +24,7 @@ export default createBrowserRouter([
           },
         ],
       },
+      { path: "login", element: <Login /> },
       { path: "contact", element: <Contact /> },
     ],
   },
