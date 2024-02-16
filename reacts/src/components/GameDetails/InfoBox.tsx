@@ -1,19 +1,33 @@
-import { List, ListItem, Stack, Text } from "@chakra-ui/react";
+import { List, ListItem, Stack, Tag, Text } from "@chakra-ui/react";
 
 interface InfoBoxProps {
   title: string;
-  list: string[];
+  list: string[] | string;
 }
 
 export default ({ title, list }: InfoBoxProps): JSX.Element => {
   return (
-    <Stack spacing={2}>
-      <Text color="gray">{title}</Text>
-      <List>
-        {list.map((name) => (
-          <ListItem key={name}>{name}</ListItem>
-        ))}
-      </List>
+    <Stack spacing={2} mb={5}>
+      <Text color="gray" fontSize="2xl" fontWeight="bold">
+        {title}
+      </Text>
+      {list instanceof Array ? (
+        <List>
+          {list.length ? (
+            list.map((name) => (
+              <ListItem color="whitesmoke" key={name}>
+                {name}
+              </ListItem>
+            ))
+          ) : (
+            <Text fontWeight="bolder">N/A</Text>
+          )}
+        </List>
+      ) : (
+        <Tag fontWeight="bolder" w="fit-content" colorScheme="teal">
+          {list.length ? list : "N/A"}
+        </Tag>
+      )}
     </Stack>
   );
 };
