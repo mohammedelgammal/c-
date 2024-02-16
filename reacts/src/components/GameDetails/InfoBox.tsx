@@ -15,7 +15,7 @@ export default ({ title, list }: InfoBoxProps): JSX.Element => {
         <List>
           {list.length ? (
             list.map((name) => (
-              <ListItem color="whitesmoke" key={name}>
+              <ListItem color="gray" key={name}>
                 {name}
               </ListItem>
             ))

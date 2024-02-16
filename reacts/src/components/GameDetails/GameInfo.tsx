@@ -2,6 +2,7 @@ import { Alert, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import useGameDetails from "../../hooks/useGameDetails";
 import InfoBox from "./InfoBox";
 import InfoLoading from "./InfoLoading";
+import TruncateText from "../../common/TruncateText";
 
 interface GameInfoProps {
   id: string | undefined;
@@ -23,7 +24,9 @@ export default ({ id = "" }: GameInfoProps): JSX.Element => {
           <Text fontSize="5xl" fontWeight="bold">
             {gameDetails?.name}
           </Text>
-          <Text color="gray">{gameDetails?.description}</Text>
+          <Text color="gray">
+            <TruncateText>{gameDetails?.description}</TruncateText>
+          </Text>
           <SimpleGrid columns={2} mt={8}>
             <InfoBox
               title="Platforms"
