@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import { Game } from "../../services/gamesServices";
 import Emoji from "./Emoji";
 import { iconsMap } from "./data";
+import fallBackImage from "../../assets/Image_not_available.png";
 
 export default ({
   id,
@@ -38,7 +39,7 @@ export default ({
           <Image
             w={"100%"}
             h={200}
-            src={background_image}
+            src={background_image || fallBackImage}
             borderRadius="20px 20px 0 0"
           />
         </CardBody>

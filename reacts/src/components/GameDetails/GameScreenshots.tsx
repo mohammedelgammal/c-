@@ -1,6 +1,7 @@
 import { Alert, Box, GridItem, Image, SimpleGrid } from "@chakra-ui/react";
 import useScreenshots from "../../hooks/useScreenshots";
 import GameScreenshotsLoading from "./GameScreenshotsLoading";
+import fallBackImage from "../../assets/Image_not_available.png";
 
 interface GameScreenshotsProps {
   id: string | undefined;
@@ -22,7 +23,7 @@ export default ({ id = "" }: GameScreenshotsProps): JSX.Element => {
       >
         {screenshots?.results.map(({ id, image }) => (
           <GridItem key={id}>
-            <Image src={image} />
+            <Image src={image || fallBackImage}  />
           </GridItem>
         ))}
       </SimpleGrid>

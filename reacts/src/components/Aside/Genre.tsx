@@ -2,6 +2,7 @@ import { Flex, Image, Text } from "@chakra-ui/react";
 import { useShallow } from "zustand/react/shallow";
 import useCropImage from "../../hooks/useCropImage";
 import useStore from "../../store";
+import fallBackImage from "../../assets/Image_not_available.png";
 
 interface GenreProps {
   src: string;
@@ -18,7 +19,12 @@ export default ({ src, title, slug }: GenreProps): JSX.Element => {
   );
   return (
     <Flex gap={3} alignItems="center">
-      <Image src={useCropImage(src)} borderRadius="10px" w={8} h={8} />
+      <Image
+        src={useCropImage(src) || fallBackImage}
+        borderRadius="10px"
+        w={8}
+        h={8}
+      />
       <Text
         as="span"
         textAlign="left"
