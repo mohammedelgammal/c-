@@ -1,6 +1,6 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
 import { useShallow } from "zustand/react/shallow";
-import useCropImage from "../../services/useCropImage";
+import useCropImage from "../../hooks/useCropImage";
 import useStore from "../../store";
 
 interface GenreProps {
