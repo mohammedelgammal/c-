@@ -17,7 +17,7 @@ export default ({ id = "" }: GameInfoProps): JSX.Element => {
   return (
     <SimpleGrid flex={1}>
       {isLoading && <InfoLoading />}
-      {error?.message ? <Alert>{error.message}</Alert> : null}
+      {!!error?.message && <Alert>{error.message}</Alert>}
       {isSuccess && (
         <Stack>
           <Text fontSize="5xl" fontWeight="bold">

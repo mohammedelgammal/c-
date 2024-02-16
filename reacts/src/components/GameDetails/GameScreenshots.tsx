@@ -1,4 +1,4 @@
-import { Box, GridItem, Image, SimpleGrid } from "@chakra-ui/react";
+import { Alert, Box, GridItem, Image, SimpleGrid } from "@chakra-ui/react";
 import useScreenshots from "../../hooks/useScreenshots";
 import GameScreenshotsLoading from "./GameScreenshotsLoading";
 
@@ -12,7 +12,7 @@ export default ({ id = "" }: GameScreenshotsProps): JSX.Element => {
   return (
     <Box>
       {isLoading && <GameScreenshotsLoading />}
-      {error?.message ? error.message : null}
+      {!!error?.message && <Alert></Alert>}
       <SimpleGrid
         columns={{
           base: 1,

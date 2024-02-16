@@ -16,9 +16,9 @@ export default (): JSX.Element => {
       }}
     >
       <GameInfo id={params.id} />
-      <Stack flex={1}>
-        <GameScreenshots id={params.id} />
+      <Stack flex={1} gap={10}>
         <GamesTrailers id={params.id} />
+        <GameScreenshots id={params.id} />
       </Stack>
     </Flex>
   );
