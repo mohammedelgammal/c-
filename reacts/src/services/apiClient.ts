@@ -24,4 +24,14 @@ export default class ApiClient<T> {
         },
       })
       .then((res) => res.data);
+  get = (url: string = "", reqConfig?: AxiosRequestConfig): Promise<T> =>
+    axiosInstance
+      .get(`${this.endPoint}/${url}`, {
+        ...reqConfig,
+        params: {
+          ...reqConfig?.params,
+          key: import.meta.env.VITE_SECRET_KEY,
+        },
+      })
+      .then((res) => res.data);
 }
