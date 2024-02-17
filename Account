@@ -1,0 +1,19 @@
+#ifndef ACCOUNT
+#define ACCOUNT
+
+#include <stdexcept>
+using namespace std;
+
+class Account
+{
+public:
+    Account(const int startAmount);
+    void deposit(const int amount);
+    void withdraw(const int amount);
+    int getBalance() const;
+
+private:
+    int balance;
+};
+
+#endif // ACCOUNT

@@ -1,15 +1,18 @@
 // Libraries
 #include <iostream>
 
-#include "Solution"
+#include "Account"
 
 using namespace std;
 
 int main()
 {
-    Solution solution;
+    Account *account = new Account(10);
 
-    cout << solution.numDecodings("111111111111111111111111111111111111111111111");
+    account->deposit(15);
+    account->withdraw(5);
+
+    cout << "your current balance: $" << account->getBalance() << endl;
 
     return 0;
 }
