@@ -1,0 +1,20 @@
+#ifndef MEMENTO
+#define MEMENTO
+
+#include <iostream>
+using namespace std;
+
+class Memento
+{
+public:
+    Memento(const string content) : content{content} {};
+    string getSavedContent() const
+    {
+        return content;
+    };
+
+private:
+    string content;
+};
+
+#endif // MEMENTO

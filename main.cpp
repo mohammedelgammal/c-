@@ -1,23 +1,32 @@
 // Libraries
 #include <iostream>
 
-#include "Account"
-
 using namespace std;
+
+#include "Document"
+#include "CareTaker"
+#include "Memento"
 
 int main()
 {
-    VIPAccount vip(10);
-    SilverAccount silver(10);
+    Document document = Document();
+    CareTaker careTaker = CareTaker();
 
-    cout << vip.getBalance() << endl;
-    cout << silver.getBalance() << endl;
+    document.write("content one");
+    careTaker.addMemento(document.createMemento());
 
-    vip.claimPrize();
-    silver.claimPrize();
+    document.write("content two");
+    careTaker.addMemento(document.createMemento());
 
-    cout << vip.getBalance() << endl;
-    cout << silver.getBalance() << endl;
+    document.write("content three");
+    careTaker.addMemento(document.createMemento());
+
+    document.write("content four");
+    careTaker.addMemento(document.createMemento());
+
+    document.restoreFromMemento(careTaker.getMemento(0));
+
+    cout << document.getContent();
 
     return 0;
 }

@@ -1,0 +1,25 @@
+#ifndef CARETAKER
+#define CARETAKER
+
+#include <iostream>
+#include <vector>
+#include "Memento"
+using namespace std;
+
+class CareTaker
+{
+public:
+    void addMemento(Memento *memento)
+    {
+        mementos.push_back(memento);
+    };
+    Memento *getMemento(const int index)
+    {
+        return mementos.at(index);
+    }
+
+private:
+    vector<Memento *> mementos;
+};
+
+#endif // CARETAKER

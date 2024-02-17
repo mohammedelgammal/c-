@@ -1,0 +1,32 @@
+#ifndef DOCUMENT
+#define DOCUMENT
+
+#include <iostream>
+#include "Memento"
+using namespace std;
+
+class Document
+{
+public:
+    void write(const string content)
+    {
+        this->content = content;
+    }
+    string getContent() const
+    {
+        return content;
+    }
+    Memento *createMemento() const
+    {
+        return new Memento(content);
+    }
+    void restoreFromMemento(Memento *memento)
+    {
+        content = memento->getSavedContent();
+    }
+
+private:
+    string content;
+};
+
+#endif // DOCUMENT
