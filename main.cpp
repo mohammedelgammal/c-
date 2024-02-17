@@ -7,12 +7,17 @@ using namespace std;
 
 int main()
 {
-    Account *account = new Account(10);
+    VIPAccount vip(10);
+    SilverAccount silver(10);
 
-    account->deposit(15);
-    account->withdraw(5);
+    cout << vip.getBalance() << endl;
+    cout << silver.getBalance() << endl;
 
-    cout << "your current balance: $" << account->getBalance() << endl;
+    vip.claimPrize();
+    silver.claimPrize();
+
+    cout << vip.getBalance() << endl;
+    cout << silver.getBalance() << endl;
 
     return 0;
 }

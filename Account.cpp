@@ -27,3 +27,17 @@ int Account::getBalance() const
 {
     return balance;
 }
+
+void VIPAccount::claimPrize()
+{
+    const int prize = 200;
+    deposit(prize);
+    cout << "You have successfully claimed your prize: $" << prize << endl;
+}
+
+void SilverAccount::claimPrize()
+{
+    const int prize = 50;
+    deposit(prize);
+    cout << "You have successfully claimed your prize: $" << prize << endl;
+}

@@ -3,6 +3,7 @@
     "solution": "cpp",
     "vector": "cpp",
     "string": "cpp",
-    "account": "cpp"
+    "account": "cpp",
+    "emailservice": "cpp"
   }
 }
