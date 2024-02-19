@@ -54,6 +54,6 @@
     "unordered_map": "cpp",
     "variant": "cpp",
     "algorithm": "cpp",
-    "canvas": "cpp"
+    "iterator": "cpp"
   }
 }

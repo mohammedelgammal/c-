@@ -3,13 +3,25 @@
 
 using namespace std;
 
-#include "Canvas"
+#include "Iterator"
 
 int main()
 {
-    Canvas canvas(new Line);
+    BrowserHistory *history = new BrowserHistory();
 
-    canvas.useTool();
+    ListIterator *iterator = history->getIterator(history);
+    history->add("history one");
+    history->add("history two");
+    history->add("history three");
+    history->add("history four");
+
+    history->pop();
+
+    while (iterator->hasNext())
+    {
+        cout << iterator->getCurrent() << endl;
+        iterator->next();
+    }
 
     return 0;
 }
