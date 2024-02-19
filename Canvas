@@ -4,61 +4,50 @@
 #include <iostream>
 using namespace std;
 
+class Tool
+{
+public:
+    virtual void use(){};
+};
+
+class Selection : public Tool
+{
+public:
+    void use() override
+    {
+        cout << "Draw a Rectangle" << endl;
+    }
+};
+
+class Line : public Tool
+{
+public:
+    void use() override
+    {
+        cout << "Draw a Line" << endl;
+    }
+};
+
+class Eraser : public Tool
+{
+public:
+    void use() override
+    {
+        cout << "Erase something" << endl;
+    }
+};
+
 class Canvas
 {
 public:
-    Canvas(const string currentTool) : currentTool{currentTool} {}
-    virtual void onMouseDown() const
+    Canvas(Tool *tool) : tool{tool} {};
+    void useTool()
     {
-    }
-    virtual void onMouseUp() const
-    {
+        tool->use();
     }
 
 private:
-    string currentTool;
-};
-
-class Selection : public Canvas
-{
-public:
-    Selection() : Canvas("Selection") {}
-    void onMouseDown() const override
-    {
-        cout << "Selection Icon" << endl;
-    }
-    void onMouseUp() const override
-    {
-        cout << "Draw Rectangle" << endl;
-    }
-};
-
-class Brush : public Canvas
-{
-public:
-    Brush() : Canvas("Brush") {}
-    void onMouseDown() const override
-    {
-        cout << "Brush Icon" << endl;
-    }
-    void onMouseUp() const override
-    {
-        cout << "Draw a line" << endl;
-    }
-};
-
-class Eraser : public Canvas
-{
-public:
-    Eraser() : Canvas("Eraser") {}
-    void onMouseDown() const override
-    {
-        cout << "Eraser Icon" << endl;
-    }
-    void onMouseUp() const override
-    {
-        cout << "Erase somthing" << endl;
-    }
+    Tool *tool;
 };
 
 #endif // CANVAS

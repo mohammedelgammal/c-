@@ -7,10 +7,9 @@ using namespace std;
 
 int main()
 {
-    Selection selection;
+    Canvas canvas(new Line);
 
-    selection.onMouseDown();
-    selection.onMouseUp();
+    canvas.useTool();
 
     return 0;
 }
