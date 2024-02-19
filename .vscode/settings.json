@@ -3,9 +3,6 @@
     "solution": "cpp",
     "vector": "cpp",
     "string": "cpp",
-    "document": "cpp",
-    "memento": "cpp",
-    "caretaker": "cpp",
     "__bit_reference": "cpp",
     "__config": "cpp",
     "__debug": "cpp",
@@ -56,6 +53,7 @@
     "typeinfo": "cpp",
     "unordered_map": "cpp",
     "variant": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "canvas": "cpp"
   }
 }

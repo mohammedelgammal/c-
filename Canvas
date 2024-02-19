@@ -1,0 +1,64 @@
+#ifndef CANVAS
+#define CANVAS
+
+#include <iostream>
+using namespace std;
+
+class Canvas
+{
+public:
+    Canvas(const string currentTool) : currentTool{currentTool} {}
+    virtual void onMouseDown() const
+    {
+    }
+    virtual void onMouseUp() const
+    {
+    }
+
+private:
+    string currentTool;
+};
+
+class Selection : public Canvas
+{
+public:
+    Selection() : Canvas("Selection") {}
+    void onMouseDown() const override
+    {
+        cout << "Selection Icon" << endl;
+    }
+    void onMouseUp() const override
+    {
+        cout << "Draw Rectangle" << endl;
+    }
+};
+
+class Brush : public Canvas
+{
+public:
+    Brush() : Canvas("Brush") {}
+    void onMouseDown() const override
+    {
+        cout << "Brush Icon" << endl;
+    }
+    void onMouseUp() const override
+    {
+        cout << "Draw a line" << endl;
+    }
+};
+
+class Eraser : public Canvas
+{
+public:
+    Eraser() : Canvas("Eraser") {}
+    void onMouseDown() const override
+    {
+        cout << "Eraser Icon" << endl;
+    }
+    void onMouseUp() const override
+    {
+        cout << "Erase somthing" << endl;
+    }
+};
+
+#endif // CANVAS
