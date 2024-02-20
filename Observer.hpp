@@ -7,19 +7,19 @@ using namespace std;
 class Observer
 {
 public:
-    virtual void update(){};
+    virtual void update(const string content){};
 };
 
 class Spreadsheet : public Observer
 {
 public:
-    void update() override;
+    void update(const string content) override;
 };
 
 class Chart : public Observer
 {
 public:
-    void update() override;
+    void update(const string content) override;
 };
 
 #endif // OBSERVER

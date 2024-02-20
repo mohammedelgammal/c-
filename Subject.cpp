@@ -8,7 +8,7 @@ void DataSource::registerObserver(Observer *observer)
 void DataSource::notifyAll()
 {
     for (Observer *observer : _observers)
-        observer->update();
+        observer->update(_content);
 }
 
 void DataSource::setContent(const string content)

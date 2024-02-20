@@ -14,7 +14,7 @@ int main()
     dataSource->registerObserver(sheet);
     dataSource->registerObserver(chart);
 
-    dataSource->setContent("content");
+    dataSource->setContent("upated content");
 
     return 0;
 }
