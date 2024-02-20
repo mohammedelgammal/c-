@@ -1,19 +1,21 @@
 // Libraries
 #include <iostream>
-#include "Strategy.hpp"
+#include "Template.hpp"
 
 using namespace std;
 
 int main()
 {
-    Sort sorter;
-    const string content = "input";
+    cout << "Making tea" << endl;
+    cout << "=≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠=" << endl;
+    BeverageMaker *teaMaker = new TeaMaker();
+    teaMaker->makeBeverage(2);
 
-    sorter.setSortingStrategy(new BubbleSort());
-    sorter.sort(content);
+    cout << "Making coffee" << endl;
+    cout << "=≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠=" << endl;
 
-    sorter.setSortingStrategy(new MergeSort());
-    sorter.sort(content);
+    BeverageMaker *coffeeMaker = new CoffeeMaker();
+    coffeeMaker->makeBeverage(2);
 
     return 0;
 }
