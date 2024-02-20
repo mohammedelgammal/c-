@@ -1,27 +1,19 @@
 // Libraries
 #include <iostream>
+#include "Strategy.hpp"
 
 using namespace std;
 
-#include "Iterator"
-
 int main()
 {
-    BrowserHistory *history = new BrowserHistory();
+    Sort sorter;
+    const string content = "input";
 
-    ListIterator *iterator = history->getIterator(history);
-    history->add("history one");
-    history->add("history two");
-    history->add("history three");
-    history->add("history four");
+    sorter.setSortingStrategy(new BubbleSort());
+    sorter.sort(content);
 
-    history->pop();
-
-    while (iterator->hasNext())
-    {
-        cout << iterator->getCurrent() << endl;
-        iterator->next();
-    }
+    sorter.setSortingStrategy(new MergeSort());
+    sorter.sort(content);
 
     return 0;
 }
