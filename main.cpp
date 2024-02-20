@@ -1,21 +1,19 @@
 // Libraries
 #include <iostream>
-#include "Template.hpp"
+#include "Command.hpp"
 
 using namespace std;
 
 int main()
 {
-    cout << "Making tea" << endl;
-    cout << "=≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠=" << endl;
-    BeverageMaker *teaMaker = new TeaMaker();
-    teaMaker->makeBeverage(2);
+    RemoteControl *rc = new RemoteControl();
+    VolumeUpCommand *volUp = new VolumeUpCommand(rc);
+    Button *btn = new Button(volUp);
 
-    cout << "Making coffee" << endl;
-    cout << "=≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠=" << endl;
+    btn->click();
+    btn->click();
 
-    BeverageMaker *coffeeMaker = new CoffeeMaker();
-    coffeeMaker->makeBeverage(2);
+    cout << rc->getVolume() << endl;
 
     return 0;
 }
