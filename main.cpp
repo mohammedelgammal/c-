@@ -1,19 +1,20 @@
 // Libraries
 #include <iostream>
-#include "Command.hpp"
+#include "Subject.hpp"
+#include "Observer.hpp"
 
 using namespace std;
 
 int main()
 {
-    RemoteControl *rc = new RemoteControl();
-    VolumeUpCommand *volUp = new VolumeUpCommand(rc);
-    Button *btn = new Button(volUp);
+    DataSource *dataSource = new DataSource();
+    Spreadsheet *sheet = new Spreadsheet();
+    Chart *chart = new Chart();
 
-    btn->click();
-    btn->click();
+    dataSource->registerObserver(sheet);
+    dataSource->registerObserver(chart);
 
-    cout << rc->getVolume() << endl;
+    dataSource->setContent("content");
 
     return 0;
 }
