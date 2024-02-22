@@ -1,20 +1,18 @@
 // Libraries
 #include <iostream>
-#include "Subject.hpp"
-#include "Observer.hpp"
 
+#include "Handlers.hpp"
 using namespace std;
 
 int main()
 {
-    DataSource *dataSource = new DataSource();
-    Spreadsheet *sheet = new Spreadsheet();
-    Chart *chart = new Chart();
+    LevelOneHandler handler = LevelOneHandler();
+    LevelTwoHandler handlerTwo = LevelTwoHandler();
+    Request request = Request(SEVERE);
 
-    dataSource->registerObserver(sheet);
-    dataSource->registerObserver(chart);
+    handler.setNextHandler(&handlerTwo);
 
-    dataSource->setContent("upated content");
+    handler.handleRequest(&request);
 
     return 0;
 }
