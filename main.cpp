@@ -1,18 +1,20 @@
 // Libraries
 #include <iostream>
 
-#include "Handlers.hpp"
+#include "Visitor.hpp"
+#include "Visitor.cpp"
+#include "Acceptor.hpp"
+#include "Acceptor.cpp"
+
 using namespace std;
 
 int main()
 {
-    LevelOneHandler handler = LevelOneHandler();
-    LevelTwoHandler handlerTwo = LevelTwoHandler();
-    Request request = Request(SEVERE);
+    HeadingNode *heading = new HeadingNode();
+    AnchorNode *anchor = new AnchorNode();
+    Highlight *highlight = new Highlight();
 
-    handler.setNextHandler(&handlerTwo);
-
-    handler.handleRequest(&request);
+    highlight->visit(heading);
 
     return 0;
 }
