@@ -1,19 +1,15 @@
 // Libraries
 #include <iostream>
 
-#include "ImageView.hpp"
-
 using namespace std;
+
+#include "Decorator.hpp"
 
 int main()
 {
-    Image image = Image("image one");
-    VividFilter vividFilter = VividFilter();
-    BlackWhiteFilter blackWhiteFilter = BlackWhiteFilter();
-    BlurAdapter blurAdapter = BlurAdapter();
-    ImageView imageView = ImageView(&image);
+    Stream *stream = new EncryptedStream(new CloudStream());
 
-    imageView.apply(&blurAdapter);
+    stream->write("stream content");
 
     return 0;
 }
