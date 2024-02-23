@@ -1,20 +1,28 @@
 // Libraries
 #include <iostream>
 
-#include "Visitor.hpp"
-#include "Visitor.cpp"
-#include "Acceptor.hpp"
-#include "Acceptor.cpp"
+#include "Shape.hpp"
 
 using namespace std;
 
 int main()
 {
-    HeadingNode *heading = new HeadingNode();
-    AnchorNode *anchor = new AnchorNode();
-    Highlight *highlight = new Highlight();
+    Leaf *circle = new Leaf();
+    Leaf *square = new Leaf();
+    Leaf *triangle = new Leaf();
 
-    highlight->visit(heading);
+    Group *groupOne = new Group();
+    Group *groupTwo = new Group();
+
+    groupOne->add(circle);
+    groupOne->add(square);
+
+    groupTwo->add(square);
+    groupTwo->add(triangle);
+
+    groupTwo->add(groupOne);
+
+    groupTwo->render();
 
     return 0;
 }
