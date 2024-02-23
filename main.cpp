@@ -3,13 +3,13 @@
 
 using namespace std;
 
-#include "Decorator.hpp"
+#include "Facade.cpp"
 
 int main()
 {
-    Stream *stream = new EncryptedStream(new CloudStream());
+    NotificationService service = NotificationService();
 
-    stream->write("stream content");
+    service.send("new Message", "target");
 
     return 0;
 }
