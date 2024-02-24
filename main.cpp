@@ -3,13 +3,22 @@
 
 using namespace std;
 
-#include "Flyweight.cpp"
+#include "Bridge.cpp"
 
 int main()
 {
-    CounterStrike counterStrike = CounterStrike();
+    Person *person = new Person(new FlyingCarnivorous());
+    Crocodile *aligator = new Crocodile(new SwimmingCarnivorous());
 
-    counterStrike.launchGame(2);
+    person->eat();
+    person->study();
+    person->move();
+
+    aligator->setLivingArea("Nile River");
+    cout << aligator->getLivingArea() << endl;
+    aligator->hunt();
+    aligator->eat();
+    aligator->move();
 
     return 0;
 }
