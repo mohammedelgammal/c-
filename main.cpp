@@ -3,22 +3,16 @@
 
 using namespace std;
 
-#include "Bridge.cpp"
+#include "Proxy.cpp"
 
 int main()
 {
-    Person *person = new Person(new FlyingCarnivorous());
-    Crocodile *aligator = new Crocodile(new SwimmingCarnivorous());
+    Image *image = new ProxyImage("image one");
+    image->display();
+    image->display();
 
-    person->eat();
-    person->study();
-    person->move();
-
-    aligator->setLivingArea("Nile River");
-    cout << aligator->getLivingArea() << endl;
-    aligator->hunt();
-    aligator->eat();
-    aligator->move();
+    delete image;
+    image = nullptr;
 
     return 0;
 }
