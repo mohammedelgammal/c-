@@ -3,13 +3,13 @@
 
 using namespace std;
 
-#include "Facade.cpp"
+#include "Flyweight.cpp"
 
 int main()
 {
-    NotificationService service = NotificationService();
+    CounterStrike counterStrike = CounterStrike();
 
-    service.send("new Message", "target");
+    counterStrike.launchGame(2);
 
     return 0;
 }
