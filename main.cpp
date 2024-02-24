@@ -3,10 +3,13 @@
 
 using namespace std;
 
-#include "Singleton.cpp"
+#include "Factory.cpp"
 
 int main()
 {
+    Printer *printer = new Printer();
+
+    printer->printBook();
 
     return 0;
 }
