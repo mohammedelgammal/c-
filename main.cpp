@@ -3,16 +3,23 @@
 
 using namespace std;
 
-#include "Proxy.cpp"
+#include "Prototype.cpp"
 
 int main()
 {
-    Image *image = new ProxyImage("image one");
-    image->display();
-    image->display();
+    Circle *circle = new Circle();
+    ContextMenu *contextMenu = new ContextMenu();
 
-    delete image;
-    image = nullptr;
+    circle->setRadius(10);
+
+    Circle *duplicateCircle = contextMenu->duplicate(circle);
+
+    cout << duplicateCircle->getRadius() << endl;
+
+    delete circle;
+    delete contextMenu;
+    circle = nullptr;
+    contextMenu = nullptr;
 
     return 0;
 }
