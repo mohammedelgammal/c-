@@ -3,13 +3,13 @@
 
 using namespace std;
 
-#include "Factory.cpp"
+#include "AbstractFactory.cpp"
 
 int main()
 {
-    Printer *printer = new Printer();
+    ContactForm *contactForm = new ContactForm();
 
-    printer->printBook();
+    contactForm->renderForm(new MaterialFactory());
 
     return 0;
 }
