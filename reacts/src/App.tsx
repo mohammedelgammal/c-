@@ -1,12 +1,10 @@
-import { Flex } from "@chakra-ui/react";
-import Editor from "./Editor";
+import { Stack } from "@chakra-ui/react";
+import Sorting from "./Sorting";
 
 export default (): JSX.Element => {
   return (
-    <>
-      <Flex gap={10}>
-        <Editor />
-      </Flex>
-    </>
+    <Stack gap={20}>
+      <Sorting />
+    </Stack>
   );
 };
