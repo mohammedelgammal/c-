@@ -21,7 +21,7 @@ export default (): JSX.Element => {
     (async () => {
       for (let i = 0; i < graph.length; i++)
         for (let j = 1; j < graph.length; j++) {
-          await new Promise((resolve) => setTimeout(resolve, 50));
+          await new Promise((resolve) => setTimeout(resolve, 1));
           if (graph[j] < graph[j - 1]) setGraph([...swap(j, graph)]);
         }
     })();

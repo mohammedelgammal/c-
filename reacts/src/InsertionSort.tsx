@@ -12,14 +12,11 @@ export default (): JSX.Element => {
 
   useEffect(() => {
     (async () => {
-      for (let i = 0; i < graph.length; i++) {
-        let minIndex: number = i;
-        for (let j = i; j < graph.length; j++)
-          if (graph[j] < graph[minIndex]) minIndex = j;
-
-        const temp: number = graph[i];
-        graph[i] = graph[minIndex];
-        graph[minIndex] = temp;
+      for (let i = 1; i < graph.length; i++) {
+        const current: number = graph[i];
+        let j = i - 1;
+        for (; j >= 0 && graph[j] > current; j--) graph[j + 1] = graph[j];
+        graph[j + 1] = current;
         await new Promise((resolve) => setTimeout(resolve, 100));
         setGraph([...graph]);
       }
@@ -34,7 +31,7 @@ export default (): JSX.Element => {
         ))}
       </Flex>
       <Text fontSize="2xl" fontWeight="bold" textAlign="center">
-        Selection Sort
+        Insertion Sort
       </Text>
     </Stack>
   );
