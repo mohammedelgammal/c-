@@ -1,23 +1,15 @@
-import { Box, Flex, Stack, Text } from "@chakra-ui/react";
-import useSort from "./hooks/useSort";
+import SortingVisualizer from "./components/SortingVisualizer";
+import useBubbleSort from "./hooks/useBubbleSort";
 
 export default (): JSX.Element => {
-  const [graph, selected, isFinished] = useSort();
+  const [graph, selected, isFinished] = useBubbleSort();
+
   return (
-    <Stack spacing={10}>
-      <Flex alignItems="end" justifyContent="center">
-        {graph.map((col, index) => (
-          <Box
-            key={index}
-            width={5}
-            height={col + "px"}
-            bg={selected === index ? "white" : isFinished ? "yellow" : "gray"}
-          />
-        ))}
-      </Flex>
-      <Text fontSize="2xl" fontWeight="bold" textAlign="center">
-        Bubble Sort
-      </Text>
-    </Stack>
+    <SortingVisualizer
+      algorithm="Bubble Sort"
+      graph={graph}
+      selected={selected}
+      isFinished={isFinished}
+    />
   );
 };
