@@ -1,15 +1,15 @@
-// Libraries
 #include <iostream>
 
 using namespace std;
-
-#include "AbstractFactory.cpp"
+#include "Solution"
 
 int main()
 {
-    ContactForm *contactForm = new ContactForm();
+    Solution solution;
 
-    contactForm->renderForm(new MaterialFactory());
+    string s = "A man, a plan, a canal: Panama";
+
+    cout << boolalpha << solution.isPalindrome(s);
 
     return 0;
 }
