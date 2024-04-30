@@ -3,15 +3,18 @@
 
 #include "Solution"
 
-bool Solution::isPalindrome(string s)
+vector<int> Solution::twoSum(vector<int> &numbers, int target)
 {
-    string alpha;
-    for (char ch : s)
-        if (isalnum(ch))
-            alpha += tolower(ch);
-    int l = 0, r = alpha.size() - 1;
-    while (r < alpha.size() && l != r)
-        if (alpha[l++] != alpha[r--])
-            return false;
-    return true;
+    int l = 0, r = numbers.size() - 1;
+    while (l < r)
+    {
+        int sum = numbers[l] + numbers[r];
+        if (sum > target)
+            r--;
+        else if (sum < target)
+            l++;
+        else
+            return {l + 1, r + 1};
+    }
+    return {};
 }

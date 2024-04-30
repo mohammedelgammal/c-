@@ -7,9 +7,9 @@ int main()
 {
     Solution solution;
 
-    string s = "A man, a plan, a canal: Panama";
+    vector<int> nums{2, 7, 11, 15};
 
-    cout << boolalpha << solution.isPalindrome(s);
+    solution.twoSum(nums, 9);
 
     return 0;
 }

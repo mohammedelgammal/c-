@@ -3,12 +3,12 @@
 
 using namespace std;
 
-#include <string>
+#include <vector>
 
 class Solution
 {
 public:
-    bool isPalindrome(string s);
+    vector<int> twoSum(vector<int> &numbers, int target);
 };
 
 #endif // SOLUTION
