@@ -7,9 +7,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> nums{2, 7, 11, 15};
+    vector<int> nums{-1, 0, 1, 2, -1, -4};
 
-    solution.twoSum(nums, 9);
+    solution.threeSum(nums);
 
     return 0;
 }

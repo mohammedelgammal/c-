@@ -3,18 +3,36 @@
 
 #include "Solution"
 
-vector<int> Solution::twoSum(vector<int> &numbers, int target)
+vector<vector<int>> Solution::threeSum(vector<int> &nums)
 {
-    int l = 0, r = numbers.size() - 1;
-    while (l < r)
+    vector<vector<int>> ans;
+    sort(nums.begin(), nums.end());
+    for (int i = 0; i < nums.size() - 2; i++)
     {
-        int sum = numbers[l] + numbers[r];
-        if (sum > target)
-            r--;
-        else if (sum < target)
-            l++;
-        else
-            return {l + 1, r + 1};
+        if (i && nums[i] == nums[i - 1])
+            continue;
+        int l = i + 1, r = nums.size() - 1, target = nums[i] * -1;
+        while (l < r)
+        {
+            if (nums[l] + nums[r] == target)
+            {
+                while (l < r && nums[l] == nums[l + 1])
+                    l++;
+                while (l < r && nums[r] == nums[r - 1])
+                    r--;
+                ans.push_back({nums[i], nums[l], nums[r]});
+                l++;
+                r--;
+            }
+            else if (nums[l] + nums[r] > target)
+            {
+                r--;
+            }
+            else
+            {
+                l++;
+            }
+        }
     }
-    return {};
+    return ans;
 }
