@@ -7,9 +7,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> nums{-1, 0, 1, 2, -1, -4};
+    vector<int> nums{1, 8, 6, 2, 5, 4, 8, 3, 7};
 
-    solution.threeSum(nums);
+    cout << solution.maxArea(nums) << endl;
 
     return 0;
 }

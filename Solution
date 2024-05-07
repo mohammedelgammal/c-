@@ -8,7 +8,7 @@ using namespace std;
 class Solution
 {
 public:
-    vector<vector<int>> threeSum(vector<int> &nums);
+    int maxArea(vector<int> &height);
 };
 
 #endif // SOLUTION
