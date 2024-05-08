@@ -10,7 +10,14 @@ using namespace std;
 class Solution
 {
 public:
-    bool isValid(string s);
+    void push(int val);
+    void pop();
+    int top();
+    int getMin();
+
+private:
+    stack<int> stack,
+        mins;
 };
 
 #endif // SOLUTION
