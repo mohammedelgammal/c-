@@ -7,9 +7,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> nums{1, 8, 6, 2, 5, 4, 8, 3, 7};
+    vector<int> nums{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
 
-    cout << solution.maxArea(nums) << endl;
+    cout << solution.trap(nums) << endl;
 
     return 0;
 }

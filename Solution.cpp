@@ -3,17 +3,21 @@
 
 #include "Solution"
 
-int Solution::maxArea(vector<int> &height)
+int Solution::trap(vector<int> &height)
 {
-    int ans = 0, l = 0, r = height.size() - 1;
+    int l = 0, r = height.size() - 1, maxl = height[l], maxr = height[r], ans = 0;
     while (l < r)
-    {
-        int area = min(height[l], height[r]) * (r - l);
-        ans = max(area, ans);
-        if (height[l] < height[r])
+        if (maxl < maxr)
+        {
             l++;
+            maxl = max(height[l], maxl);
+            ans += maxl - height[l];
+        }
         else
+        {
             r--;
-    }
+            maxr = max(height[r], maxr);
+            ans += maxr - height[r];
+        }
     return ans;
 }
