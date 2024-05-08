@@ -4,11 +4,13 @@
 using namespace std;
 
 #include <vector>
+#include <unordered_map>
+#include <stack>
 
 class Solution
 {
 public:
-    int trap(vector<int> &height);
+    bool isValid(string s);
 };
 
 #endif // SOLUTION

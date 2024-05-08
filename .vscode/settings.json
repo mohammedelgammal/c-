@@ -54,6 +54,8 @@
     "unordered_map": "cpp",
     "variant": "cpp",
     "algorithm": "cpp",
-    "iterator": "cpp"
+    "iterator": "cpp",
+    "deque": "cpp",
+    "stack": "cpp"
   }
 }

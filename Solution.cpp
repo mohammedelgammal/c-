@@ -3,21 +3,17 @@
 
 #include "Solution"
 
-int Solution::trap(vector<int> &height)
+bool Solution::isValid(string s)
 {
-    int l = 0, r = height.size() - 1, maxl = height[l], maxr = height[r], ans = 0;
-    while (l < r)
-        if (maxl < maxr)
-        {
-            l++;
-            maxl = max(height[l], maxl);
-            ans += maxl - height[l];
-        }
+    stack<char> stack;
+    unordered_map<char, char> map{{'{', '}'}, {'[', ']'}, {'(', ')'}};
+    for (char ch : s)
+        if (map.contains(ch))
+            stack.push(ch);
+        else if (!stack.empty() && map[stack.top()] == ch)
+            stack.pop();
         else
-        {
-            r--;
-            maxr = max(height[r], maxr);
-            ans += maxr - height[r];
-        }
-    return ans;
+            return false;
+
+    return stack.empty();
 }
