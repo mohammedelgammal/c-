@@ -3,26 +3,31 @@
 
 #include "Solution"
 
-void Solution::push(int val)
+int Solution::evalRPN(vector<string> &tokens)
 {
-    if (mins.empty() || val <= mins.top())
-        mins.push(val);
-    stack.push(val);
-}
-
-void Solution::pop()
-{
-    if (stack.top() <= mins.top())
-        mins.pop();
-    stack.pop();
-}
-
-int Solution::top()
-{
+    unordered_set<string> operators{"+", "-", "*", "/"};
+    stack<int> stack;
+    for (string token : tokens)
+    {
+        if (operators.contains(token))
+        {
+            int op2 = stack.top();
+            stack.pop();
+            int op1 = stack.top();
+            stack.pop();
+            if (token == "+")
+                stack.push(op1 + op2);
+            else if (token == "-")
+                stack.push(op1 - op2);
+            else if (token == "*")
+                stack.push(op1 * op2);
+            else
+                stack.push(op1 / op2);
+        }
+        else
+        {
+            stack.push(stoi(token));
+        }
+    }
     return stack.top();
-}
-
-int Solution::getMin()
-{
-    return mins.top();
 }

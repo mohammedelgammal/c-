@@ -4,20 +4,13 @@
 using namespace std;
 
 #include <vector>
-#include <unordered_map>
+#include <unordered_set>
 #include <stack>
 
 class Solution
 {
 public:
-    void push(int val);
-    void pop();
-    int top();
-    int getMin();
-
-private:
-    stack<int> stack,
-        mins;
+    int evalRPN(vector<string> &tokens);
 };
 
 #endif // SOLUTION

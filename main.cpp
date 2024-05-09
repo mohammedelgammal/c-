@@ -7,13 +7,9 @@ int main()
 {
     Solution solution;
 
-    solution.push(-2);
-    solution.push(0);
-    solution.push(-3);
-    cout << solution.getMin() << endl;
-    solution.pop();
-    solution.top();
-    cout << solution.getMin() << endl;
+    vector<string> tokens{"2", "1", "+", "3", "*"};
+
+    cout << solution.evalRPN(tokens) << endl;
 
     return 0;
 }
