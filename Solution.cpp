@@ -3,31 +3,20 @@
 
 #include "Solution"
 
-int Solution::evalRPN(vector<string> &tokens)
+vector<string> generateParenthesis(int n)
 {
-    unordered_set<string> operators{"+", "-", "*", "/"};
-    stack<int> stack;
-    for (string token : tokens)
-    {
-        if (operators.contains(token))
-        {
-            int op2 = stack.top();
-            stack.pop();
-            int op1 = stack.top();
-            stack.pop();
-            if (token == "+")
-                stack.push(op1 + op2);
-            else if (token == "-")
-                stack.push(op1 - op2);
-            else if (token == "*")
-                stack.push(op1 * op2);
-            else
-                stack.push(op1 / op2);
-        }
-        else
-        {
-            stack.push(stoi(token));
-        }
-    }
-    return stack.top();
+    vector<string> ans;
+    backtrack(ans, "", 0, 0, n);
+    return ans;
+}
+
+void backtrack(vector<string> &ans, string str, int open, int close,
+               int max)
+{
+    if (close == max)
+        return ans.push_back(str);
+    if (open < max)
+        backtrack(ans, str + '(', open + 1, close, max);
+    if (close < open)
+        backtrack(ans, str + ')', open, close + 1, max);
 }

@@ -10,7 +10,7 @@ using namespace std;
 class Solution
 {
 public:
-    int evalRPN(vector<string> &tokens);
+    vector<string> generateParenthesis(int n);
 };
 
 #endif // SOLUTION
