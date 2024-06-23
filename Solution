@@ -10,7 +10,7 @@ using namespace std;
 class Solution
 {
 public:
-    vector<string> generateParenthesis(int n);
+    vector<int> dailyTemperatures(vector<int> &temperatures);
 };
 
 #endif // SOLUTION

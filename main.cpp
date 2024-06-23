@@ -7,9 +7,10 @@ int main()
 {
     Solution solution;
 
-    vector<string> ans;
+    vector<int> nums{3, 1, 4, 1, 5, 9, 2, 6};
 
-    solution.generateParenthesis(2);
+    for (int num : solution.dailyTemperatures(nums))
+        cout << num << ", ";
 
     return 0;
 }

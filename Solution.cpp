@@ -3,20 +3,21 @@
 
 #include "Solution"
 
-vector<string> generateParenthesis(int n)
+vector<int> Solution::dailyTemperatures(vector<int> &temperatures)
 {
-    vector<string> ans;
-    backtrack(ans, "", 0, 0, n);
+    stack<int> stack;
+    vector<int> ans;
+    // monotonic increasing stack
+    for (int num : temperatures)
+    {
+        while (!stack.empty() && num < stack.top())
+            stack.pop();
+        stack.push(num);
+    }
+    while (!stack.empty())
+    {
+        ans.insert(ans.begin(), stack.top());
+        stack.pop();
+    }
     return ans;
-}
-
-void backtrack(vector<string> &ans, string str, int open, int close,
-               int max)
-{
-    if (close == max)
-        return ans.push_back(str);
-    if (open < max)
-        backtrack(ans, str + '(', open + 1, close, max);
-    if (close < open)
-        backtrack(ans, str + ')', open, close + 1, max);
 }
