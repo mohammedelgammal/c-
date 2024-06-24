@@ -3,20 +3,19 @@
 
 #include "Solution"
 
-vector<int> Solution::dailyTemperatures(vector<int> &temperatures)
+vector<int> Solution::help_classmate(vector<int> arr, int n)
 {
     stack<int> stack;
-    vector<int> ans;
-    // monotonically decreasing stack - find previous bigger number
-    for (int num : temperatures)
+    vector<int> ans(n);
+    for (int i = n - 1; i >= 0; i--)
     {
-        while (!stack.empty() && num > stack.top())
+        while (!stack.empty() && stack.top() >= arr[i])
             stack.pop();
         if (stack.empty())
-            ans.push_back(-1);
+            ans[i] = -1;
         else
-            ans.push_back(stack.top());
-        stack.push(num);
+            ans[i] = stack.top();
+        stack.push(arr[i]);
     }
     return ans;
 }
