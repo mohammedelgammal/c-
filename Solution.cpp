@@ -7,17 +7,16 @@ vector<int> Solution::dailyTemperatures(vector<int> &temperatures)
 {
     stack<int> stack;
     vector<int> ans;
-    // monotonic increasing stack
+    // monotonically decreasing stack - find previous bigger number
     for (int num : temperatures)
     {
-        while (!stack.empty() && num < stack.top())
+        while (!stack.empty() && num > stack.top())
             stack.pop();
+        if (stack.empty())
+            ans.push_back(-1);
+        else
+            ans.push_back(stack.top());
         stack.push(num);
-    }
-    while (!stack.empty())
-    {
-        ans.insert(ans.begin(), stack.top());
-        stack.pop();
     }
     return ans;
 }
