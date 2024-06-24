@@ -3,19 +3,18 @@
 
 #include "Solution"
 
-vector<int> Solution::help_classmate(vector<int> arr, int n)
+vector<int> Solution::dailyTemperatures(vector<int> &temperatures)
 {
     stack<int> stack;
-    vector<int> ans(n);
-    for (int i = n - 1; i >= 0; i--)
+    vector<int> ans(temperatures.size(), 0);
+    for (int i = 0; i < temperatures.size(); i++)
     {
-        while (!stack.empty() && stack.top() >= arr[i])
+        while (!stack.empty() && temperatures[i] > temperatures[stack.top()])
+        {
+            ans[stack.top()] = i - stack.top();
             stack.pop();
-        if (stack.empty())
-            ans[i] = -1;
-        else
-            ans[i] = stack.top();
-        stack.push(arr[i]);
+        }
+        stack.push(i);
     }
     return ans;
 }
