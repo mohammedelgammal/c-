@@ -7,10 +7,10 @@ int main()
 {
     Solution solution;
 
-    vector<int> nums{73, 74, 75, 71, 69, 72, 76, 73};
+    vector<int> position{10, 8, 0, 5, 3};
+    vector<int> speed{2, 4, 1, 1, 3};
 
-    for (int num : solution.dailyTemperatures(nums))
-        cout << num << ", ";
+    cout << solution.carFleet(12, position, speed);
 
     return 0;
 }

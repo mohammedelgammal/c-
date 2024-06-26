@@ -3,18 +3,18 @@
 
 #include "Solution"
 
-vector<int> Solution::dailyTemperatures(vector<int> &temperatures)
+int Solution::carFleet(int target, vector<int> &position, vector<int> &speed)
 {
-    stack<int> stack;
-    vector<int> ans(temperatures.size(), 0);
-    for (int i = 0; i < temperatures.size(); i++)
-    {
-        while (!stack.empty() && temperatures[i] > temperatures[stack.top()])
-        {
-            ans[stack.top()] = i - stack.top();
-            stack.pop();
-        }
-        stack.push(i);
+    int n = position.size();
+    vector<pair<double, double>> ordered;
+    for (int i = 0; i < n; i++) 
+        ordered.push_back({position[i], speed[i]});
+    sort(ordered.begin(), ordered.end());
+    stack<double> stack;
+    for(int i = n - 1; i >= 0; i--) {
+        double time = (target - ordered[i].first) / ordered[i].second;
+        if(!stack.empty() && time <= stack.top()) continue;
+        stack.push(time);
     }
-    return ans;
+    return stack.size();
 }
