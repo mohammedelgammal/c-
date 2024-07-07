@@ -10,7 +10,7 @@ using namespace std;
 class Solution
 {
 public:
-    int search(vector<int>& nums, int target) ;
+    bool searchMatrix(vector<vector<int>> &matrix, int target);
 };
 
 #endif // SOLUTION
