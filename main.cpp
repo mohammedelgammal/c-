@@ -6,11 +6,10 @@ using namespace std;
 int main()
 {
     Solution solution;
+    
+    vector<int> histogram{2, 1, 5, 6, 2, 3};
 
-    vector<int> position{10, 8, 0, 5, 3};
-    vector<int> speed{2, 4, 1, 1, 3};
-
-    cout << solution.carFleet(12, position, speed);
+    cout << solution.largestRectangleArea(histogram);
 
     return 0;
 }

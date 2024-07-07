@@ -3,18 +3,29 @@
 
 #include "Solution"
 
-int Solution::carFleet(int target, vector<int> &position, vector<int> &speed)
+int Solution::largestRectangleArea(vector<int> &heights)
 {
-    int n = position.size();
-    vector<pair<double, double>> ordered;
-    for (int i = 0; i < n; i++) 
-        ordered.push_back({position[i], speed[i]});
-    sort(ordered.begin(), ordered.end());
-    stack<double> stack;
-    for(int i = n - 1; i >= 0; i--) {
-        double time = (target - ordered[i].first) / ordered[i].second;
-        if(!stack.empty() && time <= stack.top()) continue;
-        stack.push(time);
+    int ans = 0;
+    stack<pair<int, int>> stack;
+    for (int i = 0; i < heights.size(); i++)
+    {
+        int index = i;
+        while (!stack.empty() && stack.top().second > heights[i])
+        {
+            pair<int, int> col = stack.top();
+            int area = col.second * (i - col.first);
+            ans = max(area, ans);
+            index = col.first;
+            stack.pop();
+        }
+        stack.push({index, heights[i]});
     }
-    return stack.size();
+    while (!stack.empty())
+    {
+        pair<int, int> col = stack.top();
+        int area = col.second * (heights.size() - col.first);
+        ans = max(area, ans);
+        stack.pop();
+    }
+    return ans;
 }
