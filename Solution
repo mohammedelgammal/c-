@@ -10,7 +10,7 @@ using namespace std;
 class Solution
 {
 public:
-    int largestRectangleArea(vector<int> &heights);
+    int search(vector<int>& nums, int target) ;
 };
 
 #endif // SOLUTION

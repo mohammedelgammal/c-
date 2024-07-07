@@ -3,29 +3,18 @@
 
 #include "Solution"
 
-int Solution::largestRectangleArea(vector<int> &heights)
+int Solution::search(vector<int> &nums, int target)
 {
-    int ans = 0;
-    stack<pair<int, int>> stack;
-    for (int i = 0; i < heights.size(); i++)
+    int l = 0, r = nums.size() - 1;
+    while (l <= r)
     {
-        int index = i;
-        while (!stack.empty() && stack.top().second > heights[i])
-        {
-            pair<int, int> col = stack.top();
-            int area = col.second * (i - col.first);
-            ans = max(area, ans);
-            index = col.first;
-            stack.pop();
-        }
-        stack.push({index, heights[i]});
+        int mid = l + (r - l) / 2;
+        if (nums[mid] == target)
+            return mid;
+        else if (nums[mid] > target)
+            r = mid - 1;
+        else
+            l = mid + 1;
     }
-    while (!stack.empty())
-    {
-        pair<int, int> col = stack.top();
-        int area = col.second * (heights.size() - col.first);
-        ans = max(area, ans);
-        stack.pop();
-    }
-    return ans;
+    return -1;
 }

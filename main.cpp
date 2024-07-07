@@ -6,10 +6,10 @@ using namespace std;
 int main()
 {
     Solution solution;
-    
-    vector<int> histogram{2, 1, 5, 6, 2, 3};
 
-    cout << solution.largestRectangleArea(histogram);
+    vector<int> nums{-1, 0, 3, 5, 9, 12};
+
+    cout << solution.search(nums, 9);
 
     return 0;
 }
