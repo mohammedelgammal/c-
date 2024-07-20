@@ -3,21 +3,22 @@
 
 #include "Solution"
 
-bool Solution::searchMatrix(vector<vector<int>> &matrix, int target)
+int Solution::minEatingSpeed(vector<int> &piles, int h)
 {
-    int m = matrix.size(), n = matrix[0].size(), t = 0, b = m - 1, row = 0;
-    while(t <= b) {
-        row = t + (b - t) / 2;
-        if(matrix[row][0] > target) b = row - 1;
-        else if(matrix[row][n - 1] < target) t = row + 1;
-        else break;
+    int l = 1, r = *max_element(piles.begin(), piles.end()), ans = INT_MAX;
+    while (l <= r)
+    {
+        int k = l + (r - l) / 2;
+        long hours = 0;
+        for (int pile : piles)
+            hours += pile % k ? pile / k + 1 : pile / k;
+        if (hours <= h)
+        {
+            ans = min(k, ans);
+            r = k - 1;
+        }
+        else
+            l = k + 1;
     }
-    int l = 0, r = n - 1;
-    while(l <= r) {
-        int mid = l + (r - l) / 2;
-        if(matrix[row][mid] == target) return true;
-        else if(matrix[row][mid] > target) r = mid - 1;
-        else l = mid + 1;
-    }
-    return false;
+    return ans;
 }

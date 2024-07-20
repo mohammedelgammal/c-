@@ -7,9 +7,9 @@ int main()
 {
     Solution solution;
 
-    vector<vector<int>> nums{{1, 3, 5, 7}, {10, 11, 16, 20}, {23, 30, 34, 60}};
+    vector<int> nums{3, 6, 7, 11};
 
-    cout << solution.searchMatrix(nums, 4);
+    cout << solution.minEatingSpeed(nums, 8);
 
     return 0;
 }
