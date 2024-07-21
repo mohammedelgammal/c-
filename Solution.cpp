@@ -3,19 +3,19 @@
 
 #include "Solution"
 
-int Solution::findMin(vector<int> &nums)
+int Solution::search(vector<int> &nums, int target)
 {
-    int l = 0, r = nums.size() - 1, ans = nums[l];
-    while (l <= r)
-    {
-        if (nums[l] < nums[r])
-            return min(nums[l], ans);
+    int l = 0, r = nums.size() - 1;
+    while(l <= r) {
         int m = l + (r - l) / 2;
-        ans = min(nums[m], ans);
-        if (nums[m] >= nums[r])
-            l = m + 1;
-        else
-            r = m - 1;
+        if(target == nums[m]) return m;
+        if(nums[m] >= nums[l]) {
+            if(target > nums[m] || target < nums[l]) l = m + 1;
+            else r = m - 1;
+        } else {
+            if(target < nums[m] || target > nums[r]) r = m - 1;
+            else l = m + 1;
+        }
     }
-    return ans;
+    return -1;
 }

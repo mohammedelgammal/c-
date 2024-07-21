@@ -9,7 +9,7 @@ int main()
 
     vector<int> nums{3, 4, 5, 1, 2};
 
-    cout << solution.findMin(nums);
+    cout << solution.search(nums, 0);
 
     return 0;
 }
