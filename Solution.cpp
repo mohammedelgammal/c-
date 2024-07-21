@@ -3,19 +3,27 @@
 
 #include "Solution"
 
-int Solution::search(vector<int> &nums, int target)
+void Solution::set(string key, string value, int timestamp)
 {
-    int l = 0, r = nums.size() - 1;
-    while(l <= r) {
+    map[key].push_back({value, timestamp});
+}
+
+string Solution::get(string key, int timestamp)
+{
+    string ans;
+    int l = 0, r = map[key].size() - 1;
+    while (l <= r)
+    {
         int m = l + (r - l) / 2;
-        if(target == nums[m]) return m;
-        if(nums[m] >= nums[l]) {
-            if(target > nums[m] || target < nums[l]) l = m + 1;
-            else r = m - 1;
-        } else {
-            if(target < nums[m] || target > nums[r]) r = m - 1;
-            else l = m + 1;
+        if (map[key][m].second <= timestamp)
+        {
+            ans = map[key][m].first;
+            l = m + 1;
+        }
+        else
+        {
+            r = m - 1;
         }
     }
-    return -1;
+    return ans;
 }
