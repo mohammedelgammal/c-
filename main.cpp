@@ -7,9 +7,9 @@ int main()
 {
     Solution solution;
 
-    vector<int> nums{3, 6, 7, 11};
+    vector<int> nums{3, 4, 5, 1, 2};
 
-    cout << solution.minEatingSpeed(nums, 8);
+    cout << solution.findMin(nums);
 
     return 0;
 }

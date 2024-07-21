@@ -3,22 +3,19 @@
 
 #include "Solution"
 
-int Solution::minEatingSpeed(vector<int> &piles, int h)
+int Solution::findMin(vector<int> &nums)
 {
-    int l = 1, r = *max_element(piles.begin(), piles.end()), ans = INT_MAX;
+    int l = 0, r = nums.size() - 1, ans = nums[l];
     while (l <= r)
     {
-        int k = l + (r - l) / 2;
-        long hours = 0;
-        for (int pile : piles)
-            hours += pile % k ? pile / k + 1 : pile / k;
-        if (hours <= h)
-        {
-            ans = min(k, ans);
-            r = k - 1;
-        }
+        if (nums[l] < nums[r])
+            return min(nums[l], ans);
+        int m = l + (r - l) / 2;
+        ans = min(nums[m], ans);
+        if (nums[m] >= nums[r])
+            l = m + 1;
         else
-            l = k + 1;
+            r = m - 1;
     }
     return ans;
 }
