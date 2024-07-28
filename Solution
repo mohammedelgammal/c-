@@ -10,7 +10,7 @@ using namespace std;
 class Solution
 {
 public:
-    int lengthOfLongestSubstring(string s);
+    int characterReplacement(string s, int k);
 };
 
 #endif // SOLUTION

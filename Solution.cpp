@@ -3,14 +3,20 @@
 
 #include "Solution"
 
-int Solution::lengthOfLongestSubstring(string s)
+int Solution::characterReplacement(string s, int k)
 {
+    unordered_map<char, int> count;
     int l = 0, r = 0, ans = 0;
-    set<char> set;
     while(r < s.size()) {
-        while(set.contains(s[r])) set.erase(s[l++]);
+        int freq = 0;
+        count[s[r]]++;
+        for(const auto& it : count) freq = max(it.second, freq);
+        while(r - l + 1 - freq > k) {
+            count[s[l]]--;
+            l--;
+        }
         ans = max(r - l + 1, ans);
-        set.insert(s[r++]);
+        r++;
     }
     return ans;
 }
