@@ -5,12 +5,12 @@ using namespace std;
 
 #include <vector>
 #include <unordered_map>
-#include <stack>
+#include <set>
 
 class Solution
 {
 public:
-    int maxProfit(vector<int> &prices);
+    int lengthOfLongestSubstring(string s);
 };
 
 #endif // SOLUTION

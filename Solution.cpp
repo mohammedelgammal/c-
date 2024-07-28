@@ -3,15 +3,14 @@
 
 #include "Solution"
 
-int Solution::maxProfit(vector<int> &prices)
+int Solution::lengthOfLongestSubstring(string s)
 {
-    int l = 0, r = 1, ans = 0;
-    while(r < prices.size()) {
-        if(prices[r] > prices[l]) 
-            ans = max(prices[r] - prices[l], ans);
-        else
-            l = r;
-        r++;
+    int l = 0, r = 0, ans = 0;
+    set<char> set;
+    while(r < s.size()) {
+        while(set.contains(s[r])) set.erase(s[l++]);
+        ans = max(r - l + 1, ans);
+        set.insert(s[r++]);
     }
     return ans;
 }
