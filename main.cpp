@@ -7,7 +7,7 @@ int main()
 {
     Solution solution;
 
-    cout << solution.characterReplacement("AABABBA", 1) << endl;
+    cout << solution.checkInclusion("ab", "eidbaooo") << endl;
 
     return 0;
 }

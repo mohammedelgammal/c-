@@ -3,20 +3,20 @@
 
 #include "Solution"
 
-int Solution::characterReplacement(string s, int k)
+bool Solution::checkInclusion(string s1, string s2)
 {
-    unordered_map<char, int> count;
-    int l = 0, r = 0, ans = 0;
-    while(r < s.size()) {
-        int freq = 0;
-        count[s[r]]++;
-        for(const auto& it : count) freq = max(it.second, freq);
-        while(r - l + 1 - freq > k) {
-            count[s[l]]--;
-            l--;
-        }
-        ans = max(r - l + 1, ans);
+    if(s1.size() > s2.size()) return false;
+    unordered_map<char, int> map1, map2;
+    for(int i = 0; i < s1.size(); i++) 
+        map1[s1[i]]++, map2[s2[i]]++;
+    int l = 0, r = s1.size() - 1;
+    while(r < s2.size()) {
+        if(map1 == map2) return true;
+        map2[s2[l]]--;
+        if(!map2[s2[l]]) map2.erase(s2[l]);
+        l++;
         r++;
+        map2[s2[r]]++;
     }
-    return ans;
+    return false;
 }
