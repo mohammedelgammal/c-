@@ -3,20 +3,25 @@
 
 #include "Solution"
 
-bool Solution::checkInclusion(string s1, string s2)
+string Solution::minWindow(string s, string t)
 {
-    if(s1.size() > s2.size()) return false;
-    unordered_map<char, int> map1, map2;
-    for(int i = 0; i < s1.size(); i++) 
-        map1[s1[i]]++, map2[s2[i]]++;
-    int l = 0, r = s1.size() - 1;
-    while(r < s2.size()) {
-        if(map1 == map2) return true;
-        map2[s2[l]]--;
-        if(!map2[s2[l]]) map2.erase(s2[l]);
-        l++;
+    unordered_map<char, int> window, mapt;
+    for(char ch : t) mapt[ch]++;
+    int l = 0, r = 0, start = 0, len = INT_MAX, have = 0, need = mapt.size();
+    while(r < s.size()) {
+        window[s[r]]++;
+        if(window[s[r]] == mapt[s[r]]) have++;
+        while(have == need) {
+            int currLen = r - l + 1;
+            if(currLen < len) {
+                len = currLen;
+                start = l;
+            }
+            window[s[l]]--;
+            if(window[s[l]] < mapt[s[l]]) have--;
+            l++;
+        }
         r++;
-        map2[s2[r]]++;
     }
-    return false;
+    return len < INT_MAX ? s.substr(start, len) : "";
 }

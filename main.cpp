@@ -7,7 +7,7 @@ int main()
 {
     Solution solution;
 
-    cout << solution.checkInclusion("ab", "eidbaooo") << endl;
+    cout << solution.minWindow("aa", "aa") << endl;
 
     return 0;
 }
