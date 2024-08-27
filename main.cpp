@@ -6,8 +6,9 @@ using namespace std;
 int main()
 {
     Solution solution;
+    vector<int> nums{1, 3, -1, -3, 5, 3, 6, 7};
 
-    cout << solution.minWindow("aa", "aa") << endl;
+    solution.maxSlidingWindow(nums, 3);
 
     return 0;
 }

@@ -3,25 +3,22 @@
 
 #include "Solution"
 
-string Solution::minWindow(string s, string t)
+vector<int> Solution::maxSlidingWindow(vector<int> &nums, int k)
 {
-    unordered_map<char, int> window, mapt;
-    for(char ch : t) mapt[ch]++;
-    int l = 0, r = 0, start = 0, len = INT_MAX, have = 0, need = mapt.size();
-    while(r < s.size()) {
-        window[s[r]]++;
-        if(window[s[r]] == mapt[s[r]]) have++;
-        while(have == need) {
-            int currLen = r - l + 1;
-            if(currLen < len) {
-                len = currLen;
-                start = l;
-            }
-            window[s[l]]--;
-            if(window[s[l]] < mapt[s[l]]) have--;
+    vector<int> ans;
+    deque<int> deque;
+    int l = 0, r = 0;
+    while (r < nums.size())
+    {
+        while (!deque.empty() && nums[deque.back()] < nums[r])
+            deque.pop_back();
+        deque.push_back(r);
+        if(l > deque.front()) deque.pop_front();
+        if(r + 1 >= k) {
+            ans.push_back(nums[deque.front()]);
             l++;
         }
         r++;
     }
-    return len < INT_MAX ? s.substr(start, len) : "";
+    return ans;
 }
