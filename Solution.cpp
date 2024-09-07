@@ -5,15 +5,14 @@
 
 ListNode *Solution::reverseList(ListNode *head)
 {
-    ListNode *prev = nullptr,
-             *curr = head,
-             *next = nullptr;
-    while (curr)
-    {
-        next = curr->next;
-        curr->next = prev;
-        prev = curr;
-        curr = next;
+    ListNode* newHead;
+    if(!head) return nullptr;
+    if(head->next) {
+        newHead = reverseList(head->next);
+        head->next->next = head;
+    } else {
+        newHead = head;
     }
-    return prev;
+    head->next = nullptr;
+    return newHead;
 }
