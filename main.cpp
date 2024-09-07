@@ -6,9 +6,8 @@ using namespace std;
 int main()
 {
     Solution solution;
-    vector<int> nums{1, 3, -1, -3, 5, 3, 6, 7};
 
-    solution.maxSlidingWindow(nums, 3);
+    // solution.reverseList();
 
     return 0;
 }
