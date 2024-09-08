@@ -19,7 +19,7 @@ struct ListNode
 class Solution
 {
 public:
-    ListNode *reverseList(ListNode *head);
+    ListNode *mergeTwoLists(ListNode *list1, ListNode *list2);
 };
 
 #endif // SOLUTION
