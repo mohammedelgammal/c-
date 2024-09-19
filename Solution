@@ -19,7 +19,7 @@ struct ListNode
 class Solution
 {
 public:
-    void reorderList(ListNode *head);
+    ListNode *removeNthFromEnd(ListNode *head, int n);
 };
 
 #endif // SOLUTION
