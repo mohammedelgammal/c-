@@ -3,17 +3,19 @@
 
 #include "Solution"
 
-ListNode *Solution::removeNthFromEnd(ListNode *head, int n)
+Node * Solution::copyRandomList(Node *head)
 {
-    ListNode *dummyHead = new ListNode(0, head), *right = head, *left = dummyHead;
-    while(n) {
-        right = right->next;
-        n--;
+    unordered_map<Node*, Node*> map;
+    Node *curr = head;
+    while(curr) {
+        map[curr] = new Node(curr->val);
+        curr = curr->next;
     }
-    while(right) {
-        right = right->next;
-        left = left->next;
-    }
-    left->next = left->next->next;
-    return dummyHead->next;
+    curr = head;
+    while(curr) {
+        map[curr]->next = map[curr->next];
+        map[curr]->random = map[curr->random];
+        curr = curr->next;
+    } 
+    return map[head];
 }
