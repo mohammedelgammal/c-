@@ -3,19 +3,21 @@
 
 #include "Solution"
 
-Node * Solution::copyRandomList(Node *head)
+ListNode *Solution::addTwoNumbers(ListNode *l1, ListNode *l2)
 {
-    unordered_map<Node*, Node*> map;
-    Node *curr = head;
-    while(curr) {
-        map[curr] = new Node(curr->val);
-        curr = curr->next;
+    ListNode *ans = new ListNode(), *dummy = ans;
+    int carry = 0;
+    while (l1 || l2 || carry)
+    {
+        int val1 = l1 ? l1->val : 0,
+            val2 = l2 ? l2->val : 0,
+            val = val1 + val2 + carry;
+        carry = val / 10;
+        val %= 10;
+        dummy->next = new ListNode(val);
+        dummy = dummy->next;
+        l1 = l1 ? l1->next : nullptr;
+        l2 = l2 ? l2->next : nullptr;
     }
-    curr = head;
-    while(curr) {
-        map[curr]->next = map[curr->next];
-        map[curr]->random = map[curr->random];
-        curr = curr->next;
-    } 
-    return map[head];
+    return ans->next;
 }
