@@ -3,13 +3,16 @@
 
 #include "Solution"
 
-bool Solution::hasCycle(ListNode *head)
+int Solution::findDuplicate(vector<int> &nums)
 {
-    ListNode *slow = head, *fast = head ? head->next : nullptr;
-    while(fast && fast->next) {
-        if(slow == fast) return true;
-        slow = slow->next;
-        fast = fast->next->next;
+    int slow = 0, fast = 0, sslow = 0;
+    do {
+        slow = nums[slow];
+        fast = nums[nums[fast]];
+    } while(slow != fast);
+    while(slow != sslow) {
+        slow = nums[slow];
+        sslow = nums[sslow];
     }
-    return false;
+    return slow;
 }
