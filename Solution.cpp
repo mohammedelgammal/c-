@@ -3,16 +3,10 @@
 
 #include "Solution"
 
-int Solution::findDuplicate(vector<int> &nums)
+vector<int> Solution::getConcatenation(vector<int> &nums)
 {
-    int slow = 0, fast = 0, sslow = 0;
-    do {
-        slow = nums[slow];
-        fast = nums[nums[fast]];
-    } while(slow != fast);
-    while(slow != sslow) {
-        slow = nums[slow];
-        sslow = nums[sslow];
-    }
-    return slow;
+    vector<int> ans(nums.size() * 2, 0);
+    for(int i = 0; i < ans.size(); i++) 
+        ans[i] = nums[i % nums.size()];
+    return ans;
 }

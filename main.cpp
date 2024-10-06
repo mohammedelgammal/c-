@@ -7,7 +7,5 @@ int main()
 {
     Solution solution;
 
-    // solution.reverseList();
-
     return 0;
 }
