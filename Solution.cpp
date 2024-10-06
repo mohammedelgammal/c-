@@ -3,13 +3,14 @@
 
 #include "Solution"
 
-vector<int> Solution::replaceElements(vector<int> &arr)
+int Solution::minimumDifference(vector<int> &nums, int k)
 {
-    vector<int> ans(arr.size());
-    int maxi = -1;
-    for(int i = arr.size() - 1; i >= 0; i--) {
-        ans[i] = maxi;
-        maxi = max(arr[i], maxi);
+    sort(nums.begin(), nums.end());
+    int l = 0, r = k - 1, ans = INT_MAX;
+    while(r < nums.size()) {
+        ans = min(nums[r] - nums[l], ans);
+        r++;
+        l++;
     }
     return ans;
 }
