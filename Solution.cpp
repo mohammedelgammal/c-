@@ -3,10 +3,13 @@
 
 #include "Solution"
 
-vector<int> Solution::getConcatenation(vector<int> &nums)
+vector<int> Solution::replaceElements(vector<int> &arr)
 {
-    vector<int> ans(nums.size() * 2, 0);
-    for(int i = 0; i < ans.size(); i++) 
-        ans[i] = nums[i % nums.size()];
+    vector<int> ans(arr.size());
+    int maxi = -1;
+    for(int i = arr.size() - 1; i >= 0; i--) {
+        ans[i] = maxi;
+        maxi = max(arr[i], maxi);
+    }
     return ans;
 }
