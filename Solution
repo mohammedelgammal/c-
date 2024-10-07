@@ -5,48 +5,12 @@ using namespace std;
 
 #include <vector>
 #include <unordered_map>
-#include <queue>
+#include <deque>
 
-class MyStack
+class Solution
 {
 public:
-    MyStack()
-    {
-    }
-
-    queue<int> queue, alt;
-
-    void push(int x)
-    {
-        this->queue.push(x);
-    }
-
-    int pop()
-    {
-        int back = this->queue.back();
-        while (!queue.empty())
-        {
-            if (queue.front() != queue.back())
-                alt.push(queue.front());
-            queue.pop();
-        }
-        while (!alt.empty())
-        {
-            this->queue.push(alt.front());
-            alt.pop();
-        }
-        return back;
-    }
-
-    int top()
-    {
-        return this->queue.back();
-    }
-
-    bool empty()
-    {
-        return !this->queue.size();
-    }
+    int searchInsert(vector<int> &nums, int target);
 };
 
 #endif // SOLUTION

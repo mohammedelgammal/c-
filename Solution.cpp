@@ -3,29 +3,14 @@
 
 #include "Solution"
 
-int Solution::calPoints(vector<string> &operations)
+int Solution::searchInsert(vector<int> &nums, int target)
 {
-    stack<int> stack;
-    for(string &op : operations) {
-        if(op == "+") {
-            int top = stack.top();
-            stack.pop();
-            int sum = top + stack.top();
-            stack.push(top);
-            stack.push(sum);
-        } else if (op == "D") {
-            stack.push(stack.top() * 2);
-        } else if (op == "C") {
-            stack.pop();
-        } else {
-            int num = stoi(op);
-            stack.push(num);
-        }
+    int l = 0, r = nums.size() - 1;
+    while(r >= l) {
+        int mid = l + (r - l) / 2;
+        if(nums[mid] == target) return mid;
+        else if(nums[mid] > target) r = mid - 1;
+        else l = mid + 1;
     }
-    int ans = 0;
-    while(!stack.empty()) {
-        ans += stack.top();
-        stack.pop();
-    }
-    return ans;
+    return l;
 }
