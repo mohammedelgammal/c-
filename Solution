@@ -5,12 +5,48 @@ using namespace std;
 
 #include <vector>
 #include <unordered_map>
-#include <stack>
+#include <queue>
 
-class Solution
+class MyStack
 {
 public:
-    int calPoints(vector<string> &operations);
+    MyStack()
+    {
+    }
+
+    queue<int> queue, alt;
+
+    void push(int x)
+    {
+        this->queue.push(x);
+    }
+
+    int pop()
+    {
+        int back = this->queue.back();
+        while (!queue.empty())
+        {
+            if (queue.front() != queue.back())
+                alt.push(queue.front());
+            queue.pop();
+        }
+        while (!alt.empty())
+        {
+            this->queue.push(alt.front());
+            alt.pop();
+        }
+        return back;
+    }
+
+    int top()
+    {
+        return this->queue.back();
+    }
+
+    bool empty()
+    {
+        return !this->queue.size();
+    }
 };
 
 #endif // SOLUTION
