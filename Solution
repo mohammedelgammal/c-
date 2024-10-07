@@ -5,12 +5,12 @@ using namespace std;
 
 #include <vector>
 #include <unordered_map>
-#include <deque>
+#include <stack>
 
 class Solution
 {
 public:
-    int minimumDifference(vector<int> &nums, int k);
+    int calPoints(vector<string> &operations);
 };
 
 #endif // SOLUTION
