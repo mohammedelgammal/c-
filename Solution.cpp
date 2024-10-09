@@ -3,15 +3,12 @@
 
 #include "Solution"
 
-ListNode *Solution::*deleteDuplicates(ListNode *head)
+bool Solution::isSubsequence(string s, string t)
 {
-    ListNode *curr = head;
-    while (curr && curr->next)
-    {
-        if (curr->val == curr->next->val)
-            curr->next = curr->next->next;
-        else
-            curr = curr->next;
+    int l = 0, r = 0;
+    while(l < s.size() && r < t.size()) {
+        if(s[l] == t[r]) l++;
+        r++;
     }
-    return head;
+    return l >= s.size();
 }
