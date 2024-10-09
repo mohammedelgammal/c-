@@ -3,14 +3,14 @@
 
 #include "Solution"
 
-int Solution::searchInsert(vector<int> &nums, int target)
+int Solution::guessNumber(int n)
 {
-    int l = 0, r = nums.size() - 1;
-    while(r >= l) {
-        int mid = l + (r - l) / 2;
-        if(nums[mid] == target) return mid;
-        else if(nums[mid] > target) r = mid - 1;
-        else l = mid + 1;
-    }
-    return l;
+    int l = 1, r = n;
+        while(true) {
+            int myGuess = l + (r - l) / 2;
+            if(guess(myGuess) == -1) r = myGuess - 1;
+            else if(guess(myGuess) == 1) l = myGuess + 1;
+            else return myGuess;  
+        }
+        return -1;
 }
