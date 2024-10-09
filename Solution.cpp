@@ -3,14 +3,30 @@
 
 #include "Solution"
 
-int Solution::guessNumber(int n)
+bool Solution::isPalindrome(ListNode *head)
 {
-    int l = 1, r = n;
-        while(true) {
-            int myGuess = l + (r - l) / 2;
-            if(guess(myGuess) == -1) r = myGuess - 1;
-            else if(guess(myGuess) == 1) l = myGuess + 1;
-            else return myGuess;  
-        }
-        return -1;
+    ListNode *slow = head, *fast = head->next;
+    while (fast && fast->next)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    ListNode *prev = nullptr, *curr = slow->next, *next = nullptr;
+    slow->next = nullptr;
+    while (curr)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    ListNode *newHead = prev;
+    while (newHead)
+    {
+        if (newHead->val != head->val)
+            return false;
+        newHead = newHead->next;
+        head = head->next;
+    }
+    return true;
 }
