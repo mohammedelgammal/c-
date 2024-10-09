@@ -3,30 +3,13 @@
 
 #include "Solution"
 
-bool Solution::isPalindrome(ListNode *head)
+ListNode *Solution::removeElements(ListNode *head, int val)
 {
-    ListNode *slow = head, *fast = head->next;
-    while (fast && fast->next)
-    {
-        slow = slow->next;
-        fast = fast->next->next;
+    ListNode *dummyHead = new ListNode(0, head), *prev = dummyHead, *curr = head;
+    while(curr) {
+        if(curr->val == val) prev->next = curr->next;
+        else prev = curr;
+        curr = curr->next;
     }
-    ListNode *prev = nullptr, *curr = slow->next, *next = nullptr;
-    slow->next = nullptr;
-    while (curr)
-    {
-        next = curr->next;
-        curr->next = prev;
-        prev = curr;
-        curr = next;
-    }
-    ListNode *newHead = prev;
-    while (newHead)
-    {
-        if (newHead->val != head->val)
-            return false;
-        newHead = newHead->next;
-        head = head->next;
-    }
-    return true;
+    return dummyHead->next;
 }

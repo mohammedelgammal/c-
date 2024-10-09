@@ -19,7 +19,7 @@ struct ListNode
 class Solution
 {
 public:
-    bool isPalindrome(ListNode *head);
+    ListNode *removeElements(ListNode *head, int val);
 };
 
 #endif // SOLUTION
