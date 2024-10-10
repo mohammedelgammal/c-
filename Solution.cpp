@@ -3,12 +3,13 @@
 
 #include "Solution"
 
-bool Solution::isSubsequence(string s, string t)
+int Solution::lengthOfLastWord(string s)
 {
-    int l = 0, r = 0;
-    while(l < s.size() && r < t.size()) {
-        if(s[l] == t[r]) l++;
-        r++;
+    int l = s.size() - 1, ans = 0;
+    while(s[l] == ' ') l--;
+    while(l >= 0 && s[l] != ' ') {
+        ans++;
+        l--;
     }
-    return l >= s.size();
+    return ans;
 }
