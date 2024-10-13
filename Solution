@@ -5,12 +5,12 @@ using namespace std;
 
 #include <vector>
 #include <unordered_map>
-#include <deque>
+#include <set>
 
 class Solution
 {
 public:
-    void reverseString(vector<char> &s);
+    bool containsNearbyDuplicate(vector<int> &nums, int k);
 };
 
 #endif // SOLUTION
