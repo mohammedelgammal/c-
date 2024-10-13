@@ -10,7 +10,7 @@ using namespace std;
 class Solution
 {
 public:
-    int lengthOfLastWord(string s);
+    string mergeAlternately(string word1, string word2);
 };
 
 #endif // SOLUTION

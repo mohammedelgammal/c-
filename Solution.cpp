@@ -3,13 +3,13 @@
 
 #include "Solution"
 
-int Solution::lengthOfLastWord(string s)
+string Solution::mergeAlternately(string word1, string word2)
 {
-    int l = s.size() - 1, ans = 0;
-    while(s[l] == ' ') l--;
-    while(l >= 0 && s[l] != ' ') {
-        ans++;
-        l--;
+    string ans;
+    int l = 0, r = 0, n1 = word1.size(), n2 = word2.size();
+    while(l < n1 || r < n2) {
+        if(l < n1) ans += word1[l++];
+        if(r < n2) ans += word2[r++];
     }
     return ans;
 }
