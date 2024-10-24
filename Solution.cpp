@@ -3,18 +3,18 @@
 
 #include "Solution"
 
-void traverseIn(TreeNode *root, vector<int> &ans)
-{
-    if (!root)
-        return;
-    traverseIn(root->left, ans);
-    ans.push_back(root->val);
-    traverseIn(root->right, ans);
-}
-
 vector<int> Solution::inorderTraversal(TreeNode *root)
 {
     vector<int> ans;
-    traverseIn(root, ans);
+    stack<TreeNode*> stack;
+    while(root || !stack.empty()) {
+        while(root) {
+            stack.push(root);
+            root = root->left;
+        }
+        ans.push_back(stack.top()->val);
+        root = stack.top()->right;
+        stack.pop();
+    }
     return ans;
 }
