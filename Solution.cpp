@@ -3,18 +3,16 @@
 
 #include "Solution"
 
+void traversePre(TreeNode *root, vector<int> &ans) {
+    if(!root) return;
+    ans.push_back(root->val);
+    traversePre(root->left, ans);
+    traversePre(root->right, ans);
+}   
+
 vector<int> Solution::inorderTraversal(TreeNode *root)
 {
     vector<int> ans;
-    stack<TreeNode*> stack;
-    while(root || !stack.empty()) {
-        while(root) {
-            stack.push(root);
-            root = root->left;
-        }
-        ans.push_back(stack.top()->val);
-        root = stack.top()->right;
-        stack.pop();
-    }
+    traversePre(root, ans);
     return ans;
 }
