@@ -3,18 +3,18 @@
 
 #include "Solution"
 
-void invert(TreeNode *root)
-{
-    if (!root)
-        return;
-    swap(root->left, root->right);
-    invert(root->left);
-    invert(root->right);
-}
-
 TreeNode *Solution::invertTree(TreeNode *root)
 {
-    TreeNode *curr = root;
-    invert(root);
-    return curr;
+    TreeNode *ans = root;
+    stack<TreeNode*> stack;
+    while(!stack.empty() || root) {
+        while(root) {
+            swap(root->left, root->right);
+            stack.push(root);
+            root = root->left;
+        }
+        root = stack.top()->right;
+        stack.pop();
+    }
+    return ans;
 }
