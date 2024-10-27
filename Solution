@@ -20,7 +20,7 @@ struct TreeNode
 class Solution
 {
 public:
-    vector<int> inorderTraversal(TreeNode *root);
+    vector<int> postorderTraversal(TreeNode *root);
 };
 
 #endif // SOLUTION
