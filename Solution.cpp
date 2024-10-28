@@ -3,24 +3,15 @@
 
 #include "Solution"
 
-TreeNode *Solution::invertTree(TreeNode *root)
+int getMax(TreeNode *root, int count)
 {
-    TreeNode *ans = root;
-    stack<pair<TreeNode*, bool>> stack;
-    stack.push({root, false});
-    while(!stack.empty()) {
-        root = stack.top().first;
-        bool isVisited = stack.top().second;
-        stack.pop();
-        if(root) {
-            if(!isVisited) {
-                stack.push({root->left, false});
-                stack.push({root->right, false});
-                stack.push({root, true});
-            } else {
-                swap(root->left, root->right);
-            }
-        }
-    }
-    return ans;
+    if (!root)
+        return count;
+    return max(getMax(root->left, count + 1),
+               getMax(root->right, count + 1));
+}
+
+int Solution::maxDepth(TreeNode *root)
+{
+    return getMax(root, 0);
 }
