@@ -20,7 +20,7 @@ struct TreeNode
 class Solution
 {
 public:
-    int maxDepth(TreeNode *root);
+    int diameterOfBinaryTree(TreeNode *root);
 };
 
 #endif // SOLUTION
