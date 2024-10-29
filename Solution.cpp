@@ -3,17 +3,9 @@
 
 #include "Solution"
 
-int dfs(TreeNode *root, bool &ans) {
-    if(!root) return 0;
-    int left = dfs(root->left, ans),
-        right = dfs(root->right, ans);
-    if(abs(left - right) > 1) ans = false;
-    return max(left, right) + 1;
-}
-
-bool Solution::isBalanced(TreeNode *root)
+bool Solution::isSameTree(TreeNode *p, TreeNode *q)
 {
-    bool ans = true;
-    dfs(root, ans);
-    return ans;
+    if (!q || !p)
+        return true;
+    return p->val == q->val && isSameTree(q->left, p->left) && isSameTree(p->right, q->right);
 }

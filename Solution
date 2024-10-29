@@ -20,7 +20,7 @@ struct TreeNode
 class Solution
 {
 public:
-    bool isBalanced(TreeNode *root);
+    bool isSameTree(TreeNode *p, TreeNode *q);
 };
 
 #endif // SOLUTION
