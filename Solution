@@ -20,7 +20,7 @@ struct TreeNode
 class Solution
 {
 public:
-    bool isSameTree(TreeNode *p, TreeNode *q);
+    bool isSubtree(TreeNode *root, TreeNode *subRoot);
 };
 
 #endif // SOLUTION

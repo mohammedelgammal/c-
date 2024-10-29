@@ -3,9 +3,13 @@
 
 #include "Solution"
 
-bool Solution::isSameTree(TreeNode *p, TreeNode *q)
+bool isSameTree(TreeNode *p, TreeNode* q) {
+    if(!p || !q) return p == q;
+    return p->val == q->val && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+}
+
+bool Solution::isSubtree(TreeNode *root, TreeNode *subRoot)
 {
-    if (!q || !p)
-        return true;
-    return p->val == q->val && isSameTree(q->left, p->left) && isSameTree(p->right, q->right);
+    if(!root) return false;
+    return isSameTree(root, subRoot) || isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
 }
