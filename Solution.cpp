@@ -3,13 +3,16 @@
 
 #include "Solution"
 
-bool isSameTree(TreeNode *p, TreeNode* q) {
-    if(!p || !q) return p == q;
-    return p->val == q->val && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+TreeNode *dfs(int l, int r, vector<int> &nums) {
+    if(l > r) return nullptr;
+    int mid = l + (r - l) / 2;
+    TreeNode *root = new TreeNode(nums[mid]);
+    root->left = dfs(l, mid - 1, nums);
+    root->right = dfs(mid + 1, r, nums);
+    return root;
 }
 
-bool Solution::isSubtree(TreeNode *root, TreeNode *subRoot)
+TreeNode *Solution::sortedArrayToBST(vector<int> &nums)
 {
-    if(!root) return false;
-    return isSameTree(root, subRoot) || isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
+    return dfs(0, nums.size() - 1, nums);
 }

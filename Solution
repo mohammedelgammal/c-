@@ -20,7 +20,7 @@ struct TreeNode
 class Solution
 {
 public:
-    bool isSubtree(TreeNode *root, TreeNode *subRoot);
+    TreeNode *sortedArrayToBST(vector<int> &nums);
 };
 
 #endif // SOLUTION
