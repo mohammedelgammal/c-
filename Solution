@@ -20,7 +20,7 @@ struct TreeNode
 class Solution
 {
 public:
-    TreeNode *sortedArrayToBST(vector<int> &nums);
+    TreeNode *mergeTrees(TreeNode *root1, TreeNode *root2);
 };
 
 #endif // SOLUTION
