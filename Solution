@@ -10,17 +10,7 @@ using namespace std;
 class Solution
 {
 public:
-    int k;
-    priority_queue<int, vector<int>, greater<int>> pq;
-    Solution(int k, vector<int> &nums)
-    {
-        this->k = k;
-        for (int num : nums)
-            pq.push(num);
-        while (pq.size() > k)
-            pq.pop();
-    }
-    int add(int val);
+    int lastStoneWeight(vector<int> &stones);
 };
 
 #endif // SOLUTION
