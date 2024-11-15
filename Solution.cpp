@@ -3,12 +3,20 @@
 
 #include "Solution"
 
-int Solution::findKthLargest(vector<int> &nums, int k)
+void backtrack(int index, vector<int> &subset, vector<vector<int>> &ans, vector<int> nums)
 {
-    priority_queue<int> pq;
-    for (int num : nums)
-        pq.push(num);
-    for (int i = 0; i + 1 < k; i++)
-        pq.pop();
-    return pq.top();
+    if (index == nums.size())
+        return ans.push_back(subset);
+    backtrack(index + 1, subset, ans, nums);
+    subset.push_back(nums[index]);
+    backtrack(index + 1, subset, ans, nums);
+    subset.pop_back();
+}
+
+vector<vector<int>> Solution::subsets(vector<int> &nums)
+{
+    vector<vector<int>> ans;
+    vector<int> subset;
+    backtrack(0, subset, ans, nums);
+    return ans;
 }
