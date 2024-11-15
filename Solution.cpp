@@ -3,10 +3,10 @@
 
 #include "Solution"
 
-void backtrack(int index, vector<int> &subset, vector<vector<int>> &ans, vector<int> nums)
+void backtrack(int index, vector<int> subset, vector<vector<int>> &ans, vector<int> nums)
 {
     if (index == nums.size())
-        return ans.push_back(subset);
+        return ans.push_back(move(subset));
     backtrack(index + 1, subset, ans, nums);
     subset.push_back(nums[index]);
     backtrack(index + 1, subset, ans, nums);
@@ -16,7 +16,6 @@ void backtrack(int index, vector<int> &subset, vector<vector<int>> &ans, vector<
 vector<vector<int>> Solution::subsets(vector<int> &nums)
 {
     vector<vector<int>> ans;
-    vector<int> subset;
-    backtrack(0, subset, ans, nums);
+    backtrack(0, {}, ans, nums);
     return ans;
 }
