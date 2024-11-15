@@ -3,19 +3,19 @@
 
 #include "Solution"
 
-void backtrack(int index, vector<int> subset, vector<vector<int>> &ans, vector<int> nums)
-{
-    if (index == nums.size())
-        return ans.push_back(move(subset));
-    backtrack(index + 1, subset, ans, nums);
-    subset.push_back(nums[index]);
-    backtrack(index + 1, subset, ans, nums);
-    subset.pop_back();
+void backtrack(TreeNode *root, string str, vector<string> &ans) {
+    if(!root) return;
+    str += to_string(root->val);
+    if(!root->left && !root->right) 
+        ans.push_back(str);
+    str += "->";
+    backtrack(root->left, str, ans);
+    backtrack(root->right, str, ans);
 }
 
-vector<vector<int>> Solution::subsets(vector<int> &nums)
+vector<string> Solution::binaryTreePaths(TreeNode *root)
 {
-    vector<vector<int>> ans;
-    backtrack(0, {}, ans, nums);
+    vector<string> ans;
+    backtrack(root, "", ans);
     return ans;
 }
