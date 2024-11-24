@@ -5,27 +5,23 @@
 
 Node *Solution::cloneGraph(Node *node)
 {
-    if (!node)
+    if(!node) 
         return nullptr;
-    unordered_map<Node *, Node *> visited;
-    stack<Node *> stack;
+    unordered_map<Node*, Node*> visited;
+    queue<Node*> queue;
     Node *clonedNode = new Node(node->val);
     visited[node] = clonedNode;
-    stack.push(node);
-    while (!stack.empty())
-    {
-        Node *top = stack.top();
-        stack.pop();
-        for (Node *neighbor : top->neighbors)
-        {
-
-            if (!visited.contains(neighbor))
-            {
+    queue.push(node);
+    while(!queue.empty()) {
+        Node *front = queue.front();
+        queue.pop();
+        for(Node *neighbor : front->neighbors) {
+            if(!visited.contains(neighbor)) {
                 Node *cloned = new Node(neighbor->val);
                 visited[neighbor] = cloned;
-                stack.push(neighbor);
+                queue.push(neighbor);
             }
-            visited[top]->neighbors.push_back(visited[neighbor]);
+            visited[front]->neighbors.push_back(visited[neighbor]);
         }
     }
     return visited[node];
