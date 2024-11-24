@@ -3,21 +3,21 @@
 
 #include "Solution"
 
-vector<vector<int>> Solution::permute(vector<int> &nums)
+Node *clone(Node *node, unordered_map<Node *, Node *> &visited)
 {
-    if (!nums.size())
-        return {{}};
-    vector<int> sliced(nums.begin() + 1, nums.end());
-    vector<vector<int>> permutations = permute(sliced);
-    vector<vector<int>> ans;
-    for (vector<int> &permutation : permutations)
-    {
-        for (int i = 0; i <= permutation.size(); i++)
-        {
-            vector<int> newPermutation = permutation;
-            newPermutation.insert(newPermutation.begin() + i, nums[0]);
-            ans.push_back(newPermutation);
-        }
-    }
-    return ans;
+    if (visited.contains(node))
+        return visited[node];
+    Node *cloned = new Node(node->val);
+    visited[node] = cloned;
+    for (Node *neighbor : node->neighbors)
+        cloned->neighbors.push_back(clone(neighbor, visited));
+    return cloned;
+}
+
+Node *Solution::cloneGraph(Node *node)
+{
+    if (!node)
+        return nullptr;
+    unordered_map<Node *, Node *> visited;
+    return clone(node, visited);
 }
