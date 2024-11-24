@@ -3,26 +3,24 @@
 
 #include "Solution"
 
-Node *Solution::cloneGraph(Node *node)
+int getPerimeter(int i, int j, set<pair<int, int>> &visited, vector<vector<int>> &grid) {
+    if(visited.contains({i, j}))
+        return 0;
+    if(i < 0 || j < 0 || i >= grid.size() || j >= grid[0].size() || !grid[i][j]) 
+        return 1;
+    visited.insert({i, j});
+    int perimeter = getPerimeter(i + 1, j, visited, grid) + getPerimeter(i, j + 1, visited, grid) + getPerimeter(i - 1, j, visited, grid) + getPerimeter(i, j - 1, visited, grid);
+    return perimeter;
+}
+
+int Solution::islandPerimeter(vector<vector<int>> &grid)
 {
-    if(!node) 
-        return nullptr;
-    unordered_map<Node*, Node*> visited;
-    queue<Node*> queue;
-    Node *clonedNode = new Node(node->val);
-    visited[node] = clonedNode;
-    queue.push(node);
-    while(!queue.empty()) {
-        Node *front = queue.front();
-        queue.pop();
-        for(Node *neighbor : front->neighbors) {
-            if(!visited.contains(neighbor)) {
-                Node *cloned = new Node(neighbor->val);
-                visited[neighbor] = cloned;
-                queue.push(neighbor);
-            }
-            visited[front]->neighbors.push_back(visited[neighbor]);
+    set<pair<int, int>> visited;
+    for(int i = 0; i < grid.size(); i++) {
+        for(int j = 0; j < grid[0].size(); j++) {
+            if(grid[i][j])
+                return getPerimeter(i, j, visited, grid);
         }
     }
-    return visited[node];
+    return 0;
 }
