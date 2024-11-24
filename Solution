@@ -5,6 +5,7 @@ using namespace std;
 
 #include <vector>
 #include <unordered_map>
+#include <stack>
 
 class Node
 {

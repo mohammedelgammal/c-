@@ -3,21 +3,30 @@
 
 #include "Solution"
 
-Node *clone(Node *node, unordered_map<Node *, Node *> &visited)
-{
-    if (visited.contains(node))
-        return visited[node];
-    Node *cloned = new Node(node->val);
-    visited[node] = cloned;
-    for (Node *neighbor : node->neighbors)
-        cloned->neighbors.push_back(clone(neighbor, visited));
-    return cloned;
-}
-
 Node *Solution::cloneGraph(Node *node)
 {
     if (!node)
         return nullptr;
     unordered_map<Node *, Node *> visited;
-    return clone(node, visited);
+    stack<Node *> stack;
+    Node *clonedNode = new Node(node->val);
+    visited[node] = clonedNode;
+    stack.push(node);
+    while (!stack.empty())
+    {
+        Node *top = stack.top();
+        stack.pop();
+        for (Node *neighbor : top->neighbors)
+        {
+
+            if (!visited.contains(neighbor))
+            {
+                Node *cloned = new Node(neighbor->val);
+                visited[neighbor] = cloned;
+                stack.push(neighbor);
+            }
+            visited[top]->neighbors.push_back(visited[neighbor]);
+        }
+    }
+    return visited[node];
 }
