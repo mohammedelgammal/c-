@@ -3,23 +3,23 @@
 
 #include "Solution"
 
-int Solution::numIslands(vector<vector<char>> &grid)
+int Solution::maxAreaOfIsland(vector<vector<int>> &grid)
 {
-    int ans = 0;
-    set<pair<int, int>> visited;
+    int maxArea = 0, area = 0;
     for (int i = 0; i < grid.size(); i++)
     {
         for (int j = 0; j < grid[0].size(); j++)
         {
-            if (grid[i][j] == '1' && !visited.contains({i, j}))
+            if (grid[i][j] == 1)
             {
-                queue<pair<int, int>> queue;
-                visited.insert({i, j});
-                queue.push({i, j});
-                while (!queue.empty())
+                stack<pair<int, int>> stack;
+                area += 1;
+                grid[i][j] = 2;
+                stack.push({i, j});
+                while (!stack.empty())
                 {
-                    pair<int, int> curr = queue.front();
-                    queue.pop();
+                    pair<int, int> curr = stack.top();
+                    stack.pop();
                     int ic = curr.first, jc = curr.second;
                     vector<pair<int, int>> neighbors = {
                         {ic + 1, jc},
@@ -30,16 +30,18 @@ int Solution::numIslands(vector<vector<char>> &grid)
                     for (pair<int, int> &neighbor : neighbors)
                     {
                         int in = neighbor.first, jn = neighbor.second;
-                        if (in >= 0 && jn >= 0 && in < grid.size() && jn < grid[0].size() && grid[in][jn] == '1' && !visited.contains(neighbor))
+                        if (in >= 0 && jn >= 0 && in < grid.size() && jn < grid[0].size() && grid[in][jn] == 1)
                         {
-                            visited.insert(neighbor);
-                            queue.push(neighbor);
+                            area += 1;
+                            grid[in][jn] = 2;
+                            stack.push(neighbor);
                         }
                     }
                 }
-                ans += 1;
+                maxArea = max(area, maxArea);
+                area = 0;
             }
         }
     }
-    return ans;
+    return maxArea;
 }

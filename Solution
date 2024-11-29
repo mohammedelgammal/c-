@@ -6,12 +6,12 @@ using namespace std;
 #include <vector>
 #include <unordered_map>
 #include <set>
-#include <queue>
+#include <stack>
 
 class Solution
 {
 public:
-    int numIslands(vector<vector<char>> &grid);
+    int maxAreaOfIsland(vector<vector<int>> &grid);
 };
 
 #endif // SOLUTION
