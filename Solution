@@ -10,7 +10,7 @@ using namespace std;
 class Solution
 {
 public:
-    int islandPerimeter(vector<vector<int>> &grid);
+    int numIslands(vector<vector<char>> &grid);
 };
 
 #endif // SOLUTION

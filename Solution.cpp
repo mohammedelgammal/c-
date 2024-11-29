@@ -3,24 +3,31 @@
 
 #include "Solution"
 
-int getPerimeter(int i, int j, set<pair<int, int>> &visited, vector<vector<int>> &grid) {
-    if(visited.contains({i, j}))
+int explore(int i, int j, set<pair<int, int>> &visited, vector<vector<char>> &grid)
+{
+    if (i < 0 || j < 0 || i >= grid.size() || j >= grid[0].size() || grid[i][j] == '0' || visited.contains({i, j}))
         return 0;
-    if(i < 0 || j < 0 || i >= grid.size() || j >= grid[0].size() || !grid[i][j]) 
-        return 1;
     visited.insert({i, j});
-    int perimeter = getPerimeter(i + 1, j, visited, grid) + getPerimeter(i, j + 1, visited, grid) + getPerimeter(i - 1, j, visited, grid) + getPerimeter(i, j - 1, visited, grid);
-    return perimeter;
+    explore(i + 1, j, visited, grid);
+    explore(i, j + 1, visited, grid);
+    explore(i - 1, j, visited, grid);
+    explore(i, j - 1, visited, grid);
+    return 1;
 }
 
-int Solution::islandPerimeter(vector<vector<int>> &grid)
+int Solution::numIslands(vector<vector<char>> &grid)
 {
+    int ans = 0;
     set<pair<int, int>> visited;
-    for(int i = 0; i < grid.size(); i++) {
-        for(int j = 0; j < grid[0].size(); j++) {
-            if(grid[i][j])
-                return getPerimeter(i, j, visited, grid);
+    for (int i = 0; i < grid.size(); i++)
+    {
+        for (int j = 0; j < grid[0].size(); j++)
+        {
+            if (!visited.contains({i, j}))
+            {
+                ans += explore(i, j, visited, grid);
+            }
         }
     }
-    return 0;
+    return ans;
 }
