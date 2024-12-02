@@ -14,14 +14,14 @@ int Solution::countSubIslands(vector<vector<int>> &grid1,
         {
             if (grid2[i][j] && !visited.contains({i, j}))
             {
-                queue<pair<int, int>> queue;
+                stack<pair<int, int>> stack;
                 bool isSub = grid1[i][j];
                 visited.insert({i, j});
-                queue.push({i, j});
-                while (!queue.empty())
+                stack.push({i, j});
+                while (!stack.empty())
                 {
-                    pair<int, int> curr = queue.front();
-                    queue.pop();
+                    pair<int, int> curr = stack.top();
+                    stack.pop();
                     int ic = curr.first,
                         jc = curr.second;
                     vector<pair<int, int>> neighbors = {
@@ -34,7 +34,7 @@ int Solution::countSubIslands(vector<vector<int>> &grid1,
                         {
                             isSub &= grid1[in][jn];
                             visited.insert(neighbor);
-                            queue.push(neighbor);
+                            stack.push(neighbor);
                         }
                     }
                 }
