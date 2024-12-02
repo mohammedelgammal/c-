@@ -3,48 +3,47 @@
 
 #include "Solution"
 
-int orangesRotting(vector<vector<int>> &grid)
+int Solution::countSubIslands(vector<vector<int>> &grid1,
+                    vector<vector<int>> &grid2)
 {
-    int mins = 0,
-        fresh = 0;
-    queue<pair<int, int>> queue;
-    for (int i = 0; i < grid.size(); i++)
+    int count = 0;
+    set<pair<int, int>> visited;
+    for (int i = 0; i < grid2.size(); i++)
     {
-        for (int j = 0; j < grid[0].size(); j++)
+        for (int j = 0; j < grid2[0].size(); j++)
         {
-            if (grid[i][j] == 1)
-                fresh += 1;
-            if (grid[i][j] == 2)
-                queue.push({i, j});
-        }
-    }
-    while (!queue.empty() && fresh > 0)
-    {
-        int size = queue.size();
-        for (int k = 0; k < size; k++)
-        {
-            pair<int, int> curr = queue.front();
-            queue.pop();
-            int ic = curr.first, jc = curr.second;
-            vector<pair<int, int>> neighbors = {
-                {ic + 1, jc},
-                {ic, jc + 1},
-                {ic - 1, jc},
-                {ic, jc - 1},
-            };
-            for (pair<int, int> &neighbor : neighbors)
+            if (grid2[i][j] && !visited.contains({i, j}))
             {
-                int in = neighbor.first,
-                    jn = neighbor.second;
-                if (in >= 0 && jn >= 0 && in < grid.size() && jn < grid[0].size() && grid[in][jn] == 1)
+                queue<pair<int, int>> queue;
+                bool isSub = grid1[i][j];
+                visited.insert({i, j});
+                queue.push({i, j});
+                while (!queue.empty())
                 {
-                    grid[in][jn] = 2;
-                    fresh -= 1;
-                    queue.push({in, jn});
+                    pair<int, int> curr = queue.front();
+                    queue.pop();
+                    int ic = curr.first,
+                        jc = curr.second;
+                    vector<pair<int, int>> neighbors = {
+                        {ic + 1, jc}, {ic, jc + 1}, {ic - 1, jc}, {ic, jc - 1}};
+                    for (pair<int, int> &neighbor : neighbors)
+                    {
+                        int in = neighbor.first,
+                            jn = neighbor.second;
+                        if (in >= 0 && jn >= 0 && in < grid2.size() && jn < grid2[0].size() && !visited.contains(neighbor) && grid2[in][jn])
+                        {
+                            isSub &= grid1[in][jn];
+                            visited.insert(neighbor);
+                            queue.push(neighbor);
+                        }
+                    }
+                }
+                if (isSub)
+                {
+                    count += 1;
                 }
             }
         }
-        mins += 1;
     }
-    return fresh > 0 ? -1 : mins;
+    return count;
 }

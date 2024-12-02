@@ -11,7 +11,8 @@ using namespace std;
 class Solution
 {
 public:
-    int orangesRotting(vector<vector<int>> &grid);
+    int countSubIslands(vector<vector<int>> &grid1,
+                        vector<vector<int>> &grid2);
 };
 
 #endif // SOLUTION
