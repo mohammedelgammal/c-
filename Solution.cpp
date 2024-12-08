@@ -3,32 +3,26 @@
 
 #include "Solution"
 
-int Solution::countSubIslands(vector<vector<int>> &grid1,
-                              vector<vector<int>> &grid2)
+int findKthLargest(vector<int> &nums, int k)
 {
-    int count = 0;
-    set<pair<int, int>> visited;
-    function<bool(int, int)> isSub = [&](int i, int j)
-    {
-        if (i < 0 || j < 0 || i >= grid2.size() || j >= grid2[0].size() || !grid2[i][j] || visited.contains({i, j}))
-        {
-            return true;
+    int n = nums.size();
+    k = n - k;
+    function<int(int, int)> quickSelect = [&](int l, int r) {
+        int pivot = nums[r],
+            p = l;
+        for(int i = l; i < r; i++) {
+            if(nums[i] < pivot) {
+                swap(nums[i], nums[p]);
+                p += 1;
+            }
         }
-        visited.insert({i, j});
-        bool isCurrSub = grid1[i][j];
-        isCurrSub &= isSub(i + 1, j);
-        isCurrSub &= isSub(i, j + 1);
-        isCurrSub &= isSub(i - 1, j);
-        isCurrSub &= isSub(i, j - 1);
-        return isCurrSub;
+        swap(nums[p], nums[r]);
+        if(p > k) {
+            return quickSelect(l, p - 1);
+        } else if(p < k) {
+            return quickSelect(p + 1, r);
+        }
+        return nums[p];
     };
-    for (int i = 0; i < grid2.size(); i++)
-    {
-        for (int j = 0; j < grid2[0].size(); j++)
-        {
-            if (grid2[i][j] && !visited.contains({i, j}) && isSub(i, j))
-                count += 1;
-        }
-    }
-    return count;
+    return quickSelect(0, n - 1);
 }
