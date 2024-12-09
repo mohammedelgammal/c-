@@ -1,8 +1,8 @@
 #include <iostream>
 
 using namespace std;
-#include "Solution"
-#include "IntroSelect"
+// #include "Solution"
+#include "IntroSelect.h"
 
 int main()
 {
@@ -12,7 +12,7 @@ int main()
 
     vector<int> nums{1, 2};
 
-    cout << introSelect(nums);
+    cout << introSelect<int>(nums);
 
     return 0;
 }

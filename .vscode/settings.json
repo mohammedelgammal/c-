@@ -60,6 +60,19 @@
     "stack": "cpp",
     "unordered_set": "cpp",
     "queue": "cpp",
-    "introselect": "cpp"
+    "introselect": "cpp",
+    "functional": "cpp",
+    "__tree": "cpp",
+    "any": "cpp",
+    "condition_variable": "cpp",
+    "csignal": "cpp",
+    "execution": "cpp",
+    "forward_list": "cpp",
+    "fstream": "cpp",
+    "iomanip": "cpp",
+    "list": "cpp",
+    "map": "cpp",
+    "set": "cpp",
+    "span": "cpp"
   }
 }

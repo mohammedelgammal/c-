@@ -1,10 +1,20 @@
-#include "IntroSelect"
+#ifndef INTROSELECT
+#define INTROSELECT
 
-double introSelect(vector<int> &nums)
+#include <vector>
+#include <functional>
+#include <algorithm>
+
+using namespace std;
+
+template <typename input_type>
+double introSelect(vector<input_type> &nums)
 {
     int size = nums.size(),
         m = size / 2;
-    function<int(int, int)> medianOfMedians = [&](int l, int r)
+    if (!size)
+        throw invalid_argument("cannot find the median of an empty list!");
+    function<input_type(int, int)> medianOfMedians = [&](int l, int r)
     {
         vector<int> medians;
         for (int i = l; i <= r; i += 5)
@@ -20,7 +30,7 @@ double introSelect(vector<int> &nums)
         int mid = medians.size() / 2;
         return medians[mid];
     };
-    function<int(int, int, int)> quickSelect = [&](int l, int r, int m)
+    function<input_type(int, int, int)> quickSelect = [&](int l, int r, int m)
     {
         int pivot = medianOfMedians(l, r), index = r, p = l;
         for (int i = l; i <= r; i++)
@@ -59,3 +69,5 @@ double introSelect(vector<int> &nums)
     }
     return quickSelect(0, size - 1, m);
 }
+
+#endif // INTROSELECT
