@@ -4,83 +4,11 @@
 using namespace std;
 
 #include <vector>
-#include <stack>
-#include <set>
-#include <functional>
 
-struct TrieNode
-{
-    bool isWordEnd = false;
-    unordered_map<char, TrieNode *> children;
-};
-
-class Trie
+class Solution
 {
 public:
-    Trie() : root{new TrieNode()} {}
-    ~Trie()
-    {
-        function<void(TrieNode *)> clear = [this, &clear](TrieNode *node)
-        {
-            for (const auto &it : node->children)
-            {
-                clear(it.second);
-                delete it.second;
-            }
-        };
-        clear(root);
-        delete root;
-        root = nullptr;
-    }
-
-    void insert(string word)
-    {
-        TrieNode *node = root;
-        for (char ch : word)
-        {
-            if (!node->children.contains(ch))
-            {
-                TrieNode *newNode = new TrieNode();
-                node->children[ch] = newNode;
-                newNode = nullptr;
-            }
-            node = node->children[ch];
-        }
-        node->isWordEnd = true;
-        node = nullptr;
-    }
-
-    bool search(string word)
-    {
-        TrieNode *node = root;
-        for (char ch : word)
-        {
-            if (!node->children.contains(ch))
-            {
-                return false;
-            }
-            node = node->children[ch];
-        }
-        return node->isWordEnd;
-    }
-
-    bool startsWith(string prefix)
-    {
-        TrieNode *node = root;
-        for (char ch : prefix)
-        {
-            if (!node->children.contains(ch))
-            {
-                return false;
-            }
-            node = node->children[ch];
-        }
-        node = nullptr;
-        return true;
-    }
-
-private:
-    TrieNode *root;
+    void printTest();
 };
 
 #endif // SOLUTION

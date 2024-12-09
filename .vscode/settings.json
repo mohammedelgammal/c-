@@ -1,5 +1,6 @@
 {
   "files.associations": {
+    "*.css": "tailwindcss",
     "solution": "cpp",
     "vector": "cpp",
     "string": "cpp",
@@ -58,6 +59,7 @@
     "deque": "cpp",
     "stack": "cpp",
     "unordered_set": "cpp",
-    "queue": "cpp"
+    "queue": "cpp",
+    "introselect": "cpp"
   }
 }

@@ -3,3 +3,6 @@
 
 #include "Solution"
 
+void Solution::printTest() {
+    cout << "Print test 1" << endl;
+}
