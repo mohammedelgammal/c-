@@ -2,8 +2,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(UniquePaths, small) {
-  string str = "bbbab";
-  int upaths = longestPalindromeSubseq(str);
-  EXPECT_EQ(upaths, 4);
+TEST(MaximumOddBinaryNumber, normal) {
+  string s = "010";
+  EXPECT_EQ(maximumOddBinaryNumber(s), "001");
 }
