@@ -9,22 +9,23 @@ using std::string;
 using std::unordered_map;
 using std::vector;
 
-int longestPalindromeSubseq(string s) {
-  int size = s.size();
-  string original = s;
-  reverse(s.begin(), s.end());
-  string reversed = s;
-  vector<vector<int>> dp(size + 1, vector<int>(size + 1, 0));
-  for (int i = size - 1; i >= 0; i--) {
-    for (int j = size - 1; j >= 0; j--) {
-      if (original[i] == reversed[j]) {
-        dp[i][j] = 1 + dp[i + 1][j + 1];
-      } else {
-        dp[i][j] = max(dp[i + 1][j], dp[i][j + 1]);
-      }
-    }
+string maximumOddBinaryNumber(string s) {
+  int zeros = 0, ones = 0;
+  for (char ch : s)
+    if (ch == '0')
+      zeros += 1;
+    else
+      ones += 1;
+  string ans;
+  while (ones - 1) {
+    ans.append("1");
+    ones -= 1;
   }
-  return dp[0][0];
+  while (zeros) {
+    ans.append("0");
+    zeros -= 1;
+  }
+  return ans.append("1");
 }
 
 #endif // SOLUTION
