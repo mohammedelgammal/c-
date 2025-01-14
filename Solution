@@ -8,24 +8,19 @@ using std::max;
 using std::string;
 using std::unordered_map;
 using std::vector;
+using std::swap;
 
 string maximumOddBinaryNumber(string s) {
-  int zeros = 0, ones = 0;
-  for (char ch : s)
-    if (ch == '0')
-      zeros += 1;
-    else
-      ones += 1;
-  string ans;
-  while (ones - 1) {
-    ans.append("1");
-    ones -= 1;
+  int size = s.size();
+  int l = 0, r = 0;
+  while (r < size - 1) {
+    if (s[r] == '1')
+      swap(s[l++], s[r]);
+    r++;
   }
-  while (zeros) {
-    ans.append("0");
-    zeros -= 1;
-  }
-  return ans.append("1");
+  if (l - 1 >= 0)
+    swap(s[l - 1], s[size - 1]);
+  return s;
 }
 
 #endif // SOLUTION
