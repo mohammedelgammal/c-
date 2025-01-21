@@ -5,22 +5,23 @@
 
 using std::function;
 using std::max;
+using std::min;
 using std::string;
 using std::unordered_map;
 using std::vector;
 using std::swap;
 
-int maxDepth(string s) {
-  int size = s.size(), open = 0, n = 0;
-  for (char ch : s) {
-    if (ch == '(') {
-      open += 1;
-    } else if (ch == ')') {
-      n = max(open, n);
-      open -= 1;
-    }
+int maxSubarraySumCircular(vector<int> &nums) {
+  int currMin = 0, gMin = nums[0], currMax = 0, gMax = nums[0], total = 0;
+  for (int num : nums) {
+    currMin = min(currMin + num, num);
+    gMin = min(currMin, gMin);
+    currMax = max(currMax + num, num);
+    gMax = max(currMax, gMax);
+    total += num;
   }
-  return n;
+  int leftover = total - (gMax + gMin);
+  return gMax >= 0 ? max(gMax, gMax + leftover) : gMax;
 }
 
 #endif // SOLUTION
