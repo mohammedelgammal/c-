@@ -7,21 +7,26 @@ using std::function;
 using std::max;
 using std::min;
 using std::string;
+using std::swap;
 using std::unordered_map;
 using std::vector;
-using std::swap;
 
-int maxSubarraySumCircular(vector<int> &nums) {
-  int currMin = 0, gMin = nums[0], currMax = 0, gMax = nums[0], total = 0;
-  for (int num : nums) {
-    currMin = min(currMin + num, num);
-    gMin = min(currMin, gMin);
-    currMax = max(currMax + num, num);
-    gMax = max(currMax, gMax);
-    total += num;
+int maxTurbulenceSize(vector<int> &arr) {
+  int size = arr.size(), curr = 0, total = 0;
+  char lastSign = '=';
+  for (int i = 0; i < size - 1; i++) {
+    char newSign = arr[i] > arr[i + 1] ? '>' : arr[i] < arr[i + 1] ? '<' : '=';
+    if (newSign == '=') {
+      curr = 0;
+    } else if (newSign == lastSign) {
+      curr = 1;
+    } else {
+      curr += 1;
+      total = max(curr, total);
+    }
+    lastSign = newSign;
   }
-  int leftover = total - (gMax + gMin);
-  return gMax >= 0 ? max(gMax, gMax + leftover) : gMax;
+  return total + 1;
 }
 
 #endif // SOLUTION

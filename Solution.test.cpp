@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(MaximumDepthOfValidParenthesis, includingOtherCharacters) {
-  vector<int> nums{1, -2, 3, -2};
-  EXPECT_EQ(maxSubarraySumCircular(nums), 3);
+TEST(maxTurbulenceSize, onlyIncrementing) {
+  vector<int> nums{4, 8, 12, 16};
+  EXPECT_EQ(maxTurbulenceSize(nums), 2);
 }
