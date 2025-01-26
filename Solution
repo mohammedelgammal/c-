@@ -11,22 +11,27 @@ using std::swap;
 using std::unordered_map;
 using std::vector;
 
-int maxTurbulenceSize(vector<int> &arr) {
-  int size = arr.size(), curr = 0, total = 0;
-  char lastSign = '=';
-  for (int i = 0; i < size - 1; i++) {
-    char newSign = arr[i] > arr[i + 1] ? '>' : arr[i] < arr[i + 1] ? '<' : '=';
-    if (newSign == '=') {
-      curr = 0;
-    } else if (newSign == lastSign) {
-      curr = 1;
+vector<vector<int>> insert(vector<vector<int>> &intervals,
+                           vector<int> &newInterval) {
+  int size = intervals.size();
+  vector<vector<int>> ans;
+  for (int i = 0; i < size; i++) {
+    vector<int> currInterval = intervals[i];
+    if (newInterval[1] < currInterval[0]) {
+      ans.push_back(newInterval);
+      for (int j = i; j < size; j++)
+        ans.push_back(intervals[j]);
+      return ans;
+    } else if (newInterval[0] > currInterval[1]) {
+      ans.push_back(currInterval);
     } else {
-      curr += 1;
-      total = max(curr, total);
+      int start = min(newInterval[0], currInterval[0]),
+          end = max(newInterval[1], currInterval[1]);
+      newInterval = {start, end};
     }
-    lastSign = newSign;
   }
-  return total + 1;
+  ans.push_back(newInterval);
+  return ans;
 }
 
 #endif // SOLUTION
