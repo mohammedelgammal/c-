@@ -1,36 +1,35 @@
 #ifndef SOLUTION
 #define SOLUTION
 
+#include <algorithm>
 #include <functional>
 
 using std::function;
 using std::max;
 using std::min;
+using std::sort;
 using std::string;
 using std::swap;
 using std::unordered_map;
 using std::vector;
 
-vector<vector<int>> insert(vector<vector<int>> &intervals,
-                           vector<int> &newInterval) {
+vector<vector<int>> merge(vector<vector<int>> &intervals) {
   int size = intervals.size();
+  sort(intervals.begin(), intervals.end(),
+       [](vector<int> &x, vector<int> &y) { return x[0] < y[0]; });
+  vector<int> last = intervals[0];
   vector<vector<int>> ans;
-  for (int i = 0; i < size; i++) {
-    vector<int> currInterval = intervals[i];
-    if (newInterval[1] < currInterval[0]) {
-      ans.push_back(newInterval);
-      for (int j = i; j < size; j++)
-        ans.push_back(intervals[j]);
-      return ans;
-    } else if (newInterval[0] > currInterval[1]) {
-      ans.push_back(currInterval);
+  for (int i = 1; i < size; i++) {
+    vector<int> curr = intervals[i];
+    if (curr[0] > last[1]) {
+      ans.push_back(last);
+      last = curr;
     } else {
-      int start = min(newInterval[0], currInterval[0]),
-          end = max(newInterval[1], currInterval[1]);
-      newInterval = {start, end};
+      int start = min(curr[0], last[0]), end = max(curr[1], last[1]);
+      last = {start, end};
     }
   }
-  ans.push_back(newInterval);
+  ans.push_back(last);
   return ans;
 }
 
