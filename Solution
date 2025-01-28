@@ -13,23 +13,19 @@ using std::swap;
 using std::unordered_map;
 using std::vector;
 
-vector<vector<int>> merge(vector<vector<int>> &intervals) {
-  int size = intervals.size();
+int eraseOverlapIntervals(vector<vector<int>> &intervals) {
+  int size = intervals.size(), ans = 0;
   sort(intervals.begin(), intervals.end(),
-       [](vector<int> &x, vector<int> &y) { return x[0] < y[0]; });
+       [](auto &x, auto &y) { return x[1] < y[1]; });
   vector<int> last = intervals[0];
-  vector<vector<int>> ans;
   for (int i = 1; i < size; i++) {
     vector<int> curr = intervals[i];
-    if (curr[0] > last[1]) {
-      ans.push_back(last);
-      last = curr;
+    if (curr[0] < last[1]) {
+      ans += 1;
     } else {
-      int start = min(curr[0], last[0]), end = max(curr[1], last[1]);
-      last = {start, end};
+      last = curr;
     }
   }
-  ans.push_back(last);
   return ans;
 }
 
