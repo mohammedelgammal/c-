@@ -13,18 +13,13 @@ using std::swap;
 using std::unordered_map;
 using std::vector;
 
-int eraseOverlapIntervals(vector<vector<int>> &intervals) {
-  int size = intervals.size(), ans = 0;
-  sort(intervals.begin(), intervals.end(),
-       [](auto &x, auto &y) { return x[1] < y[1]; });
-  vector<int> last = intervals[0];
-  for (int i = 1; i < size; i++) {
-    vector<int> curr = intervals[i];
-    if (curr[0] < last[1]) {
-      ans += 1;
-    } else {
-      last = curr;
-    }
+string convertToTitle(int columnNumber) {
+  string ans;
+  while (columnNumber > 0) {
+    columnNumber -= 1;
+    char ch = 'A' + columnNumber % 26;
+    ans.insert(ans.begin(), ch);
+    columnNumber /= 26;
   }
   return ans;
 }
