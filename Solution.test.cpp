@@ -2,6 +2,6 @@
 
 #include <gtest/gtest.h>
 
-TEST(eraseOverlapIntervals, IntersectingIntervals) {
-  EXPECT_EQ(convertToTitle(701), "ZY");
+TEST(gcdOfStrings, NoramlTestCase) {
+  EXPECT_EQ(gcdOfStrings("ABCABC", "ABC"), "ABC");
 }

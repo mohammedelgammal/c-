@@ -13,15 +13,22 @@ using std::swap;
 using std::unordered_map;
 using std::vector;
 
-string convertToTitle(int columnNumber) {
-  string ans;
-  while (columnNumber > 0) {
-    columnNumber -= 1;
-    char ch = 'A' + columnNumber % 26;
-    ans.insert(ans.begin(), ch);
-    columnNumber /= 26;
-  }
-  return ans;
+string gcdOfStrings(string str1, string str2) {
+  int len1 = str1.size(), len2 = str2.size();
+  function<bool(int)> isDivisor = [&](int l) {
+    if (len1 % l || len2 % l)
+      return false;
+    string div = str1.substr(0, l), rep1, rep2;
+    for (int i = 0; i < len1 / l; i++)
+      rep1.append(div);
+    for (int j = 0; j < len2 / l; j++)
+      rep2.append(div);
+    return rep1 == str1 && rep2 == str2;
+  };
+  for (int l = min(len1, len2); l > 0; l--)
+    if (isDivisor(l))
+      return str1.substr(0, l);
+  return "";
 }
 
 #endif // SOLUTION
